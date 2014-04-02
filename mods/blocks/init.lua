@@ -1,15 +1,7 @@
-bk_game2 = {}
-function string:remove_modname_prefix()
-        for i = 1,2 do
-                local i = self:find(":")
-                if i then
-                        self = self:sub(i+1)
-                end
-        end
-        return self
-end
-function bk_game2.register_stair(itemstring, def)
-	local name = itemstring:remove_modname_prefix()
+bk_game = {}
+
+function bk_game.register_stair(name, def)
+	local name = name:remove_modname_prefix()
 	minetest.register_node(":blocks:"..name.."_stair", {
 		description = def.description.." Stair",
 		drawtype = "nodebox",
@@ -71,9 +63,9 @@ function bk_game2.register_stair(itemstring, def)
 	minetest.register_craft({
 		output = 'blocks:'..name..'_stair 8',
 		recipe = {
-			{itemstring, "", ""},
-			{itemstring, itemstring, ""},
-			{itemstring, itemstring, itemstring},
+			{def.source, "", ""},
+			{def.source, def.source, ""},
+			{def.source, def.source, def.source},
 		},
 	})
 
@@ -81,15 +73,16 @@ function bk_game2.register_stair(itemstring, def)
 	minetest.register_craft({
 		output = 'blocks:'..name..'_stair 8',
 		recipe = {
-			{"", "", itemstring},
-			{"", itemstring, itemstring},
-			{itemstring, itemstring, itemstring},
+			{"", "", def.source},
+			{"", def.source, def.source},
+			{def.source, def.source, def.source},
 		},
 	})
 	end
 end
-function bk_game2.register_slab(itemstring, def)
-	local name = itemstring:remove_modname_prefix()
+
+function bk_game.register_slab(name, def)
+	
 	minetest.register_node(":blocks:"..name.."_slab",{
 		description = def.description.." Slab",
 		drawtype = "nodebox",
@@ -123,7 +116,7 @@ function bk_game2.register_slab(itemstring, def)
 			--[[if slabpos then
 					minetest.remove_node(p0)
 					itemstack:take_item(1)
-					minetest.set_node(p0,{name=itemstring})
+					minetest.set_node(p0,{name=name})
 				return itemstack
 			end]]--
 			-- Upside down slabs
@@ -132,7 +125,7 @@ function bk_game2.register_slab(itemstring, def)
 				--[[if n0.name == "blocks:"..name.."_slab_upside_down" or "blocks:"..name.."_slab_upside_down" then
 					minetest.remove_node(p0)
 					itemstack:take_item(1)
-					minetest.set_node(p0,{name=itemstring})
+					minetest.set_node(p0,{name=name})
 				end]]--
 				
 				-- Place upside down slab
@@ -180,17 +173,56 @@ function bk_game2.register_slab(itemstring, def)
 	minetest.register_craft({
 		output = 'blocks:'..name..'_slab 6',
 		recipe = {
-			{itemstring, itemstring, itemstring},
+			{def.source, def.source, def.source},
 		},
 	})
 	end
 end
-function bk_game2.register_nodes(itemstring, def)
-	minetest.register_node(itemstring, def)
+
+function bk_game.register_nodes(name, def)
+	
+	if not def.tiles then
+		def.tiles = {"blocks_"..name..".png"}
+	end
+	
+	if not def.sounds then
+		def.sounds = default.node_sound_stone_defaults()
+	end
+	
+	if not def.groups then
+		def.groups = {cracky=1, stone=1}
+		def.is_ground_content = true
+	end
+	
+	
+	
+	if not def.source then
+		print("set source to: blocks:"..name)
+		local source = "blocks:"..name
+		def.source = source
+		print("source: "..def.source)
+	else
+		if not def.drop then
+			def.drop = "blocks:"..name
+			def.legacy_mineral = true
+		end
+		minetest.register_craft({
+			output = "blocks:"..name,
+			recipe = {
+				{def.source, def.source, ""},
+				{def.source, def.source, ""}, 
+			}
+		})
+	end
+	
+	minetest.register_node(":blocks:"..name, def)
+	
 	if def.slab == true then
-		bk_game2.register_slab(itemstring, def)
+		bk_game.register_slab(name, def)
 	end
+	
 	if def.stair == true then
-		bk_game2.register_stair(itemstring, def)
+		bk_game.register_stair(name, def)
 	end
+	
 end

@@ -20,7 +20,7 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
-	output = 'default:sandstone',
+	output = 'blocks:sandstone',
 	recipe = {
 		{'group:sand', 'group:sand'},
 		{'group:sand', 'group:sand'},
@@ -35,15 +35,15 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
-	output = 'default:sandstonebrick',
+	output = 'blocks:sandstonebrick',
 	recipe = {
-		{'default:sandstone', 'default:sandstone'},
-		{'default:sandstone', 'default:sandstone'},
+		{'blocks:sandstone', 'blocks:sandstone'},
+		{'blocks:sandstone', 'blocks:sandstone'},
 	}
 })
 
 minetest.register_craft({
-	output = 'default:clay',
+	output = 'blocks:clay',
 	recipe = {
 		{'default:clay_lump', 'default:clay_lump'},
 		{'default:clay_lump', 'default:clay_lump'},
@@ -51,7 +51,7 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
-	output = 'default:brick',
+	output = 'blocks:brick',
 	recipe = {
 		{'default:clay_brick', 'default:clay_brick'},
 		{'default:clay_brick', 'default:clay_brick'},
@@ -102,7 +102,7 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
-	output = 'default:stonebrick',
+	output = 'blocks:stonebrick',
 	recipe = {
 		{'default:stone', 'default:stone'},
 		{'default:stone', 'default:stone'},
@@ -110,7 +110,7 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
-	output = 'default:desert_stonebrick',
+	output = 'blocks:desert_stonebrick',
 	recipe = {
 		{'default:desert_stone', 'default:desert_stone'},
 		{'default:desert_stone', 'default:desert_stone'},
@@ -147,19 +147,19 @@ minetest.register_craft({
 
 minetest.register_craft({
 	type = "cooking",
-	output = "default:glass",
+	output = "blocks:glass",
 	recipe = "group:sand",
 })
 
 minetest.register_craft({
 	type = "cooking",
-	output = "default:obsidian_glass",
+	output = "blocks:obsidian_glass",
 	recipe = "default:obsidian_shard",
 })
 
 minetest.register_craft({
 	type = "cooking",
-	output = "default:stone",
+	output = "blocks:stone",
 	recipe = "default:cobble",
 })
 

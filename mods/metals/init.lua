@@ -36,11 +36,13 @@ function register_metal(name, metalDef)
 		metalDef.source = metalDef.ingot
 		end 
 	end
---[[
+
 	if not metalDef.block and metalDef.block ~= false then
-	register_block(name, metalDef)
+	metalDef.stair = true
+	metalDef.slab = true
+	bk_game.register_nodes(name, metalDef)
 	end
-]]--
+
 
 	if not metalDef.tools and metalDef.tools ~= false then
 		register_tools(name, metalDef)
@@ -108,7 +110,7 @@ opts_list = {
     {description = "Tin", tools = false, },
     {description = "Zinc", tools = false, }
 	--  "Lignite",
-		--  "Anthracite",
+	--  "Anthracite",
 	--  "Bituminous Coal",
 	--  "Magnetite",
 	--  "Hematite",

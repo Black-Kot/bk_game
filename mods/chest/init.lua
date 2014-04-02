@@ -20,10 +20,10 @@ function default.get_locked_chest_formspec(pos)
 end
 
 
-function register_chest(name, def) 
+function bk_game.register_chest(name, def) 
 
 minetest.register_craft({
-	output = ':chest:'..name,
+	output = 'chest:'..name,
 	recipe = {
 		{def.source, def.source, def.source},
 		{def.source, '', def.source},
@@ -32,11 +32,19 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
-	output = ':chest::'..name..'_locked',
+	output = 'chest::'..name..'_locked',
 	recipe = {
 		{def.source, def.source, def.source},
 		{def.source, 'metals:steel_ingot', def.source},
 		{def.source, def.source, def.source},
+	}
+})
+
+
+minetest.register_craft({
+	output = 'chest::'..name..'_locked',
+	recipe = {
+		{ 'chest:'..name, 'metals:steel_ingot', ""},
 	}
 })
 
@@ -86,9 +94,7 @@ end
 
 minetest.register_node(":chest:"..name.."_locked", {
 	description = def.description.." Locked Chest",
-	tiles = {"chest_"..name.."_top.png", "chest_"..name.."_top.png", "chest_"..name.."_side.png",
-		"chest_"..name.."_side.png", "chest_"..name.."_side.png", "chest_"..name.."_front.png"},
-	paramtype2 = "facedir",
+	tiles = {"chest_"..name.."_top.png", "chest_"..name.."_top.png", "chest_"..name.."_side.png", "chest_"..name.."_side.png", "chest_"..name.."_side.png", "chest_"..name.."_locked.png"},
 	paramtype2 = "facedir",
 	groups = {choppy=2,oddly_breakable_by_hand=2},
 	legacy_facedir_simple = true,

@@ -1,6 +1,6 @@
-bk_game2.registered_trees = {}
-bk_game2.registered_trees_list = {}
-function bk_game2.register_tree(name, TreeDef)
+bk_game.registered_trees = {}
+bk_game.registered_trees_list = {}
+function bk_game.register_tree(name, TreeDef)
 	local tree = {
 		name = name,
 		description = TreeDef.description or "",
@@ -38,10 +38,18 @@ function bk_game2.register_tree(name, TreeDef)
 	tree.textures.chest = tree.textures.chest or {name_.."_chest_top.png", name_.."_chest_top.png", name_.."_chest_side.png", name_.."_chest_side.png", name_.."_chest_side.png", name_.."_chest_front.png"}
 	tree.textures.locked_chest = tree.textures.locked_chest or {name_.."_chest_top.png", name_.."_chest_top.png", name_.."_chest_side.png", name_.."_chest_side.png", name_.."_chest_side.png", name_.."_chest_lock.png"}
 
-	bk_game2.registered_trees[name] = tree
-	table.insert(bk_game2.registered_trees_list, tree.name)
+	bk_game.registered_trees[name] = tree
+	table.insert(bk_game.registered_trees_list, tree.name)
 	
-	bk_game2.register_nodes(tree.name.."_planks", {
+	
+	minetest.register_craftitem(tree.name.."_plank", {
+		description = tree.description.." Plank",
+		inventory_image = tree.textures.plank,
+		group = {plank=1},
+	})
+	
+	bk_game.register_nodes(tree.name.."_planks", {
+		source = tree.name.."_plank",
 		slab=true,
 		stair=true,
 		without_craft = true,
@@ -71,11 +79,6 @@ function bk_game2.register_tree(name, TreeDef)
 		sounds = default.node_sound_defaults()
 	})
 	
-	minetest.register_craftitem(tree.name.."_plank", {
-		description = tree.description.." Plank",
-		inventory_image = tree.textures.plank,
-		group = {plank=1},
-	})
 	
 	minetest.register_node(tree.name.."_log", {
 		description = tree.description.." Log",
@@ -355,6 +358,10 @@ function bk_game2.register_tree(name, TreeDef)
 		sounds = default.node_sound_wood_defaults(),
 	})
 	
+	
+	tree.source = tree.name.."_plank"
+	bk_game.register_chest(name:remove_modname_prefix(), tree)
+	--[[
 	minetest.register_node(tree.name.."_chest", {
 		description =  tree.description.." Chest",
 		tiles = tree.textures.chest,
@@ -593,7 +600,7 @@ function bk_game2.register_tree(name, TreeDef)
 		output = "default:torch 2",
 		recipe = tree.name.."_stick"
 	})
-	
+	]]--
 	minetest.register_abm({
 		nodenames = {tree.name.."_sapling"},
 		neighbors = tree.grounds,
@@ -610,35 +617,35 @@ function bk_game2.register_tree(name, TreeDef)
 	})
 end
 
-bk_game2.register_tree("trees:ash", {
+bk_game.register_tree("trees:ash", {
 	description = "Ash",
 	leaves = trees.gen_lists.ash,
 	height = function()
 		return 4 + math.random(4)
 	end,
 })
-bk_game2.register_tree("trees:aspen", {
+bk_game.register_tree("trees:aspen", {
 	description = "Aspen",
 	leaves = trees.gen_lists.aspen,
 	height = function()
 		return 10 + math.random(4)
 	end,
 })
-bk_game2.register_tree("trees:birch", {
+bk_game.register_tree("trees:birch", {
 	description = "Birch",
 	leaves = trees.gen_lists.birch,
 	height = function()
 		return 10 + math.random(4)
 	end,
 })
-bk_game2.register_tree("trees:maple", {
+bk_game.register_tree("trees:maple", {
 	description = "Maple",
 	leaves = trees.gen_lists.maple,
 	height = function()
 		return 7 + math.random(5)
 	end,
 })
-bk_game2.register_tree("trees:chestnut", {
+bk_game.register_tree("trees:chestnut", {
 	description = "Chestnut",
 	leaves = trees.gen_lists.chestnut,
 	height = function()
@@ -646,7 +653,7 @@ bk_game2.register_tree("trees:chestnut", {
 	end,
 	radius = 10,
 })
-bk_game2.register_tree("trees:pine", {
+bk_game.register_tree("trees:pine", {
 	description = "Pine",
 	leaves = trees.gen_lists.pine,
 	height = function()
@@ -654,7 +661,7 @@ bk_game2.register_tree("trees:pine", {
 	end,
 	radius = 8,
 })
-bk_game2.register_tree("trees:spruce", {
+bk_game.register_tree("trees:spruce", {
 	description = "Spruce",
 	leaves = trees.gen_lists.spruce,
 	height = function()

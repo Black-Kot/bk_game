@@ -1,6 +1,6 @@
 -- mods/default/nodes.lua
 
-bk_game2.register_nodes("default:stone", {
+bk_game.register_nodes("stone", {
 	stair = true,
 	slab = true,
 	description = "Stone",
@@ -12,7 +12,7 @@ bk_game2.register_nodes("default:stone", {
 	sounds = default.node_sound_stone_defaults(),
 })
 
-bk_game2.register_nodes("default:desert_stone", {
+bk_game.register_nodes("desert_stone", {
 	stair = true,
 	slab = true,
 	description = "Desert Stone",
@@ -24,7 +24,7 @@ bk_game2.register_nodes("default:desert_stone", {
 	sounds = default.node_sound_stone_defaults(),
 })
 
-bk_game2.register_nodes("default:stonebrick", {
+bk_game.register_nodes("stonebrick", {
 	stair = true,
 	slab = true,
 	description = "Stone Brick",
@@ -33,7 +33,7 @@ bk_game2.register_nodes("default:stonebrick", {
 	sounds = default.node_sound_stone_defaults(),
 })
 
-bk_game2.register_nodes("default:desert_stonebrick", {
+bk_game.register_nodes("desert_stonebrick", {
 	stair = true,
 	slab = true,
 	description = "Desert Stone Brick",
@@ -111,7 +111,7 @@ minetest.register_node("default:gravel", {
 	}),
 })
 
-bk_game2.register_nodes("default:sandstone", {
+bk_game.register_nodes("sandstone", {
 	stair = true,
 	slab = true,
 	description = "Sandstone",
@@ -121,7 +121,7 @@ bk_game2.register_nodes("default:sandstone", {
 	sounds = default.node_sound_stone_defaults(),
 })
 
-bk_game2.register_nodes("default:sandstonebrick", {
+bk_game.register_nodes("sandstonebrick", {
 	stair = true,
 	slab = true,
 	description = "Sandstone Brick",
@@ -131,7 +131,9 @@ bk_game2.register_nodes("default:sandstonebrick", {
 	sounds = default.node_sound_stone_defaults(),
 })
 
-minetest.register_node("default:clay", {
+bk_game.register_nodes("clay", {
+	stair = true,
+	slab = true,
 	description = "Clay",
 	tiles = {"default_clay.png"},
 	is_ground_content = true,
@@ -140,7 +142,7 @@ minetest.register_node("default:clay", {
 	sounds = default.node_sound_dirt_defaults(),
 })
 
-bk_game2.register_nodes("default:brick", {
+bk_game.register_nodes("brick", {
 	stair = true,
 	slab = true,
 	description = "Brick Block",
@@ -264,7 +266,7 @@ minetest.register_node("default:papyrus", {
 	sounds = default.node_sound_leaves_defaults(),
 })
 
-bk_game2.register_nodes("default:glass", {
+bk_game.register_nodes("glass", {
 	stair = true,
 	slab = true,
 	description = "Glass",
@@ -733,7 +735,7 @@ minetest.register_node("default:mossycobble", {
 	sounds = default.node_sound_stone_defaults(),
 })
 
-bk_game2.register_nodes("default:obsidian_glass", {
+bk_game.register_nodes("obsidian_glass", {
 	stair = true,
 	slab = true,
 	description = "Obsidian Glass",
@@ -745,7 +747,7 @@ bk_game2.register_nodes("default:obsidian_glass", {
 	groups = {cracky=1,oddly_breakable_by_hand=3},
 })
 
-bk_game2.register_nodes("default:obsidian", {
+bk_game.register_nodes("obsidian", {
 	stair = true,
 	slab = true,
 	description = "Obsidian",

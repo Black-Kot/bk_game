@@ -3,7 +3,7 @@ trees = {}
 dofile(minetest.get_modpath("trees").."/leavesgen.lua")
 
 function trees.make_tree(pos, tree)
-	local tree = bk_game2.registered_trees[tree]
+	local tree = bk_game.registered_trees[tree]
 	if not table.contains(tree.grounds, minetest.env:get_node({x=pos.x,y=pos.y-1,z=pos.z}).name) then
 		return
 	end
@@ -75,7 +75,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	end
 	if n > 0 then
 		for i = 1, n do
-			generate(bk_game2.registered_trees_list[pr:next(1,#bk_game2.registered_trees_list)], minp, maxp, seed, 1/8/2, 1)
+			generate(bk_game.registered_trees_list[pr:next(1,#bk_game.registered_trees_list)], minp, maxp, seed, 1/8/2, 1)
 		end
 	end
 end)

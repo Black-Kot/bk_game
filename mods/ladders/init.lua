@@ -1,4 +1,4 @@
-function register_ladder(name, def)
+function bk_game.register_ladder(name, def)
 	minetest.register_node(":ladder:"..name, {
 		description = def.description.." Ladder",
 		drawtype = "signlike",
