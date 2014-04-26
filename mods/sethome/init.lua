@@ -16,6 +16,9 @@ local last_moved = {}
 
 local function loadhomes()
     local input = io.open(homes_file, "r")
+    if input == nil then
+		return
+    end
     local text = ""
 	for line in input:lines() do
 		text = text..line

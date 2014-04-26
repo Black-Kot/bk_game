@@ -16,6 +16,9 @@ local last_moved = {}
 
 local function loadmines()
     local input = io.open(mines_file, "r")
+    if input == nil then
+		return
+    end
     local text = ""
 	for line in input:lines() do
 		text = text..line
@@ -106,7 +109,7 @@ minetest.register_chatcommand("mines" , {
 		end
 		local text = ""
 		for i, v in pairs(minepos[name]) do
-			text = text.."\n"..i..": "..round(v.x, 1)..", "..round(v.y, 1)..", "..round(v.z,1)
+			text = text.."\n"..i..minetest.pos_to_string(vector.round(v))
 		end
         minetest.chat_send_player(name, text)
     end,
