@@ -1,7 +1,7 @@
 -- Some variables you can change
 
 -- How often (in seconds) homes file saves
-local save_delta = 10
+local save_delta = 30
 -- How often (in seconds) player can teleport
 -- Set it to 0 to disable
 local cooldown = 0
@@ -20,7 +20,7 @@ local function loadhomes()
 	for line in input:lines() do
 		text = text..line
 	end
-    last_moved = minetest.deserialize(text)
+    homepos = minetest.deserialize(text)
     io.close(input)
 end
 
