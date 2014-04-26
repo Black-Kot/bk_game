@@ -65,6 +65,13 @@ function bk_game.register_tree(name, TreeDef)
 		groups = {stick=1},
 	})
 	
+	
+	bk_game.register_tools("wood_"..name:remove_modname_prefix(), {
+		description = tree.description,
+		times={[7] = 2.50, [8]=2.00,}, uses=10, maxlevel=1,
+	})
+
+	
 	minetest.register_node(tree.name.."_sapling", {
 		description = tree.description.." Sapling",
 		drawtype = "plantlike",

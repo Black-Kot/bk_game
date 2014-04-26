@@ -9,7 +9,7 @@ function register_metal(name, metalDef)
 		description = metalDef.description.." Lump",
 		inventory_image = "metals_"..name.."_lump.png" ,
 	});
-	register_ore(name, metalDef);
+	bk_game.register_ore(name, metalDef);
 	if not metalDef.ingots and metalDef.ingots ~= false then
 		if not metalDef.ingot then
 			metalDef.ingot = "metals:"..name.."_ingot";
@@ -33,117 +33,48 @@ function register_metal(name, metalDef)
 		if not metalDef.ingot then
 			return
 		else 
-		metalDef.source = metalDef.ingot
+			metalDef.source = metalDef.ingot
 		end 
 	end
 
 	if not metalDef.block and metalDef.block ~= false then
-	metalDef.stair = true
-	metalDef.slab = true
-	bk_game.register_nodes(name, metalDef)
+		metalDef.stair = true
+		metalDef.slab = true
+		bk_game.register_nodes(name, metalDef)
 	end
 
 
 	if not metalDef.tools and metalDef.tools ~= false then
-		register_tools(name, metalDef)
+		bk_game.register_tools(name, metalDef)
 	end
 end
 
 
 list = {
     "adamant",
+    "mithril",
+	"platinum",
+	
     "chromium",
-    "coal",
     "copper",
     "gold",
-    "mithril",
     "silver", 
     "steel",
     "tin",
     "zinc",
-	--  "lignite",
-	--  "anthracite",
-	--  "bituminous_coal",
-	--  "magnetite",
-	--  "hematite",
-	--  "limonite",
-	--  "bismuthinite",
-	--  "cassiterite",
-	--  "galena",
-	--  "garnierite",
-	--  "malachite",
-	--  "native_copper",
-	--  "native_gold",
-	--  "native_silver",
-	--  "native_platinum",
-	--  "sphalerite",
-	--  "tetrahedrite",
-	--  "lazurite",
-	--  "bauxite",
-	--  "cinnabar",
-	--  "cryolite",
-	--  "graphite",
-	--  "gypsum",
-	--  "jet",
-	--  "kaolinite",
-	--  "kimberlite",
-	--  "olivine",
-	--  "petrified_wood",
-	--  "pitchblende",
-	--  "saltpeter",
-	--  "satin_spar",
-	--  "selenite",
-	--  "serpentine",
-	--  "sylvite",
-	--  "tenorite",
 }
 
 opts_list = {
-    {description = "Adamant", level=10, uses=100, times={[1]=1,[2]=0.5,[3]=0.25}, },
-    {description = "Chromium", tools = false, },
-    {description = "Coal", tools = false, ingots = false, block = false, tools = false, },
-    {description = "Copper", level=2},
+    {description = "Adamant", level=7, uses=0, times={ [1]=0.50, [2]=0.50, [3]=0.50, [4]=0.50, [5]=0.50, [6]=0.50, [7]=0.50, [8]=0.50,}, full_punch_interval=0.20, chunk_size=3, height_max=-20000},
+    {description = "Mithril", level=6, uses=30, times={ [2]=2.00, [3]=1.80, [4]=1.60, [5]=1.40, [6]=1.00, [7]=0.80,[8]=0.80, }, height_max=-10000},
+	{description = "Platinum",  level=5, uses=30, times={ [2]=2.50, [3]=2.20, [4]=2.00, [5]=1.60, [6]=1.20, [7]=1.00,[8]=0.80, },height_max=-5000 },
+    {description = "Chromium", tools = false, height_max=10, height_min=-3000},
+    {description = "Copper", level=3, uses=20, times={ [4]=3.00, [5]=2.50, [6]=2.00, [7]=1.00,[7]=0.80, },height_max=-250},
     {description = "Gold", tools = false, },
-    {description = "Mithril", level=3},
     {description = "Silver", tools = false, },
-    {description = "Steel", lump = "metals:iron_lump", level=2, uses=30, }, 
+    {description = "Steel", lump = "metals:iron_lump", level=2, uses=20,  times={ [5]=2.80, [6]=2.30, [7]=1.40, [7]=1.00,}}, 
     {description = "Tin", tools = false, },
-    {description = "Zinc", tools = false, }
-	--  "Lignite",
-	--  "Anthracite",
-	--  "Bituminous Coal",
-	--  "Magnetite",
-	--  "Hematite",
-	--  "Limonite",
-	--  "Bismuthinite",
-	--  "Cassiterite",
-	--  "Galena",
-	--  "Garnierite",
-	--  "Malachite",
-	--  "Native Copper",
-	--  "Native Gold",
-	--  "Native Silver",
-	--  "Native Platinum",
-	--  "Sphalerite",
-	--  "Tetrahedrite",
-	--  "Lazurite",
-	--  "Bauxite",
-	--  'Cinnabar',
-	--  'Cryolite',
-	--  'Graphite',
-	--  'Gypsum',
-	--  'Jet',
-	--  'Kaolinite',
-	--  'Kimberlite',
-	--  'Olovine',
-	--  'Petrified wood',
-	--  'Pitchblende',
-	--  'Saltpeter',
-	--  'Satin Spar',
-	--  'Selenite',
-	--  'Serpentine',
-	--  'Sylvite',
-	--  'Tenorite',
+    {description = "Zinc", tools = false, },
 }
 
 for _, metal in ipairs(list) do

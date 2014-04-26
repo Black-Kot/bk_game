@@ -1,9 +1,9 @@
-function register_tools(name, toolDef) 
+function bk_game.register_tools(name, toolDef) 
 	if not toolDef.source or not toolDef or not name then
 		return
 	end
 	if not toolDef.times then
-		toolDef.times={ [1]=1.00, [2]=2.00, [3]=3.00}
+		toolDef.times={ [1]=10.00, [2]=9.00, [3]=8.00, [4]=7.00, [5]=6.00, [6]=5.00, [7]=4.00, [8]=3.00, [9]=2.00, [10]=1.00,}
 	end
 	if not toolDef.uses then
 		toolDef.uses = 10
@@ -12,13 +12,16 @@ function register_tools(name, toolDef)
 		toolDef.level = 5
 	end
 
+	if not toolDef.full_punch_interval then
+		toolDef.full_punch_interval = 0.9
+	end
 	-- Picks
 	if not toolDef.pick and toolDef.pick ~= false then
 		minetest.register_tool(":tools:pick_"..name, {
 			description = toolDef.description.." Pickaxe",
 			inventory_image = "tools_pick_"..name..".png",
 			tool_capabilities = {
-				full_punch_interval = 0.9,
+				full_punch_interval = toolDef.full_punch_interval,
 				max_drop_level=toolDef.level,
 				groupcaps={
 					cracky = {times=toolDef.times , uses=toolDef.uses, maxlevel=toolDef.level},
@@ -118,11 +121,11 @@ end
 
 -- stone tools
 
-register_tools("stone", {
+bk_game.register_tools("stone", {
 	source = "default:stone",
 	description = "Stone",
-	times= {[1] = 4.0,[2] = 6.0},
-	uses = 5,
+	times= {[6] = 2.80,[7] = 2.00, [8]=1.80,},
+	uses = 20,
 	level = 2,
 })
 
@@ -136,9 +139,9 @@ minetest.register_item(":", {
 		full_punch_interval = 0.9,
 		max_drop_level = 0,
 		groupcaps = {
-			crumbly = {times={ [1]=1.00, [2]=2.00}, uses=0, maxlevel=1},
-			snappy = {times={[1]=0.50}, uses=0, maxlevel=1},
-			oddly_breakable_by_hand = {times={[1]=1.40,[2]=4.00,[3]=7}, uses=0, maxlevel=2}
+			crumbly = {times={ [6]=3.00, [7]=2.50,[8]=2.00,}, uses=0, maxlevel=2},
+			snappy = {times={[7]=2.50}, uses=0, maxlevel=1},
+			oddly_breakable_by_hand = {times={[1]=4.00,[2]=2.00,[3]=1.40}, uses=0, maxlevel=2}
 		},
 		damage_groups = {fleshy=1},
 	}

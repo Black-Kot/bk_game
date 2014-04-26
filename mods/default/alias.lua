@@ -1,4 +1,4 @@
-minetest.register_alias("default:stone","blocks:stone")
+#minetest.register_alias("blocks:stone","blocks:stone")
 minetest.register_alias("default:desert_stone","blocks:desert_stone")
 minetest.register_alias("default:stonebrick","blocks:stonebrick")
 minetest.register_alias("default:desert_stonebrick","blocks:desert_stonebrick")

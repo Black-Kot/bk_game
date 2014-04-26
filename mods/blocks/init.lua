@@ -197,10 +197,8 @@ function bk_game.register_nodes(name, def)
 	
 	
 	if not def.source then
-		print("set source to: blocks:"..name)
 		local source = "blocks:"..name
 		def.source = source
-		print("source: "..def.source)
 	else
 		if not def.drop then
 			def.drop = "blocks:"..name

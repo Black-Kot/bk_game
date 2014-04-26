@@ -32,7 +32,7 @@ minetest.register_craft({
 	}
 })
 
-register_ore(name, crystalDef);
+bk_game.register_ore(name, crystalDef);
 end
 
 end

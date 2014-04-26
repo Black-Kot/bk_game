@@ -3,7 +3,7 @@ registered_ores_list = {}
 
 local d_seed = 0
   
-function register_ore(name, OreDef)
+function bk_game.register_ore(name, OreDef)
 	local ore = {
 		name = name,
 		description = OreDef.description or "Ore",
@@ -20,7 +20,7 @@ function register_ore(name, OreDef)
 		generate = true,
 		delta_seed = OreDef.delta_seed or d_seed
 	}
-	print("register "..name.." lump: "..OreDef.lump)
+	print("register "..name.." ore:	[OK]")
 	d_seed = d_seed + 1
 	if OreDef.generate == false then
 		ore.generate = false

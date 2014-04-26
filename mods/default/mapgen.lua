@@ -5,8 +5,7 @@
 --
 
 minetest.register_alias("mapgen_air", "air")
-minetest.register_alias("mapgen_stone", "default:stone")
---minetest.register_alias("mapgen_apple", "default:apple")
+minetest.register_alias("mapgen_stone", "blocks:stone")
 minetest.register_alias("mapgen_water_source", "default:water_source")
 minetest.register_alias("mapgen_dirt", "default:dirt")
 minetest.register_alias("mapgen_sand", "default:sand")
@@ -17,9 +16,10 @@ minetest.register_alias("mapgen_cobble", "default:cobble")
 minetest.register_alias("mapgen_mossycobble", "default:mossycobble")
 minetest.register_alias("mapgen_dirt_with_grass", "default:dirt_with_grass")
 minetest.register_alias("mapgen_desert_sand", "default:desert_sand")
-minetest.register_alias("mapgen_desert_stone", "default:desert_stone")
+minetest.register_alias("mapgen_desert_stone", "blocks:desert_stone")
 minetest.register_alias("mapgen_tree", "air")
 minetest.register_alias("mapgen_leaves", "air")
+minetest.register_alias("mapgen_apple", "air")
 
 function default.make_papyrus(pos, size)
 	for y=0,size-1 do
