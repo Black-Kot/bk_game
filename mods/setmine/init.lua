@@ -10,7 +10,7 @@ local cooldown = 0
 local max_distance = 0
 ----------------------------------
 
-local mines_file = minetest.get_modpath('setmine')..'/mines'
+local mines_file = minetest.get_worldpath()..'/mines'
 local minepos = {}
 local last_moved = {}
 
@@ -80,6 +80,11 @@ minetest.register_chatcommand("mine", {
 			-- just a check to prevent server death
 		end
 		local n = param
+		
+		if not minepos[name] then
+			minetest.chat_send_player(name, "You don't have a mine`s now! Set it using /setmine <name>")
+			return
+		end
 		if minepos[name][n] then
 			local time = get_time()
             if cooldown ~= 0 and last_moved[name] ~= nil and time - last_moved[name] < cooldown then
@@ -94,7 +99,7 @@ minetest.register_chatcommand("mine", {
 			player:setpos(minepos[name][n])
             minetest.chat_send_player(name, "Teleported to mine!")
         else
-            minetest.chat_send_player(name, "You don't have a mine now! Set it using /setmine <name>")
+            minetest.chat_send_player(name, "You don't have a mine "..n.." now! Set it using /setmine <name>")
         end
     end,
 })
@@ -106,6 +111,10 @@ minetest.register_chatcommand("mines" , {
 	func = function(name, param)
         if player == nil then
 			-- just a check to prevent server death
+		end
+		if not minepos[name] then
+			minetest.chat_send_player(name, "You don't have a mine`s now! Set it using /setmine <name>")
+			return
 		end
 		local text = ""
 		for i, v in pairs(minepos[name]) do

@@ -10,7 +10,7 @@ local cooldown = 0
 local max_distance = 0
 ----------------------------------
 
-local homes_file = minetest.get_modpath('sethome')..'/homes'
+local homes_file = minetest.get_worldpath()..'/homes'
 local homepos = {}
 local last_moved = {}
 

@@ -1,36 +1,36 @@
 local save_delta = 30
 local cities = {}
-local cities_file = minetest.get_modpath('cities')..'/cities'
+local cities_file = minetest.get_worldpath()..'/cities'
 local spawns = {}
-local spawns_file =  minetest.get_modpath('cities')..'/spawns'
+local spawns_file =  minetest.get_worldpath()..'/spawns'
 
 function load()
 	local input = io.open(cities_file, "r")
-    if input == nil then
-		return
-    end
+    if input ~= nil then
     local text = ""
 	for line in input:lines() do
 		text = text..line
 	end
     cities = minetest.deserialize(text)
     io.close(input)
-    
+    end
     if not cities then
 		cities = {}
 	end
+	
+	if not cities["spawn"] then
+		cities["spawn"] = {x=0, y=0, z=0}
+	end
     
 	local input = io.open(spawns_file, "r")
-    if input == nil then
-		return
-    end
+    if input ~= nil then
     local text = ""
 	for line in input:lines() do
 		text = text..line
 	end
     spawns = minetest.deserialize(text)
     io.close(input)
-    
+    end
     if not spawns then
 		spawns = {}
 	end
