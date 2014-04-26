@@ -59,7 +59,7 @@ minetest.register_node(":chest:"..name, {
 	on_construct = function(pos)
 		local meta = minetest.get_meta(pos)
 		meta:set_string("formspec",default.chest_formspec)
-		meta:set_string("infotext", def.Decription.." Chest")
+		meta:set_string("infotext", def.description.." Chest")
 		local inv = meta:get_inventory()
 		inv:set_size("main", 12*5)
 	end,
@@ -102,7 +102,7 @@ minetest.register_node(":chest:"..name.."_locked", {
 	after_place_node = function(pos, placer)
 		local meta = minetest.get_meta(pos)
 		meta:set_string("owner", placer:get_player_name() or "")
-		meta:set_string("infotext", def.Decription.." Locked Chest (owned by "..
+		meta:set_string("infotext", def.description.." Locked Chest (owned by "..
 				meta:get_string("owner")..")")
 	end,
 	on_construct = function(pos)

@@ -85,7 +85,7 @@ function bk_game.register_tree(name, TreeDef)
 		tiles = tree.textures.trunk,
 		inventory_image = tree.textures.log,
 		wield_image = tree.textures.log,
-		groups = {log=1,choppy=1,flammable=2,dropping_node=1,drop_on_dig=1},
+		groups = {log=1,choppy=1,flammable=2,oddly_breakable_by_hand=2,dropping_node=1,drop_on_dig=1},
 		sounds = default.node_sound_wood_defaults(),
 		drop = tree.name.."_plank 4",
 		--drop_on_dropping = tree.name.."_log",
@@ -253,7 +253,7 @@ function bk_game.register_tree(name, TreeDef)
 	minetest.register_node(tree.name.."_trunk", {
 		description = tree.description.." Trunk",
 		tiles = tree.textures.trunk,
-		groups = {tree=1,choppy=2,flammable=2,dropping_node=1,drop_on_dig=1},
+		groups = {tree=1,choppy=2,oddly_breakable_by_hand=2,flammable=2,dropping_node=1,drop_on_dig=1},
 		sounds = default.node_sound_wood_defaults(),
 		drop = tree.name.."_log",
 		drawtype = "nodebox",
@@ -359,8 +359,8 @@ function bk_game.register_tree(name, TreeDef)
 	})
 	
 	
-	tree.source = tree.name.."_plank"
-	bk_game.register_chest(name:remove_modname_prefix(), tree)
+	TreeDef.source = tree.name.."_plank"
+	bk_game.register_chest(name:remove_modname_prefix(), TreeDef)
 	--[[
 	minetest.register_node(tree.name.."_chest", {
 		description =  tree.description.." Chest",

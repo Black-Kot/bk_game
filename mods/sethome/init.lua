@@ -16,16 +16,11 @@ local last_moved = {}
 
 local function loadhomes()
     local input = io.open(homes_file, "r")
-    while true do
-        local x = input:read("*n")
-        if x == nil then
-            break
-        end
-        local y = input:read("*n")
-        local z = input:read("*n")
-        local name = input:read("*l")
-        homepos[name:sub(2)] = {x = x, y = y, z = z}
-    end
+    local text = ""
+	for line in input:lines() do
+		text = text..line
+	end
+    last_moved = minetest.deserialize(text)
     io.close(input)
 end
 
@@ -88,12 +83,12 @@ minetest.register_globalstep(function(dtime)
     -- save it every <save_delta> seconds
     if delta > save_delta then
         delta = delta - save_delta
-		if changed then
-			local output = io.open(homes_file, "w")
-			for i, v in pairs(homepos) do
-				output:write(v.x.." "..v.y.." "..v.z.." "..i.."\n")
-			end
+	if changed then
+	    local output = io.open(homes_file, "w")
+		local text = minetest.serialize(homepos)
+			output:write(text)
 			io.close(output)
 		end
+	changed = false
     end
 end)

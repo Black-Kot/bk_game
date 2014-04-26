@@ -12,13 +12,13 @@ minetest.register_on_chat_message(function(name, message, playername, player)
     end
 end)
 
---Deds to Kahrl
+--Deds to Spawn
 minetest.register_on_newplayer(function(player)
     player:setpos(spawn)
     return true
 end)
 
---Deds to Kahrl
+--Deds to Spawn
 minetest.register_on_respawnplayer(function(player, pos)
     player:setpos(spawn)
     return true
