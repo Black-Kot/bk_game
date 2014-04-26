@@ -1,7 +1,7 @@
 -- Some variables you can change
 
 -- How often (in seconds) mines file saves
-local save_delta = 10
+local save_delta = 30
 -- How often (in seconds) player can teleport
 -- Set it to 0 to disable
 local cooldown = 0
@@ -16,16 +16,14 @@ local last_moved = {}
 
 local function loadmines()
     local input = io.open(mines_file, "r")
-    while true do
-        local x = input:read("*n")
-        if x == nil then
-            break
-        end
-        local y = input:read("*n")
-        local z = input:read("*n")
-        local name = input:read("*l")
-        minepos[name:sub(2)] = {x = x, y = y, z = z}
+    if input == nil then
+		return
     end
+    local text = ""
+	for line in input:lines() do
+		text = text..line
+	end
+    minepos = minetest.deserialize(text)
     io.close(input)
 end
 
@@ -46,54 +44,92 @@ end
 
 local changed = false
 
-minetest.register_on_chat_message(function(name, message)
-    if message == '/setmine' then
+minetest.register_chatcommand("setmine" , {
+	params = "<name>",
+	description = "Set pos of mine",
+	privs = {},
+	func = function(name, param)
         local player = minetest.env:get_player_by_name(name)
+        if player == nil then return end
+		if param == "" then
+			
+            minetest.chat_send_player(name, "Name of mine can`t be null")
+		end
         local pos = player:getpos()
-        minepos[name] = pos
-        minetest.chat_send_player(name, "Mine set!")
+        print('setmine: '..name.." "..param)
+        
+        if not minepos[name] then
+			minepos[name] = {}
+		end
+        minepos[name][param] = pos
+        minetest.chat_send_player(name, "Mine "..param.." set!")
         changed = true
-		return true
-    elseif message == "/mine" then
+    end,
+    
+})
+    
+    
+  
+minetest.register_chatcommand("mine", {
+	params = "<name>",
+	description = "Teleport to mine",
+	privs = {},
+	func = function(name, param)
         local player = minetest.env:get_player_by_name(name)
         if player == nil then
 			-- just a check to prevent server death
-			return false
 		end
-		if minepos[name] then
+		local n = param
+		if minepos[name][n] then
 			local time = get_time()
             if cooldown ~= 0 and last_moved[name] ~= nil and time - last_moved[name] < cooldown then
 				minetest.chat_send_player(name, "You can teleport only once in "..cooldown.." seconds. Wait another "..round(cooldown - (time - last_moved[name]), 3).." secs...")
-				return true
 			end
 			local pos = player:getpos()
 			local dst = distance(pos, minepos[name])
 			if max_distance ~= 0 and distance(pos, minepos[name]) > max_distance then
 				minetest.chat_send_player(name, "You are too far away from your mine. You must be "..round(dst - max_distance, 3).." meters closer to teleport to your mine.")
-				return true
 			end
 			last_moved[name] = time
-			player:setpos(minepos[name])
+			player:setpos(minepos[name][n])
             minetest.chat_send_player(name, "Teleported to mine!")
         else
-            minetest.chat_send_player(name, "You don't have a mine now! Set it using /setmine")
+            minetest.chat_send_player(name, "You don't have a mine now! Set it using /setmine <name>")
         end
-        return true
-    end
-end)
-
+    end,
+})
+ 
+minetest.register_chatcommand("mines" , {
+	params = "",
+	description = "List of mines",
+	privs = {},
+	func = function(name, param)
+        if player == nil then
+			-- just a check to prevent server death
+		end
+		local text = ""
+		for i, v in pairs(minepos[name]) do
+			text = text.."\n"..i..minetest.pos_to_string(vector.round(v))
+		end
+        minetest.chat_send_player(name, text)
+    end,
+    
+}) 
+ 
 local delta = 0
+
 minetest.register_globalstep(function(dtime)
     delta = delta + dtime
     -- save it every <save_delta> seconds
     if delta > save_delta then
         delta = delta - save_delta
-		if changed then
-			local output = io.open(mines_file, "w")
-			for i, v in pairs(minepos) do
-				output:write(v.x.." "..v.y.." "..v.z.." "..i.."\n")
-			end
+	if changed then
+	    local output = io.open(mines_file, "w")
+		local text = minetest.serialize(minepos)
+			output:write(text)
 			io.close(output)
 		end
+	changed = false
     end
 end)
+
