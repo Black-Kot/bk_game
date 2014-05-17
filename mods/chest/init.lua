@@ -44,7 +44,7 @@ minetest.register_craft({
 minetest.register_craft({
 	output = 'chest::'..name..'_locked',
 	recipe = {
-		{ 'chest:'..name, 'metals:steel_ingot', ""},
+		{ 'chest:'..name, 'metals:steel_ingot', ''},
 	}
 })
 

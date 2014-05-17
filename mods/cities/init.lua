@@ -45,7 +45,6 @@ minetest.register_privilege("city", {
 
 minetest.register_on_chat_message(function(name, message, playername, player)
     local city = string.match(message, "^/([^ ]+)")
-    print("city: "..city)
     if cities[city] then
         local player = minetest.env:get_player_by_name(name)
         minetest.chat_send_player(player:get_player_name(), "Teleporting to "..city.."...")
@@ -72,6 +71,23 @@ minetest.register_chatcommand("setcity", {
 		local pos = player:getpos()
 		cities[city] = pos
 		minetest.chat_send_all("Registered new city " .. city .. " at position " .. minetest.pos_to_string(pos))
+		changed = true
+	end,
+})
+
+minetest.register_chatcommand("setcity", {
+	params = "<name>",
+	description = "Set city",
+	privs = {city=true},
+	func = function(name, param)
+		local can_access = minetest.check_player_privs(name, {city=true})
+		if not can_access then
+			minetest.chat_send_player(name, "You can`t set city!")
+			return
+		end
+		local city = param
+		table.remove(cities, city) 
+		minetest.chat_send_all("Delete`d city " .. city .. " at position " .. minetest.pos_to_string(pos))
 		changed = true
 	end,
 })

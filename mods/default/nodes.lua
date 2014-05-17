@@ -176,7 +176,7 @@ minetest.register_node("default:leaves", {
 	walkable = false,
 	falling_node_walkable = false,
 	climbable = true,
-	drowning = false,
+	
 	sounds = default.node_sound_leaves_defaults(),
 })
 
@@ -285,7 +285,7 @@ bk_game.register_nodes("glass", {
 minetest.register_node("default:cloud", {
 	description = "Cloud",
 	tiles = {"default_cloud.png"},
-	drowning = false,
+	
 	sounds = default.node_sound_defaults(),
 	groups = {not_in_creative_inventory=1},
 })
@@ -312,11 +312,11 @@ minetest.register_node("default:water_flowing", {
 	paramtype2 = "flowingliquid",
 	walkable = false,
 	pointable = false,
-	drowning = false,
+	
 	diggable = false,
 	buildable_to = true,
 	drop = "",
-	drowning = 1,
+	
 	liquidtype = "flowing",
 	liquid_alternative_flowing = "default:water_flowing",
 	liquid_alternative_source = "default:water_source",
@@ -347,11 +347,11 @@ minetest.register_node("default:water_source", {
 	walkable = false,
 	pointable = false,
 	diggable = false,
-	drowning = false,
+	
 	buildable_to = true,
 	liquid_renewable = false,
 	drop = "",
-	drowning = 1,
+	
 	liquidtype = "source",
 	liquid_alternative_flowing = "default:water_flowing",
 	liquid_alternative_source = "default:water_source",
@@ -385,9 +385,9 @@ minetest.register_node("default:lava_flowing", {
 	pointable = false,
 	diggable = false,
 	buildable_to = true,
-	drowning = false,
+	
 	drop = "",
-	drowning = 1,
+	
 	liquidtype = "flowing",
 	liquid_alternative_flowing = "default:lava_flowing",
 	liquid_alternative_source = "default:lava_source",
@@ -416,12 +416,12 @@ minetest.register_node("default:lava_source", {
 	paramtype = "light",
 	light_source = LIGHT_MAX - 1,
 	walkable = false,
-	drowning = false,
+	
 	pointable = false,
 	diggable = false,
 	buildable_to = true,
 	drop = "",
-	drowning = 1,
+	
 	liquidtype = "source",
 	liquid_alternative_flowing = "default:lava_flowing",
 	liquid_alternative_source = "default:lava_source",

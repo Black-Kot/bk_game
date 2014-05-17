@@ -44,7 +44,7 @@ function register_metal(name, metalDef)
 	end
 
 
-	if not metalDef.tools and metalDef.tools ~= false then
+	if metalDef.tools ~= false then
 		bk_game.register_tools(name, metalDef)
 	end
 end
@@ -53,8 +53,6 @@ end
 list = {
     "adamant",
     "mithril",
-	"platinum",
-	
     "chromium",
     "copper",
     "gold",
@@ -65,9 +63,8 @@ list = {
 }
 
 opts_list = {
-    {description = "Adamant", level=7, uses=0, times={ [1]=0.50, [2]=0.50, [3]=0.50, [4]=0.50, [5]=0.50, [6]=0.50, [7]=0.50, [8]=0.50,}, full_punch_interval=0.20, chunk_size=3, height_max=-20000},
+    {description = "Adamant", level=7, uses=0, times={ [1]=0.50, [2]=0.50, [3]=0.50, [4]=0.50, [5]=0.50, [6]=0.50, [7]=0.50, [8]=0.50,}, full_punch_interval=0.20, chunk_size=3, height_max=-20000, tools=false},
     {description = "Mithril", level=6, uses=30, times={ [2]=2.00, [3]=1.80, [4]=1.60, [5]=1.40, [6]=1.00, [7]=0.80,[8]=0.80, }, height_max=-10000},
-	{description = "Platinum",  level=5, uses=30, times={ [2]=2.50, [3]=2.20, [4]=2.00, [5]=1.60, [6]=1.20, [7]=1.00,[8]=0.80, },height_max=-5000 },
     {description = "Chromium", tools = false, height_max=10, height_min=-3000},
     {description = "Copper", level=3, uses=20, times={ [4]=3.00, [5]=2.50, [6]=2.00, [7]=1.00,[7]=0.80, },height_max=-250},
     {description = "Gold", tools = false, },

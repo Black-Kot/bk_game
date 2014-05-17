@@ -52,12 +52,9 @@ minetest.register_chatcommand("setmine" , {
         local player = minetest.env:get_player_by_name(name)
         if player == nil then return end
 		if param == "" then
-			
             minetest.chat_send_player(name, "Name of mine can`t be null")
 		end
         local pos = player:getpos()
-        print('setmine: '..name.." "..param)
-        
         if not minepos[name] then
 			minepos[name] = {}
 		end
@@ -67,8 +64,26 @@ minetest.register_chatcommand("setmine" , {
     end,
     
 })
+
+minetest.register_chatcommand("delmine" , {
+	params = "<name>",
+	description = "Del pos of mine",
+	privs = {},
+	func = function(name, param)
+        local player = minetest.env:get_player_by_name(name)
+        if player == nil then return end
+		if param == "" then			
+            minetest.chat_send_player(name, "Name of mine can`t be null")
+		end        
+        if minepos[name] then
+			table.remove(minepos, name) 
+		end
+        minepos[name][param] = pos
+        minetest.chat_send_player(name, "Mine "..param.." delete`d!")
+        changed = true
+    end,
     
-    
+})
   
 minetest.register_chatcommand("mine", {
 	params = "<name>",

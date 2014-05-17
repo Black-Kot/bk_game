@@ -1,68 +1,53 @@
 function bk_game.register_mineral(name, mineralDef)
 	mineralDef.lump = "minerals:"..name.."_lump";
-	minetest.register_craftitem(mineralDef.lump, {
+	minetest.register_craftitem(":"..mineralDef.lump, {
 		description = mineralDef.description.." Lump",
-		inventory_image = {"mineral_"..name.."_lump.png" },
+		inventory_image = {"minerals_"..name.."_lump.png" },
 	});
 	mineralDef.source = mineralDef.lump
+	
+	bk_game.register_ore(name, mineralDef)
+	
 	if not mineralDef.block and mineralDef.block ~= false then
-		mineralDef.stair = true
-		mineralDef.slab = true
+		if mineralDef.stair == nil then
+			mineralDef.stair = true
+		end
+		if mineralDef.slab == nil then
+			mineralDef.slab = true
+		end
 		bk_game.register_nodes(name, mineralDef)
 	end	
-	bk_game.register_ore(name, mineralDef)
-	bk_game.register_chest(name, mineralDef)
-	
+	if not mineralDef.chest and mineralDef.chest ~= false then
+		bk_game.register_chest(name, mineralDef)
+	end
 end
 
 list = {
-    "coal",
-	"lignite",
-	"anthracite",
-	"bituminous_coal",
-	"bismuthinite",
-	"malachite",
-	"sphalerite",
-	"lazurite",
-	"cryolite",
-	"graphite",
-	"gypsum",
-	"jet",
-	"kaolinite",
-	"kimberlite",
-	"olivine",
-	"petrified_wood",
-	"pitchblende",
-	"saltpeter",
-	"satin_spar",
-	"selenite",
-	"serpentine",
-	"sylvite",
+	'cinnabar',
+	'coal',
+	'gypsum',
+	'jet',
+	'lazurite',
+	'malachite',
+	'olivine',
+	'petrified_wood',
+	'satin_spar',
+	'selenite',
+	'serpentine'
 }
 
 opts_list = {
-    {description = "Coal", },
-	{description = "Lignite", },
-	{description = "Anthracite", },
-	{description = "Bituminous Coal", },
-	{description = "Bismuthinite", },
-	{description = "Malachite", },
-	{description = "Sphalerite", },
-	{description = "Lazurite", },
-	{description = 'Cryolite', },
-	{description = 'Graphite', },
-	{description = 'Gypsum', },
-	{description = 'Jet', },
-	{description = 'Kaolinite', },
-	{description = 'Kimberlite', },
-	{description = 'Olovine', },
-	{description = 'Petrified wood', },
-	{description = 'Pitchblende', },
-	{description = 'Saltpeter', },
-	{description = 'Satin Spar', },
-	{description = 'Selenite', },
-	{description = 'Serpentine', },
-	{description = 'Sylvite', },
+    {description = "Cinnabar", },
+    {description = "Coal", chest=false, stair=false, slab=false},
+    {description = "Gypsum", },
+    {description = "Jet", },
+    {description = "Lazurite", },
+    {description = "Malachite", },
+    {description = "Olivine", },
+    {description = "Petrified Wood", },
+    {description = "Satin Spar", },
+    {description = "Selenite", },
+    {description = "Serpentine", }
 }
 
 for _, mineral in ipairs(list) do

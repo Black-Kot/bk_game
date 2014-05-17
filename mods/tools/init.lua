@@ -146,3 +146,28 @@ minetest.register_item(":", {
 		damage_groups = {fleshy=1},
 	}
 })
+
+-- Adamant Pick, can dig all
+
+		minetest.register_tool("tools:pick_adamant", {
+			description = "Adamant Pickaxe",
+			inventory_image = "tools_pick_adamant.png",
+			tool_capabilities = {
+				full_punch_interval = 0.20,
+				max_drop_level=8,
+				groupcaps={
+					cracky = {times={ [1]=0.50, [2]=0.50, [3]=0.50, [4]=0.50, [5]=0.50, [6]=0.50, [7]=0.50, [8]=0.50,} , uses=0, maxlevel=8},
+					crumbly = {times={ [1]=0.50, [2]=0.50, [3]=0.50, [4]=0.50, [5]=0.50, [6]=0.50, [7]=0.50, [8]=0.50,} , uses=0, maxlevel=8},
+					choppy = {times={ [1]=0.50, [2]=0.50, [3]=0.50, [4]=0.50, [5]=0.50, [6]=0.50, [7]=0.50, [8]=0.50,} , uses=0, maxlevel=8},
+				},
+				damage_groups = {cracky=8},
+			},
+		})
+		minetest.register_craft({
+			output = "tools:pick_adamant",
+			recipe = {
+				{"metals_adamant_lump.png", "metals_adamant_lump.png", "metals_adamant_lump.png"},
+				{'', 'default:stick', ''},
+				{'', 'default:stick', ''},
+			}
+		})
