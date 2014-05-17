@@ -9,7 +9,7 @@ function register_metal(name, metalDef)
 		description = metalDef.description.." Lump",
 		inventory_image = "metals_"..name.."_lump.png" ,
 	});
-	bk_game.register_ore(name, metalDef);
+	bk_game.register_ore(name, metalDef)
 	if not metalDef.ingots and metalDef.ingots ~= false then
 		if not metalDef.ingot then
 			metalDef.ingot = "metals:"..name.."_ingot";

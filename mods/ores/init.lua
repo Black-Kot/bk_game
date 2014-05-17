@@ -1,5 +1,5 @@
-bk_game.registered_ores = {}
-bk_game.registered_ores_list = {}
+registered_ores = {}
+registered_ores_list = {}
 
 local d_seed = 0
   
@@ -8,7 +8,7 @@ function bk_game.register_ore(name, OreDef)
 		name = name,
 		description = OreDef.description or "Ore",
 		mineral = OreDef.mineral or "ores:"..name,
-		wherein = OreDef.wherein or {[0]="blocks:stone", [1]="blocks:desert_stone", [2]="default:stone", [3]="default:desert_stone"},	
+		wherein = OreDef.wherein or "blocks:stone",	
 		chunks_per_volume = OreDef.chunks_per_volume or 1/3/3/3/2,	
 		chunk_size = OreDef.chunk_size or 10,
 		ore_per_chunk = OreDef.ore_per_chunk or 10*10*10,
@@ -20,13 +20,14 @@ function bk_game.register_ore(name, OreDef)
 		generate = true,
 		delta_seed = OreDef.delta_seed or d_seed
 	}
+	print("register "..name.." lump: "..OreDef.lump)
 	d_seed = d_seed + 1
 	if OreDef.generate == false then
 		ore.generate = false
 	end
-	bk_game.registered_ores[name] = ore
-	table.insert(bk_game.registered_ores_list, name)
-		local wherein_ = ore.wherein[0]:gsub(":","_")
+	registered_ores[name] = ore
+	table.insert(registered_ores_list, name)
+		local wherein_ = ore.wherein:gsub(":","_")
 		local wherein_textures =  "ores_"..name..".png"
 		local particle_image = wherein_..".png^"..wherein_textures
 	minetest.register_node(":"..ore.mineral, {
@@ -48,7 +49,6 @@ function bk_game.register_ore(name, OreDef)
 			},
 			sounds = default.node_sound_stone_defaults()
 		})
-	print("register "..name.." ore:	[OK]")
 end
 
 minetest.register_node(":default:peat", {
@@ -121,12 +121,46 @@ local function is_node_beside(pos, node)
 end
 
 
-
 local function generate_ore(name, wherein, minp, maxp, seed, chunks_per_volume, chunk_size,
 	ore_per_chunk, height_min, height_max, noise_min, noise_max)
 	if maxp.y < height_min or minp.y > height_max then
 		return
 	end
+	--[[]
+	local pr = PseudoRandom(seed)
+	local pos1 = {x=0, y=0, z=0}
+	pos1.x = pr:next(minp.x+10, maxp.x-10)
+	pos1.y = pr:next(minp.y+10, maxp.y-10)
+	pos1.z = pr:next(minp.z+10, maxp.z-10)
+	print("pos setnodes("..name..") is: ("..pos1.x..","..pos1.y..","..pos1.z..")")
+	local X1 = 10
+	local Y1 = 10
+	local Z1 = 10
+	
+	for x0 = 1, X1, 1 do 
+		for y0 = 1, Y1, 1 do
+			for z0 = 1, Z1, 1 do
+				local p2 = {x=pos1.x+x0, y=pos1.y+y0, z=pos1.y+y0}
+				
+	print("pos setnodes("..name.." , in "..wherein.."?"..minetest.env:get_node(p2).name..") is: ("..p2.x..","..p2.y..","..p2.z..")")
+					if minetest.env:get_node(p2).name == wherein then
+							-- perlin
+							if type(noise_min) == "number" or type(noise_max) == "number" then
+								if ore_noise2 >= noise_min and ore_noise2 <= noise_max then
+									minetest.env:set_node(p2, {name=name})
+									print("setnode("..p2.x..","..p2.y..","..p2.z.." : "..name..")")
+								end
+							else
+								minetest.env:set_node(p2, {name=name})
+								print("setnode("..p2.x..","..p2.y..","..p2.z.." : "..name..")")
+							end
+							
+					end
+			end
+		end
+	end
+			--]]	
+			
 	local ore_noise1
 	local ore_noise2
 	local y_min = math.max(minp.y, height_min)
@@ -147,8 +181,7 @@ local function generate_ore(name, wherein, minp, maxp, seed, chunks_per_volume, 
 		ore_noise1 = minetest.env:get_perlin(seed, 3, 0.7, 100)
 	end
 	
-	--print("generate_ore num_chunks: "..dump(num_chunks))
-	for i=1,num_chunks do
+	for i=1,chunk_size + 1 do
 		local y0 = pr:next(y_min, y_max-chunk_size+1)
 		if y0 >= height_min and y0 <= height_max then
 			local x0 = pr:next(minp.x, maxp.x-chunk_size+1)
@@ -169,16 +202,15 @@ local function generate_ore(name, wherein, minp, maxp, seed, chunks_per_volume, 
 					local z2 = z0+z1
 					local p2 = {x=x2, y=y2, z=z2}
 					if minetest.env:get_node(p2).name == wherein then
-							
 							-- perlin
 							if type(noise_min) == "number" or type(noise_max) == "number" then
 								if ore_noise2 >= noise_min and ore_noise2 <= noise_max then
 									minetest.env:set_node(p2, {name=name})
-							print("ORES: " .. minetest.pos_to_string(p2))
+									--print("setnode("..p2.x..","..p2.y..","..p2.z.." : "..name..")")
 								end
 							else
 								minetest.env:set_node(p2, {name=name})
-							print("ORES: " .. minetest.pos_to_string(p2))
+								--print("setnode("..p2.x..","..p2.y..","..p2.z.." : "..name..")")
 							end
 							
 					end
@@ -188,20 +220,25 @@ local function generate_ore(name, wherein, minp, maxp, seed, chunks_per_volume, 
 			end
 		end
 	end
-	--print("generate_perlinore done")
+	--print("generate_perlinore node done")
 end
 
 
-minetest.after(0, function()
+minetest.after(1, function()
 	minetest.register_on_generated(function(minp, maxp, seed)
 		local pr = PseudoRandom(seed)
-		local ore = bk_game.registered_ores[bk_game.registered_ores_list[pr:next(1,#bk_game.registered_ores_list)]]
+		local ore = registered_ores[registered_ores_list[pr:next(1,#registered_ores_list)]]
 	
-		for __, wherein in ipairs(ore.wherein) do
-			generate_ore(ore.name.."_in_"..wherein:gsub(":","_"), wherein, minp, maxp, seed+ore.delta_seed,
+		--for __, wherein in ipairs(ore.wherein) do
+			generate_ore(ore.mineral, ore.wherein, minp, maxp, seed+ore.delta_seed,
 				ore.chunks_per_volume, ore.chunk_size,
 				ore.ore_per_chunk, ore.height_min, ore.height_max, ore.noise_min, ore.noise_max)
-		end
-		generate_peat("ores:peat", "default:dirt", minp, maxp, seed+401, 1/8/16/24, 10, 1000, -100, 200)
+		--end
+		generate_peat("default:peat", "default:dirt", minp, maxp, seed+401, 1/8/16/24, 10, 1000, -100, 200)
 	end)
 end)
+
+
+----------------------------------------------------------
+
+--silver mithril concrete marble marble_bricks granite default:obsidian tin
