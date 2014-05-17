@@ -75,9 +75,9 @@ minetest.register_chatcommand("setcity", {
 	end,
 })
 
-minetest.register_chatcommand("setcity", {
+minetest.register_chatcommand("delcity", {
 	params = "<name>",
-	description = "Set city",
+	description = "Del city",
 	privs = {city=true},
 	func = function(name, param)
 		local can_access = minetest.check_player_privs(name, {city=true})
