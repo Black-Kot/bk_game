@@ -10,7 +10,7 @@ LIGHT_MAX = 14
 default = {}
 
 -- Load files
---dofile(minetest.get_modpath("default").."/alias.lua") -- do not use alias!
+dofile(minetest.get_modpath("default").."/alias.lua") -- do not use alias!
 dofile(minetest.get_modpath("default").."/functions.lua")
 dofile(minetest.get_modpath("default").."/nodes.lua")
 dofile(minetest.get_modpath("default").."/craftitems.lua")

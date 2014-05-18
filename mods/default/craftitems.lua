@@ -1,10 +1,5 @@
 -- mods/default/craftitems.lua
 
-minetest.register_craftitem("default:stick", {
-	description = "Stick",
-	inventory_image = "default_stick.png",
-})
-
 minetest.register_craftitem("default:paper", {
 	description = "Paper",
 	inventory_image = "default_paper.png",
