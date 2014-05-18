@@ -15,6 +15,12 @@ function bk_game.register_mineral(name, mineralDef)
 		if mineralDef.slab == nil then
 			mineralDef.slab = true
 		end
+		if mineralDef.column == nil then
+			mineralDef.column = true
+		end
+		if mineralDef.pyramid == nil then
+			mineralDef.pyramid = true
+		end
 		bk_game.register_nodes(name, mineralDef)
 	end	
 	if not mineralDef.chest and mineralDef.chest ~= false then
@@ -38,7 +44,7 @@ list = {
 
 opts_list = {
     {description = "Cinnabar", },
-    {description = "Coal", chest=false, stair=false, slab=false},
+    {description = "Coal", chest=false, stair=false, slab=false, pyramid=false, column=false},
     {description = "Gypsum", },
     {description = "Jet", },
     {description = "Lazurite", },

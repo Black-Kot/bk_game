@@ -379,6 +379,10 @@ function bk_game.register_tree(name, TreeDef)
 	
 	
 	TreeDef.source = tree.name.."_plank"
+	TreeDef.stair = true
+	TreeDef.slab = true
+	TreeDef.column = false
+	TreeDef.pyramid = false
 	bk_game.register_chest(name:remove_modname_prefix(), TreeDef)
 	--[[
 	minetest.register_node(tree.name.."_chest", {

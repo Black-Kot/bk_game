@@ -179,6 +179,79 @@ function bk_game.register_slab(name, def)
 	end
 end
 
+function bk_game.register_column(name, def)
+
+	minetest.register_node(":blocks:"..name.."_column", {
+		description = def.description.." Column",
+		drawtype = "nodebox",
+		paramtype = "light",
+		node_box = {
+			type = "fixed",
+			fixed = {
+				{-0.5, -0.5, -0.2, 0.5, 0.5, 0.2},
+				{-0.4, -0.5, -0.3, 0.4, 0.5, 0.3},
+				{-0.3, -0.5, -0.4, 0.3, 0.5, 0.4},
+				{-0.2, -0.5, -0.5, 0.2, 0.5, 0.5},
+			},
+		},
+		selection_box = {
+			type = "fixed",
+			fixed = {
+				{-0.5, -0.5, -0.2, 0.5, 0.5, 0.2},
+				{-0.4, -0.5, -0.3, 0.4, 0.5, 0.3},
+				{-0.3, -0.5, -0.4, 0.3, 0.5, 0.4},
+				{-0.2, -0.5, -0.5, 0.2, 0.5, 0.5},
+			},
+		},
+		tiles = {"blocks_"..name..".png"},
+		particle_image = {"blocks_"..name..".png"},
+		groups = {cracky=3},
+		sounds = default.node_sound_stone_defaults(),
+	})
+
+	minetest.register_craft({
+		output = "blocks:"..name.."_column",
+		recipe = {
+			{"",def.source,""},
+			{def.source,def.source,def.source},
+			{"",def.source,""},
+		}
+	})
+
+end
+
+function bk_game.register_pyramid(name, def)
+
+	minetest.register_node(":blocks:"..name.."_pyramid", {
+		description = def.description.." Pyramid",
+		drawtype = "nodebox",
+		paramtype = "light",
+		node_box = {
+			type = "fixed",
+			fixed = {
+				{-0.5, -0.5, -0.5, 0.5, -0.3, 0.5},
+				{-0.4, -0.3, -0.4, 0.4, -0.1, 0.4},
+				{-0.3, -0.1, -0.3, 0.3, 0.1, 0.3},
+				{-0.2, 0.1, -0.2, 0.2, 0.3, 0.2},
+				{-0.1, 0.3, -0.1, 0.1, 0.5, 0.1},
+			},
+		},
+	tiles = {"blocks_"..name..".png"},
+	particle_image = {"blocks_"..name..".png"},
+	groups = {cracky = 3},
+	sounds = default.node_sound_stone_defaults(),
+	})
+
+	minetest.register_craft({
+		output = "blocks:"..name.."_pyramid",
+		recipe = {
+			{"",def.source,""},
+			{def.source,def.source,def.source},
+		}
+	})
+
+end
+
 function bk_game.register_nodes(name, def)
 	
 	if not def.tiles then
@@ -223,4 +296,11 @@ function bk_game.register_nodes(name, def)
 		bk_game.register_stair(name, def)
 	end
 	
+	if def.column == true then
+		bk_game.register_column(name, def)
+	end
+	
+	if def.pyramid == true then
+		bk_game.register_pyramid(name, def)
+	end
 end
