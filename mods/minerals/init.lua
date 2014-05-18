@@ -2,7 +2,7 @@ function bk_game.register_mineral(name, mineralDef)
 	mineralDef.lump = "minerals:"..name.."_lump";
 	minetest.register_craftitem(":"..mineralDef.lump, {
 		description = mineralDef.description.." Lump",
-		inventory_image = {"minerals_"..name.."_lump.png" },
+		inventory_image = "minerals_"..name.."_lump.png"
 	});
 	mineralDef.source = mineralDef.lump
 	mineralDef.level=5
