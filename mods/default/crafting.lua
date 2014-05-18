@@ -126,13 +126,6 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_craft({
-	output = 'default:snow 9',
-	recipe = {
-		{'default:snowblock'},
-	}
-})
-
 --
 -- Crafting (tool repair)
 --
@@ -161,6 +154,11 @@ minetest.register_craft({
 	type = "cooking",
 	output = "blocks:stone",
 	recipe = "default:cobble",
+})
+minetest.register_craft({
+	type = "cooking",
+	output = "blocks:desert_stone",
+	recipe = "default:desert_cobble",
 })
 
 minetest.register_craft({
