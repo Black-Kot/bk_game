@@ -1,5 +1,13 @@
 bk_game.registered_trees = {}
 bk_game.registered_trees_list = {}
+function contains(t, v)
+	for _, i in ipairs(t) do
+		if i == v then
+			return true
+		end
+	end
+	return false
+end
 function bk_game.register_tree(name, TreeDef)
 	local tree = {
 		name = name,
@@ -176,7 +184,7 @@ function bk_game.register_tree(name, TreeDef)
 		visual_scale = 1.3,
 		tiles = {tree.textures.leaves},
 		paramtype = "light",
-		groups = {snappy=1,flammable=2,drop_on_dig=1,leaves=1},
+		groups = {snappy=3, oddly_breakable_by_hand=2, flammable=2, leaves=1},
 		drop = {
 			max_items = 1,
 			items = {
@@ -281,7 +289,7 @@ function bk_game.register_tree(name, TreeDef)
 	
 	minetest.register_node(tree.name.."_trunk_top", {
 		tiles = tree.textures.trunk,
-		groups = {tree=1,choppy=2,flammable=2,dropping_node=1,drop_on_dig=1},
+		groups = {tree=1,choppy=2,oddly_breakable_by_hand=2,flammable=2,dropping_node=1,drop_on_dig=1},
 		sounds = default.node_sound_wood_defaults(),
 		drop = tree.name.."_log",
 		drawtype = "nodebox",
@@ -302,7 +310,11 @@ function bk_game.register_tree(name, TreeDef)
 			for i = 1,#tree.leaves do
 				local p = {x=pos.x+tree.leaves[i][1], y=pos.y+tree.leaves[i][2], z=pos.z+tree.leaves[i][3]}
 				if minetest.env:get_node(p).name == tree.name.."_leaves" then
+					local drop = minetest.get_node_drops(minetest.get_node(p).name)
 					minetest.env:dig_node(p)
+					for _,item in ipairs(drop) do
+						minetest.add_item(p, item)
+					end
 				end
 			end
 		end,
@@ -619,6 +631,20 @@ function bk_game.register_tree(name, TreeDef)
 			end
 			if minetest.env:get_node_light(pos) >= tree.grow_light then
 				trees.make_tree(pos, tree.name)
+			end
+		end,
+	})
+	minetest.register_abm({
+		nodenames = {tree.name.."_trunk",tree.name.."_trunk_top"},
+		interval = 0.2,
+		chance = 1,
+		action = function(pos, node)
+			n_pos = {x=pos.x,y=pos.y-1,z=pos.z}
+			n_node = minetest.get_node(n_pos)
+			if n_node.name ~= tree.name.."_trunk" and not contains(tree.grounds, n_node.name) then
+				minetest.dig_node(pos)
+				-- drop
+				minetest.add_item(pos, tree.name.."_log")
 			end
 		end,
 	})
