@@ -63,7 +63,7 @@ function bk_game.register_tree(name, TreeDef)
 		without_craft = true,
 		description = tree.description.." Planks",
 		tiles = {tree.textures.planks},
-		groups = {planks=1,snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3,drop_on_dig=1},
+		groups = {planks=1,snappy=4,choppy=4,oddly_breakable_by_hand=2,flammable=3,drop_on_dig=1},
 		sounds = default.node_sound_wood_defaults(),
 	})
 	
@@ -76,7 +76,10 @@ function bk_game.register_tree(name, TreeDef)
 	
 	bk_game.register_tools("wood_"..name:remove_modname_prefix(), {
 		description = tree.description,
-		times={[7] = 2.50, [8]=2.00,}, uses=10, maxlevel=1,
+		source = tree.name.."_stick",
+		times = {[5] = 2.50, [6]=2.00,}, 
+		uses = 10,
+		maxlevel = 5,
 	})
 
 	
@@ -100,7 +103,7 @@ function bk_game.register_tree(name, TreeDef)
 		tiles = tree.textures.trunk,
 		inventory_image = tree.textures.log,
 		wield_image = tree.textures.log,
-		groups = {log=1,choppy=1,flammable=2,oddly_breakable_by_hand=2,dropping_node=1,drop_on_dig=1},
+		groups = {log=1,choppy=4,flammable=2,oddly_breakable_by_hand=2,dropping_node=1,drop_on_dig=1},
 		sounds = default.node_sound_wood_defaults(),
 		drop = tree.name.."_plank 4",
 		--drop_on_dropping = tree.name.."_log",
@@ -184,7 +187,7 @@ function bk_game.register_tree(name, TreeDef)
 		visual_scale = 1.3,
 		tiles = {tree.textures.leaves},
 		paramtype = "light",
-		groups = {snappy=3, oddly_breakable_by_hand=2, flammable=2, leaves=1},
+		groups = {snappy=4, oddly_breakable_by_hand=2, flammable=2, leaves=1},
 		drop = {
 			max_items = 1,
 			items = {
@@ -378,6 +381,16 @@ function bk_game.register_tree(name, TreeDef)
 	})
 	
 	
+	minetest.register_craft({
+		output = tree.name.."_ladder",
+		recipe = {
+			{tree.name.."_stick", "", tree.name.."_stick"},
+			{tree.name.."_stick", tree.name.."_stick", tree.name.."_stick"},
+			{tree.name.."_stick", "", tree.name.."_stick"},
+		}
+	})
+	
+	
 	TreeDef.source = tree.name.."_plank"
 	TreeDef.stair = true
 	TreeDef.slab = true
@@ -495,15 +508,6 @@ function bk_game.register_tree(name, TreeDef)
 					"list[current_player;main;0,5;8,4;]")
 			end
 		end,
-	})
-	
-	minetest.register_craft({
-		output = tree.name.."_ladder",
-		recipe = {
-			{tree.name.."_stick", "", tree.name.."_stick"},
-			{tree.name.."_stick", tree.name.."_stick", tree.name.."_stick"},
-			{tree.name.."_stick", "", tree.name.."_stick"},
-		}
 	})
 	
 	minetest.register_craft({

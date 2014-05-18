@@ -33,8 +33,8 @@ function bk_game.register_tools(name, toolDef)
 			output = "tools:pick_"..name,
 			recipe = {
 				{toolDef.source, toolDef.source, toolDef.source},
-				{'', 'default:stick', ''},
-				{'', 'default:stick', ''},
+				{'', 'group:stick', ''},
+				{'', 'group:stick', ''},
 			}
 		})
 	end
@@ -58,8 +58,8 @@ function bk_game.register_tools(name, toolDef)
 			output = "tools:shovel_"..name,
 			recipe = {
 				{toolDef.source},
-				{'default:stick'},
-				{'default:stick'},
+				{'group:stick'},
+				{'group:stick'},
 			}
 		})
 	end
@@ -83,14 +83,14 @@ function bk_game.register_tools(name, toolDef)
 			output = "tools:axe_"..name,
 			recipe = {
 				{toolDef.source, toolDef.source},
-				{toolDef.source, 'default:stick'},
-				{'', 'default:stick'},
+				{toolDef.source, 'group:stick'},
+				{'', 'group:stick'},
 			}
 		})
 	end
 
 	-- Sword`s
-
+if not string.match(toolDef.source, "stick") then
 	if not toolDef.sword and toolDef.sword ~= false then
 		minetest.register_tool(":tools:sword_"..name, {
 			description = toolDef.description.." Sword",
@@ -109,12 +109,14 @@ function bk_game.register_tools(name, toolDef)
 			recipe = {
 				{toolDef.source},
 				{toolDef.source},
-				{'default:stick'},
+				{'group:stick'},
 			}
 		})
 	end
+	
+end
 
-
+print("Register Tools "..toolDef.description.." [OK]")
 
 end
 
@@ -124,9 +126,9 @@ end
 bk_game.register_tools("stone", {
 	source = "default:stone",
 	description = "Stone",
-	times= {[6] = 2.80,[7] = 2.00, [8]=1.80,},
+	times= {[4] = 2.80,[5] = 2.00, [6]=1.80,},
 	uses = 20,
-	level = 2,
+	level = 5,
 })
 
 -- The hand
@@ -139,8 +141,8 @@ minetest.register_item(":", {
 		full_punch_interval = 0.9,
 		max_drop_level = 0,
 		groupcaps = {
-			crumbly = {times={ [6]=3.00, [7]=2.50,[8]=2.00,}, uses=0, maxlevel=2},
-			snappy = {times={[7]=2.50}, uses=0, maxlevel=1},
+			crumbly = {times={ [6]=2.50,}, uses=0, maxlevel=1},
+			snappy = {times={[6]=2.50}, uses=0, maxlevel=1},
 			oddly_breakable_by_hand = {times={[1]=4.00,[2]=2.00,[3]=1.40}, uses=0, maxlevel=2}
 		},
 		damage_groups = {fleshy=1},
@@ -167,7 +169,7 @@ minetest.register_item(":", {
 			output = "tools:pick_adamant",
 			recipe = {
 				{"metals_adamant_lump.png", "metals_adamant_lump.png", "metals_adamant_lump.png"},
-				{'', 'default:stick', ''},
-				{'', 'default:stick', ''},
+				{'', 'group:stick', ''},
+				{'', 'group:stick', ''},
 			}
 		})

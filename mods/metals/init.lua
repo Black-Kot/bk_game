@@ -66,13 +66,13 @@ list = {
 }
 
 opts_list = {
-    {description = "Adamant", level=7, uses=0, times={ [1]=0.50, [2]=0.50, [3]=0.50, [4]=0.50, [5]=0.50, [6]=0.50, [7]=0.50, [8]=0.50,}, full_punch_interval=0.20, chunk_size=3, height_max=-20000, tools=false, height_max=-25000, height_min=-37000},
-    {description = "Mithril", level=6, uses=30, times={ [2]=2.00, [3]=1.80, [4]=1.60, [5]=1.40, [6]=1.00, [7]=0.80,[8]=0.80, }, height_max=-10000},
+    {description = "Adamant", level=1, uses=0, times={ [1]=0.50, [2]=0.50, [3]=0.50, [4]=0.50, [5]=0.50, [6]=0.50,}, full_punch_interval=0.20, chunk_size=3, height_max=-20000, tools=false, height_max=-25000, height_min=-37000}, -- for admins only?
+    {description = "Mithril", level=2, uses=30, times={ [2]=2.00, [3]=1.80, [4]=1.60, [5]=1.40, [6]=1.20}, height_max=-10000},
     {description = "Chromium", tools = false, height_max=10, height_min=-5000},
-    {description = "Copper", level=3, uses=20, times={ [4]=3.00, [5]=2.50, [6]=2.00, [7]=1.00,[7]=0.80, },height_max=-250},
+    {description = "Copper", level=4, uses=20, times={ [4]=2.00, [5]=1.20, [6]=1.20},height_max=-250},
     {description = "Gold", tools = false, height_max=-10000},
     {description = "Silver", tools = false, height_max=-5000, height_min=-20000},
-    {description = "Steel", lump = "metals:iron_lump", level=2, uses=20,  times={ [5]=2.80, [6]=2.30, [7]=1.40, [7]=1.00,}}, 
+    {description = "Steel", lump = "metals:iron_lump", level=4, uses=20,  times={ [4]=2.20,[5]=1.80, [6]=1.20,}}, 
     {description = "Tin", tools = false, height_min=-10000},
     {description = "Zinc", tools = false, height_min=-15000},
 }

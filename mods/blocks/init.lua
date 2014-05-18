@@ -205,7 +205,7 @@ function bk_game.register_column(name, def)
 		},
 		tiles = {"blocks_"..name..".png"},
 		particle_image = {"blocks_"..name..".png"},
-		groups = {cracky=3},
+		groups = def.groups,
 		sounds = default.node_sound_stone_defaults(),
 	})
 
@@ -238,7 +238,7 @@ function bk_game.register_pyramid(name, def)
 		},
 	tiles = {"blocks_"..name..".png"},
 	particle_image = {"blocks_"..name..".png"},
-	groups = {cracky = 3},
+	groups = def.groups,
 	sounds = default.node_sound_stone_defaults(),
 	})
 
@@ -261,9 +261,11 @@ function bk_game.register_nodes(name, def)
 	if not def.sounds then
 		def.sounds = default.node_sound_stone_defaults()
 	end
-	
+	if def.level == nil then
+		def.level=2
+	end
 	if not def.groups then
-		def.groups = {cracky=1, stone=1}
+		def.groups = {cracky=def.level, stone=1}
 		def.is_ground_content = true
 	end
 	
