@@ -63,7 +63,7 @@ function bk_game.register_tree(name, TreeDef)
 		without_craft = true,
 		description = tree.description.." Planks",
 		tiles = {tree.textures.planks},
-		groups = {planks=1,snappy=4,choppy=4,oddly_breakable_by_hand=2,flammable=3,drop_on_dig=1},
+		groups = {planks=1,snappy=4,choppy=4,oddly_breakable_by_hand=2,flammable=3,drop_on_dig=1, wood=1},
 		sounds = default.node_sound_wood_defaults(),
 	})
 	
