@@ -1,15 +1,5 @@
 -- mods/default/crafting.lua
 
-
-
-minetest.register_craft({
-	output = 'default:torch 4',
-	recipe = {
-		{'default:coal_lump'},
-		{'default:stick'},
-	}
-})
-
 minetest.register_craft({
 	output = 'default:furnace',
 	recipe = {
@@ -166,6 +156,12 @@ minetest.register_craft({
 	output = "default:clay_brick",
 	recipe = "default:clay_lump",
 })
+minetest.register_craft({
+	type = "cooking",
+	output = "default:torch",
+	recipe = "group:stick",
+})
+
 
 --
 -- Fuels

@@ -149,6 +149,16 @@ minetest.register_item(":", {
 	}
 })
 
+-- Wood/Stick tools
+
+	bk_game.register_tools("wood", {
+		description = "Wood",
+		source = "group:stick",
+		times = {[5] = 2.50, [6]=2.00,}, 
+		uses = 10,
+		maxlevel = 5,
+	})
+
 -- Adamant Pick, can dig all
 
 		minetest.register_tool("tools:pick_adamant", {
