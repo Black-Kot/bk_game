@@ -175,6 +175,18 @@ minetest.register_craft({
 
 minetest.register_craft({
 	type = "fuel",
+	recipe = "group:planks",
+	burntime = 30,
+})
+
+minetest.register_craft({
+	type = "fuel",
+	recipe = "group:log",
+	burntime = 30,
+})
+
+minetest.register_craft({
+	type = "fuel",
 	recipe = "default:junglegrass",
 	burntime = 2,
 })
@@ -211,13 +223,19 @@ minetest.register_craft({
 
 minetest.register_craft({
 	type = "fuel",
-	recipe = "default:ladder",
+	recipe = "group:ladder",
 	burntime = 5,
 })
 
 minetest.register_craft({
 	type = "fuel",
 	recipe = "group:wood",
+	burntime = 10,
+})
+
+minetest.register_craft({
+	type = "fuel",
+	recipe = "group:stick",
 	burntime = 10,
 })
 
@@ -265,7 +283,7 @@ minetest.register_craft({
 
 minetest.register_craft({
 	type = "fuel",
-	recipe = "default:sapling",
+	recipe = "group:sapling",
 	burntime = 10,
 })
 
