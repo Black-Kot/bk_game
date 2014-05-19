@@ -136,7 +136,7 @@ default.cool_lava_source = function(pos)
 end
 
 default.cool_lava_flowing = function(pos)
-	minetest.set_node(pos, {name="default:stone"})
+	minetest.set_node(pos, {name="blocks:stone"})
 	minetest.sound_play("default_cool_lava", {pos = pos,  gain = 0.25})
 end
 
