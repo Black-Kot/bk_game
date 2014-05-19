@@ -15,9 +15,9 @@ function table:get_index(value)
 	end
 end
 
-function table:removekey(table, key)
-    local element = table[key]
-    table[key] = nil
+function removekey(_table, key)
+    local element = _table[key]
+    _table[key] = nil
     return element
 end
 
