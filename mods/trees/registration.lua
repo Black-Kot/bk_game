@@ -56,11 +56,10 @@ function bk_game.register_tree(name, TreeDef)
 		group = {plank=1},
 	})
 	
-	bk_game.register_nodes(tree.name.."_planks", {
+	bk_game.register_nodes(tree.name:remove_modname_prefix().."_planks", {
 		source = tree.name.."_plank",
 		slab=true,
 		stair=true,
-		without_craft = true,
 		description = tree.description.." Planks",
 		tiles = {tree.textures.planks},
 		groups = {planks=1,snappy=4,choppy=4,oddly_breakable_by_hand=2,flammable=3,drop_on_dig=1, wood=1},
