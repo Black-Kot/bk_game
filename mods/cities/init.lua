@@ -86,6 +86,10 @@ minetest.register_chatcommand("delcity", {
 			return
 		end
 		local city = param
+		if not cities[city] then
+			minetest.chat_send_player(name, "Unknow city!")
+			return
+		end
 		table.remove(cities, city) 
 		minetest.chat_send_all("Delete`d city " .. city .. " at position " .. minetest.pos_to_string(pos))
 		changed = true
@@ -98,7 +102,7 @@ minetest.register_chatcommand("setspawn", {
 	privs = {},
 	func = function(name, param)
 		local city = param
-		if not cities[name] then
+		if not cities[city] then
 			minetest.chat_send_player(name, "Unknow city!")
 			return
 		end
