@@ -19,6 +19,15 @@ function default.get_locked_chest_formspec(pos)
 	return formspec
 end
 
+function has_locked_chest_privilege(meta, player)
+	if player:get_player_name() ~= meta:get_string("owner")  then
+		if minetest.check_player_privs(player:get_player_name(), {chest=true}) ~= true then
+			return false
+		end
+	end
+	return true
+end
+
 
 function bk_game.register_chest(name, def) 
 
@@ -81,15 +90,6 @@ minetest.register_node(":chest:"..name, {
 				" takes stuff from chest at "..minetest.pos_to_string(pos))
 	end,
 })
-
-local function has_locked_chest_privilege(meta, player)
-	if player:get_player_name() ~= meta:get_string("owner")  then
-		if minetest.check_player_privs(player:get_player_name(), {chest=true}) ~= true then
-			return false
-		end
-	end
-	return true
-end
 
 minetest.register_node(":chest:"..name.."_locked", {
 	description = def.description.." Locked Chest",

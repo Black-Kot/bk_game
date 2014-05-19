@@ -165,6 +165,12 @@ local function generate_ore(name, wherein, minp, maxp, seed, chunks_per_volume, 
 	local ore_noise2
 	local y_min = math.max(minp.y, height_min)
 	local y_max = math.min(maxp.y, height_max)
+	if y_min < height_min then
+		y_min = height_min + chunk_size + 1
+	end
+	if y_max > height_max then
+		y_max = height_max - chunk_size - 1
+	end
 	local volume = (maxp.x-minp.x+1)*(y_max-y_min+1)*(maxp.z-minp.z+1)
 	local pr = PseudoRandom(seed)
 	local num_chunks = math.floor(chunks_per_volume * volume)
