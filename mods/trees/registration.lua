@@ -639,7 +639,7 @@ function bk_game.register_tree(name, TreeDef)
 		action = function(pos, node)
 			n_pos = {x=pos.x,y=pos.y-1,z=pos.z}
 			n_node = minetest.get_node(n_pos)
-			if n_node.name ~= tree.name.."_trunk" and not contains(tree.grounds, n_node.name) then
+			if n_node.name == "air" then
 				minetest.dig_node(pos)
 				-- drop
 				minetest.add_item(pos, tree.name.."_log")
