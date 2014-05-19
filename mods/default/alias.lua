@@ -6,6 +6,6 @@
 --minetest.register_alias("default:sandstonebrick","blocks:sandstonebrick")
 --minetest.register_alias("default:brick","blocks:brick")
 --minetest.register_alias("default:glass","blocks:glass")
---minetest.register_alias("default:obsidian_glass","blocks:obsidian_glass")
---minetest.register_alias("default:obsidian","blocks:obsidian")
+minetest.register_alias("default:obsidian_glass","blocks:obsidian_glass")
+minetest.register_alias("default:obsidian","blocks:obsidian")
 minetest.register_alias("default:stick","group:stick")

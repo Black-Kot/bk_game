@@ -25,7 +25,7 @@ minetest.register_craftitem("default:scorched_stuff", {
 	inventory_image = "default_scorched_stuff.png",
 })
 
-minetest.register_craftitem("default:obsidian_shard", {
+minetest.register_craftitem("blocks:obsidian_shard", {
 	description = "Obsidian Shard",
 	inventory_image = "default_obsidian_shard.png",
 })

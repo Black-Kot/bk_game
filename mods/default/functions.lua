@@ -131,7 +131,7 @@ minetest.register_on_punchnode(on_punchnode)
 --
 
 default.cool_lava_source = function(pos)
-	minetest.set_node(pos, {name="default:obsidian"})
+	minetest.set_node(pos, {name="blocks:obsidian"})
 	minetest.sound_play("default_cool_lava", {pos = pos,  gain = 0.25})
 end
 
