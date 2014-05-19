@@ -75,6 +75,9 @@ local function generate_peat(name, wherein, minp, maxp, seed, chunks_per_volume,
 	local pr = PseudoRandom(seed)
 	local num_chunks = math.floor(chunks_per_volume * volume)
 	local inverse_chance = math.floor(chunk_size*chunk_size*chunk_size / ore_per_chunk)
+	if inverse_chance == 0 then
+		inverse_chance = 1
+	end
 	--print("generate_ore num_chunks: "..dump(num_chunks))
 	for i=1,num_chunks do
 		local y0 = pr:next(y_min, y_max-chunk_size+1)
