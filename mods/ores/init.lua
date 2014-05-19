@@ -181,7 +181,9 @@ local function generate_ore(name, wherein, minp, maxp, seed, chunks_per_volume, 
 	local pr = PseudoRandom(seed)
 	local num_chunks = math.floor(chunks_per_volume * volume)
 	local inverse_chance = math.floor(chunk_size*chunk_size*chunk_size / ore_per_chunk)
-	
+	if inverse_chance == 0 then
+		inverse_chance = 1
+	end
 	-- perlin. Only done if borders are defined.
 	if type(noise_min) == "number" or type(noise_max) == "number" then
 		if type(noise_min) ~= "number" then
