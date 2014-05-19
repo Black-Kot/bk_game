@@ -15,6 +15,12 @@ function table:get_index(value)
 	end
 end
 
+function table:removekey(table, key)
+    local element = table[key]
+    table[key] = nil
+    return element
+end
+
 function copy_table(t)
     local u = { }
     for k, v in pairs(t) do

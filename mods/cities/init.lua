@@ -90,7 +90,7 @@ minetest.register_chatcommand("delcity", {
 			minetest.chat_send_player(name, "Unknow city!")
 			return
 		end
-		table.remove(cities, city) 
+		table.removekey(cities, city)
 		minetest.chat_send_all("Delete`d city " .. city .. " at position " .. minetest.pos_to_string(pos))
 		changed = true
 	end,

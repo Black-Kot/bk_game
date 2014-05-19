@@ -76,7 +76,7 @@ minetest.register_chatcommand("delmine" , {
             minetest.chat_send_player(name, "Name of mine can`t be null")
 		end        
         if minepos[name] then
-			table.remove(minepos, name) 
+			table.removekey(minepos, name) 
 		end
         minepos[name][param] = pos
         minetest.chat_send_player(name, "Mine "..param.." delete`d!")
