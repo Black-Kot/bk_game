@@ -165,13 +165,13 @@ local function generate_ore(name, wherein, minp, maxp, seed, chunks_per_volume, 
 	local ore_noise2
 	local y_min = math.max(minp.y, height_min)
 	local y_max = math.min(maxp.y, height_max)
-	if y_min < y_max-chunk_size then
+	if y_min > y_max-chunk_size then
 		y_min = y_max-(chunk_size*2)
 	end
-	if minp.x < maxp.x-chunk_size then
+	if minp.x > maxp.x-chunk_size then
 		minp.x = maxp.x-(chunk_size*2)
 	end
-	if minp.z < maxp.z-chunk_size then
+	if minp.z > maxp.z-chunk_size then
 		minp.z = maxp.z-(chunk_size*2)
 	end
 	local volume = (maxp.x-minp.x+1)*(y_max-y_min+1)*(maxp.z-minp.z+1)
