@@ -41,7 +41,7 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
-	output = 'chest::'..name..'_locked',
+	output = 'chest:'..name..'_locked',
 	recipe = {
 		{def.source, def.source, def.source},
 		{def.source, 'metals:steel_ingot', def.source},
@@ -51,7 +51,7 @@ minetest.register_craft({
 
 
 minetest.register_craft({
-	output = 'chest::'..name..'_locked',
+	output = 'chest:'..name..'_locked',
 	recipe = {
 		{ 'chest:'..name, 'metals:steel_ingot', ''},
 	}
@@ -101,7 +101,7 @@ minetest.register_node(":chest:"..name.."_locked", {
 	after_place_node = function(pos, placer)
 		local meta = minetest.get_meta(pos)
 		meta:set_string("owner", placer:get_player_name() or "")
-		meta:set_string("infotext", def.description.." Locked Chest (owned by "..
+		meta:set_string("infotext", "Locked "..def.description.." Chest (owned by "..
 				meta:get_string("owner")..")")
 	end,
 	on_construct = function(pos)
