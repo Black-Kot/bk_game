@@ -119,7 +119,7 @@ minetest.register_node("default:gravel", {
 	}),
 })
 
-minetest.register_node("default:sandstone", {
+bk_game.register_nodes("sandstone", {
 	stair = true,
 	slab = true,
 	description = "Sandstone",
