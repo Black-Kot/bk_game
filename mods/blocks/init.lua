@@ -80,7 +80,7 @@ function bk_game.register_stair(name, def)
 	})
 	
 	minetest.register_craft({
-		output = 'blocks:'..name..' 5',
+		output = def.source..' 3',
 		recipe = {
 			{'blocks:'..name..'_stair', 'blocks:'..name..'_stair'},
 			{'blocks:'..name..'_stair', 'blocks:'..name..'_stair'},
@@ -186,7 +186,7 @@ function bk_game.register_slab(name, def)
 	})
 	
 	minetest.register_craft({
-		output = 'blocks:'..name..' 2',
+		output = def.source..' 2',
 		recipe = {
 			{'blocks:'..name..'_slab', 'blocks:'..name..'_slab'},
 			{'blocks:'..name..'_slab', 'blocks:'..name..'_slab'},
@@ -235,7 +235,7 @@ function bk_game.register_column(name, def)
 	})
 	
 	minetest.register_craft({
-		output = 'blocks:'..name..' 4',
+		output = def.source..' 4',
 		recipe = {
 			{'blocks:'..name..'_column', 'blocks:'..name..'_column'},
 			{'blocks:'..name..'_column', 'blocks:'..name..'_column'},
@@ -275,7 +275,7 @@ function bk_game.register_pyramid(name, def)
 	})
 	
 	minetest.register_craft({
-		output = 'blocks:'..name..' 4',
+		output = def.source..' 4',
 		recipe = {
 			{'blocks:'..name..'_pyramid', 'blocks:'..name..'_pyramid'},
 			{'blocks:'..name..'_pyramid', 'blocks:'..name..'_pyramid'},
