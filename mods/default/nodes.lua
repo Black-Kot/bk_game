@@ -27,6 +27,7 @@ bk_game.register_nodes("desert_stone", {
 bk_game.register_nodes("stonebrick", {
 	stair = true,
 	slab = true,
+	source = "blocks:stone",
 	description = "Stone Brick",
 	tiles = {"default_stone_brick.png"},
 	groups = {cracky=5, stone=1},
@@ -36,6 +37,7 @@ bk_game.register_nodes("stonebrick", {
 bk_game.register_nodes("desert_stonebrick", {
 	stair = true,
 	slab = true,
+	source = "blocks:desert_stone",
 	description = "Desert Stone Brick",
 	tiles = {"default_desert_stone_brick.png"},
 	groups = {cracky=5, stone=1},
@@ -122,6 +124,7 @@ minetest.register_node("default:gravel", {
 bk_game.register_nodes("sandstone", {
 	stair = true,
 	slab = true,
+	source = "default:sand",
 	description = "Sandstone",
 	tiles = {"default_sandstone.png"},
 	is_ground_content = true,
@@ -132,6 +135,7 @@ bk_game.register_nodes("sandstone", {
 bk_game.register_nodes("sandstonebrick", {
 	stair = true,
 	slab = true,
+	source = "blocks:sandstone",
 	description = "Sandstone Brick",
 	tiles = {"default_sandstone_brick.png"},
 	is_ground_content = true,
@@ -157,35 +161,6 @@ bk_game.register_nodes("brick", {
 	tiles = {"default_brick.png"},
 	groups = {cracky=7},
 	sounds = default.node_sound_stone_defaults(),
-})
-
-minetest.register_node("default:leaves", {
-	description = "Leaves",
-	drawtype = "allfaces_optional",
-	visual_scale = 1.3,
-	tiles = {"default_leaves.png"},
-	paramtype = "light",
-	groups = {snappy=7, leafdecay=3, flammable=2, leaves=1},
-	drop = {
-		max_items = 1,
-		items = {
-			{
-				-- player will get sapling with 1/20 chance
-				items = {'default:sapling'},
-				rarity = 20,
-			},
-			{
-				-- player will get leaves only if he get no saplings,
-				-- this is because max_items is 1
-				items = {'default:leaves'},
-			}
-		}
-	},
-	walkable = false,
-	falling_node_walkable = false,
-	climbable = true,
-	
-	sounds = default.node_sound_leaves_defaults(),
 })
 
 minetest.register_node("default:cactus", {
@@ -284,7 +259,7 @@ bk_game.register_nodes("glass", {
 	inventory_image = minetest.inventorycube("default_glass.png"),
 	paramtype = "light",
 	sunlight_propagates = true,
-	groups = {cracky=7,oddly_breakable_by_hand=3},
+	groups = {cracky=1,oddly_breakable_by_hand=3},
 	sounds = default.node_sound_glass_defaults(),
 })
 
@@ -295,7 +270,7 @@ minetest.register_node("default:cloud", {
 	tiles = {"default_cloud.png"},
 	
 	sounds = default.node_sound_defaults(),
-	groups = {not_in_creative_inventory=1},
+	groups = {not_in_creative_inventory=1, cracky=1},
 })
 
 minetest.register_node("default:water_flowing", {
@@ -772,6 +747,7 @@ bk_game.register_nodes("obsidian_glass", {
 bk_game.register_nodes("obsidian", {
 	stair = true,
 	slab = true,
+	source = "blocks:obsidian_shard",
 	description = "Obsidian",
 	tiles = {"default_obsidian.png"},
 	is_ground_content = true,

@@ -210,7 +210,7 @@ function bk_game.register_column(name, def)
 	})
 
 	minetest.register_craft({
-		output = "blocks:"..name.."_column",
+		output = "blocks:"..name.."_column 6",
 		recipe = {
 			{"",def.source,""},
 			{def.source,def.source,def.source},
@@ -243,7 +243,7 @@ function bk_game.register_pyramid(name, def)
 	})
 
 	minetest.register_craft({
-		output = "blocks:"..name.."_pyramid",
+		output = "blocks:"..name.."_pyramid 6",
 		recipe = {
 			{"",def.source,""},
 			{def.source,def.source,def.source},
@@ -265,19 +265,15 @@ function bk_game.register_nodes(name, def)
 		def.level=2
 	end
 	if not def.groups then
-		def.groups = {cracky=def.level, stone=1}
+		def.groups = {cracky=def.level, node=1}
 		def.is_ground_content = true
 	end
 	
 	
 	
-	if not def.source then
-		local source = "blocks:"..name
-		def.source = source
-	else
+	if def.source then
 		if not def.drop then
 			def.drop = "blocks:"..name
-			def.legacy_mineral = true
 		end
 		minetest.register_craft({
 			output = "blocks:"..name,
@@ -286,8 +282,12 @@ function bk_game.register_nodes(name, def)
 				{def.source, def.source, ""}, 
 			}
 		})
+		def.source = "blocks:"..name
 	end
 	
+	if not def.source then
+		def.source = "blocks:"..name
+	end
 	minetest.register_node(":blocks:"..name, def)
 	
 	if def.slab == true then

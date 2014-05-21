@@ -10,29 +10,6 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
-	output = 'blocks:sandstone',
-	recipe = {
-		{'group:sand', 'group:sand'},
-		{'group:sand', 'group:sand'},
-	}
-})
-
-minetest.register_craft({
-	output = 'default:sand 4',
-	recipe = {
-		{'default:sandstone'},
-	}
-})
-
-minetest.register_craft({
-	output = 'blocks:sandstonebrick',
-	recipe = {
-		{'blocks:sandstone', 'blocks:sandstone'},
-		{'blocks:sandstone', 'blocks:sandstone'},
-	}
-})
-
-minetest.register_craft({
 	output = 'blocks:clay',
 	recipe = {
 		{'default:clay_lump', 'default:clay_lump'},
@@ -68,42 +45,6 @@ minetest.register_craft({
 		{'default:paper'},
 		{'default:paper'},
 		{'default:paper'},
-	}
-})
-
-
-
-
-
-minetest.register_craft({
-	output = 'blocks:obsidian_shard 9',
-	recipe = {
-		{'blocks:obsidian'}
-	}
-})
-
-minetest.register_craft({
-	output = 'blocks:obsidian',
-	recipe = {
-		{'blocks:obsidian_shard', 'blocks:obsidian_shard', 'blocks:obsidian_shard'},
-		{'blocks:obsidian_shard', 'blocks:obsidian_shard', 'blocks:obsidian_shard'},
-		{'blocks:obsidian_shard', 'blocks:obsidian_shard', 'blocks:obsidian_shard'},
-	}
-})
-
-minetest.register_craft({
-	output = 'blocks:stonebrick',
-	recipe = {
-		{'blocks:stone', 'blocks:stone'},
-		{'blocks:stone', 'blocks:stone'},
-	}
-})
-
-minetest.register_craft({
-	output = 'blocks:desert_stonebrick',
-	recipe = {
-		{'default:desert_stone', 'default:desert_stone'},
-		{'default:desert_stone', 'default:desert_stone'},
 	}
 })
 
