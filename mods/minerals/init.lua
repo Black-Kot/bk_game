@@ -26,6 +26,8 @@ function bk_game.register_mineral(name, mineralDef)
 	if not mineralDef.chest and mineralDef.chest ~= false then
 		bk_game.register_chest(name, mineralDef)
 	end
+	
+	--bk_game.register_door(name, mineralDef)  -- no doors from minerals
 end
 
 list = {

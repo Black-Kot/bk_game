@@ -65,6 +65,11 @@ function bk_game.register_tree(name, TreeDef)
 		groups = {planks=1,snappy=4,choppy=4,oddly_breakable_by_hand=2,flammable=3,drop_on_dig=1, wood=1},
 		sounds = default.node_sound_wood_defaults(),
 	})
+
+	bk_game.register_door(tree.name:remove_modname_prefix().."_planks", {
+		source = tree.name.."_plank",
+		description = tree.description,
+	})
 	
 	minetest.register_craftitem(tree.name.."_stick", {
 		description = tree.description.." Stick",

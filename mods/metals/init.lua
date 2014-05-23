@@ -50,6 +50,9 @@ function register_metal(name, metalDef)
 	if metalDef.tools ~= false then
 		bk_game.register_tools(name, metalDef)
 	end
+	
+	metalDef.only_placer_can_open = true
+	bk_game.register_door(name,metalDef)
 end
 
 
