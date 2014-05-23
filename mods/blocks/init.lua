@@ -11,7 +11,7 @@ function bk_game.register_stair(name, def)
 		is_ground_content = true,
 		groups = def.groups,
 		sounds = def.sounds,
-		
+
 		node_box = {
 			type = "fixed",
 			fixed = {
@@ -23,7 +23,7 @@ function bk_game.register_stair(name, def)
 			if pointed_thing.type ~= "node" then
 				return itemstack
 			end
-			
+
 			local p0 = pointed_thing.under
 			local p1 = pointed_thing.above
 			if p0.y-1 == p1.y then
@@ -34,12 +34,12 @@ function bk_game.register_stair(name, def)
 					return itemstack
 				end
 			end
-			
+
 			-- Otherwise place regularly
 			return minetest.item_place(itemstack, placer, pointed_thing)
 		end,
 	})
-	
+
 	minetest.register_node(":blocks:"..name.."_stair_upside_down", {
 		drop = "blocks:"..name.."_stair",
 		drawtype = "nodebox",
@@ -58,14 +58,14 @@ function bk_game.register_stair(name, def)
 		},
 	})
 	if def.without_craft == true then
-		
+
 	else
 	minetest.register_craft({
 		output = 'blocks:'..name..'_stair 8',
 		recipe = {
-			{def.source, "", ""},
-			{def.source, def.source, ""},
-			{def.source, def.source, def.source},
+			{'blocks:'..name, "", ""},
+			{'blocks:'..name, 'blocks:'..name, ""},
+			{'blocks:'..name, 'blocks:'..name, 'blocks:'..name},
 		},
 	})
 
@@ -73,14 +73,14 @@ function bk_game.register_stair(name, def)
 	minetest.register_craft({
 		output = 'blocks:'..name..'_stair 8',
 		recipe = {
-			{"", "", def.source},
-			{"", def.source, def.source},
-			{def.source, def.source, def.source},
+			{"", "", 'blocks:'..name},
+			{"", 'blocks:'..name, 'blocks:'..name},
+			{'blocks:'..name, 'blocks:'..name, 'blocks:'..name},
 		},
 	})
-	
+
 	minetest.register_craft({
-		output = def.source..' 3',
+		output = 'blocks:'..name..' 3',
 		recipe = {
 			{'blocks:'..name..'_stair', 'blocks:'..name..'_stair'},
 			{'blocks:'..name..'_stair', 'blocks:'..name..'_stair'},
@@ -90,7 +90,7 @@ function bk_game.register_stair(name, def)
 end
 
 function bk_game.register_slab(name, def)
-	
+
 	minetest.register_node(":blocks:"..name.."_slab",{
 		description = def.description.." Slab",
 		drawtype = "nodebox",
@@ -135,7 +135,7 @@ function bk_game.register_slab(name, def)
 					itemstack:take_item(1)
 					minetest.set_node(p0,{name=name})
 				end]]--
-				
+
 				-- Place upside down slab
 				local fakestack = ItemStack("blocks:"..name.."_slab_upside_down")
 				local ret = minetest.item_place(fakestack, placer, pointed_thing)
@@ -144,7 +144,7 @@ function bk_game.register_slab(name, def)
 					return itemstack
 				end
 			end
-			
+
 			-- If pointing at the side of a upside down slab
 			if n0.name == "blocks:"..name.."_slab_upside_down" and
 					p0.y+1 ~= p1.y then
@@ -156,12 +156,12 @@ function bk_game.register_slab(name, def)
 					return itemstack
 				end
 			end
-			
+
 			-- Otherwise place regularly
 			return minetest.item_place(itemstack, placer, pointed_thing)
 		end,
 	})
-	
+
 	minetest.register_node(":blocks:"..name.."_slab_upside_down", {
 		drop = "blocks:"..name.."_slab",
 		drawtype = "nodebox",
@@ -176,17 +176,17 @@ function bk_game.register_slab(name, def)
 		},
 	})
 	if def.without_craft == true then
-		
+
 	else
 	minetest.register_craft({
 		output = 'blocks:'..name..'_slab 6',
 		recipe = {
-			{def.source, def.source, def.source},
+			{'blocks:'..name, 'blocks:'..name, 'blocks:'..name},
 		},
 	})
-	
+
 	minetest.register_craft({
-		output = def.source..' 2',
+		output = 'blocks:'..name..' 2',
 		recipe = {
 			{'blocks:'..name..'_slab', 'blocks:'..name..'_slab'},
 			{'blocks:'..name..'_slab', 'blocks:'..name..'_slab'},
@@ -226,16 +226,16 @@ function bk_game.register_column(name, def)
 	})
 
 	minetest.register_craft({
-		output = "blocks:"..name.."_column 6",
+		output = "blocks:"..name.."_column 5",
 		recipe = {
-			{"",def.source,""},
-			{def.source,def.source,def.source},
-			{"",def.source,""},
+			{"",'blocks:'..name,""},
+			{'blocks:'..name,'blocks:'..name,'blocks:'..name},
+			{"",'blocks:'..name,""},
 		}
 	})
-	
+
 	minetest.register_craft({
-		output = def.source..' 4',
+		output = 'blocks:'..name..' 4',
 		recipe = {
 			{'blocks:'..name..'_column', 'blocks:'..name..'_column'},
 			{'blocks:'..name..'_column', 'blocks:'..name..'_column'},
@@ -267,15 +267,15 @@ function bk_game.register_pyramid(name, def)
 	})
 
 	minetest.register_craft({
-		output = "blocks:"..name.."_pyramid 6",
+		output = "blocks:"..name.."_pyramid 16",
 		recipe = {
-			{"",def.source,""},
-			{def.source,def.source,def.source},
+			{"",'blocks:'..name,""},
+			{'blocks:'..name,'blocks:'..name,'blocks:'..name},
 		}
 	})
-	
+
 	minetest.register_craft({
-		output = def.source..' 4',
+		output = 'blocks:'..name..' 1',
 		recipe = {
 			{'blocks:'..name..'_pyramid', 'blocks:'..name..'_pyramid'},
 			{'blocks:'..name..'_pyramid', 'blocks:'..name..'_pyramid'},
@@ -285,11 +285,11 @@ function bk_game.register_pyramid(name, def)
 end
 
 function bk_game.register_nodes(name, def)
-	
+
 	if not def.tiles then
 		def.tiles = {"blocks_"..name..".png"}
 	end
-	
+
 	if not def.sounds then
 		def.sounds = default.node_sound_stone_defaults()
 	end
@@ -300,9 +300,9 @@ function bk_game.register_nodes(name, def)
 		def.groups = {cracky=def.level, node=1}
 		def.is_ground_content = true
 	end
-	
-	
-	
+
+
+
 	if def.source then
 		if not def.drop then
 			def.drop = "blocks:"..name
@@ -311,36 +311,32 @@ function bk_game.register_nodes(name, def)
 			output = "blocks:"..name,
 			recipe = {
 				{def.source, def.source, ""},
-				{def.source, def.source, ""}, 
+				{def.source, def.source, ""},
 			}
 		})
-		
+
 		minetest.register_craft({
 			output = def.source.." 4",
 			recipe = {
 				{"blocks:"..name},
 			}
 		})
-		def.source = "blocks:"..name
 	end
-	
-	if not def.source then
-		def.source = "blocks:"..name
-	end
+
 	minetest.register_node(":blocks:"..name, def)
-	
+
 	if def.slab == true then
 		bk_game.register_slab(name, def)
 	end
-	
+
 	if def.stair == true then
 		bk_game.register_stair(name, def)
 	end
-	
+
 	if def.column == true then
 		bk_game.register_column(name, def)
 	end
-	
+
 	if def.pyramid == true then
 		bk_game.register_pyramid(name, def)
 	end
