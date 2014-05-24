@@ -246,7 +246,7 @@ minetest.register_node("default:papyrus", {
 		type = "fixed",
 		fixed = {-0.3, -0.5, -0.3, 0.3, 0.5, 0.3}
 	},
-	groups = {snappy=6,flammable=2},
+	groups = {snappy=6,oddly_breakable_by_hand=2,flammable=2},
 	sounds = default.node_sound_leaves_defaults(),
 })
 
