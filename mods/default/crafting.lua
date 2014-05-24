@@ -3,9 +3,36 @@
 minetest.register_craft({
 	output = 'default:furnace',
 	recipe = {
-		{'group:stone', 'group:stone', 'group:stone'},
-		{'group:stone', '', 'group:stone'},
-		{'group:stone', 'group:stone', 'group:stone'},
+		{'blocks:stone', 'blocks:stone', 'blocks:stone'},
+		{'blocks:stone', '', 'blocks:stone'},
+		{'blocks:stone', 'blocks:stone', 'blocks:stone'},
+	}
+})
+
+minetest.register_craft({
+	output = 'default:furnace',
+	recipe = {
+		{'blocks:desert_stone', 'blocks:desert_stone', 'blocks:desert_stone'},
+		{'blocks:desert_stone', '', 'blocks:desert_stone'},
+		{'blocks:desert_stone', 'blocks:desert_stone', 'blocks:desert_stone'},
+	}
+})
+
+minetest.register_craft({
+	output = 'default:furnace',
+	recipe = {
+		{'default:cobble', 'default:cobble', 'default:cobble'},
+		{'default:cobble', '', 'default:cobble'},
+		{'default:cobble', 'default:cobble', 'default:cobble'},
+	}
+})
+
+minetest.register_craft({
+	output = 'default:furnace',
+	recipe = {
+		{'default:desert_cobble', 'default:desert_cobble', 'default:desert_cobble'},
+		{'default:desert_cobble', '', 'default:desert_cobble'},
+		{'default:desert_cobble', 'default:desert_cobble', 'default:desert_cobble'},
 	}
 })
 
