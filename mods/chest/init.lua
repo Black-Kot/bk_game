@@ -62,7 +62,7 @@ minetest.register_node(":chest:"..name, {
 	tiles = {"chest_"..name.."_top.png", "chest_"..name.."_top.png", "chest_"..name.."_side.png",
 		"chest_"..name.."_side.png", "chest_"..name.."_side.png", "chest_"..name.."_front.png"},
 	paramtype2 = "facedir",
-	groups = {choppy=2,oddly_breakable_by_hand=2},
+	groups = {choppy=def.level,oddly_breakable_by_hand=2},
 	legacy_facedir_simple = true,
 	sounds = default.node_sound_wood_defaults(),
 	on_construct = function(pos)
@@ -95,7 +95,7 @@ minetest.register_node(":chest:"..name.."_locked", {
 	description = def.description.." Locked Chest",
 	tiles = {"chest_"..name.."_top.png", "chest_"..name.."_top.png", "chest_"..name.."_side.png", "chest_"..name.."_side.png", "chest_"..name.."_side.png", "chest_"..name.."_locked.png"},
 	paramtype2 = "facedir",
-	groups = {choppy=2,oddly_breakable_by_hand=2},
+	groups = {choppy=def.level,oddly_breakable_by_hand=2},
 	legacy_facedir_simple = true,
 	sounds = default.node_sound_wood_defaults(),
 	after_place_node = function(pos, placer)

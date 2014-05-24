@@ -5,7 +5,7 @@ function bk_game.register_mineral(name, mineralDef)
 		inventory_image = "minerals_"..name.."_lump.png"
 	});
 	mineralDef.source = mineralDef.lump
-	mineralDef.level=5
+	mineralDef.level=4
 	bk_game.register_ore(name, mineralDef)
 	
 	if not mineralDef.block and mineralDef.block ~= false then

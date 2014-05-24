@@ -6,7 +6,7 @@ bk_game.register_nodes("stone", {
 	description = "Stone",
 	tiles = {"default_stone.png"},
 	is_ground_content = true,
-	groups = {cracky=6, stone=1},
+	groups = {cracky=5, stone=1},
 	drop = 'default:cobble',
 	legacy_mineral = true,
 	sounds = default.node_sound_stone_defaults(),
@@ -18,7 +18,7 @@ bk_game.register_nodes("desert_stone", {
 	description = "Desert Stone",
 	tiles = {"default_desert_stone.png"},
 	is_ground_content = true,
-	groups = {cracky=6, stone=1},
+	groups = {cracky=5, stone=1},
 	drop = 'default:desert_cobble',
 	legacy_mineral = true,
 	sounds = default.node_sound_stone_defaults(),
@@ -128,7 +128,7 @@ bk_game.register_nodes("sandstone", {
 	description = "Sandstone",
 	tiles = {"default_sandstone.png"},
 	is_ground_content = true,
-	groups = {crumbly=5,cracky=3},
+	groups = {crumbly=4,cracky=4},
 	sounds = default.node_sound_stone_defaults(),
 })
 
@@ -139,7 +139,7 @@ bk_game.register_nodes("sandstonebrick", {
 	description = "Sandstone Brick",
 	tiles = {"default_sandstone_brick.png"},
 	is_ground_content = true,
-	groups = {cracky=6},
+	groups = {cracky=5},
 	sounds = default.node_sound_stone_defaults(),
 })
 
@@ -159,14 +159,14 @@ bk_game.register_nodes("brick", {
 	slab = true,
 	description = "Brick Block",
 	tiles = {"default_brick.png"},
-	groups = {cracky=7},
+	groups = {cracky=4},
 	sounds = default.node_sound_stone_defaults(),
 })
 
 minetest.register_node("default:cactus", {
 	description = "Cactus",
 	tiles = {"default_cactus_top.png", "default_cactus_top.png", "default_cactus_side.png"},
-	groups = {snappy=6,choppy=1,flammable=2,dropping_node=1,drop_on_dig=1},
+	groups = {snappy=4,choppy=1,flammable=2,dropping_node=1,drop_on_dig=1},
 	drawtype = "nodebox",
 	paramtype = "light",
 	node_box = {
@@ -246,7 +246,7 @@ minetest.register_node("default:papyrus", {
 		type = "fixed",
 		fixed = {-0.3, -0.5, -0.3, 0.3, 0.5, 0.3}
 	},
-	groups = {snappy=1,flammable=2},
+	groups = {snappy=6,flammable=2},
 	sounds = default.node_sound_leaves_defaults(),
 })
 
@@ -259,7 +259,7 @@ bk_game.register_nodes("glass", {
 	inventory_image = minetest.inventorycube("default_glass.png"),
 	paramtype = "light",
 	sunlight_propagates = true,
-	groups = {cracky=1,oddly_breakable_by_hand=3},
+	groups = {cracky=6,oddly_breakable_by_hand=3},
 	sounds = default.node_sound_glass_defaults(),
 })
 
@@ -712,7 +712,7 @@ minetest.register_node("default:cobble", {
 	description = "Cobblestone",
 	tiles = {"default_cobble.png"},
 	is_ground_content = true,
-	groups = {cracky=6, stone=2},
+	groups = {cracky=5, stone=2},
 	sounds = default.node_sound_stone_defaults(),
 })
 
@@ -720,7 +720,7 @@ minetest.register_node("default:desert_cobble", {
 	description = "Desert Cobblestone",
 	tiles = {"default_desert_cobble.png"},
 	is_ground_content = true,
-	groups = {cracky=6, stone=2},
+	groups = {cracky=5, stone=2},
 	sounds = default.node_sound_stone_defaults(),
 })
 
@@ -728,7 +728,7 @@ minetest.register_node("default:mossycobble", {
 	description = "Mossy Cobblestone",
 	tiles = {"default_mossycobble.png"},
 	is_ground_content = true,
-	groups = {cracky=6},
+	groups = {cracky=5},
 	sounds = default.node_sound_stone_defaults(),
 })
 
@@ -741,7 +741,7 @@ bk_game.register_nodes("obsidian_glass", {
 	paramtype = "light",
 	sunlight_propagates = true,
 	sounds = default.node_sound_glass_defaults(),
-	groups = {cracky=6,oddly_breakable_by_hand=3},
+	groups = {cracky=5,oddly_breakable_by_hand=3},
 })
 
 bk_game.register_nodes("obsidian", {
@@ -752,7 +752,7 @@ bk_game.register_nodes("obsidian", {
 	tiles = {"default_obsidian.png"},
 	is_ground_content = true,
 	sounds = default.node_sound_stone_defaults(),
-	groups = {cracky=5,level=2},
+	groups = {cracky=4,level=2},
 })
 
 minetest.register_node("default:nyancat", {
@@ -770,41 +770,6 @@ minetest.register_node("default:nyancat_rainbow", {
 	tiles = {"default_nc_rb.png"},
 	groups = {cracky=6},
 	sounds = default.node_sound_defaults(),
-})
-
-minetest.register_node("default:sapling", {
-	description = "Sapling",
-	drawtype = "plantlike",
-	visual_scale = 1.0,
-	tiles = {"default_sapling.png"},
-	inventory_image = "default_sapling.png",
-	wield_image = "default_sapling.png",
-	paramtype = "light",
-	walkable = false,
-	selection_box = {
-		type = "fixed",
-		fixed = {-0.3, -0.5, -0.3, 0.3, 0.35, 0.3}
-	},
-	groups = {snappy=2,dig_immediate=3,flammable=2,attached_node=1},
-	sounds = default.node_sound_leaves_defaults(),
-})
-
-minetest.register_node("default:dry_shrub", {
-	description = "Dry Shrub",
-	drawtype = "plantlike",
-	visual_scale = 1.0,
-	tiles = {"default_dry_shrub.png"},
-	inventory_image = "default_dry_shrub.png",
-	wield_image = "default_dry_shrub.png",
-	paramtype = "light",
-	walkable = false,
-	buildable_to = true,
-	groups = {snappy=7, flammable=3,attached_node=1},
-	sounds = default.node_sound_leaves_defaults(),
-	selection_box = {
-		type = "fixed",
-		fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},
-	},
 })
 
 minetest.register_node("default:grass_1", {

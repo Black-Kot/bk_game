@@ -30,9 +30,10 @@ for alloy, desc in pairs(opts) do
 	register_alloy(alloy, desc)
 end
 
+-- tools from alloys only from bronze
 bk_game.register_tools("bronze", {
 	description= "Bronze",
-	level=4, 
-	times={ [3]=3.00, [4]=2.50, [5]=2.00, [6]=1.60, [7]=1.00, [8]=0.80,},
+	level=4,
+	times={ [3]=3.70 ,[4]=2.70,[5]=2.20, [6]=1.20,}, 
 	uses=30
 })
