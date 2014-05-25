@@ -1,4 +1,5 @@
 default
 ores
+doors
 blocks
 chest

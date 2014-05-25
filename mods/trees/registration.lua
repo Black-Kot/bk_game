@@ -53,7 +53,7 @@ function bk_game.register_tree(name, TreeDef)
 	minetest.register_craftitem(tree.name.."_plank", {
 		description = tree.description.." Plank",
 		inventory_image = tree.textures.plank,
-		group = {plank=1},
+		group = {plank=1, wood=1},
 	})
 	
 	bk_game.register_nodes(tree.name:remove_modname_prefix().."_planks", {
@@ -62,8 +62,13 @@ function bk_game.register_tree(name, TreeDef)
 		stair=true,
 		description = tree.description.." Planks",
 		tiles = {tree.textures.planks},
-		groups = {planks=1,snappy=4,choppy=4,oddly_breakable_by_hand=2,flammable=3,drop_on_dig=1, wood=1},
+		groups = {planks=1,snappy=5,choppy=5,oddly_breakable_by_hand=2,flammable=3,drop_on_dig=1},
 		sounds = default.node_sound_wood_defaults(),
+	})
+
+	bk_game.register_door(tree.name:remove_modname_prefix().."_planks", {
+		source = tree.name.."_plank",
+		description = tree.description,
 	})
 	
 	minetest.register_craftitem(tree.name.."_stick", {
@@ -82,7 +87,7 @@ function bk_game.register_tree(name, TreeDef)
 		paramtype = "light",
 		walkable = false,
 		falling_node_walkable = false,
-		groups = {snappy=2,dig_immediate=3,flammable=2,dropping_node=1},
+		groups = {snappy=6,dig_immediate=3,flammable=2,dropping_node=1},
 		sounds = default.node_sound_defaults()
 	})
 	
@@ -92,7 +97,7 @@ function bk_game.register_tree(name, TreeDef)
 		tiles = tree.textures.trunk,
 		inventory_image = tree.textures.log,
 		wield_image = tree.textures.log,
-		groups = {log=1,choppy=4,flammable=2,oddly_breakable_by_hand=2,dropping_node=1,drop_on_dig=1},
+		groups = {log=1,choppy=3,snappy=3,flammable=2,oddly_breakable_by_hand=2,dropping_node=1,drop_on_dig=1},
 		sounds = default.node_sound_wood_defaults(),
 		drop = tree.name.."_plank 4",
 		--drop_on_dropping = tree.name.."_log",
@@ -176,7 +181,7 @@ function bk_game.register_tree(name, TreeDef)
 		visual_scale = 1.3,
 		tiles = {tree.textures.leaves},
 		paramtype = "light",
-		groups = {snappy=4, oddly_breakable_by_hand=2, flammable=2, leaves=1},
+		groups = {choppy=4, oddly_breakable_by_hand=2, flammable=2, leaves=1},
 		drop = {
 			max_items = 1,
 			items = {
@@ -260,7 +265,7 @@ function bk_game.register_tree(name, TreeDef)
 	minetest.register_node(tree.name.."_trunk", {
 		description = tree.description.." Trunk",
 		tiles = tree.textures.trunk,
-		groups = {tree=1,choppy=2,oddly_breakable_by_hand=2,flammable=2,dropping_node=1,drop_on_dig=1},
+		groups = {tree=1,choppy=4,oddly_breakable_by_hand=2,flammable=2,dropping_node=1,drop_on_dig=1},
 		sounds = default.node_sound_wood_defaults(),
 		drop = tree.name.."_log",
 		drawtype = "nodebox",
@@ -281,7 +286,7 @@ function bk_game.register_tree(name, TreeDef)
 	
 	minetest.register_node(tree.name.."_trunk_top", {
 		tiles = tree.textures.trunk,
-		groups = {tree=1,choppy=2,oddly_breakable_by_hand=2,flammable=2,dropping_node=1,drop_on_dig=1},
+		groups = {tree=1,choppy=3,oddly_breakable_by_hand=1,flammable=2,dropping_node=1,drop_on_dig=1},
 		sounds = default.node_sound_wood_defaults(),
 		drop = tree.name.."_log",
 		drawtype = "nodebox",
@@ -365,7 +370,7 @@ function bk_game.register_tree(name, TreeDef)
 			end
 		end,
 		node_placement_prediction = "",
-		groups = {snappy=1,choppy=2,oddly_breakable_by_hand=3,flammable=2},
+		groups = {snappy=5,choppy=5,oddly_breakable_by_hand=3,flammable=2},
 		sounds = default.node_sound_wood_defaults(),
 	})
 	

@@ -126,7 +126,7 @@ end
 bk_game.register_tools("stone", {
 	source = "default:stone",
 	description = "Stone",
-	times= {[4] = 2.80,[5] = 2.00, [6]=1.80,},
+	times= {[4] = 5.00,[5] = 3.50, [6]=1.80,},
 	uses = 20,
 	level = 5,
 })
@@ -143,7 +143,7 @@ minetest.register_item(":", {
 		groupcaps = {
 			crumbly = {times={ [6]=2.50,}, uses=0, maxlevel=1},
 			snappy = {times={[6]=2.50}, uses=0, maxlevel=1},
-			oddly_breakable_by_hand = {times={[1]=4.00,[2]=2.00,[3]=1.40}, uses=0, maxlevel=2}
+			oddly_breakable_by_hand = {times={[1]=6.00,[2]=3.00,[3]=1.50}, uses=0, maxlevel=2}
 		},
 		damage_groups = {fleshy=1},
 	}
@@ -154,7 +154,7 @@ minetest.register_item(":", {
 	bk_game.register_tools("wood", {
 		description = "Wood",
 		source = "group:stick",
-		times = {[5] = 2.50, [6]=2.00,}, 
+		times = {[5] = 4.00, [6]=2.50,}, 
 		uses = 10,
 		maxlevel = 5,
 	})
@@ -168,9 +168,9 @@ minetest.register_item(":", {
 				full_punch_interval = 0.20,
 				max_drop_level=8,
 				groupcaps={
-					cracky = {times={ [1]=0.50, [2]=0.50, [3]=0.50, [4]=0.50, [5]=0.50, [6]=0.50, [7]=0.50, [8]=0.50,} , uses=0, maxlevel=8},
-					crumbly = {times={ [1]=0.50, [2]=0.50, [3]=0.50, [4]=0.50, [5]=0.50, [6]=0.50, [7]=0.50, [8]=0.50,} , uses=0, maxlevel=8},
-					choppy = {times={ [1]=0.50, [2]=0.50, [3]=0.50, [4]=0.50, [5]=0.50, [6]=0.50, [7]=0.50, [8]=0.50,} , uses=0, maxlevel=8},
+					cracky = {times={ [1]=0.50, [2]=0.50, [3]=0.50, [4]=0.50, [5]=0.50, [6]=0.50, } , uses=0, maxlevel=6},
+					crumbly = {times={ [1]=0.50, [2]=0.50, [3]=0.50, [4]=0.50, [5]=0.50, [6]=0.50, } , uses=0, maxlevel=6},
+					choppy = {times={ [1]=0.50, [2]=0.50, [3]=0.50, [4]=0.50, [5]=0.50, [6]=0.50, } , uses=0, maxlevel=6},
 				},
 				damage_groups = {cracky=8},
 			},

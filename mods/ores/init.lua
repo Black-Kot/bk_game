@@ -34,7 +34,7 @@ function bk_game.register_ore(name, OreDef)
 			description = ore.description.." Ore",
 			tile_images = {particle_image},
 			particle_image = {particle_image},
-			groups = {cracky=1},
+			groups = {cracky = 4},
 			drop = {
 				max_items = 1,
 				items = {

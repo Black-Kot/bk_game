@@ -1,4 +1,5 @@
 default
 ores
-tools
+doors
 blocks
+chest
