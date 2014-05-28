@@ -77,12 +77,12 @@ function bk_game.register_door(name, def)
 			elseif p2 == 3 then
 				pt3.z = pt3.z-1
 			end
-			if not string.find(minetest.get_node(pt3).name, name.."_b_") then
-				minetest.set_node(pt, {name=name.."_b_1", param2=p2})
-				minetest.set_node(pt2, {name=name.."_t_1", param2=p2})
+			if not string.find(minetest.get_node(pt3).name, "_b_") then
+				minetest.set_node(pt, {name="doors:"..name.."_b_1", param2=p2})
+				minetest.set_node(pt2, {name="doors:"..name.."_t_1", param2=p2})
 			else
-				minetest.set_node(pt, {name=name.."_b_2", param2=p2})
-				minetest.set_node(pt2, {name=name.."_t_2", param2=p2})
+				minetest.set_node(pt, {name="doors:"..name.."_b_2", param2=p2})
+				minetest.set_node(pt2, {name="doors:"..name.."_t_2", param2=p2})
 			end
 
 			if def.only_placer_can_open then
@@ -142,7 +142,7 @@ function bk_game.register_door(name, def)
 		tiles = {tb[2], tb[2], tb[2], tb[2], tb[1], tb[1].."^[transformfx"},
 		paramtype = "light",
 		paramtype2 = "facedir",
-		drop = name,
+		drop = "doors:"..name,
 		drawtype = "nodebox",
 		node_box = {
 			type = "fixed",
@@ -156,12 +156,12 @@ function bk_game.register_door(name, def)
 
 		after_dig_node = function(pos, oldnode, oldmetadata, digger)
 			pos.y = pos.y+1
-			after_dig_node(pos, name.."_t_1")
+			after_dig_node(pos, "doors:"..name.."_t_1")
 		end,
 
 		on_rightclick = function(pos, node, clicker)
 			if check_player_priv(pos, clicker) then
-				on_rightclick(pos, 1, name.."_t_1", name.."_b_2", name.."_t_2", {1,2,3,0})
+				on_rightclick(pos, 1, "doors:"..name.."_t_1", "doors:"..name.."_b_2", "doors:"..name.."_t_2", {1,2,3,0})
 			end
 		end,
 
@@ -172,7 +172,7 @@ function bk_game.register_door(name, def)
 		tiles = {tt[2], tt[2], tt[2], tt[2], tt[1], tt[1].."^[transformfx"},
 		paramtype = "light",
 		paramtype2 = "facedir",
-		drop = name,
+		drop = "doors:"..name,
 		drawtype = "nodebox",
 		node_box = {
 			type = "fixed",
@@ -186,12 +186,12 @@ function bk_game.register_door(name, def)
 
 		after_dig_node = function(pos, oldnode, oldmetadata, digger)
 			pos.y = pos.y-1
-			after_dig_node(pos, name.."_b_1")
+			after_dig_node(pos, "doors:"..name.."_b_1")
 		end,
 
 		on_rightclick = function(pos, node, clicker)
 			if check_player_priv(pos, clicker) then
-				on_rightclick(pos, -1, name.."_b_1", name.."_t_2", name.."_b_2", {1,2,3,0})
+				on_rightclick(pos, -1, "doors:"..name.."_b_1", "doors:"..name.."_t_2", "doors:"..name.."_b_2", {1,2,3,0})
 			end
 		end,
 
@@ -202,7 +202,7 @@ function bk_game.register_door(name, def)
 		tiles = {tb[2], tb[2], tb[2], tb[2], tb[1].."^[transformfx", tb[1]},
 		paramtype = "light",
 		paramtype2 = "facedir",
-		drop = name,
+		drop = "doors:"..name,
 		drawtype = "nodebox",
 		node_box = {
 			type = "fixed",
@@ -216,12 +216,12 @@ function bk_game.register_door(name, def)
 
 		after_dig_node = function(pos, oldnode, oldmetadata, digger)
 			pos.y = pos.y+1
-			after_dig_node(pos, name.."_t_2")
+			after_dig_node(pos, "doors:"..name.."_t_2")
 		end,
 
 		on_rightclick = function(pos, node, clicker)
 			if check_player_priv(pos, clicker) then
-				on_rightclick(pos, 1, name.."_t_2", name.."_b_1", name.."_t_1", {3,0,1,2})
+				on_rightclick(pos, 1, "doors:"..name.."_t_2", "doors:"..name.."_b_1", "doors:"..name.."_t_1", {3,0,1,2})
 			end
 		end,
 
@@ -232,7 +232,7 @@ function bk_game.register_door(name, def)
 		tiles = {tt[2], tt[2], tt[2], tt[2], tt[1].."^[transformfx", tt[1]},
 		paramtype = "light",
 		paramtype2 = "facedir",
-		drop = name,
+		drop = "doors:"..name,
 		drawtype = "nodebox",
 		node_box = {
 			type = "fixed",
@@ -246,12 +246,12 @@ function bk_game.register_door(name, def)
 
 		after_dig_node = function(pos, oldnode, oldmetadata, digger)
 			pos.y = pos.y-1
-			after_dig_node(pos, name.."_b_2")
+			after_dig_node(pos, "doors:"..name.."_b_2")
 		end,
 
 		on_rightclick = function(pos, node, clicker)
 			if check_player_priv(pos, clicker) then
-				on_rightclick(pos, -1, name.."_b_2", name.."_t_1", name.."_b_1", {3,0,1,2})
+				on_rightclick(pos, -1, "doors:"..name.."_b_2", "doors:"..name.."_t_1", "doors:"..name.."_b_1", {3,0,1,2})
 			end
 		end,
 
