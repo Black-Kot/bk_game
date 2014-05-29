@@ -55,7 +55,7 @@ minetest.register_node(":default:peat", {
 	description = "Peat",
 	tile_images = {"ores_peat.png"},
 	particle_image = {"ores_peat.png"},
-	groups = {crumbly=3,drop_on_dig=1,falling_node=1},
+	groups = {crumbly=5,drop_on_dig=1,falling_node=1},
 	sounds = default.node_sound_dirt_defaults(),
 })
 
