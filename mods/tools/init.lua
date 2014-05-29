@@ -124,7 +124,7 @@ end
 -- stone tools
 
 bk_game.register_tools("stone", {
-	source = "default:stone",
+	source = "default:cobble",
 	description = "Stone",
 	times= {[4] = 5.00,[5] = 3.50, [6]=1.80,},
 	uses = 20,
