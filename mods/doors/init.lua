@@ -26,19 +26,6 @@ function bk_game.register_door(name, def)
 
 	local box = {{-0.5, -0.5, -0.5,   0.5, 0.5, -0.5+1.5/16}}
 
-	if not def.node_box_bottom then
-		def.node_box_bottom = box
-	end
-	if not def.node_box_top then
-		def.node_box_top = box
-	end
-	if not def.selection_box_bottom then
-		def.selection_box_bottom= box
-	end
-	if not def.selection_box_top then
-		def.selection_box_top = box
-	end
-
 	minetest.register_craftitem(":doors:"..name, {
 		description = def.description.." Door",
 		inventory_image = "door_"..name..".png",
@@ -77,7 +64,7 @@ function bk_game.register_door(name, def)
 			elseif p2 == 3 then
 				pt3.z = pt3.z-1
 			end
-			if not string.find(minetest.get_node(pt3).name, "_b_") then
+			if not string.find(minetest.get_node(pt3).name, "doors:"..name.."_b_") then
 				minetest.set_node(pt, {name="doors:"..name.."_b_1", param2=p2})
 				minetest.set_node(pt2, {name="doors:"..name.."_t_1", param2=p2})
 			else
@@ -146,11 +133,11 @@ function bk_game.register_door(name, def)
 		drawtype = "nodebox",
 		node_box = {
 			type = "fixed",
-			fixed = def.node_box_bottom
+			fixed = box
 		},
 		selection_box = {
 			type = "fixed",
-			fixed = def.selection_box_bottom
+			fixed = box
 		},
 		groups = {snappy=1,bendy=2,cracky=1,melty=2,level=2,door=1,not_in_creative_inventory = 1},
 
@@ -176,11 +163,11 @@ function bk_game.register_door(name, def)
 		drawtype = "nodebox",
 		node_box = {
 			type = "fixed",
-			fixed = def.node_box_top
+			fixed = box
 		},
 		selection_box = {
 			type = "fixed",
-			fixed = def.selection_box_top
+			fixed = box
 		},
 		groups = {snappy=1,bendy=2,cracky=1,melty=2,level=2,door=1,not_in_creative_inventory = 1},
 
@@ -206,11 +193,11 @@ function bk_game.register_door(name, def)
 		drawtype = "nodebox",
 		node_box = {
 			type = "fixed",
-			fixed = def.node_box_bottom
+			fixed = box
 		},
 		selection_box = {
 			type = "fixed",
-			fixed = def.selection_box_bottom
+			fixed = box
 		},
 		groups = {snappy=1,bendy=2,cracky=1,melty=2,level=2,door=1,not_in_creative_inventory = 1},
 
@@ -236,11 +223,11 @@ function bk_game.register_door(name, def)
 		drawtype = "nodebox",
 		node_box = {
 			type = "fixed",
-			fixed = def.node_box_top
+			fixed = box
 		},
 		selection_box = {
 			type = "fixed",
-			fixed = def.selection_box_top
+			fixed = box
 		},
 		groups = {snappy=1,bendy=2,cracky=1,melty=2,level=2,door=1,not_in_creative_inventory = 1},
 

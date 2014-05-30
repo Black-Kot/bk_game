@@ -66,7 +66,7 @@ function bk_game.register_tree(name, TreeDef)
 		sounds = default.node_sound_wood_defaults(),
 	})
 
-	bk_game.register_door(tree.name:remove_modname_prefix().."_planks", {
+	bk_game.register_door(tree.name:remove_modname_prefix(), {
 		source = tree.name.."_plank",
 		description = tree.description,
 	})
