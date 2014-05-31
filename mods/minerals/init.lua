@@ -44,6 +44,6 @@ list = {
     ["serpentine"] = {description = "Serpentine", }
 }
 
-for mineral, desc in ipairs(list) do
+for mineral, desc in pairs(list) do
     bk_game.register_mineral(mineral, desc) 
 end
