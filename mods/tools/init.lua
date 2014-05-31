@@ -90,7 +90,6 @@ function bk_game.register_tools(name, toolDef)
 	end
 
 	-- Sword`s
-if not string.match(toolDef.source, "stick") then
 	if not toolDef.sword and toolDef.sword ~= false then
 		minetest.register_tool(":tools:sword_"..name, {
 			description = toolDef.description.." Sword",
@@ -112,7 +111,6 @@ if not string.match(toolDef.source, "stick") then
 				{'group:stick'},
 			}
 		})
-	end
 	
 end
 
@@ -153,7 +151,7 @@ minetest.register_item(":", {
 
 	bk_game.register_tools("wood", {
 		description = "Wood",
-		source = "group:stick",
+		source = "group:plank",
 		times = {[5] = 4.00, [6]=2.50,}, 
 		uses = 10,
 		maxlevel = 5,
