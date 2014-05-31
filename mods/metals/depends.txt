@@ -3,3 +3,4 @@ ores
 doors
 blocks
 chest
+bucket
