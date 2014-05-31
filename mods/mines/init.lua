@@ -111,8 +111,8 @@ minetest.register_chatcommand("mine", {
 				minetest.chat_send_player(name, "You can teleport only once in "..cooldown.." seconds. Wait another "..round(cooldown - (time - last_moved[name]), 3).." secs...")
 			end
 			local pos = player:getpos()
-			local dst = distance(pos, minepos[name])
-			if max_distance ~= 0 and distance(pos, minepos[name]) > max_distance then
+			local dst = distance(pos, minepos[name][n])
+			if max_distance ~= 0 and distance(pos, minepos[name][n]) > max_distance then
 				minetest.chat_send_player(name, "You are too far away from your mine. You must be "..round(dst - max_distance, 3).." meters closer to teleport to your mine.")
 			end
 			last_moved[name] = time
