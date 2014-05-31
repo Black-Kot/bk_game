@@ -7,7 +7,7 @@ bk_game.register_nodes("stone", {
 	tiles = {"default_stone.png"},
 	is_ground_content = true,
 	groups = {cracky=5, stone=1},
-	drop = 'default:cobble',
+	drop = "default:cobble",
 	legacy_mineral = true,
 	sounds = default.node_sound_stone_defaults(),
 })
@@ -19,7 +19,7 @@ bk_game.register_nodes("desert_stone", {
 	tiles = {"default_desert_stone.png"},
 	is_ground_content = true,
 	groups = {cracky=5, stone=1},
-	drop = 'default:desert_cobble',
+	drop = "default:desert_cobble",
 	legacy_mineral = true,
 	sounds = default.node_sound_stone_defaults(),
 })
@@ -49,7 +49,7 @@ minetest.register_node("default:dirt_with_grass", {
 	tiles = {"default_grass.png", "default_dirt.png", "default_dirt.png^default_grass_side.png"},
 	is_ground_content = true,
 	groups = {crumbly=6,soil=1},
-	drop = 'default:dirt',
+	drop = "default:dirt",
 	sounds = default.node_sound_dirt_defaults({
 		footstep = {name="default_grass_footstep", gain=0.25},
 	}),
@@ -150,7 +150,7 @@ bk_game.register_nodes("clay", {
 	tiles = {"default_clay.png"},
 	is_ground_content = true,
 	groups = {crumbly=6},
-	drop = 'default:clay_lump 4',
+	drop = "default:clay_lump 4",
 	sounds = default.node_sound_dirt_defaults(),
 })
 
@@ -321,7 +321,7 @@ minetest.register_node("default:sign_wall", {
 		minetest.log("action", (sender:get_player_name() or "").." wrote \""..fields.text..
 		"\" to sign at "..minetest.pos_to_string(pos))
 		meta:set_string("text", fields.text)
-		meta:set_string("infotext", '"'..fields.text..'"')
+		meta:set_string("infotext", """..fields.text..""")
 	end,
 })
 
@@ -711,14 +711,14 @@ minetest.register_abm({
 			meta:set_float("fuel_time", meta:get_float("fuel_time") + 1)
 			meta:set_float("src_time", meta:get_float("src_time") + 1)
 			if cooked and cooked.item and meta:get_float("src_time") >= cooked.time then
-				-- check if there's room for output in "dst" list
+				-- check if there"s room for output in "dst" list
 				if inv:room_for_item("dst",cooked.item) then
 					-- Put result in "dst" list
 					inv:add_item("dst", cooked.item)
 					-- take stuff from "src" list
 					inv:set_stack("src", 1, aftercooked.items[1])
 				else
-					print("Could not insert '"..cooked.item:to_string().."'")
+					print("Could not insert ""..cooked.item:to_string()..""")
 				end
 				meta:set_string("src_time", 0)
 			end

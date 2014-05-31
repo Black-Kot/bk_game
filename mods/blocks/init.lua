@@ -61,29 +61,29 @@ function bk_game.register_stair(name, def)
 
 	else
 	minetest.register_craft({
-		output = 'blocks:'..name..'_stair 8',
+		output = "blocks:"..name.."_stair 8",
 		recipe = {
-			{'blocks:'..name, "", ""},
-			{'blocks:'..name, 'blocks:'..name, ""},
-			{'blocks:'..name, 'blocks:'..name, 'blocks:'..name},
+			{"blocks:"..name, "", ""},
+			{"blocks:"..name, "blocks:"..name, ""},
+			{"blocks:"..name, "blocks:"..name, "blocks:"..name},
 		},
 	})
 
 	-- Flipped recipe for the silly minecrafters
 	minetest.register_craft({
-		output = 'blocks:'..name..'_stair 8',
+		output = "blocks:"..name.."_stair 8",
 		recipe = {
-			{"", "", 'blocks:'..name},
-			{"", 'blocks:'..name, 'blocks:'..name},
-			{'blocks:'..name, 'blocks:'..name, 'blocks:'..name},
+			{"", "", "blocks:"..name},
+			{"", "blocks:"..name, "blocks:"..name},
+			{"blocks:"..name, "blocks:"..name, "blocks:"..name},
 		},
 	})
 
 	minetest.register_craft({
-		output = 'blocks:'..name..' 3',
+		output = "blocks:"..name.." 3",
 		recipe = {
-			{'blocks:'..name..'_stair', 'blocks:'..name..'_stair'},
-			{'blocks:'..name..'_stair', 'blocks:'..name..'_stair'},
+			{"blocks:"..name.."_stair", "blocks:"..name.."_stair"},
+			{"blocks:"..name.."_stair", "blocks:"..name.."_stair"},
 		},
 	})
 	end
@@ -109,7 +109,7 @@ function bk_game.register_slab(name, def)
 				return itemstack
 			end
 
-			-- If it's being placed on an another similar one, replace it with
+			-- If it"s being placed on an another similar one, replace it with
 			-- a full block
 			local slabpos = nil
 			local slabnode = nil
@@ -179,17 +179,17 @@ function bk_game.register_slab(name, def)
 
 	else
 	minetest.register_craft({
-		output = 'blocks:'..name..'_slab 6',
+		output = "blocks:"..name.."_slab 6",
 		recipe = {
-			{'blocks:'..name, 'blocks:'..name, 'blocks:'..name},
+			{"blocks:"..name, "blocks:"..name, "blocks:"..name},
 		},
 	})
 
 	minetest.register_craft({
-		output = 'blocks:'..name..' 2',
+		output = "blocks:"..name.." 2",
 		recipe = {
-			{'blocks:'..name..'_slab', 'blocks:'..name..'_slab'},
-			{'blocks:'..name..'_slab', 'blocks:'..name..'_slab'},
+			{"blocks:"..name.."_slab", "blocks:"..name.."_slab"},
+			{"blocks:"..name.."_slab", "blocks:"..name.."_slab"},
 		},
 	})
 	end
@@ -228,17 +228,17 @@ function bk_game.register_column(name, def)
 	minetest.register_craft({
 		output = "blocks:"..name.."_column 5",
 		recipe = {
-			{"",'blocks:'..name,""},
-			{'blocks:'..name,'blocks:'..name,'blocks:'..name},
-			{"",'blocks:'..name,""},
+			{"","blocks:"..name,""},
+			{"blocks:"..name,"blocks:"..name,"blocks:"..name},
+			{"","blocks:"..name,""},
 		}
 	})
 
 	minetest.register_craft({
-		output = 'blocks:'..name..' 4',
+		output = "blocks:"..name.." 4",
 		recipe = {
-			{'blocks:'..name..'_column', 'blocks:'..name..'_column'},
-			{'blocks:'..name..'_column', 'blocks:'..name..'_column'},
+			{"blocks:"..name.."_column", "blocks:"..name.."_column"},
+			{"blocks:"..name.."_column", "blocks:"..name.."_column"},
 		},
 	})
 
@@ -269,16 +269,16 @@ function bk_game.register_pyramid(name, def)
 	minetest.register_craft({
 		output = "blocks:"..name.."_pyramid 16",
 		recipe = {
-			{"",'blocks:'..name,""},
-			{'blocks:'..name,'blocks:'..name,'blocks:'..name},
+			{"","blocks:"..name,""},
+			{"blocks:"..name,"blocks:"..name,"blocks:"..name},
 		}
 	})
 
 	minetest.register_craft({
-		output = 'blocks:'..name..' 1',
+		output = "blocks:"..name.." 1",
 		recipe = {
-			{'blocks:'..name..'_pyramid', 'blocks:'..name..'_pyramid'},
-			{'blocks:'..name..'_pyramid', 'blocks:'..name..'_pyramid'},
+			{"blocks:"..name.."_pyramid", "blocks:"..name.."_pyramid"},
+			{"blocks:"..name.."_pyramid", "blocks:"..name.."_pyramid"},
 		},
 	})
 

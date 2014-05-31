@@ -49,6 +49,7 @@ function register_metal(name, metalDef)
 
 	if metalDef.tools and metalDef.tools ~= false then
 		bk_game.register_tools(name, metalDef)
+		bk_game.register_bucket(name, metalDef)
 	end
 
 	if metalDef.furniture and metalDef.furniture ~= false then
@@ -58,7 +59,6 @@ function register_metal(name, metalDef)
 	metalDef.only_placer_can_open = true
 	bk_game.register_door(name,metalDef)
 
-	bk_game.register_bucket(name, metalDef)
 end
 
 

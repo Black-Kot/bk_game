@@ -33,8 +33,8 @@ function bk_game.register_tools(name, toolDef)
 			output = "tools:pick_"..name,
 			recipe = {
 				{toolDef.source, toolDef.source, toolDef.source},
-				{'', 'group:stick', ''},
-				{'', 'group:stick', ''},
+				{"", "group:stick", ""},
+				{"", "group:stick", ""},
 			}
 		})
 	end
@@ -58,8 +58,8 @@ function bk_game.register_tools(name, toolDef)
 			output = "tools:shovel_"..name,
 			recipe = {
 				{toolDef.source},
-				{'group:stick'},
-				{'group:stick'},
+				{"group:stick"},
+				{"group:stick"},
 			}
 		})
 	end
@@ -83,8 +83,8 @@ function bk_game.register_tools(name, toolDef)
 			output = "tools:axe_"..name,
 			recipe = {
 				{toolDef.source, toolDef.source},
-				{toolDef.source, 'group:stick'},
-				{'', 'group:stick'},
+				{toolDef.source, "group:stick"},
+				{"", "group:stick"},
 			}
 		})
 	end
@@ -108,7 +108,7 @@ function bk_game.register_tools(name, toolDef)
 			recipe = {
 				{toolDef.source},
 				{toolDef.source},
-				{'group:stick'},
+				{"group:stick"},
 			}
 		})
 	
@@ -177,7 +177,7 @@ minetest.register_item(":", {
 			output = "tools:pick_adamant",
 			recipe = {
 				{"metals_adamant_lump.png", "metals_adamant_lump.png", "metals_adamant_lump.png"},
-				{'', 'group:stick', ''},
-				{'', 'group:stick', ''},
+				{"", "group:stick", ""},
+				{"", "group:stick", ""},
 			}
 		})

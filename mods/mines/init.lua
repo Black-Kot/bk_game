@@ -10,7 +10,7 @@ local cooldown = 0
 local max_distance = 0
 ----------------------------------
 
-local mines_file = minetest.get_worldpath()..'/mines'
+local mines_file = minetest.get_worldpath().."/mines"
 local minepos = {}
 local last_moved = {}
 
@@ -76,11 +76,11 @@ minetest.register_chatcommand("delmine" , {
             minetest.chat_send_player(name, "Name of mine can`t be null")
 		end        
         if not minepos[name] then
-			minetest.chat_send_player(name, "You don't have a mine`s now! Set it using /setmine <name>")
+			minetest.chat_send_player(name, "You don"t have a mine`s now! Set it using /setmine <name>")
 			return
 		end
 		if minepos[name][param] then
-            minetest.chat_send_player(name, "You don't have a mine "..n.." now! Set it using /setmine <name>")
+            minetest.chat_send_player(name, "You don"t have a mine "..n.." now! Set it using /setmine <name>")
             return
 		end
 		removekey(minepos[name][param], name) 
@@ -102,7 +102,7 @@ minetest.register_chatcommand("mine", {
 		local n = param
 		
 		if not minepos[name] then
-			minetest.chat_send_player(name, "You don't have a mine`s now! Set it using /setmine <name>")
+			minetest.chat_send_player(name, "You don"t have a mine`s now! Set it using /setmine <name>")
 			return
 		end
 		if minepos[name][n] then
@@ -119,7 +119,7 @@ minetest.register_chatcommand("mine", {
 			player:setpos(minepos[name][n])
             minetest.chat_send_player(name, "Teleported to mine!")
         else
-            minetest.chat_send_player(name, "You don't have a mine "..n.." now! Set it using /setmine <name>")
+            minetest.chat_send_player(name, "You don"t have a mine "..n.." now! Set it using /setmine <name>")
         end
     end,
 })
@@ -133,7 +133,7 @@ minetest.register_chatcommand("mines" , {
 			-- just a check to prevent server death
 		end
 		if not minepos[name] then
-			minetest.chat_send_player(name, "You don't have a mine`s now! Set it using /setmine <name>")
+			minetest.chat_send_player(name, "You don"t have a mine`s now! Set it using /setmine <name>")
 			return
 		end
 		local text = ""

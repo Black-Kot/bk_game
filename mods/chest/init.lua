@@ -32,28 +32,28 @@ end
 function bk_game.register_chest(name, def) 
 
 minetest.register_craft({
-	output = 'chest:'..name,
+	output = "chest:"..name,
 	recipe = {
 		{def.source, def.source, def.source},
-		{def.source, '', def.source},
+		{def.source, "", def.source},
 		{def.source, def.source, def.source},
 	}
 })
 
 minetest.register_craft({
-	output = 'chest:'..name..'_locked',
+	output = "chest:"..name.."_locked",
 	recipe = {
 		{def.source, def.source, def.source},
-		{def.source, 'metals:steel_ingot', def.source},
+		{def.source, "metals:steel_ingot", def.source},
 		{def.source, def.source, def.source},
 	}
 })
 
 
 minetest.register_craft({
-	output = 'chest:'..name..'_locked',
+	output = "chest:"..name.."_locked",
 	recipe = {
-		{ 'chest:'..name, 'metals:steel_ingot', ''},
+		{ "chest:"..name, "metals:steel_ingot", ""},
 	}
 })
 

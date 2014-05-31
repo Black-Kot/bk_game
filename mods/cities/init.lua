@@ -1,8 +1,8 @@
 local save_delta = 30
 local cities = {}
-local cities_file = minetest.get_worldpath()..'/cities'
+local cities_file = minetest.get_worldpath().."/cities"
 local spawns = {}
-local spawns_file =  minetest.get_worldpath()..'/spawns'
+local spawns_file =  minetest.get_worldpath().."/spawns"
 
 function load()
 	local input = io.open(cities_file, "r")

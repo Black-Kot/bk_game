@@ -10,7 +10,7 @@ local cooldown = 0
 local max_distance = 0
 ----------------------------------
 
-local homes_file = minetest.get_worldpath()..'/homes'
+local homes_file = minetest.get_worldpath().."/homes"
 local homepos = {}
 local last_moved = {}
 
@@ -45,7 +45,7 @@ end
 local changed = false
 
 minetest.register_on_chat_message(function(name, message)
-    if message == '/sethome' then
+    if message == "/sethome" then
         local player = minetest.env:get_player_by_name(name)
         local pos = player:getpos()
         homepos[name] = pos
@@ -74,7 +74,7 @@ minetest.register_on_chat_message(function(name, message)
 			player:setpos(homepos[name])
             minetest.chat_send_player(name, "Teleported to home!")
         else
-            minetest.chat_send_player(name, "You don't have a home now! Set it using /sethome")
+            minetest.chat_send_player(name, "You don"t have a home now! Set it using /sethome")
         end
         return true
     end

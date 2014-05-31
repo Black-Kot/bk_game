@@ -1,77 +1,77 @@
 -- mods/default/crafting.lua
 
 minetest.register_craft({
-	output = 'default:furnace',
+	output = "default:furnace",
 	recipe = {
-		{'blocks:stone', 'blocks:stone', 'blocks:stone'},
-		{'blocks:stone', '', 'blocks:stone'},
-		{'blocks:stone', 'blocks:stone', 'blocks:stone'},
+		{"blocks:stone", "blocks:stone", "blocks:stone"},
+		{"blocks:stone", "", "blocks:stone"},
+		{"blocks:stone", "blocks:stone", "blocks:stone"},
 	}
 })
 
 minetest.register_craft({
-	output = 'default:furnace',
+	output = "default:furnace",
 	recipe = {
-		{'blocks:desert_stone', 'blocks:desert_stone', 'blocks:desert_stone'},
-		{'blocks:desert_stone', '', 'blocks:desert_stone'},
-		{'blocks:desert_stone', 'blocks:desert_stone', 'blocks:desert_stone'},
+		{"blocks:desert_stone", "blocks:desert_stone", "blocks:desert_stone"},
+		{"blocks:desert_stone", "", "blocks:desert_stone"},
+		{"blocks:desert_stone", "blocks:desert_stone", "blocks:desert_stone"},
 	}
 })
 
 minetest.register_craft({
-	output = 'default:furnace',
+	output = "default:furnace",
 	recipe = {
-		{'default:cobble', 'default:cobble', 'default:cobble'},
-		{'default:cobble', '', 'default:cobble'},
-		{'default:cobble', 'default:cobble', 'default:cobble'},
+		{"default:cobble", "default:cobble", "default:cobble"},
+		{"default:cobble", "", "default:cobble"},
+		{"default:cobble", "default:cobble", "default:cobble"},
 	}
 })
 
 minetest.register_craft({
-	output = 'default:furnace',
+	output = "default:furnace",
 	recipe = {
-		{'default:desert_cobble', 'default:desert_cobble', 'default:desert_cobble'},
-		{'default:desert_cobble', '', 'default:desert_cobble'},
-		{'default:desert_cobble', 'default:desert_cobble', 'default:desert_cobble'},
+		{"default:desert_cobble", "default:desert_cobble", "default:desert_cobble"},
+		{"default:desert_cobble", "", "default:desert_cobble"},
+		{"default:desert_cobble", "default:desert_cobble", "default:desert_cobble"},
 	}
 })
 
 minetest.register_craft({
-	output = 'blocks:clay',
+	output = "blocks:clay",
 	recipe = {
-		{'default:clay_lump', 'default:clay_lump'},
-		{'default:clay_lump', 'default:clay_lump'},
+		{"default:clay_lump", "default:clay_lump"},
+		{"default:clay_lump", "default:clay_lump"},
 	}
 })
 
 minetest.register_craft({
-	output = 'blocks:brick',
+	output = "blocks:brick",
 	recipe = {
-		{'default:clay_brick', 'default:clay_brick'},
-		{'default:clay_brick', 'default:clay_brick'},
+		{"default:clay_brick", "default:clay_brick"},
+		{"default:clay_brick", "default:clay_brick"},
 	}
 })
 
 minetest.register_craft({
-	output = 'default:clay_brick 4',
+	output = "default:clay_brick 4",
 	recipe = {
-		{'default:brick'},
+		{"default:brick"},
 	}
 })
 
 minetest.register_craft({
-	output = 'default:paper',
+	output = "default:paper",
 	recipe = {
-		{'default:papyrus', 'default:papyrus', 'default:papyrus'},
+		{"default:papyrus", "default:papyrus", "default:papyrus"},
 	}
 })
 
 minetest.register_craft({
-	output = 'default:book',
+	output = "default:book",
 	recipe = {
-		{'default:paper'},
-		{'default:paper'},
-		{'default:paper'},
+		{"default:paper"},
+		{"default:paper"},
+		{"default:paper"},
 	}
 })
 

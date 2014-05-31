@@ -128,7 +128,7 @@ function bk_game.register_tree(name, TreeDef)
 				return
 			end
 
-			minetest.log('action', digger:get_player_name() .. " digs "
+			minetest.log("action", digger:get_player_name() .. " digs "
 				.. node.name .. " at " .. minetest.pos_to_string(pos))
 
 			local wielded = digger:get_wielded_item()
@@ -186,11 +186,11 @@ function bk_game.register_tree(name, TreeDef)
 			max_items = 1,
 			items = {
 				{
-					items = {tree.name..'_sapling'},
+					items = {tree.name.."_sapling"},
 					rarity = 30,
 				},
 				{
-					items = {tree.name..'_stick'},
+					items = {tree.name.."_stick"},
 					rarity = 10,
 				},
 				{
@@ -216,11 +216,11 @@ function bk_game.register_tree(name, TreeDef)
 				max_items = 1,
 				items = {
 					{
-						items = {tree.name..'_sapling'},
+						items = {tree.name.."_sapling"},
 						rarity = 30,
 					},
 					{
-						items = {tree.name..'_stick'},
+						items = {tree.name.."_stick"},
 						rarity = 10,
 					},
 					{
@@ -247,7 +247,7 @@ function bk_game.register_tree(name, TreeDef)
 				max_items = 1,
 				items = {
 					{
-						items = {tree.name..'_stick'},
+						items = {tree.name.."_stick"},
 						rarity = 10,
 					},
 					{
