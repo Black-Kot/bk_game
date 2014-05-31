@@ -11,59 +11,62 @@ function bk_game.register_bucket(name, def)
 				return
 			end
 			local n = minetest.env:get_node(pointed_thing.under)
-			local liquiddef = bk_game.registered_liquids[n.name]
-			if not liquiddef then
+			local t = ""
+			if n.name == "default:lava_source" then
+				t = "lava"
+			elseif n.name == "default:water_source" then
+				t = "water"
+			else
 				return
 			end
-			local full_name = empty_name.."_with_"..liquiddef.name
-			if liquiddef and n.name == liquiddef.source and minetest.registered_items[full_name] then
+			local full_name = "bucket:"..name.."_with_"..t
+			if minetest.registered_items[full_name] then
 				minetest.env:add_node(pointed_thing.under, {name="air"})
 				return {name=full_name}
 			end
-		end,
+		end
+	})
+	
+	minetest.register_craftitem(":bucket:"..name.."_with_water", {
+		description = def.description .. " Bucket with Water",
+		inventory_image = "bucket_"..name..".png^bucket_metal_water.png",
+		groups = {bucket_water = 1},
+		stack_max = 1,
+		liquids_pointable = true,
+		on_use = function(itemstack, user, pointed_thing)
+			-- "virtual" buckets
+			if "default:water_source" == "" then
+				return
+			end
+			-- Must be pointing to node
+			if pointed_thing.type ~= "node" then
+				return
+			end
+			n = minetest.env:get_node(pointed_thing.under)
+			if minetest.registered_nodes[n.name].buildable_to then
+				minetest.env:add_node(pointed_thing.under, {name="default:water_source"})
+			else
+				n = minetest.env:get_node(pointed_thing.above)
+			if minetest.registered_nodes[n.name].buildable_to then
+					minetest.env:add_node(pointed_thing.above, {name="default:water_source"})
+				else
+					return
+				end
+			end
+			return {name="bucket:"..name}
+		end
 	})
 
-
-				minetest.register_craftitem(":bucket:"..name.."_with_water", {
-					description = def.description .. " Bucket with Water",
-					inventory_image = "bucket_"..name..".png^bucket_metal_water.png",
-					groups = groups,
-					stack_max = stack,
-					liquids_pointable = true,
-					on_use = function(itemstack, user, pointed_thing)
-						-- "virtual" buckets
-						if LiquidDef.source == "" then
-							return
-						end
-						-- Must be pointing to node
-						if pointed_thing.type ~= "node" then
-							return
-						end
-						n = minetest.env:get_node(pointed_thing.under)
-						if minetest.registered_nodes[n.name].buildable_to then
-							minetest.env:add_node(pointed_thing.under, {name=LiquidDef.source})
-						else
-							n = minetest.env:get_node(pointed_thing.above)
-							if minetest.registered_nodes[n.name].buildable_to then
-								minetest.env:add_node(pointed_thing.above, {name=LiquidDef.source})
-							else
-								return
-							end
-						end
-						return {name=empty_name}
-					end
-				})
-
 				if not def.not_lava then
-								minetest.register_craftitem(":bucket:"..name.."_with_lava", {
+					minetest.register_craftitem(":bucket:"..name.."_with_lava", {
 					description = def.description .. " Bucket with lava",
 					inventory_image = "bucket_"..name..".png^bucket_lava.png",
-					groups = groups,
-					stack_max = stack,
+					groups = {bucket_lava = 1},
+					stack_max = 1,
 					liquids_pointable = true,
 					on_use = function(itemstack, user, pointed_thing)
 						-- "virtual" buckets
-						if LiquidDef.source == "" then
+						if "default:lava_source" == "" then
 							return
 						end
 						-- Must be pointing to node
@@ -72,16 +75,16 @@ function bk_game.register_bucket(name, def)
 						end
 						n = minetest.env:get_node(pointed_thing.under)
 						if minetest.registered_nodes[n.name].buildable_to then
-							minetest.env:add_node(pointed_thing.under, {name=LiquidDef.source})
+							minetest.env:add_node(pointed_thing.under, {name="default:lava_source"})
 						else
 							n = minetest.env:get_node(pointed_thing.above)
 							if minetest.registered_nodes[n.name].buildable_to then
-								minetest.env:add_node(pointed_thing.above, {name=LiquidDef.source})
+								minetest.env:add_node(pointed_thing.above, {name="default:lava_source"})
 							else
 								return
 							end
 						end
-						return {name=empty_name}
+						return {name="bucket:"..name}
 					end
 				})
 				end
