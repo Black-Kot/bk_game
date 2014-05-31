@@ -151,9 +151,10 @@ minetest.register_item(":", {
 
 	bk_game.register_tools("wood", {
 		description = "Wood",
-		source = "group:plank",
+		source = "group:stick", -- wood tools craft only from stick`s!
 		times = {[5] = 4.00, [6]=2.50,}, 
 		uses = 10,
+		sword = false, -- no wood sword
 		maxlevel = 5,
 	})
 
