@@ -1,5 +1,5 @@
-#ifndef CONVERTORS_H
-#define CONVERTORS_H
+#ifndef CONVERTERS_H
+#define CONVERTERS_H
 
 #include "render.h"
 
@@ -15,4 +15,4 @@ void flip_model_x( model_t model );
 void flip_model_y( model_t model );
 void flip_model_z( model_t model );
 
-#endif /* CONVERTORS_H */
+#endif /* CONVERTERS_H */

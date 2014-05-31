@@ -1,4 +1,4 @@
-#include "convertors.h"
+#include "converters.h"
 
 
 void downscale_image( pixel_t *data, int width, int height, int times )

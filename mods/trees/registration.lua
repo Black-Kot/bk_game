@@ -40,22 +40,19 @@ function bk_game.register_tree(name, TreeDef)
 	tree.textures.log = tree.textures.log or name_.."_log.png"
 	tree.textures.plank = tree.textures.plank or name_.."_plank.png"
 	tree.textures.ladder = tree.textures.ladder or name_.."_ladder.png"
-	tree.textures.door_inventory = tree.textures.door_inventory or name_.."_door_inventory.png"
-	tree.textures.door_top = tree.textures.door_top or name_.."_door_top.png"
-	tree.textures.door_bottom = tree.textures.door_bottom or name_.."_door_bottom.png"
 	tree.textures.chest = tree.textures.chest or {name_.."_chest_top.png", name_.."_chest_top.png", name_.."_chest_side.png", name_.."_chest_side.png", name_.."_chest_side.png", name_.."_chest_front.png"}
 	tree.textures.locked_chest = tree.textures.locked_chest or {name_.."_chest_top.png", name_.."_chest_top.png", name_.."_chest_side.png", name_.."_chest_side.png", name_.."_chest_side.png", name_.."_chest_lock.png"}
 
 	bk_game.registered_trees[name] = tree
 	table.insert(bk_game.registered_trees_list, tree.name)
-	
-	
+
+
 	minetest.register_craftitem(tree.name.."_plank", {
 		description = tree.description.." Plank",
 		inventory_image = tree.textures.plank,
 		group = {plank=1, wood=1},
 	})
-	
+
 	bk_game.register_nodes(tree.name:remove_modname_prefix().."_planks", {
 		source = tree.name.."_plank",
 		slab=true,
@@ -69,14 +66,15 @@ function bk_game.register_tree(name, TreeDef)
 	bk_game.register_door(tree.name:remove_modname_prefix(), {
 		source = tree.name.."_plank",
 		description = tree.description,
+		main_texture = tree.textures.planks,
 	})
-	
+
 	minetest.register_craftitem(tree.name.."_stick", {
 		description = tree.description.." Stick",
 		inventory_image = tree.textures.stick,
 		groups = {stick=1},
 	})
-	
+
 	minetest.register_node(tree.name.."_sapling", {
 		description = tree.description.." Sapling",
 		drawtype = "plantlike",
@@ -90,8 +88,8 @@ function bk_game.register_tree(name, TreeDef)
 		groups = {snappy=6,dig_immediate=3,flammable=2,dropping_node=1},
 		sounds = default.node_sound_defaults()
 	})
-	
-	
+
+
 	minetest.register_node(tree.name.."_log", {
 		description = tree.description.." Log",
 		tiles = tree.textures.trunk,
@@ -144,7 +142,7 @@ function bk_game.register_tree(name, TreeDef)
 			local dp = minetest.get_dig_params(def.groups, tp)
 			wielded:add_wear(dp.wear)
 			digger:set_wielded_item(wielded)
-			
+
 			-- Handle drops
 			--minetest.handle_node_drops(pos, drops, digger)
 
@@ -155,7 +153,7 @@ function bk_game.register_tree(name, TreeDef)
 
 			-- Remove node and update
 			minetest.env:remove_node(pos)
-			
+
 			-- Run callback
 			if def.after_dig_node then
 				-- Copy pos and node because callback can modify them
@@ -174,7 +172,7 @@ function bk_game.register_tree(name, TreeDef)
 			end
 		end,]]--
 	})
-	
+
 	minetest.register_node(tree.name.."_leaves", {
 		description = tree.description.." Leaves",
 		drawtype = "allfaces_optional",
@@ -203,7 +201,7 @@ function bk_game.register_tree(name, TreeDef)
 		falling_node_walkable = false,
 		climbable = true,
 	})
-	
+
 	if tree.gen_autumn_leaves then
 		minetest.register_node(tree.name.."_leaves_autumn", {
 			description = tree.description.." Leaves",
@@ -234,7 +232,7 @@ function bk_game.register_tree(name, TreeDef)
 			climbable = true,
 		})
 	end
-	
+
 	if tree.gen_winter_leaves then
 		minetest.register_node(tree.name.."_leaves_winter", {
 			description = tree.description.." Leaves",
@@ -261,7 +259,7 @@ function bk_game.register_tree(name, TreeDef)
 			climbable = true,
 		})
 	end
-	
+
 	minetest.register_node(tree.name.."_trunk", {
 		description = tree.description.." Trunk",
 		tiles = tree.textures.trunk,
@@ -283,7 +281,7 @@ function bk_game.register_tree(name, TreeDef)
 			},
 		},
 	})
-	
+
 	minetest.register_node(tree.name.."_trunk_top", {
 		tiles = tree.textures.trunk,
 		groups = {tree=1,choppy=3,oddly_breakable_by_hand=1,flammable=2,dropping_node=1,drop_on_dig=1},
@@ -373,8 +371,8 @@ function bk_game.register_tree(name, TreeDef)
 		groups = {snappy=5,choppy=5,oddly_breakable_by_hand=3,flammable=2},
 		sounds = default.node_sound_wood_defaults(),
 	})
-	
-	
+
+
 	minetest.register_craft({
 		output = tree.name.."_ladder",
 		recipe = {
@@ -383,8 +381,8 @@ function bk_game.register_tree(name, TreeDef)
 			{tree.name.."_stick", "", tree.name.."_stick"},
 		}
 	})
-	
-	
+
+
 	TreeDef.source = tree.name.."_plank"
 	TreeDef.stair = true
 	TreeDef.slab = true
@@ -392,7 +390,7 @@ function bk_game.register_tree(name, TreeDef)
 	TreeDef.pyramid = false
 	bk_game.register_chest(name:remove_modname_prefix(), TreeDef)
 	--[[
-	
+
 	minetest.register_craft({
 		output = "default:sign_wall",
 		recipe = {
@@ -401,7 +399,7 @@ function bk_game.register_tree(name, TreeDef)
 			{"", "group:stick", ""},
 		}
 	})
-	
+
 	]]--
 	minetest.register_abm({
 		nodenames = {tree.name.."_sapling"},
