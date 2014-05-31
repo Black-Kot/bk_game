@@ -75,6 +75,15 @@ minetest.register_craft({
 	}
 })
 
+minetest.register_craft({
+	output = "default:sign_wall",
+	recipe = {
+		{"group:plank", "group:plank", "group:plank"},
+		{"group:plank", "group:plank", "group:plank"},
+		{"", "group:stick", ""},
+	}
+})
+
 --
 -- Crafting (tool repair)
 --
