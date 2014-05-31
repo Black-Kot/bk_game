@@ -57,6 +57,7 @@ function register_metal(name, metalDef)
 	end
 
 	metalDef.only_placer_can_open = true
+	metalDef.main_texture = "metals_"..name..".png"
 	bk_game.register_door(name,metalDef)
 end
 
