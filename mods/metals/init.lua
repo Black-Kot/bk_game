@@ -43,9 +43,8 @@ function register_metal(name, metalDef)
 	if not metalDef.blocks and metalDef.blocks ~= false then
 		metalDef.stair = true
 		metalDef.slab = true
-		-- now this only for minerals
-		--metalDef.column = true
-		--metalDef.pyramid = true
+		metalDef.column = true
+		metalDef.pyramid = true
 		bk_game.register_nodes(name, metalDef)
 	end
 

@@ -28,7 +28,7 @@ function bk_game.register_door(name, def)
 
 	minetest.register_craftitem(":doors:"..name, {
 		description = def.description.." Door",
-		inventory_image = "door_"..name..".png",
+		inventory_image = "doors_"..name..".png",
 
 		on_place = function(itemstack, placer, pointed_thing)
 			if not pointed_thing.type == "node" then
@@ -89,8 +89,8 @@ function bk_game.register_door(name, def)
 		end,
 	})
 
-	local tt = {"door_"..name.."_a.png", "door_grey.png"}
-	local tb = {"door_"..name.."_b.png", "door_grey.png"}
+	local tt = {"doors_"..name.."_a.png", "doors_grey.png"}
+	local tb = {"doors_"..name.."_b.png", "doors_grey.png"}
 
 	local function after_dig_node(pos, name)
 		if minetest.get_node(pos).name == name then
