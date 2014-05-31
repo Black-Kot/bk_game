@@ -28,8 +28,8 @@ convert "$1" "$script_dir/door_outer_b.png" -compose DstOut -alpha set -composit
 		"$script_dir/door_b.png"
 
 pngcrush "$script_dir/blocks.png" "$3/blocks_${2}.png" > /dev/null
-pngcrush "$script_dir/door.png" "$3/door_${2}.png" > /dev/null
-pngcrush "$script_dir/door_a.png" "$3/door_${2}_a.png" > /dev/null
-pngcrush "$script_dir/door_b.png" "$3/door_${2}_b.png" > /dev/null
+pngcrush "$script_dir/door.png" "$3/doors_${2}.png" > /dev/null
+pngcrush "$script_dir/door_a.png" "$3/doors_${2}_a.png" > /dev/null
+pngcrush "$script_dir/door_b.png" "$3/doors_${2}_b.png" > /dev/null
 
 rm -f "$script_dir/blocks.png" "$script_dir/door.png" "$script_dir/door_a.png" "$script_dir/door_b.png"
