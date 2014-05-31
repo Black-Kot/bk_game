@@ -17,7 +17,7 @@ minetest.register_craftitem(":"..crystalDef.lump.."_fragment", {
 })
 
 minetest.register_craft({
-	output = crystalDef.lump..'_fragment 9',
+	output = crystalDef.lump.."_fragment 9",
 	recipe = {
 		{crystalDef.lump},
 	}
@@ -26,9 +26,9 @@ minetest.register_craft({
 minetest.register_craft({
 	output = crystalDef.lump,
 	recipe = {
-		{crystalDef.lump..'_fragment', crystalDef.lump..'_fragment', crystalDef.lump..'_fragment'},
-		{crystalDef.lump..'_fragment', crystalDef.lump..'_fragment', crystalDef.lump..'_fragment'},
-		{crystalDef.lump..'_fragment', crystalDef.lump..'_fragment', crystalDef.lump..'_fragment'},
+		{crystalDef.lump.."_fragment", crystalDef.lump.."_fragment", crystalDef.lump.."_fragment"},
+		{crystalDef.lump.."_fragment", crystalDef.lump.."_fragment", crystalDef.lump.."_fragment"},
+		{crystalDef.lump.."_fragment", crystalDef.lump.."_fragment", crystalDef.lump.."_fragment"},
 	}
 })
 

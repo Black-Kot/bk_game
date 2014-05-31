@@ -18,7 +18,7 @@ minetest.register_node(":fence:"..name, {
 })
 
 minetest.register_craft({
-	output = 'fence:'..name..' 2',
+	output = "fence:"..name.." 2",
 	recipe = {
 		{def.source, def.source, def.source},
 		{def.source, def.source, def.source},

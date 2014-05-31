@@ -11,10 +11,9 @@ function register_metal(name, metalDef)
 	if metalDef.isAlloy and metalDef.isAlloy ~= false then
 		-- Alloy ingot craft
 		minetest.register_craft({
-			type = "shapeless",
-					output = metalDef.ignot.." "..table.getn(metalDef.recipe),
-					recipe = metalDef.recipe,
-					})
+			output = metalDef.ingot.." 4",
+			recipe = metalDef.recipe,
+		})
 	else
 		-- Register lump
 		if not metalDef.lump then
@@ -50,6 +49,7 @@ function register_metal(name, metalDef)
 
 	if metalDef.tools and metalDef.tools ~= false then
 		bk_game.register_tools(name, metalDef)
+		bk_game.register_bucket(name, metalDef)
 	end
 
 	if metalDef.furniture and metalDef.furniture ~= false then
@@ -59,6 +59,7 @@ function register_metal(name, metalDef)
 	metalDef.only_placer_can_open = true
 	metalDef.main_texture = "metals_"..name..".png"
 	bk_game.register_door(name,metalDef)
+
 end
 
 
@@ -67,9 +68,9 @@ metalList = {
 	["adamant"] =	{
 						description = "Adamant",
 						level=1, uses=0, times={ [1]=1.00, [2]=0.80, [3]=0.80, [4]=0.80, [5]=0.80, [6]=0.80}, full_punch_interval=0.20,
-						isAlloy = false, chunk_size=3, height_min=-37000, height_max=-25000
-						blocks = true, tools=false, furniture=false -- Adamant pick will be registered separatelly
-					},
+						isAlloy = false, chunk_size=3, height_min=-37000, height_max=-25000,
+						blocks = true, tools=false, furniture=false 
+					}, -- Adamant pick will be registered separatelly
 	["mithril"] =	{
 						description = "Mithril",
 						level=2, uses=30, times={ [2]=2.80, [3]=2.20, [4]=1.50, [5]=1.20, [6]=0.80, },
@@ -114,44 +115,44 @@ metalList = {
 					},
 	["copper"] =	{
 						description = "Copper",
-						level=4, uses=10,  times={ [4]=2.40,[5]=2.00, [6]=1.70,
+						level=4, uses=10,  times={ [4]=2.40,[5]=2.00, [6]=1.70},
 						isAlloy = false, height_min=-17000,
 						blocks = true, tools=true, furniture=false
 					},
 	["bronze"] =	{
 						description = "Bronze",
-						level=4, uses=25,  times={ [4]=1.90,[5]=1.70, [6]=1.40,
-						isAlloy = true, recipe={ "metals:copper_ingot", "metals:aluminium_ingot" },
+						level=4, uses=25,  times={ [4]=1.90,[5]=1.70, [6]=1.40},
+						isAlloy = true, recipe={ { "metals:copper_ingot", "metals:aluminium_ingot" }, { "metals:copper_ingot", "metals:copper_ingot" }, },
 						blocks = true, tools=true, furniture=true
 					},
 	["brass"] =		{
 						description = "Brass",
-						level=4, uses=25,  times={ [4]=2.10,[5]=1.80, [6]=1.50,
-						isAlloy = true, recipe={ "metals:copper_ingot", "metals:copper_ingot", "metals:copper_ingot", "metals:zinc_ingot" },
+						level=4, uses=25,  times={ [4]=2.10,[5]=1.80, [6]=1.50},
+						isAlloy = true, recipe={{ "metals:copper_ingot", "metals:copper_ingot" }, { "metals:copper_ingot", "metals:zinc_ingot" },},
 						blocks = true, tools=true, furniture=false
 					},
 	["black_gold"] =	{
 							description = "Black gold",
 							level=5,
-							isAlloy = true, recipe={ "metals:gold_ingot", "metals:gold_ingot", "metals:gold_ingot", "minerals:coal_lump" },
+							isAlloy = true, recipe={{ "metals:gold_ingot", "metals:gold_ingot"}, {  "metals:gold_ingot", "minerals:coal_lump" },},
 							blocks = true, tools=false, furniture=false
 						},
 	["green_gold"] =	{
 							description = "Green gold",
 							level=5,
-							isAlloy = true, recipe={ "metals:gold_ingot", "metals:gold_ingot", "metals:gold_ingot", "metals:silver_ingot" },
+							isAlloy = true, recipe={{ "metals:gold_ingot", "metals:gold_ingot"}, {  "metals:gold_ingot", "metals:silver_ingot" },},
 							blocks = true, tools=false, furniture=false
 						},
 	["violet_gold"] =	{
 							description = "Violet gold",
 							level=5,
-							isAlloy = true, recipe={ "metals:gold_ingot", "metals:gold_ingot", "metals:gold_ingot", "metals:aluminium_ingot" },
+							isAlloy = true, recipe={{ "metals:gold_ingot", "metals:gold_ingot"}, {  "metals:gold_ingot", "metals:aluminium_ingot" },},
 							blocks = true, tools=false, furniture=false
 						},
 	["rose_gold"] =		{
 							description = "Rose gold",
 							level=5,
-							isAlloy = true, recipe={ "metals:gold_ingot", "metals:gold_ingot", "metals:gold_ingot", "metals:copper_ingot" },
+							isAlloy = true, recipe={{ "metals:gold_ingot", "metals:gold_ingot"}, {  "metals:gold_ingot", "metals:copper_ingot" },},
 							blocks = true, tools=false, furniture=false
 						},
 }

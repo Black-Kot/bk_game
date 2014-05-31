@@ -31,33 +31,19 @@ function bk_game.register_mineral(name, mineralDef)
 end
 
 list = {
-	'cinnabar',
-	'coal',
-	'gypsum',
-	'jet',
-	'lazurite',
-	'malachite',
-	'olivine',
-	'petrified_wood',
-	'satin_spar',
-	'selenite',
-	'serpentine'
+    ["cinnabar"] = {description = "Cinnabar", },
+    ["coal"] = {description = "Coal", chest=false, stair=false, slab=false, pyramid=false, column=false},
+    ["gypsum"] = {description = "Gypsum", },
+    ["jet"] = {description = "Jet", },
+    ["lazurite"] = {description = "Lazurite", },
+    ["malachite"] = {description = "Malachite", },
+    ["olivine"] = {description = "Olivine", },
+    ["petrified_wood"] = {description = "Petrified Wood", },
+    ["satin_spar"] = {description = "Satin Spar", },
+    ["selenite"] = {description = "Selenite", },
+    ["serpentine"] = {description = "Serpentine", }
 }
 
-opts_list = {
-    {description = "Cinnabar", },
-    {description = "Coal", chest=false, stair=false, slab=false, pyramid=false, column=false},
-    {description = "Gypsum", },
-    {description = "Jet", },
-    {description = "Lazurite", },
-    {description = "Malachite", },
-    {description = "Olivine", },
-    {description = "Petrified Wood", },
-    {description = "Satin Spar", },
-    {description = "Selenite", },
-    {description = "Serpentine", }
-}
-
-for _, mineral in ipairs(list) do
-    bk_game.register_mineral(mineral, opts_list[_]) 
+for mineral, desc in ipairs(list) do
+    bk_game.register_mineral(mineral, desc) 
 end

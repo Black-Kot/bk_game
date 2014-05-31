@@ -51,7 +51,7 @@ local ANIM_WALK  = 4
 local ANIM_WALK_MINE = 5
 local ANIM_MINE = 6
 
--- Called when a player's appearance needs to be updated
+-- Called when a player"s appearance needs to be updated
 function player_update_visuals(pl)
 	local name = pl:get_player_name()
 
