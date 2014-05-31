@@ -8,7 +8,7 @@ function is_node_in_cube(nodenames, node_pos, radius)
 				n = minetest.env:get_node_or_nil({x = x, y = y, z = z})
 				if (n == nil)
 					or (n.name == "ignore")
-					or (table.contains(nodenames, n.name) == true) then
+					or (nodenames == n.name) == true) then
 					return true
 				end
 			end
@@ -108,7 +108,7 @@ function bk_game.register_flower(name, def)
 			local n_top = minetest.env:get_node(p_top)
 			local rnd = math.random(1, MAX_RATIO)
 			if (MAX_RATIO - def.chance < rnd) then
-				local flower_in_range = is_node_in_cube({"flowers:"..name}, p_top, def.spacing)
+				local flower_in_range = is_node_in_cube("flowers:"..name, p_top, def.spacing)
 				if (n_top.name == "air") and (flower_in_range == false) then
 					minetest.env:add_node(p_top, {name = "flowers:"..name})
 				end
