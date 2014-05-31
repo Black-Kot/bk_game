@@ -8,7 +8,7 @@ function is_node_in_cube(nodenames, node_pos, radius)
 				n = minetest.env:get_node_or_nil({x = x, y = y, z = z})
 				if (n == nil)
 					or (n.name == "ignore")
-					or (table_contains(nodenames, n.name) == true) then
+					or (table.contains(nodenames, n.name) == true) then
 					return true
 				end
 			end
