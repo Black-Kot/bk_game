@@ -20,7 +20,7 @@ function bk_game.register_ore(name, OreDef)
 		generate = true,
 		delta_seed = OreDef.delta_seed or d_seed
 	}
-	print("register "..name.." lump: "..OreDef.lump)
+	print("Ore "..ore.description.." [OK]")
 	d_seed = d_seed + 1
 	if OreDef.generate == false then
 		ore.generate = false

@@ -74,7 +74,7 @@ minetest.register_on_chat_message(function(name, message)
 			player:setpos(homepos[name])
             minetest.chat_send_player(name, "Teleported to home!")
         else
-            minetest.chat_send_player(name, "You don"t have a home now! Set it using /sethome")
+            minetest.chat_send_player(name, "You don't have a home now! Set it using /sethome")
         end
         return true
     end

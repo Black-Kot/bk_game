@@ -1,4 +1,4 @@
-function register_metal(name, metalDef)
+function bk_game.register_metal(name, metalDef)
 
 	-- Register ingot
 	metalDef.ingot = "metals:"..name.."_ingot";
@@ -39,7 +39,9 @@ function register_metal(name, metalDef)
 	-- Register metal products
 	metalDef.source = metalDef.ingot
 
-	if not metalDef.blocks and metalDef.blocks ~= false then
+
+-- it`s broken by alloys
+	if metalDef.blocks and metalDef.blocks ~= false then
 		metalDef.stair = true
 		metalDef.slab = true
 		metalDef.column = true
@@ -159,5 +161,5 @@ metalList = {
 
 
 for metal, descr in pairs(metalList) do
-    register_metal(metal, descr)
+    bk_game.register_metal(metal, descr)
 end

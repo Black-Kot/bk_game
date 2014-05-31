@@ -321,7 +321,7 @@ minetest.register_node("default:sign_wall", {
 		minetest.log("action", (sender:get_player_name() or "").." wrote \""..fields.text..
 		"\" to sign at "..minetest.pos_to_string(pos))
 		meta:set_string("text", fields.text)
-		meta:set_string("infotext", """..fields.text..""")
+		meta:set_string("infotext", "'"..fields.text.."'")
 	end,
 })
 
@@ -718,7 +718,7 @@ minetest.register_abm({
 					-- take stuff from "src" list
 					inv:set_stack("src", 1, aftercooked.items[1])
 				else
-					print("Could not insert ""..cooked.item:to_string()..""")
+					print("Could not insert \""..cooked.item:to_string().."\"")
 				end
 				meta:set_string("src_time", 0)
 			end

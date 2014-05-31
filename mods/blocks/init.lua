@@ -340,4 +340,5 @@ function bk_game.register_nodes(name, def)
 	if def.pyramid == true then
 		bk_game.register_pyramid(name, def)
 	end
+	print("Blocks "..def.description.." [OK]")
 end
