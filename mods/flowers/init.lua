@@ -35,7 +35,7 @@ minetest.register_node("flowers:soil", {
 	tiles = {"flowers_soil.png", "default_dirt.png"},
 	drop = "default:dirt",
 	is_ground_content = true,
-	groups = {crumbly=6, not_in_creative_inventory=1, soil=2},
+	groups = {crumbly=6, not_in_creative_inventory=1, soil=1},
 	sounds = default.node_sound_dirt_defaults(),
 })
 
@@ -66,13 +66,7 @@ function bk_game.register_flower(name, def)
 			walkable = false,
 			buildable_to = true,
 			is_ground_content = true,
-			drop = {
-				max_items = 1,
-				items = {
-					{items = {"flowers:"..name.."_seed"},rarity = 5},
-					{items = {"default:dirt"}},
-				}
-			},
+			drop = "flowers:"..name.."_seed",
 			groups = {snappy=6,flora=1,grass=1,attached_node=1,not_in_creative_inventory=1},
 			sounds = default.node_sound_leaves_defaults(),
 			selection_box = {
@@ -112,7 +106,7 @@ function bk_game.register_flower(name, def)
 				end
 
 				-- check if pointing at soil
-				if minetest.get_item_group(under.name, "soil") <= 1 then
+				if minetest.get_item_group(under.name, "soil") ~= 1 then
 					return
 				end
 
@@ -127,19 +121,20 @@ function bk_game.register_flower(name, def)
 
 		minetest.register_abm({
 			nodenames = {"flowers:"..name.."_grass"},
-			interval = def.interval,
-			chance = 5,
+			interval = 1,
+			chance = 20,
 			action = function(pos, node, active_object_count, active_object_count_wider)
 				local p_top = {
 					x = pos.x,
 					y = pos.y - 1,
 					z = pos.z
 				}
-				if minetest.env:get_node(p_top).groups.soil ~= 1 then
+				print("flowers: "..minetest.env:get_node(pos).name.." : "..minetest.env:get_node(p_top).name)
+				if minetest.env:get_node(p_top).name ~= "flowers:soil" then
 					return
 				end
 				minetest.env:add_node(pos, {name="flowers:"..name})
-				minetest.env:add_node(p_top, "default:dirt_with_grass")
+				minetest.env:add_node(p_top, {name="default:dirt_with_grass"})
 			end
 		})
 		
