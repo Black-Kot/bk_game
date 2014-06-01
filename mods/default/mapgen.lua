@@ -4,10 +4,16 @@
 -- Aliases for map generator outputs
 --
 
+-- we don`t use trees in mapgenv6
 minetest.register_alias("mapgen_air", "air")
 minetest.register_alias("mapgen_apple", "air")
 minetest.register_alias("mapgen_tree", "air")
+minetest.register_alias("mapgen_junglegrass", "air")
+minetest.register_alias("mapgen_jungleleaves", "air")
+minetest.register_alias("mapgen_jungletree", "air")
 minetest.register_alias("mapgen_leaves", "air")
+minetest.register_alias("mapgen_singlenode", "air")
+
 minetest.register_alias("mapgen_stone", "blocks:stone")
 minetest.register_alias("mapgen_desert_stone", "blocks:desert_stone")
 minetest.register_alias("mapgen_water_source", "default:water_source")
@@ -21,8 +27,11 @@ minetest.register_alias("mapgen_cobble", "default:cobble")
 minetest.register_alias("mapgen_mossycobble", "default:mossycobble")
 minetest.register_alias("mapgen_dirt_with_grass", "default:dirt_with_grass")
 minetest.register_alias("mapgen_sandstonebrick", "blocks:sandstonebrick")
-minetest.register_alias("mapgen_stair_cobble", "default:cobble")
-minetest.register_alias("mapgen_stair_sandstone", "default:sandstone")
+minetest.register_alias("mapgen_stair_cobble", "blocks:stone_stair")
+minetest.register_alias("mapgen_stair_sandstone", "blocks:sandstone_stair")
+minetest.register_alias("mapgen_sandstone", "blocks:sandstone")
+minetest.register_alias("mapgen_stair_sandstonebrick", "blocks:sandstonebrick_stair")
+
 
 function default.make_papyrus(pos, size)
 	for y=0,size-1 do
