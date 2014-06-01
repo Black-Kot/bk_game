@@ -11,3 +11,6 @@ minetest.register_alias("default:obsidian","blocks:obsidian")
 minetest.register_alias("default:stick","group:stick")
 minetest.register_alias("ores:chromium","ores:aluminium")
 minetest.register_alias("ores:tin","ores:titan")
+
+-- fixes know errors in mapgenv6
+minetest.register_alias("default:cobble_node", "air")
