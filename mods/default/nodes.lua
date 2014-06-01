@@ -504,6 +504,30 @@ minetest.register_node("default:torch", {
 	sounds = default.node_sound_defaults(),
 })
 
+minetest.register_node("default:scaffolding", {
+	description = "scaffolding",
+	tiles = {"default_wood.png^default_wooden_top.png", "default_wood.png^default_wooden_top.png^default_wooden_bottom.png", "default_wooden_side.png", "default_wooden_side.png", "default_wooden_side.png", "default_wooden_side.png"},
+	drawtype = "nodebox",
+    	paramtype = "light",
+    	paramtype2 = "facedir",
+	node_box = {
+        	type = "fixed",
+        	fixed = {
+                -- side crosses
+                {-0.5, -0.5, -0.5, -0.45, 0.5, 0.5},
+                {-0.5, -0.5, -0.5, 0.5, 0.5, -0.45},
+                {0.45, -0.5, -0.5, 0.5, 0.5, 0.5},
+                {-0.5, -0.5, 0.45, 0.5, 0.5, 0.5},
+                -- top plank
+                {-0.5, 0.4, -0.5, 0.5, 0.5, 0.5},   	
+            },
+	},
+	climbable = true,
+	walkable = false,
+	is_ground_content = true,
+	groups = {scaffolding=1,dig_immediate=3,flammable=3},
+	sounds = default.node_sound_wood_defaults()
+})
 
 function default.get_furnace_active_formspec(pos, percent)
 	local formspec =

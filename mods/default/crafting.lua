@@ -84,6 +84,15 @@ minetest.register_craft({
 	}
 })
 
+minetest.register_craft({
+	output = "default:scaffolding 3",
+	recipe = {
+		{"group:plank", "group:plank", "group:plank"},
+		{"", "group:stick", ""},
+		{"group:stick", "", "group:stick"},
+	}
+})
+
 --
 -- Crafting (tool repair)
 --
@@ -155,18 +164,6 @@ minetest.register_craft({
 
 minetest.register_craft({
 	type = "fuel",
-	recipe = "default:junglegrass",
-	burntime = 2,
-})
-
-minetest.register_craft({
-	type = "fuel",
-	recipe = "group:leaves",
-	burntime = 1,
-})
-
-minetest.register_craft({
-	type = "fuel",
 	recipe = "default:cactus",
 	burntime = 15,
 })
@@ -185,12 +182,6 @@ minetest.register_craft({
 
 minetest.register_craft({
 	type = "fuel",
-	recipe = "default:fence_wood",
-	burntime = 15,
-})
-
-minetest.register_craft({
-	type = "fuel",
 	recipe = "group:ladder",
 	burntime = 5,
 })
@@ -205,12 +196,6 @@ minetest.register_craft({
 	type = "fuel",
 	recipe = "group:stick",
 	burntime = 10,
-})
-
-minetest.register_craft({
-	type = "fuel",
-	recipe = "default:lava_source",
-	burntime = 1500,
 })
 
 minetest.register_craft({
@@ -257,13 +242,7 @@ minetest.register_craft({
 
 minetest.register_craft({
 	type = "fuel",
-	recipe = "default:apple",
-	burntime = 3,
-})
-
-minetest.register_craft({
-	type = "fuel",
-	recipe = "default:coal_lump",
+	recipe = "minerals:coal_lump",
 	burntime = 250,
 })
 
@@ -277,4 +256,10 @@ minetest.register_craft({
 	type = "fuel",
 	recipe = "default:grass_1",
 	burntime = 2,
+})
+
+minetest.register_craft({
+	type = "fuel",
+	recipe = "default:scaffolding",
+	burntime = 15,
 })
