@@ -35,7 +35,7 @@ minetest.register_node("flowers:soil", {
 	tiles = {"flowers_soil.png", "default_dirt.png"},
 	drop = "default:dirt",
 	is_ground_content = true,
-	groups = {crumbly=6, not_in_creative_inventory=1, soil=1},
+	groups = {crumbly=5, not_in_creative_inventory=1, soil=1},
 	sounds = default.node_sound_dirt_defaults(),
 })
 
@@ -51,7 +51,30 @@ minetest.register_craft({
 
 function bk_game.register_flower(name, def)
 
-	local seed_name = "flowers:"..name
+	minetest.register_node(":flowers:"..name, {
+		description = def.description,
+		drawtype = "plantlike",
+		tiles = { "flowers_"..name..".png" },
+		inventory_image = "flowers_"..name..".png",
+		wield_image = "flowers_"..name..".png",
+		sunlight_propagates = true,
+		paramtype = "light",
+		walkable = false,
+		buildable_to = true,
+		groups = {snappy=6,oddly_breakable_by_hand=2,flower=1,flora=1,attached_node=1,color_white=1},
+		sounds = default.node_sound_leaves_defaults(),
+		selection_box = {
+			type = "fixed",
+			fixed = { -0.15, -0.5, -0.15, 0.15, 0.2, 0.15 },
+		},
+		drop = {
+			max_items = 1,
+			items = {
+				{items = {"flowers:"..name.."_seed 5"},rarity = 5},
+				{items = {"flowers:"..name}},
+			}
+		},
+	})
 
 	if def.seed ~= false then
 
@@ -67,7 +90,7 @@ function bk_game.register_flower(name, def)
 			buildable_to = true,
 			is_ground_content = true,
 			drop = "flowers:"..name.."_seed",
-			groups = {snappy=6,flora=1,grass=1,attached_node=1,not_in_creative_inventory=1},
+			groups = {snappy=6,oddly_breakable_by_hand=2,flora=1,grass=1,attached_node=1,not_in_creative_inventory=1},
 			sounds = default.node_sound_leaves_defaults(),
 			selection_box = {
 				type = "fixed",
@@ -106,7 +129,7 @@ function bk_game.register_flower(name, def)
 				end
 
 				-- check if pointing at soil
-				if minetest.get_item_group(under.name, "soil") ~= 1 then
+				if under.name ~= "flowers:soil" then
 					return
 				end
 
@@ -129,7 +152,6 @@ function bk_game.register_flower(name, def)
 					y = pos.y - 1,
 					z = pos.z
 				}
-				print("flowers: "..minetest.env:get_node(pos).name.." : "..minetest.env:get_node(p_top).name)
 				if minetest.env:get_node(p_top).name ~= "flowers:soil" then
 					return
 				end
@@ -138,40 +160,9 @@ function bk_game.register_flower(name, def)
 			end
 		})
 		
-		seed_name = "flowers:"..name.."_seed"
-		
+	else
+		minetest.register_alias("flowers:"..name.."_seed", "flowers:"..name)
 	end
-
-	minetest.register_node(":flowers:"..name, {
-		description = def.description,
-		drawtype = "plantlike",
-		tiles = { "flowers_"..name..".png" },
-		inventory_image = "flowers_"..name..".png",
-		wield_image = "flowers_"..name..".png",
-		sunlight_propagates = true,
-		paramtype = "light",
-		walkable = false,
-		buildable_to = true,
-		groups = {snappy=6,flower=1,flora=1,attached_node=1,color_white=1},
-		sounds = default.node_sound_leaves_defaults(),
-		selection_box = {
-			type = "fixed",
-			fixed = { -0.15, -0.5, -0.15, 0.15, 0.2, 0.15 },
-		},
-		drop = {
-			max_items = 1,
-			items = {
-				{
-					items = {"flowers:"..name},
-					rarity = 10,
-				},
-				{
-					items = {seed_name},
-					rarity = 30,
-				}
-			}
-		},
-	})
 
 	if def.pot ~= false then
 		minetest.register_craftitem(":flowers:"..name.."_pot", {
