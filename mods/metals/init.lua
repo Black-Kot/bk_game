@@ -61,11 +61,7 @@ function bk_game.register_metal(name, metalDef)
 
 	metalDef.only_placer_can_open = true
 	bk_game.register_door(name,metalDef)
-<<<<<<< HEAD
 	bk_game.register_ladder(name, metalDef)
-
-=======
->>>>>>> 1e9afc47e2805f023d9e48d8374d5fa583f2e482
 end
 
 

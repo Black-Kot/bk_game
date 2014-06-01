@@ -51,26 +51,7 @@ function bk_game.register_tree(name, TreeDef)
 		inventory_image = tree.textures.plank,
 		group = {plank=1, wood=1},
 	})
-
-<<<<<<< HEAD
-=======
-	bk_game.register_nodes(tree.name:remove_modname_prefix().."_planks", {
-		source = tree.name.."_plank",
-		slab=true,
-		stair=true,
-		description = tree.description.." Planks",
-		block_tiles = {tree.textures.planks},
-		groups = {planks=1,snappy=5,choppy=5,oddly_breakable_by_hand=2,flammable=3,drop_on_dig=1},
-		sounds = default.node_sound_wood_defaults(),
-	})
-
-	bk_game.register_door(tree.name:remove_modname_prefix(), {
-		source = tree.name.."_plank",
-		description = tree.description,
-		default_texture = tree.textures.planks,
-	})
-
->>>>>>> 1e9afc47e2805f023d9e48d8374d5fa583f2e482
+	
 	minetest.register_craftitem(tree.name.."_stick", {
 		description = tree.description.." Stick",
 		inventory_image = tree.textures.stick,
@@ -264,7 +245,7 @@ function bk_game.register_tree(name, TreeDef)
 		slab=true,
 		stair=true,
 		description = tree.description.." Planks",
-		tiles = {tree.textures.planks},
+		block_tiles = {tree.textures.planks},
 		groups = {planks=1,snappy=5,choppy=5,oddly_breakable_by_hand=2,flammable=3,drop_on_dig=1},
 		sounds = default.node_sound_wood_defaults(),
 	})
