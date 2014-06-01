@@ -58,7 +58,7 @@ function bk_game.register_tree(name, TreeDef)
 		slab=true,
 		stair=true,
 		description = tree.description.." Planks",
-		tiles = {tree.textures.planks},
+		block_tiles = {tree.textures.planks},
 		groups = {planks=1,snappy=5,choppy=5,oddly_breakable_by_hand=2,flammable=3,drop_on_dig=1},
 		sounds = default.node_sound_wood_defaults(),
 	})
@@ -66,7 +66,7 @@ function bk_game.register_tree(name, TreeDef)
 	bk_game.register_door(tree.name:remove_modname_prefix(), {
 		source = tree.name.."_plank",
 		description = tree.description,
-		main_texture = tree.textures.planks,
+		default_texture = tree.textures.planks,
 	})
 
 	minetest.register_craftitem(tree.name.."_stick", {

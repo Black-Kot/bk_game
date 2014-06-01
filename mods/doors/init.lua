@@ -89,8 +89,8 @@ function bk_game.register_door(name, def)
 		end,
 	})
 
-	local tt = {"doors_"..name.."_a.png", def.main_texture}
-	local tb = {"doors_"..name.."_b.png", def.main_texture}
+	local tt = {"doors_"..name.."_a.png", def.default_texture}
+	local tb = {"doors_"..name.."_b.png", def.default_texture}
 
 	local function after_dig_node(pos, name)
 		if minetest.get_node(pos).name == name then

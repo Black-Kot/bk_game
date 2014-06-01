@@ -4,7 +4,7 @@ bk_game.register_nodes("stone", {
 	stair = true,
 	slab = true,
 	description = "Stone",
-	tiles = {"default_stone.png"},
+	block_tiles = {"default_stone.png"},
 	is_ground_content = true,
 	groups = {cracky=5, stone=1},
 	drop = "default:cobble",
@@ -16,7 +16,7 @@ bk_game.register_nodes("desert_stone", {
 	stair = true,
 	slab = true,
 	description = "Desert Stone",
-	tiles = {"default_desert_stone.png"},
+	block_tiles = {"default_desert_stone.png"},
 	is_ground_content = true,
 	groups = {cracky=5, stone=1},
 	drop = "default:desert_cobble",
@@ -29,7 +29,7 @@ bk_game.register_nodes("stonebrick", {
 	slab = true,
 	source = "blocks:stone",
 	description = "Stone Brick",
-	tiles = {"default_stone_brick.png"},
+	block_tiles = {"default_stone_brick.png"},
 	groups = {cracky=5, stone=1},
 	sounds = default.node_sound_stone_defaults(),
 })
@@ -39,7 +39,7 @@ bk_game.register_nodes("desert_stonebrick", {
 	slab = true,
 	source = "blocks:desert_stone",
 	description = "Desert Stone Brick",
-	tiles = {"default_desert_stone_brick.png"},
+	block_tiles = {"default_desert_stone_brick.png"},
 	groups = {cracky=5, stone=1},
 	sounds = default.node_sound_stone_defaults(),
 })
@@ -126,7 +126,7 @@ bk_game.register_nodes("sandstone", {
 	slab = true,
 	source = "default:sand",
 	description = "Sandstone",
-	tiles = {"default_sandstone.png"},
+	block_tiles = {"default_sandstone.png"},
 	is_ground_content = true,
 	groups = {crumbly=4,cracky=4},
 	sounds = default.node_sound_stone_defaults(),
@@ -137,7 +137,7 @@ bk_game.register_nodes("sandstonebrick", {
 	slab = true,
 	source = "blocks:sandstone",
 	description = "Sandstone Brick",
-	tiles = {"default_sandstone_brick.png"},
+	block_tiles = {"default_sandstone_brick.png"},
 	is_ground_content = true,
 	groups = {cracky=5},
 	sounds = default.node_sound_stone_defaults(),
@@ -147,7 +147,7 @@ bk_game.register_nodes("clay", {
 	stair = true,
 	slab = true,
 	description = "Clay",
-	tiles = {"default_clay.png"},
+	block_tiles = {"default_clay.png"},
 	is_ground_content = true,
 	groups = {crumbly=6},
 	drop = "default:clay_lump 4",
@@ -157,8 +157,8 @@ bk_game.register_nodes("clay", {
 bk_game.register_nodes("brick", {
 	stair = true,
 	slab = true,
-	description = "Brick Block",
-	tiles = {"default_brick.png"},
+	description = "Brick",
+	block_tiles = {"default_brick.png"},
 	groups = {cracky=4},
 	sounds = default.node_sound_stone_defaults(),
 })
@@ -255,7 +255,7 @@ bk_game.register_nodes("glass", {
 	slab = true,
 	description = "Glass",
 	drawtype = "glasslike",
-	tiles = {"default_glass.png"},
+	block_tiles = {"default_glass.png"},
 	inventory_image = minetest.inventorycube("default_glass.png"),
 	paramtype = "light",
 	sunlight_propagates = true,
@@ -329,7 +329,7 @@ minetest.register_node("default:sign_wall", {
 minetest.register_node("default:cloud", {
 	description = "Cloud",
 	tiles = {"default_cloud.png"},
-	
+
 	sounds = default.node_sound_defaults(),
 	groups = {not_in_creative_inventory=1, cracky=1},
 })
@@ -356,11 +356,11 @@ minetest.register_node("default:water_flowing", {
 	paramtype2 = "flowingliquid",
 	walkable = false,
 	pointable = false,
-	
+
 	diggable = false,
 	buildable_to = true,
 	drop = "",
-	
+
 	liquidtype = "flowing",
 	liquid_alternative_flowing = "default:water_flowing",
 	liquid_alternative_source = "default:water_source",
@@ -391,11 +391,11 @@ minetest.register_node("default:water_source", {
 	walkable = false,
 	pointable = false,
 	diggable = false,
-	
+
 	buildable_to = true,
 	liquid_renewable = false,
 	drop = "",
-	
+
 	liquidtype = "source",
 	liquid_alternative_flowing = "default:water_flowing",
 	liquid_alternative_source = "default:water_source",
@@ -429,9 +429,9 @@ minetest.register_node("default:lava_flowing", {
 	pointable = false,
 	diggable = false,
 	buildable_to = true,
-	
+
 	drop = "",
-	
+
 	liquidtype = "flowing",
 	liquid_alternative_flowing = "default:lava_flowing",
 	liquid_alternative_source = "default:lava_source",
@@ -460,12 +460,12 @@ minetest.register_node("default:lava_source", {
 	paramtype = "light",
 	light_source = LIGHT_MAX - 1,
 	walkable = false,
-	
+
 	pointable = false,
 	diggable = false,
 	buildable_to = true,
 	drop = "",
-	
+
 	liquidtype = "source",
 	liquid_alternative_flowing = "default:lava_flowing",
 	liquid_alternative_source = "default:lava_source",
@@ -699,13 +699,13 @@ minetest.register_abm({
 		local srclist = inv:get_list("src")
 		local cooked = nil
 		local aftercooked
-		
+
 		if srclist then
 			cooked, aftercooked = minetest.get_craft_result({method = "cooking", width = 1, items = srclist})
 		end
-		
+
 		local was_active = false
-		
+
 		if meta:get_float("fuel_time") < meta:get_float("fuel_totaltime") then
 			was_active = true
 			meta:set_float("fuel_time", meta:get_float("fuel_time") + 1)
@@ -723,7 +723,7 @@ minetest.register_abm({
 				meta:set_string("src_time", 0)
 			end
 		end
-		
+
 		if meta:get_float("fuel_time") < meta:get_float("fuel_totaltime") then
 			local percent = math.floor(meta:get_float("fuel_time") /
 					meta:get_float("fuel_totaltime") * 100)
@@ -738,7 +738,7 @@ minetest.register_abm({
 		local cooked = nil
 		local fuellist = inv:get_list("fuel")
 		local srclist = inv:get_list("src")
-		
+
 		if srclist then
 			cooked = minetest.get_craft_result({method = "cooking", width = 1, items = srclist})
 		end
@@ -764,7 +764,7 @@ minetest.register_abm({
 
 		meta:set_string("fuel_totaltime", fuel.time)
 		meta:set_string("fuel_time", 0)
-		
+
 		inv:set_stack("fuel", 1, afterfuel.items[1])
 	end,
 })
@@ -798,7 +798,7 @@ bk_game.register_nodes("obsidian_glass", {
 	slab = true,
 	description = "Obsidian Glass",
 	drawtype = "glasslike",
-	tiles = {"default_obsidian_glass.png"},
+	block_tiles = {"default_obsidian_glass.png"},
 	paramtype = "light",
 	sunlight_propagates = true,
 	sounds = default.node_sound_glass_defaults(),
@@ -810,7 +810,7 @@ bk_game.register_nodes("obsidian", {
 	slab = true,
 	source = "blocks:obsidian_shard",
 	description = "Obsidian",
-	tiles = {"default_obsidian.png"},
+	block_tiles = {"default_obsidian.png"},
 	is_ground_content = true,
 	sounds = default.node_sound_stone_defaults(),
 	groups = {cracky=4,level=2},

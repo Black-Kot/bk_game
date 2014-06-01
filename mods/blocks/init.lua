@@ -1,11 +1,40 @@
 bk_game = {}
 
+function bk_game.register_block(name, def)
+	minetest.register_node(":blocks:"..name, {
+		description = def.description.." Block",
+		tiles = def.block_tiles,
+		particle_image = def.block_tiles,
+		groups = def.groups,
+		is_ground_content = def.is_ground_content,
+		drop = "blocks:"..name,
+		sounds = def.sounds,
+	})
+
+	if def.source then
+		minetest.register_craft({
+			output = "blocks:"..name,
+			recipe = {
+				{def.source, def.source, ""},
+				{def.source, def.source, ""},
+			}
+		})
+
+		minetest.register_craft({
+			output = def.source.." 4",
+			recipe = {
+				{"blocks:"..name},
+			}
+		})
+	end
+end
+
 function bk_game.register_stair(name, def)
 	local name = name:remove_modname_prefix()
 	minetest.register_node(":blocks:"..name.."_stair", {
 		description = def.description.." Stair",
 		drawtype = "nodebox",
-		tiles = def.tiles,
+		tiles = def.block_tiles,
 		paramtype = "light",
 		paramtype2 = "facedir",
 		is_ground_content = true,
@@ -43,7 +72,7 @@ function bk_game.register_stair(name, def)
 	minetest.register_node(":blocks:"..name.."_stair_upside_down", {
 		drop = "blocks:"..name.."_stair",
 		drawtype = "nodebox",
-		tiles = def.tiles,
+		tiles = def.block_tiles,
 		paramtype = "light",
 		paramtype2 = "facedir",
 		is_ground_content = true,
@@ -94,7 +123,7 @@ function bk_game.register_slab(name, def)
 	minetest.register_node(":blocks:"..name.."_slab",{
 		description = def.description.." Slab",
 		drawtype = "nodebox",
-		tiles = def.tiles,
+		tiles = def.block_tiles,
 		paramtype = "light",
 		sunlight_propagates = def.sunlight_propagates,
 		is_ground_content = true,
@@ -165,7 +194,7 @@ function bk_game.register_slab(name, def)
 	minetest.register_node(":blocks:"..name.."_slab_upside_down", {
 		drop = "blocks:"..name.."_slab",
 		drawtype = "nodebox",
-		tiles = def.tiles,
+		tiles = def.block_tiles,
 		paramtype = "light",
 		is_ground_content = true,
 		groups = def.groups,
@@ -219,8 +248,8 @@ function bk_game.register_column(name, def)
 				{-0.2, -0.5, -0.5, 0.2, 0.5, 0.5},
 			},
 		},
-		tiles = {"blocks_"..name..".png"},
-		particle_image = {"blocks_"..name..".png"},
+		tiles = {def.default_texture},
+		particle_image = def.default_texture,
 		groups = def.groups,
 		sounds = default.node_sound_stone_defaults(),
 	})
@@ -260,10 +289,10 @@ function bk_game.register_pyramid(name, def)
 				{-0.1, 0.3, -0.1, 0.1, 0.5, 0.1},
 			},
 		},
-	tiles = {"blocks_"..name..".png"},
-	particle_image = {"blocks_"..name..".png"},
-	groups = def.groups,
-	sounds = default.node_sound_stone_defaults(),
+		tiles = {def.default_texture},
+		particle_image = def.default_texture,
+		groups = def.groups,
+		sounds = default.node_sound_stone_defaults(),
 	})
 
 	minetest.register_craft({
@@ -285,45 +314,28 @@ function bk_game.register_pyramid(name, def)
 end
 
 function bk_game.register_nodes(name, def)
-
-	if not def.tiles then
-		def.tiles = {"blocks_"..name..".png"}
+	if not def.block_tiles then
+		def.block_tiles = {"blocks_"..name..".png"}
 	end
 
-	if not def.sounds then
-		def.sounds = default.node_sound_stone_defaults()
+	if not def.default_texture then
+		def.default_texture = def.block_tiles[1]
 	end
+
 	if def.level == nil then
-		def.level=2
+		def.level=5
 	end
+
 	if not def.groups then
 		def.groups = {cracky=def.level, node=1}
 		def.is_ground_content = true
 	end
 
-
-
-	if def.source then
-		if not def.drop then
-			def.drop = "blocks:"..name
-		end
-		minetest.register_craft({
-			output = "blocks:"..name,
-			recipe = {
-				{def.source, def.source, ""},
-				{def.source, def.source, ""},
-			}
-		})
-
-		minetest.register_craft({
-			output = def.source.." 4",
-			recipe = {
-				{"blocks:"..name},
-			}
-		})
+	if not def.sounds then
+		def.sounds = default.node_sound_stone_defaults()
 	end
 
-	minetest.register_node(":blocks:"..name, def)
+	bk_game.register_block(name, def)
 
 	if def.slab == true then
 		bk_game.register_slab(name, def)
