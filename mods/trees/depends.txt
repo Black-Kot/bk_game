@@ -3,3 +3,4 @@ blocks
 doors
 chest
 utils
+ladders
