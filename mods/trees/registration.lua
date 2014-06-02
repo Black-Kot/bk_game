@@ -49,7 +49,7 @@ function bk_game.register_tree(name, TreeDef)
 	minetest.register_craftitem(tree.name.."_plank", {
 		description = tree.description.." Plank",
 		inventory_image = tree.textures.plank,
-		group = {plank=1, wood=1},
+		groups = {plank=1},
 	})
 	
 	minetest.register_craftitem(tree.name.."_stick", {
