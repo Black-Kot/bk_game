@@ -2,6 +2,7 @@ bk_game = {}
 
 function bk_game.register_block(name, def)
 	minetest.register_node(":blocks:"..name, {
+		drawtype = def.drawtype or "normal",
 		description = def.description.." Block",
 		tiles = def.block_tiles,
 		particle_image = def.block_tiles,
