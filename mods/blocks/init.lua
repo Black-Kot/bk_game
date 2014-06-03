@@ -1,9 +1,13 @@
 bk_game = {}
 
 function bk_game.register_block(name, def)
+
 	minetest.register_node(":blocks:"..name, {
-		drawtype = def.drawtype or "normal",
 		description = def.description.." Block",
+		drawtype = def.drawtype or "normal",
+		paramtype = def.paramtype or nil,
+		is_ground_content = def.is_ground_content or true,
+		sunlight_propagates = def.sunlight_propagates or false,
 		tiles = def.block_tiles,
 		particle_image = def.block_tiles,
 		groups = def.groups,
@@ -323,12 +327,12 @@ function bk_game.register_nodes(name, def)
 		def.default_texture = def.block_tiles[1]
 	end
 
-	if def.level == nil then
+	if not def.level then
 		def.level=5
 	end
 
 	if not def.groups then
-		def.groups = {cracky=def.level, node=1}
+		def.groups = {cracky=def.level}
 		def.is_ground_content = true
 	end
 
