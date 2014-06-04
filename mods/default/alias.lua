@@ -11,8 +11,18 @@ minetest.register_alias("default:obsidian","blocks:obsidian")
 minetest.register_alias("default:stick","group:stick")
 minetest.register_alias("ores:chromium","ores:aluminium")
 minetest.register_alias("ores:tin","ores:titan")
-minetest.register_alias("group:wood","group:plank")
+minetest.register_alias("group:wood","group:planks")
 minetest.register_alias("default:sandstone", "blocks:sandstone")
 
 -- fixes know errors in mapgenv6
 minetest.register_alias("default:cobble_node", "air")
+
+-- fixes for deleted plank
+minetest.register_alias("trees:ash_plank","trees:ash_planks")
+minetest.register_alias("trees:aspen_plank","trees:aspen_planks")
+minetest.register_alias("trees:birch_plank","trees:birch_planks")
+minetest.register_alias("trees:chestnut_plank","trees:chestnut_planks")
+minetest.register_alias("trees:maple_plank","trees:maple_planks")
+minetest.register_alias("trees:pine_plank","trees:pine_planks")
+minetest.register_alias("trees:sequoia_plank","trees:sequoia_planks")
+minetest.register_alias("trees:spruce_plank","trees:spruce_planks")
