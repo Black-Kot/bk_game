@@ -45,12 +45,6 @@ function bk_game.register_tree(name, TreeDef)
 
 	bk_game.registered_trees[name] = tree
 	table.insert(bk_game.registered_trees_list, tree.name)
-
-	minetest.register_craftitem(tree.name.."_plank", {
-		description = tree.description.." Plank",
-		inventory_image = tree.textures.plank,
-		groups = {plank=1},
-	})
 	
 	minetest.register_craftitem(tree.name.."_stick", {
 		description = tree.description.." Stick",
@@ -80,7 +74,7 @@ function bk_game.register_tree(name, TreeDef)
 		wield_image = tree.textures.log,
 		groups = {log=1,choppy=5,snappy=5,flammable=2,dropping_node=1,drop_on_dig=1},
 		sounds = default.node_sound_wood_defaults(),
-		drop = tree.name.."_plank 4",
+		drop = tree.name.."_log",
 		--drop_on_dropping = tree.name.."_log",
 		drawtype = "nodebox",
 		paramtype = "light",
@@ -239,9 +233,12 @@ function bk_game.register_tree(name, TreeDef)
 			end
 		end,
 	})
-
+	TreeDef.source = "blocks:"..tree.name:remove_modname_prefix().."_planks"
+	TreeDef.stair = true
+	TreeDef.slab = true
+	TreeDef.column = false
+	TreeDef.pyramid = false
 	bk_game.register_nodes(tree.name:remove_modname_prefix().."_planks", {
-		source = tree.name.."_plank",
 		slab=true,
 		stair=true,
 		description = tree.description.." Planks",
@@ -249,19 +246,19 @@ function bk_game.register_tree(name, TreeDef)
 		groups = {planks=1,snappy=5,choppy=5,oddly_breakable_by_hand=2,flammable=3,drop_on_dig=1},
 		sounds = default.node_sound_wood_defaults(),
 	})
-	
-	TreeDef.source = tree.name.."_plank"
-	TreeDef.stair = true
-	TreeDef.slab = true
-	TreeDef.column = false
-	TreeDef.pyramid = false
+	minetest.register_craft({
+		type = "shapeless",
+		output = "blocks:"..tree.name:remove_modname_prefix().."_planks",
+		recipe = {tree.name.."_log"}
+	})
+
 	bk_game.register_chest(name:remove_modname_prefix(), TreeDef)
 
-	TreeDef.source =  tree.name.."_stick"
+	TreeDef.source = tree.name.."_stick"
 	bk_game.register_ladder(name:remove_modname_prefix(),TreeDef)
 
 	bk_game.register_door(tree.name:remove_modname_prefix(), {
-		source = tree.name.."_plank",
+		source = "blocks:"..tree.name:remove_modname_prefix().."_planks",
 		description = tree.description,
 		main_texture = tree.textures.planks,
 	})
