@@ -12,7 +12,7 @@ function bk_game.register_block(name, def)
 		particle_image = def.block_tiles,
 		groups = def.groups,
 		is_ground_content = def.is_ground_content,
-		drop = "blocks:"..name,
+		drop = def.drop or "blocks:"..name,
 		sounds = def.sounds,
 	})
 
