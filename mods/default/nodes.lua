@@ -356,16 +356,13 @@ minetest.register_node("default:water_flowing", {
 	paramtype2 = "flowingliquid",
 	walkable = false,
 	pointable = false,
-
 	diggable = false,
 	buildable_to = true,
 	drop = "",
-
 	liquidtype = "flowing",
 	liquid_alternative_flowing = "default:water_flowing",
 	liquid_alternative_source = "default:water_source",
 	liquid_viscosity = WATER_VISC,
-	liquid_renewable = false,
 	freezemelt = "default:snow",
 	post_effect_color = {a=64, r=100, g=100, b=200},
 	groups = {water=3, liquid=3, puts_out_fire=1, not_in_creative_inventory=1, freezes=1, melt_around=1},
@@ -391,11 +388,8 @@ minetest.register_node("default:water_source", {
 	walkable = false,
 	pointable = false,
 	diggable = false,
-
 	buildable_to = true,
-	liquid_renewable = false,
 	drop = "",
-
 	liquidtype = "source",
 	liquid_alternative_flowing = "default:water_flowing",
 	liquid_alternative_source = "default:water_source",
@@ -429,14 +423,12 @@ minetest.register_node("default:lava_flowing", {
 	pointable = false,
 	diggable = false,
 	buildable_to = true,
-
 	drop = "",
-
 	liquidtype = "flowing",
 	liquid_alternative_flowing = "default:lava_flowing",
 	liquid_alternative_source = "default:lava_source",
 	liquid_viscosity = LAVA_VISC,
-	liquid_renewable = fales,
+	liquid_renewable = false,
 	damage_per_second = 4*2,
 	post_effect_color = {a=192, r=255, g=64, b=0},
 	groups = {lava=3, liquid=2, hot=3, igniter=1, not_in_creative_inventory=1},
@@ -460,17 +452,15 @@ minetest.register_node("default:lava_source", {
 	paramtype = "light",
 	light_source = LIGHT_MAX - 1,
 	walkable = false,
-
 	pointable = false,
 	diggable = false,
 	buildable_to = true,
 	drop = "",
-
 	liquidtype = "source",
 	liquid_alternative_flowing = "default:lava_flowing",
 	liquid_alternative_source = "default:lava_source",
 	liquid_viscosity = LAVA_VISC,
-	liquid_renewable = fales,
+	liquid_renewable = false,
 	damage_per_second = 4*2,
 	post_effect_color = {a=192, r=255, g=64, b=0},
 	groups = {lava=3, liquid=2, hot=3, igniter=1},
