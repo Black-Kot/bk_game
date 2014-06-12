@@ -96,12 +96,12 @@ local function generate_peat(name, wherein, minp, maxp, seed, chunks_per_volume,
 					if minetest.env:get_node(p2).name == wherein then
 						if minetest.env:get_node({x=p2.x, y=p2.y + 1, z=p2.z}).name == "default:water_source" and
 						minetest.env:get_node({x=p2.x, y=p2.y + 2, z=p2.z}).name == "air" then
-							minetest.env:set_node(p2, {name=name})
+							minetest.env:add_node(p2, {name=name})
 						end
 						if minetest.env:get_node({x=p2.x, y=p2.y + 1, z=p2.z}).name == "default:water_source" and
 						minetest.env:get_node({x=p2.x, y=p2.y + 2, z=p2.z}).name == "default:water_source" and 
 						minetest.env:get_node({x=p2.x, y=p2.y + 3, z=p2.z}).name == "air" then
-							minetest.env:set_node(p2, {name=name})
+							minetest.env:add_node(p2, {name=name})
 						end
 						
 					end
@@ -150,11 +150,11 @@ local function generate_ore(name, wherein, minp, maxp, seed, chunks_per_volume, 
 							-- perlin
 							if type(noise_min) == "number" or type(noise_max) == "number" then
 								if ore_noise2 >= noise_min and ore_noise2 <= noise_max then
-									minetest.env:set_node(p2, {name=name})
+									minetest.env:add_node(p2, {name=name})
 									print("setnode("..p2.x..","..p2.y..","..p2.z.." : "..name..")")
 								end
 							else
-								minetest.env:set_node(p2, {name=name})
+								minetest.env:add_node(p2, {name=name})
 								print("setnode("..p2.x..","..p2.y..","..p2.z.." : "..name..")")
 							end
 							
@@ -219,11 +219,11 @@ local function generate_ore(name, wherein, minp, maxp, seed, chunks_per_volume, 
 							-- perlin
 							if type(noise_min) == "number" or type(noise_max) == "number" then
 								if ore_noise2 >= noise_min and ore_noise2 <= noise_max then
-									minetest.env:set_node(p2, {name=name})
+									minetest.env:add_node(p2, {name=name})
 									--print("setnode("..p2.x..","..p2.y..","..p2.z.." : "..name..")")
 								end
 							else
-								minetest.env:set_node(p2, {name=name})
+								minetest.env:add_node(p2, {name=name})
 								--print("setnode("..p2.x..","..p2.y..","..p2.z.." : "..name..")")
 							end
 							

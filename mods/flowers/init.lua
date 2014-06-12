@@ -1,6 +1,8 @@
 local MAX_RATIO = 2000
 local GROWING_DELAY = 3600
 
+bk_game.registered_flowers_list = {}
+
 function is_node_in_cube(nodenames, node_pos, radius)
 	for x = node_pos.x - radius, node_pos.x + radius do
 		for y = node_pos.y - radius, node_pos.y + radius do
@@ -19,16 +21,6 @@ function is_node_in_cube(nodenames, node_pos, radius)
 end
 
 -- Items
-minetest.register_craftitem("flowers:pot", {
-	drawtype = "plantlike",
-	image = "flower_pot.png",
-	stack_max = 1,
-	visual_scale = 1.0,
-	sunlight_propagates = true,
-	paramtype = "light",
-	walkable = true,
-	material = minetest.digprop_constanttime(0.5),
-})
 
 minetest.register_node("flowers:soil", {
 	description = "Soil",
@@ -39,7 +31,15 @@ minetest.register_node("flowers:soil", {
 	sounds = default.node_sound_dirt_defaults(),
 })
 
-
+minetest.register_craftitem("flowers:pot", {
+	drawtype = "plantlike",
+	image = "flowers_pot.png",
+	visual_scale = 1.0,
+	sunlight_propagates = true,
+	paramtype = "light",
+	walkable = true,
+	material = minetest.digprop_constanttime(0.5),
+})
 
 minetest.register_craft({
 	output = "flowers:flower_pot",
@@ -61,19 +61,13 @@ function bk_game.register_flower(name, def)
 		paramtype = "light",
 		walkable = false,
 		buildable_to = true,
-		groups = {snappy=6,oddly_breakable_by_hand=2,flower=1,flora=1,attached_node=1,color_white=1},
+		groups = {snappy=6,oddly_breakable_by_hand=3,flower=1,flora=1,attached_node=1,color_white=1},
 		sounds = default.node_sound_leaves_defaults(),
 		selection_box = {
 			type = "fixed",
 			fixed = { -0.15, -0.5, -0.15, 0.15, 0.2, 0.15 },
 		},
-		drop = {
-			max_items = 1,
-			items = {
-				{items = {"flowers:"..name.."_seed 5"},rarity = 5},
-				{items = {"flowers:"..name}},
-			}
-		},
+		drop = "flowers:"..name,
 	})
 
 	if def.seed ~= false then
@@ -90,7 +84,7 @@ function bk_game.register_flower(name, def)
 			buildable_to = true,
 			is_ground_content = true,
 			drop = "flowers:"..name.."_seed",
-			groups = {snappy=6,oddly_breakable_by_hand=2,flora=1,grass=1,attached_node=1,not_in_creative_inventory=1},
+			groups = {snappy=6,oddly_breakable_by_hand=3,flora=1,grass=1,attached_node=1,not_in_creative_inventory=1},
 			sounds = default.node_sound_leaves_defaults(),
 			selection_box = {
 				type = "fixed",
@@ -142,6 +136,11 @@ function bk_game.register_flower(name, def)
 			end,
 		})
 
+		minetest.register_craft({
+			output = "flowers:"..name.."_seed 3",
+			recipe = {{"flowers:"..name}},
+		})
+
 		minetest.register_abm({
 			nodenames = {"flowers:"..name.."_grass"},
 			interval = 1,
@@ -165,6 +164,7 @@ function bk_game.register_flower(name, def)
 	end
 
 	if def.pot ~= false then
+	
 		minetest.register_craftitem(":flowers:"..name.."_pot", {
 			drawtype = "plantlike",
 			image = "flowers_"..name.."_pot.png",
@@ -185,30 +185,14 @@ function bk_game.register_flower(name, def)
 		})
 	end
 
-	minetest.register_abm({
+	flower = {
+		name = "flowers:"..name,
 		nodenames = def.nodenames,
-		interval = def.interval,
-		chance = 30,
-		action = function(pos, node, active_object_count, active_object_count_wider)
-			local p_top = {
-				x = pos.x,
-				y = pos.y + 1,
-				z = pos.z
-			}
-			local n_top = minetest.env:get_node(p_top)
-			local rnd = math.random(1, MAX_RATIO)
-			if (MAX_RATIO - def.chance < rnd) then
-				local flower_in_range = is_node_in_cube("flowers:"..name, p_top, def.spacing)
-				if (n_top.name == "air") and (flower_in_range == false) then
-					minetest.env:add_node(p_top, {name = "flowers:"..name})
-				end
-			end
-		end
-	})
-	
+		chance = def.chance,
+	}
+	table.insert(bk_game.registered_flowers_list, flower)
 end
-
-
+			
 flowers_list = {
 
 ["rose"] = {description = "Rose", interval=GROWING_DELAY*2,chance = 4, spacing = 15, nodenames={"default:dirt_with_grass"}},
@@ -221,10 +205,66 @@ flowers_list = {
 
 ["viola"] = {description = "Viola", interval=GROWING_DELAY/2,chance = 4, spacing = 15, nodenames={"default:dirt_with_grass"}},
 
-["waterlily"] = {description="Waterlily", interval=GROWING_DELAY*2, chance=30, spacing=15, nodenames={"default:water_source"}, seed=false, pot=false},
+["waterlily"] = {description="Waterlily", interval=GROWING_DELAY*2, chance=10, spacing=15, nodenames={"default:water_source"}, seed=false, pot=false},
 
 }
 
 for metal, descr in pairs(flowers_list) do
     bk_game.register_flower(metal, descr)
 end
+
+local function generate(flower, minp, maxp, seed)
+	local perlin1 = minetest.env:get_perlin(329, 3, 0.6, 100)
+	local pr = PseudoRandom(seed)
+	-- Assume X and Z lengths are equal
+	local divlen = 16
+	local divs = (maxp.x-minp.x)/divlen+1;
+	for divx=0,divs-1 do
+		for divz=0,divs-1 do
+			local x0 = minp.x + math.floor((divx+0)*divlen)
+			local z0 = minp.z + math.floor((divz+0)*divlen)
+			local x1 = minp.x + math.floor((divx+1)*divlen)
+			local z1 = minp.z + math.floor((divz+1)*divlen)
+			-- Determine flower amount from perlin noise
+			local flower_amount = math.floor(perlin1:get2d({x=x0, y=z0}) * 5 + 0)
+			-- Find random positions for flower based on this random
+			local pr = PseudoRandom(seed)
+			for i=0,flower_amount do
+				local x = pr:next(x0, x1)
+				local z = pr:next(z0, z1)
+				-- Find ground level (0...30)
+				local ground_y = nil
+				for y=30,0,-1 do
+					if table.contains(flower.nodenames, minetest.env:get_node({x=x,y=y,z=z}).name) then
+						ground_y = y
+						break
+					end
+				end
+				if ground_y then
+					if pr:next(1, flower.chance) == flower.chance then
+						minetest.env:add_node({x=x,y=ground_y+1,z=z}, {name = flower.name})
+					end
+				end
+			end
+		end
+	end
+end
+
+minetest.register_on_generated(function(minp, maxp, seed)
+	local pr = PseudoRandom(seed)
+	local n = pr:next(1,7)
+	if pr:next(1,2) == 1 then
+		n = n + 1
+	end
+	if pr:next(1, 10) == 1 then
+		n = n + 1
+	end
+	if pr:next(1, 20) == 1 then
+		n = n + 1
+	end
+	for i = 1, n do
+		for _, flower in ipairs(bk_game.registered_flowers_list) do
+			generate(flower, minp, maxp, seed + _ + n)
+		end
+	end
+end)

@@ -41,7 +41,7 @@ list = {
     ["petrified_wood"] = {description = "Petrified Wood", },
     ["satin_spar"] = {description = "Satin Spar", },
     ["selenite"] = {description = "Selenite", },
-    ["serpentine"] = {description = "Serpentine", }
+    ["serpentine"] = {description = "Serpentine", },
     ["uranium"] = {description = "Uranium", chest=false, block=false, height_max=-8000},
 }
 
