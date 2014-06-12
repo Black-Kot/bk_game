@@ -16,13 +16,3 @@ minetest.register_alias("default:sandstone", "blocks:sandstone")
 
 -- fixes know errors in mapgenv6
 minetest.register_alias("default:cobble_node", "air")
-
--- fixes for deleted plank
-minetest.register_alias("trees:ash_plank","blocks:ash_planks")
-minetest.register_alias("trees:aspen_plank","blocks:aspen_planks")
-minetest.register_alias("trees:birch_plank","blocks:birch_planks")
-minetest.register_alias("trees:chestnut_plank","blocks:chestnut_planks")
-minetest.register_alias("trees:maple_plank","blocks:maple_planks")
-minetest.register_alias("trees:pine_plank","blocks:pine_planks")
-minetest.register_alias("trees:sequoia_plank","blocks:sequoia_planks")
-minetest.register_alias("trees:spruce_plank","blocks:spruce_planks")
