@@ -57,8 +57,14 @@ function bk_game.register_ladder(name, def)
 		sounds = default.node_sound_wood_defaults(),
 	})
 
+	if not def.ladders_from_source then
+		craft_count = ""
+	else
+		craft_count = " "..def.ladders_from_source
+	end
+
 	minetest.register_craft({
-		output = "ladders:"..name,
+		output = "ladders:"..name..craft_count,
 		recipe = {
 			{def.source, "", def.source},
 			{def.source, def.source, def.source},
