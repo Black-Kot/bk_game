@@ -7,7 +7,7 @@ function bk_game.register_mineral(name, mineralDef)
 	mineralDef.source = mineralDef.lump
 	mineralDef.level=4
 	bk_game.register_ore(name, mineralDef)
-	
+
 	if not mineralDef.block and mineralDef.block ~= false then
 		if mineralDef.stair == nil then
 			mineralDef.stair = true
@@ -22,11 +22,11 @@ function bk_game.register_mineral(name, mineralDef)
 			mineralDef.pyramid = true
 		end
 		bk_game.register_nodes(name, mineralDef)
-	end	
+	end
 	if not mineralDef.chest and mineralDef.chest ~= false then
 		bk_game.register_chest(name, mineralDef)
 	end
-	
+
 	--bk_game.register_door(name, mineralDef)  -- no doors from minerals
 end
 
@@ -42,8 +42,9 @@ list = {
     ["satin_spar"] = {description = "Satin Spar", },
     ["selenite"] = {description = "Selenite", },
     ["serpentine"] = {description = "Serpentine", }
+    ["uranium"] = {description = "Uranium", chest=false, block=false, height_max=-8000},
 }
 
 for mineral, desc in pairs(list) do
-    bk_game.register_mineral(mineral, desc) 
+    bk_game.register_mineral(mineral, desc)
 end
