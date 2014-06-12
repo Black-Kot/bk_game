@@ -32,13 +32,8 @@ minetest.register_node("flowers:soil", {
 })
 
 minetest.register_craftitem("flowers:pot", {
-	drawtype = "plantlike",
-	image = "flowers_pot.png",
-	visual_scale = 1.0,
-	sunlight_propagates = true,
-	paramtype = "light",
-	walkable = true,
-	material = minetest.digprop_constanttime(0.5),
+	description = "Pot",
+	inventory_image = "flowers_pot.png",
 })
 
 minetest.register_craft({
@@ -51,6 +46,10 @@ minetest.register_craft({
 
 function bk_game.register_flower(name, def)
 
+	groups = {snappy=6,oddly_breakable_by_hand=3,flower=1,flora=1,attached_node=1}
+
+	def.groups = merge(def.groups, groups)
+
 	minetest.register_node(":flowers:"..name, {
 		description = def.description,
 		drawtype = "plantlike",
@@ -61,7 +60,7 @@ function bk_game.register_flower(name, def)
 		paramtype = "light",
 		walkable = false,
 		buildable_to = true,
-		groups = {snappy=6,oddly_breakable_by_hand=3,flower=1,flora=1,attached_node=1,color_white=1},
+		groups = def.groups,
 		sounds = default.node_sound_leaves_defaults(),
 		selection_box = {
 			type = "fixed",
@@ -84,7 +83,7 @@ function bk_game.register_flower(name, def)
 			buildable_to = true,
 			is_ground_content = true,
 			drop = "flowers:"..name.."_seed",
-			groups = {snappy=6,oddly_breakable_by_hand=3,flora=1,grass=1,attached_node=1,not_in_creative_inventory=1},
+			groups = def.groups,
 			sounds = default.node_sound_leaves_defaults(),
 			selection_box = {
 				type = "fixed",
@@ -195,15 +194,17 @@ end
 			
 flowers_list = {
 
-["rose"] = {description = "Rose", interval=GROWING_DELAY*2,chance = 4, spacing = 15, nodenames={"default:dirt_with_grass"}},
+["rose"] = {description = "Rose", interval=GROWING_DELAY*2,chance = 4, spacing = 15, nodenames={"default:dirt_with_grass"}, groups={color_red=1}},
 
-["dandelion_yellow"] = {description = "Dandelion Yellow", interval=GROWING_DELAY/2,chance = 4, spacing = 15, nodenames={"default:dirt_with_grass"}},
+["dandelion_yellow"] = {description = "Dandelion Yellow", interval=GROWING_DELAY/2,chance = 4, spacing = 15, nodenames={"default:dirt_with_grass"}, groups={color_yellow=1}},
 
-["dandelion_white"] = {description = "Sandelion White", interval=GROWING_DELAY/2,chance = 4, spacing = 15, nodenames={"default:dirt_with_grass"}},
+["dandelion_white"] = {description = "Dandelion White", interval=GROWING_DELAY/2,chance = 4, spacing = 15, nodenames={"default:dirt_with_grass"}, groups={color_white=1}},
 
-["tulip"] = {description = "Tulip", interval=GROWING_DELAY/2,chance = 4, spacing = 15, nodenames={"default:dirt_with_grass"}},
+["tulip"] = {description = "Tulip", interval=GROWING_DELAY/2,chance = 4, spacing = 15, nodenames={"default:dirt_with_grass"}, groups={color_orange=1}},
 
-["viola"] = {description = "Viola", interval=GROWING_DELAY/2,chance = 4, spacing = 15, nodenames={"default:dirt_with_grass"}},
+["viola"] = {description = "Viola", interval=GROWING_DELAY/2,chance = 4, spacing = 15, nodenames={"default:dirt_with_grass"}, groups={color_violet=1}},
+
+["geranium"] = {description = "Geranium", interval=GROWING_DELAY/2,chance = 4, spacing = 15, nodenames={"default:dirt_with_grass"}, groups={color_blue=1}},
 
 ["waterlily"] = {description="Waterlily", interval=GROWING_DELAY*2, chance=10, spacing=15, nodenames={"default:water_source"}, seed=false, pot=false},
 

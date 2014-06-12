@@ -79,7 +79,7 @@ minetest.register_chatcommand("delmine" , {
 			minetest.chat_send_player(name, "You don't have a mine`s now! Set it using /setmine <name>")
 			return
 		end
-		if minepos[name][param] then
+		if not minepos[name][param] then
             minetest.chat_send_player(name, "You don't have a mine "..n.." now! Set it using /setmine <name>")
             return
 		end

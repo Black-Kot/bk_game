@@ -75,11 +75,15 @@ end
 
 function merge(lhs, rhs)
 	local merged_table = {}
-	for _, v in ipairs(lhs) do
-		table.insert(merged_table, v)
+	if lhs then
+		for _, v in ipairs(lhs) do
+			table.insert(merged_table, v)
+		end
 	end
-	for _, v in ipairs(rhs) do
-		table.insert(merged_table, v)
+	if rhs then
+		for _, v in ipairs(rhs) do
+			table.insert(merged_table, v)
+		end
 	end
 	return merged_table
 end

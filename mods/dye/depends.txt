@@ -1,0 +1,4 @@
+flowers
+default
+ores
+minerals
