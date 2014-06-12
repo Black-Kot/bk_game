@@ -102,6 +102,6 @@ end
 
 bk_game.register_bucket("wood", {
 description = "Wood",
-source = "group:plank",
+source = "group:wood",
 not_lava = true,
 })

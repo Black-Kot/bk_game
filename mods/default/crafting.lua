@@ -78,8 +78,8 @@ minetest.register_craft({
 minetest.register_craft({
 	output = "default:sign_wall",
 	recipe = {
-		{"group:plank", "group:plank", "group:plank"},
-		{"group:plank", "group:plank", "group:plank"},
+		{"group:planks", "group:planks", "group:planks"},
+		{"group:planks", "group:planks", "group:planks"},
 		{"", "group:stick", ""},
 	}
 })
@@ -87,7 +87,7 @@ minetest.register_craft({
 minetest.register_craft({
 	output = "default:scaffolding 3",
 	recipe = {
-		{"group:plank", "group:plank", "group:plank"},
+		{"group:planks", "group:planks", "group:planks"},
 		{"", "group:stick", ""},
 		{"group:stick", "", "group:stick"},
 	}
