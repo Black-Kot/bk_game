@@ -11,7 +11,6 @@ function bk_game.register_block(name, def)
 		tiles = def.block_tiles,
 		particle_image = def.block_tiles,
 		groups = def.groups,
-		is_ground_content = def.is_ground_content,
 		drop = def.drop or "blocks:"..name,
 		sounds = def.sounds,
 	})

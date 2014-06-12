@@ -17,11 +17,11 @@ function load()
     if not cities then
 		cities = {}
 	end
-	
+
 	if not cities["spawn"] then
 		cities["spawn"] = {x=0, y=0, z=0}
 	end
-    
+
 	local input = io.open(spawns_file, "r")
     if input ~= nil then
     local text = ""
@@ -115,7 +115,7 @@ minetest.register_chatcommand("setspawn", {
 
 minetest.register_chatcommand("cities", {
 	params = "<name>",
-	description = "Set city for spawn point",
+	description = "List known cities",
 	privs = {},
 	func = function(name, param)
 		local text = ""
@@ -158,7 +158,7 @@ minetest.register_globalstep(function(dtime)
 		local text = minetest.serialize(cities)
 		output:write(text)
 		io.close(output)
-		
+
 	    local output = io.open(spawns_file, "w")
 		local text = minetest.serialize(spawns)
 		output:write(text)
