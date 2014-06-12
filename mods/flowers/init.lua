@@ -45,10 +45,15 @@ minetest.register_craft({
 })
 
 function bk_game.register_flower(name, def)
-
-	groups = {snappy=6,oddly_breakable_by_hand=3,flower=1,flora=1,attached_node=1}
-
-	def.groups = merge(def.groups, groups)
+	if def.groups == nil then
+		def.groups = {}
+	end
+	
+	def.groups.snappy=6
+	def.groups.oddly_breakable_by_hand=3
+	def.groups.flower=1
+	def.groups.flora=1
+	def.groups.attached_node=1
 
 	minetest.register_node(":flowers:"..name, {
 		description = def.description,
