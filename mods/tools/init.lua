@@ -1,4 +1,4 @@
-function bk_game.register_tools(name, toolDef) 
+function bk_game.register_tools(name, toolDef)
 	if not toolDef.source or not toolDef or not name then
 		return
 	end
@@ -111,7 +111,7 @@ function bk_game.register_tools(name, toolDef)
 				{"group:stick"},
 			}
 		})
-	
+
 	end
 
 	-- Hoe`s
@@ -150,7 +150,7 @@ function bk_game.register_tools(name, toolDef)
 
 				-- turn the node into soil, wear out item and play sound
 				minetest.set_node(pointed_thing.under, {name="flowers:soil"})
-				itemstack:add_wear(65535/(toolDef.uses-1))
+				itemstack:add_wear(65535/(toolDef.uses*5-1))
 				return itemstack
 			end,
 		})
@@ -163,7 +163,7 @@ function bk_game.register_tools(name, toolDef)
 				{"", "group:stick", ""},
 			}
 		})
-	
+
 	end
 
 print("Register Tools "..toolDef.description.." [OK]")
@@ -204,7 +204,7 @@ minetest.register_item(":", {
 	bk_game.register_tools("wood", {
 		description = "Wood",
 		source = "group:planks", -- wood tools craft only from stick`s!
-		times = {[5] = 4.00, [6]=2.50,}, 
+		times = {[5] = 4.00, [6]=2.50,},
 		uses = 10,
 		sword = false, -- no wood sword
 		maxlevel = 5,
@@ -230,7 +230,54 @@ minetest.register_item(":", {
 		minetest.register_craft({
 			output = "tools:pick_adamant",
 			recipe = {
-				{"metals_adamant_lump.png", "metals_adamant_lump.png", "metals_adamant_lump.png"},
+				{"metals:adamant_ingot", "metals:adamant_ingot", "metals:adamant_ingot"},
+				{"", "group:stick", ""},
+				{"", "group:stick", ""},
+			}
+		})
+
+-- Adamant Hoe, indestructible
+
+		minetest.register_tool(":tools:hoe_adamant", {
+			description = "Adamant Hoe",
+			inventory_image = "tools_hoe_adamant.png",
+			on_use = function(itemstack, user, pointed_thing)
+				-- check if pointing at a node
+				if pointed_thing.type ~= "node" then
+					return
+				end
+
+				local under = minetest.get_node(pointed_thing.under)
+				local p = {x=pointed_thing.under.x, y=pointed_thing.under.y+1, z=pointed_thing.under.z}
+				local above = minetest.get_node(p)
+
+				-- return if any of the nodes is not registered
+				if not minetest.registered_nodes[under.name] then
+					return
+				end
+				if not minetest.registered_nodes[above.name] then
+					return
+				end
+
+				-- check if the node above the pointed thing is air
+				if above.name ~= "air" then
+					return
+				end
+
+				-- check if pointing at dirt
+				if minetest.get_item_group(under.name, "soil") ~= 1 then
+					return
+				end
+
+				-- turn the node into soil, wear out item and play sound
+				minetest.set_node(pointed_thing.under, {name="flowers:soil"})
+				return itemstack
+			end,
+		})
+		minetest.register_craft({
+			output = "tools:hoe_adamant",
+			recipe = {
+				{"metals:adamant_ingot", "metals:adamant_ingot", ""},
 				{"", "group:stick", ""},
 				{"", "group:stick", ""},
 			}

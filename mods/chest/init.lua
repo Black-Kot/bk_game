@@ -5,17 +5,15 @@ minetest.register_privilege("chest", {
 
 
 
-default.chest_formspec = 
-	"invsize[12,9;]"..
-	"list[current_name;main;0,0;12,5;]"..
-	"list[current_player;main;0,5;8,4;]"
+default.chest_formspec =
+	"invsize[10,5;]"..
+	"list[current_name;main;0,0;10,5;]"
 
 function default.get_locked_chest_formspec(pos)
 	local spos = pos.x .. "," .. pos.y .. "," ..pos.z
 	local formspec =
-		"invsize[12,9;]"..
-		"list[nodemeta:".. spos .. ";main;0,0;12,5;]"..
-		"list[current_player;main;0,5;8,4;]"
+		"invsize[10,5;]"..
+		"list[nodemeta:".. spos .. ";main;0,0;10,5;]"
 	return formspec
 end
 
@@ -29,7 +27,7 @@ function has_locked_chest_privilege(meta, player)
 end
 
 
-function bk_game.register_chest(name, def) 
+function bk_game.register_chest(name, def)
 
 minetest.register_craft({
 	output = "chest:"..name,

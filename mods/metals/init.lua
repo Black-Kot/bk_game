@@ -40,6 +40,7 @@ function bk_game.register_metal(name, metalDef)
 	-- Register metal products
 	metalDef.source = metalDef.ingot
 	metalDef.default_texture = "metals_"..name..".png"
+	metalDef.ladders_from_source = 3
 
 -- it`s broken by alloys
 	if metalDef.blocks and metalDef.blocks ~= false then
