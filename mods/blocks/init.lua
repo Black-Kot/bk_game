@@ -359,10 +359,10 @@ function bk_game.register_nodes(name, def)
 			source = nil,
 			brick = true,
 			flat = false,
-			stair = def.stair or true,
-			slab = def.slab or true,
-			column = def.column or true,
-			pyramid = def.pyramid or true,
+			stair = def.stair,
+			slab = def.slab,
+			column = def.column,
+			pyramid = def.pyramid,
 		})
 	end 
 
@@ -372,10 +372,10 @@ function bk_game.register_nodes(name, def)
 			source = "blocks:"..name,
 			brick = false,
 			flat = false,
-			stair = def.stair or true,
-			slab = def.slab or true,
-			column = def.column or true,
-			pyramid = def.pyramid or true,
+			stair = def.stair,
+			slab = def.slab,
+			column = def.column,
+			pyramid = def.pyramid,
 		})
 	end
 	
