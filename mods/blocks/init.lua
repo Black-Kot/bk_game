@@ -2,18 +2,10 @@ bk_game = {}
 
 function bk_game.register_block(name, def)
 
-	minetest.register_node(":blocks:"..name, {
-		description = def.description.." Block",
-		drawtype = def.drawtype or "normal",
-		paramtype = def.paramtype or nil,
-		is_ground_content = def.is_ground_content or true,
-		sunlight_propagates = def.sunlight_propagates or false,
-		tiles = def.block_tiles,
-		particle_image = def.block_tiles,
-		groups = def.groups,
-		drop = def.drop or "blocks:"..name,
-		sounds = def.sounds,
-	})
+-- we use copy table from real block
+local block = copy_table(def)
+block.description = def.description.." Block"
+	minetest.register_node(":blocks:"..name, block)
 
 	if def.source then
 		minetest.register_craft({
@@ -31,6 +23,7 @@ function bk_game.register_block(name, def)
 			}
 		})
 	end
+
 end
 
 function bk_game.register_stair(name, def)
@@ -38,7 +31,7 @@ function bk_game.register_stair(name, def)
 	minetest.register_node(":blocks:"..name.."_stair", {
 		description = def.description.." Stair",
 		drawtype = "nodebox",
-		tiles = def.block_tiles,
+		tiles = def.tiles,
 		paramtype = "light",
 		paramtype2 = "facedir",
 		is_ground_content = true,
@@ -76,7 +69,7 @@ function bk_game.register_stair(name, def)
 	minetest.register_node(":blocks:"..name.."_stair_upside_down", {
 		drop = "blocks:"..name.."_stair",
 		drawtype = "nodebox",
-		tiles = def.block_tiles,
+		tiles = def.tiles,
 		paramtype = "light",
 		paramtype2 = "facedir",
 		is_ground_content = true,
@@ -127,7 +120,7 @@ function bk_game.register_slab(name, def)
 	minetest.register_node(":blocks:"..name.."_slab",{
 		description = def.description.." Slab",
 		drawtype = "nodebox",
-		tiles = def.block_tiles,
+		tiles = def.tiles,
 		paramtype = "light",
 		sunlight_propagates = def.sunlight_propagates,
 		is_ground_content = true,
@@ -198,7 +191,7 @@ function bk_game.register_slab(name, def)
 	minetest.register_node(":blocks:"..name.."_slab_upside_down", {
 		drop = "blocks:"..name.."_slab",
 		drawtype = "nodebox",
-		tiles = def.block_tiles,
+		tiles = def.tiles,
 		paramtype = "light",
 		is_ground_content = true,
 		groups = def.groups,
@@ -318,12 +311,12 @@ function bk_game.register_pyramid(name, def)
 end
 
 function bk_game.register_nodes(name, def)
-	if not def.block_tiles then
-		def.block_tiles = {"blocks_"..name..".png"}
+	if not def.tiles then
+		def.tiles = {"blocks_"..name..".png"}
 	end
 
 	if not def.default_texture then
-		def.default_texture = def.block_tiles[1]
+		def.default_texture = def.tiles[1]
 	end
 
 	if not def.level then
@@ -356,5 +349,32 @@ function bk_game.register_nodes(name, def)
 	if def.pyramid == true then
 		bk_game.register_pyramid(name, def)
 	end
+
+	if def.flat then
+		bk_game.register_nodes(name.."_flat", {
+			description = "Flat "..def.description,
+			source = nil,
+			brick = true,
+			flat = false,
+			stair = def.stair or true,
+			slab = def.slab or true,
+			column = def.column or true,
+			pyramid = def.pyramid or true,
+		})
+	end 
+
+	if def.brick then
+		bk_game.register_nodes(name.."_brick", {
+			description = def.description.." Brick",
+			source = nil,
+			brick = false,
+			flat = false,
+			stair = def.stair or true,
+			slab = def.slab or true,
+			column = def.column or true,
+			pyramid = def.pyramid or true,
+		})
+	end
+	
 	print("Blocks "..def.description.." [OK]")
 end

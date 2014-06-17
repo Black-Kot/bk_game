@@ -4,10 +4,12 @@ bk_game.register_nodes("stone", {
 	stair = true,
 	slab = true,
 	description = "Stone",
-	block_tiles = {"default_stone.png"},
+	tiles = {"default_stone.png"},
 	is_ground_content = true,
 	groups = {cracky=5, stone=1},
 	drop = "default:cobble",
+	brick = true,
+	flat = true,
 	legacy_mineral = true,
 	sounds = default.node_sound_stone_defaults(),
 })
@@ -16,31 +18,13 @@ bk_game.register_nodes("desert_stone", {
 	stair = true,
 	slab = true,
 	description = "Desert Stone",
-	block_tiles = {"default_desert_stone.png"},
+	tiles = {"default_desert_stone.png"},
 	is_ground_content = true,
 	groups = {cracky=5, stone=1},
 	drop = "default:desert_cobble",
+	brick = true,
+	flat = true,
 	legacy_mineral = true,
-	sounds = default.node_sound_stone_defaults(),
-})
-
-bk_game.register_nodes("stonebrick", {
-	stair = true,
-	slab = true,
-	source = "blocks:stone",
-	description = "Stone Brick",
-	block_tiles = {"default_stone_brick.png"},
-	groups = {cracky=5, stone=1},
-	sounds = default.node_sound_stone_defaults(),
-})
-
-bk_game.register_nodes("desert_stonebrick", {
-	stair = true,
-	slab = true,
-	source = "blocks:desert_stone",
-	description = "Desert Stone Brick",
-	block_tiles = {"default_desert_stone_brick.png"},
-	groups = {cracky=5, stone=1},
 	sounds = default.node_sound_stone_defaults(),
 })
 
@@ -126,20 +110,10 @@ bk_game.register_nodes("sandstone", {
 	slab = true,
 	source = "default:sand",
 	description = "Sandstone",
-	block_tiles = {"default_sandstone.png"},
+	tiles = {"default_sandstone.png"},
 	is_ground_content = true,
 	groups = {crumbly=4,cracky=4},
-	sounds = default.node_sound_stone_defaults(),
-})
-
-bk_game.register_nodes("sandstonebrick", {
-	stair = true,
-	slab = true,
-	source = "blocks:sandstone",
-	description = "Sandstone Brick",
-	block_tiles = {"default_sandstone_brick.png"},
-	is_ground_content = true,
-	groups = {cracky=5},
+	brick = true,
 	sounds = default.node_sound_stone_defaults(),
 })
 
@@ -147,7 +121,7 @@ bk_game.register_nodes("clay", {
 	stair = true,
 	slab = true,
 	description = "Clay",
-	block_tiles = {"default_clay.png"},
+	tiles = {"default_clay.png"},
 	is_ground_content = true,
 	groups = {crumbly=6},
 	drop = "default:clay_lump 4",
@@ -158,7 +132,7 @@ bk_game.register_nodes("brick", {
 	stair = true,
 	slab = true,
 	description = "Brick",
-	block_tiles = {"default_brick.png"},
+	tiles = {"default_brick.png"},
 	groups = {cracky=4},
 	sounds = default.node_sound_stone_defaults(),
 })
@@ -255,7 +229,7 @@ bk_game.register_nodes("glass", {
 	slab = true,
 	description = "Glass",
 	drawtype = "glasslike",
-	block_tiles = {"default_glass.png"},
+	tiles = {"default_glass.png"},
 	inventory_image = minetest.inventorycube("default_glass.png"),
 	paramtype = "light",
 	sunlight_propagates = true,
@@ -852,7 +826,7 @@ bk_game.register_nodes("obsidian_glass", {
 	slab = true,
 	description = "Obsidian Glass",
 	drawtype = "glasslike",
-	block_tiles = {"default_obsidian_glass.png"},
+	tiles = {"default_obsidian_glass.png"},
 	paramtype = "light",
 	sunlight_propagates = true,
 	sounds = default.node_sound_glass_defaults(),
@@ -864,7 +838,7 @@ bk_game.register_nodes("obsidian", {
 	slab = true,
 	source = "blocks:obsidian_shard",
 	description = "Obsidian",
-	block_tiles = {"default_obsidian.png"},
+	tiles = {"default_obsidian.png"},
 	is_ground_content = true,
 	sounds = default.node_sound_stone_defaults(),
 	groups = {cracky=4,level=2},

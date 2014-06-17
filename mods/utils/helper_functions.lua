@@ -24,9 +24,13 @@ end
 function copy_table(t)
     local u = { }
     for k, v in pairs(t) do
-        u[k] = v
+		if type(v) == table then
+			u[k] = copy_table(v)
+		else
+			u[k] = v
+		end
     end
-    return setmetatable(u, getmetatable(t))
+    return u
 end
 
 function mod_pos(p, dx, dy, dz)
