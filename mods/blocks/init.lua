@@ -22,6 +22,7 @@ block.description = def.description.." Block"
 				{"blocks:"..name},
 			}
 		})
+
 	end
 
 end
@@ -333,6 +334,8 @@ function bk_game.register_nodes(name, def)
 	end
 
 	bk_game.register_block(name, def)
+	
+	def.source = "blocks:"..name
 
 	if def.slab == true then
 		bk_game.register_slab(name, def)
@@ -366,7 +369,7 @@ function bk_game.register_nodes(name, def)
 	if def.brick then
 		bk_game.register_nodes(name.."_brick", {
 			description = def.description.." Brick",
-			source = nil,
+			source = "blocks:"..name,
 			brick = false,
 			flat = false,
 			stair = def.stair or true,
