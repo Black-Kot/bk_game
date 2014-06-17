@@ -255,6 +255,7 @@ function bk_game.register_tree(name, TreeDef)
 	bk_game.register_chest(name:remove_modname_prefix(), TreeDef)
 
 	TreeDef.source = tree.name.."_stick"
+	TreeDef.tiles = {tree.textures.planks}
 	bk_game.register_ladder(name:remove_modname_prefix(),TreeDef)
 
 	bk_game.register_door(tree.name:remove_modname_prefix(), {

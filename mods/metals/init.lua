@@ -62,6 +62,7 @@ function bk_game.register_metal(name, metalDef)
 
 	metalDef.only_placer_can_open = true
 	bk_game.register_door(name,metalDef)
+	metalDef.tiles = {metalDef.default_texture}
 	bk_game.register_ladder(name, metalDef)
 end
 
