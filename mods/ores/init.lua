@@ -6,7 +6,7 @@ local d_seed = 0
 function bk_game.register_ore(name, OreDef)
 	local ore = {
 		name = name,
-		description = OreDef.description or "Ore",
+		description = OreDef.description.." Ore" or "Ore",
 		mineral = OreDef.mineral or "ores:"..name,
 		wherein = OreDef.wherein or "blocks:stone",	
 		chunks_per_volume = OreDef.chunks_per_volume or 1/3/3/3/2,	
@@ -27,12 +27,13 @@ function bk_game.register_ore(name, OreDef)
 	end
 	registered_ores[name] = ore
 	table.insert(registered_ores_list, name)
+	if not OreDef.no_node == true then
 		local wherein_ = ore.wherein:gsub(":","_")
 		local wherein_textures =  "ores_"..name..".png"
 		local particle_image = wherein_..".png^"..wherein_textures
-	minetest.register_node(":"..ore.mineral, {
-			description = ore.description.." Ore",
-			tile_images = {particle_image},
+		minetest.register_node(":"..ore.mineral, {
+			description = ore.description,
+			tiles = {particle_image},
 			particle_image = {particle_image},
 			groups = {cracky = 4},
 			drop = {
@@ -49,6 +50,7 @@ function bk_game.register_ore(name, OreDef)
 			},
 			sounds = default.node_sound_stone_defaults()
 		})
+	end
 end
 
 minetest.register_node(":default:peat", {
@@ -248,11 +250,24 @@ minetest.after(1, function()
 				ore.chunks_per_volume, ore.chunk_size,
 				ore.ore_per_chunk, ore.height_min, ore.height_max, ore.noise_min, ore.noise_max)
 		--end
-		generate_peat("default:peat", "default:dirt", minp, maxp, seed+401, 1/8/16/24, 10, 1000, -100, 200)
+		if pr:next(1,5)  == 3 then
+			generate_peat("blocks:clay", "default:dirt", minp, maxp, seed+401, 1/8/16/24, 10, 1000, -100, 200)
+		else
+			generate_peat("default:peat", "default:dirt", minp, maxp, seed+401, 1/8/16/24, 10, 1000, -100, 200)
+		end
 	end)
 end)
 
 
 ----------------------------------------------------------
 
---silver mithril concrete marble marble_bricks granite default:obsidian tin
+-- oil
+
+bk_game.register_ore("default:oil_source", {
+	description = "Oil",
+	mineral = "default:oil_source",
+	wherein = "air",
+	chunk_size = 16,
+	height_max = -2000,
+	no_node = true,
+})

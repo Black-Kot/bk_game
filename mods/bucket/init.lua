@@ -16,6 +16,8 @@ function bk_game.register_bucket(name, def)
 				t = "lava"
 			elseif n.name == "default:water_source" then
 				t = "water"
+			elseif n.name == "default:oil_source" then
+				t = "oil"
 			else
 				return
 			end
@@ -49,6 +51,37 @@ function bk_game.register_bucket(name, def)
 				n = minetest.env:get_node(pointed_thing.above)
 			if minetest.registered_nodes[n.name].buildable_to then
 					minetest.env:add_node(pointed_thing.above, {name="default:water_source"})
+				else
+					return
+				end
+			end
+			return {name="bucket:"..name}
+		end
+	})
+
+	
+	minetest.register_craftitem(":bucket:"..name.."_with_oil", {
+		description = def.description .. " Bucket with Oil",
+		inventory_image = "bucket_"..name..".png^bucket_metal_oil.png",
+		groups = {bucket_water = 1},
+		stack_max = 1,
+		liquids_pointable = true,
+		on_use = function(itemstack, user, pointed_thing)
+			-- "virtual" buckets
+			if "default:oil_source" == "" then
+				return
+			end
+			-- Must be pointing to node
+			if pointed_thing.type ~= "node" then
+				return
+			end
+			n = minetest.env:get_node(pointed_thing.under)
+			if minetest.registered_nodes[n.name].buildable_to then
+				minetest.env:add_node(pointed_thing.under, {name="default:oil_source"})
+			else
+				n = minetest.env:get_node(pointed_thing.above)
+			if minetest.registered_nodes[n.name].buildable_to then
+					minetest.env:add_node(pointed_thing.above, {name="default:oil_source"})
 				else
 					return
 				end

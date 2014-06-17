@@ -466,6 +466,46 @@ minetest.register_node("default:lava_source", {
 	groups = {lava=3, liquid=2, hot=3, igniter=1},
 })
 
+minetest.register_node("default:oil_flowing", {
+	description = "Oil (flowing)",
+	inventory_image = minetest.inventorycube("default_oil.png"),
+	drawtype = "flowingliquid",
+	tile_images = {"default_oil.png"},
+	paramtype = "light",
+	walkable = false,
+	pointable = false,
+	diggable = false,
+	buildable_to = true,
+	liquidtype = "flowing",
+	liquid_alternative_flowing = "default:oil_flowing",
+	liquid_alternative_source = "default:oil_source",
+	liquid_viscosity = OIL_VISC,
+	post_effect_color = {a=OIL_ALPHA, r=0, g=0, b=0},
+	special_materials = {
+		{image="default_oil.png", backface_culling=false},
+		{image="default_oil.png", backface_culling=true},
+	},
+})
+
+minetest.register_node("default:oil_source", {
+	description = "Oil",
+	inventory_image = minetest.inventorycube("default_oil.png"),
+	drawtype = "liquid",
+	tile_images = {"default_oil.png"},
+	paramtype = "light",
+	walkable = false,
+	pointable = false,
+	diggable = false,
+	buildable_to = true,
+	liquidtype = "source",
+	liquid_alternative_flowing = "default:oil_flowing",
+	liquid_alternative_source = "default:oil_source",
+	liquid_viscosity = OIL_VISC,
+	post_effect_color = {a=OIL_ALPHA, r=0, g=0, b=0},
+	special_materials = {
+		{image="default_oil.png", backface_culling=false},
+	},
+})
 
 minetest.register_node("default:torch", {
 	description = "Torch",
