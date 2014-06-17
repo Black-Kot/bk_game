@@ -22,11 +22,13 @@ makeTexture "$1" block "$4" "$5"
 makeTexture "$1" door "$4" "$5"
 makeTexture "$1" door_a "$4" "$5"
 makeTexture "$1" door_b "$4" "$5"
+makeTexture "$1" ladder "$4" "$5"
 
 pngcrush "$script_dir/block.png" "${3}/blocks_${2}.png" > /dev/null
 pngcrush "$script_dir/door.png" "${3}/doors_${2}.png" > /dev/null
 pngcrush "$script_dir/door_a.png" "${3}/doors_${2}_a.png" > /dev/null
 pngcrush "$script_dir/door_b.png" "${3}/doors_${2}_b.png" > /dev/null
+pngcrush "$script_dir/ladder.png" "${3}/ladders_${2}.png" > /dev/null
 
 if [ $# -lt 6 ] || [ "$6" != "notools" ]; then
 	convert "$1" -scale 1x1\! -scale 16x16\! "$script_dir/pure.png"
