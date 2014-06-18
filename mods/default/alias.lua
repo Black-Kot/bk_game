@@ -13,6 +13,3 @@ minetest.register_alias("ores:chromium","ores:aluminium")
 minetest.register_alias("ores:tin","ores:titan")
 minetest.register_alias("group:wood","group:planks")
 minetest.register_alias("default:sandstone", "blocks:sandstone")
-
--- fixes know errors in mapgenv6
-minetest.register_alias("default:cobble_node", "air")
