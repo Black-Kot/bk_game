@@ -131,8 +131,8 @@ bk_game.register_nodes("clay", {
 bk_game.register_nodes("brick", {
 	stair = true,
 	slab = true,
+	source = "default:clay_brick",
 	description = "Brick",
-	tiles = {"default_brick.png"},
 	groups = {cracky=4},
 	sounds = default.node_sound_stone_defaults(),
 })
