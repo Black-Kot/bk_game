@@ -246,10 +246,18 @@ function bk_game.register_tree(name, TreeDef)
 		groups = {planks=1,snappy=5,choppy=5,oddly_breakable_by_hand=2,flammable=3,drop_on_dig=1},
 		sounds = default.node_sound_wood_defaults(),
 	})
+
+	
 	minetest.register_craft({
 		type = "shapeless",
 		output = "blocks:"..tree.name:remove_modname_prefix().."_planks",
 		recipe = {tree.name.."_log"}
+	})
+
+	minetest.register_craft({
+		type = "shapeless",
+		output = tree.name.."_leaves",
+		recipe = {tree.name.."_sapling"}
 	})
 
 	bk_game.register_chest(name:remove_modname_prefix(), TreeDef)
