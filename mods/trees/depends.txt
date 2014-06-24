@@ -4,3 +4,4 @@ doors
 chest
 utils
 ladders
+fences
