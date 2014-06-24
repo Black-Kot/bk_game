@@ -238,6 +238,7 @@ function bk_game.register_tree(name, TreeDef)
 	TreeDef.slab = true
 	TreeDef.column = false
 	TreeDef.pyramid = false
+	
 	bk_game.register_nodes(tree.name:remove_modname_prefix().."_planks", {
 		slab=true,
 		stair=true,
@@ -247,6 +248,11 @@ function bk_game.register_tree(name, TreeDef)
 		sounds = default.node_sound_wood_defaults(),
 	})
 
+	bk_game.register_fence(tree.name:remove_modname_prefix(), {
+		description = tree.description,
+		source = "blocks:"..tree.name:remove_modname_prefix().."_planks",
+		tiles = {tree.textures.planks},
+	})
 	
 	minetest.register_craft({
 		type = "shapeless",

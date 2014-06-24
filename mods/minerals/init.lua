@@ -34,6 +34,7 @@ function bk_game.register_mineral(name, mineralDef)
 	end
 
 	--bk_game.register_door(name, mineralDef)  -- no doors from minerals
+	--bk_game.register_fence(name, mineralDef) -- no fences from minerals ?
 end
 
 list = {

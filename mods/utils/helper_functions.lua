@@ -78,17 +78,14 @@ function string:get_modname_prefix()
 end
 
 function merge(lhs, rhs)
-	if lhs == nil then
-		return rhs
+	local merged_table = {}
+	for _, v in ipairs(lhs) do
+		table.insert(merged_table, v)
 	end
-
-	if rhs == nil then
-		return lhs
+	for _, v in ipairs(rhs) do
+		table.insert(merged_table, v)
 	end
-	
-	for k,v in pairs(rhs) do lhs[k] = v end
-
-	return rhs
+return merged_table
 
 end
 

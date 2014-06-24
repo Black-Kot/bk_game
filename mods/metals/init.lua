@@ -40,6 +40,7 @@ function bk_game.register_metal(name, metalDef)
 	-- Register metal products
 	metalDef.source = metalDef.ingot
 	metalDef.default_texture = "metals_"..name..".png"
+	metalDef.tiles = {metalDef.default_texture}
 	metalDef.ladders_from_source = 3
 
 -- it`s broken by alloys
@@ -62,8 +63,9 @@ function bk_game.register_metal(name, metalDef)
 
 	metalDef.only_placer_can_open = true
 	bk_game.register_door(name,metalDef)
-	metalDef.tiles = {metalDef.default_texture}
 	bk_game.register_ladder(name, metalDef)
+	bk_game.register_fence(name, metalDef)
+	
 end
 
 
