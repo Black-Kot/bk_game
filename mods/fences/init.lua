@@ -16,11 +16,7 @@ local function update_fence(pos)
 			sum = sum + 2 ^ (i - 1)
 		end
 	end
-	local name = minetest.env:get_node(pos).name:gsub("_", ""):gsub("%d+", "")
-	if not name then
-		return
-	end
-	minetest.log("fence source: "..name.." : "..sum)
+	local name = minetest.env:get_node(pos).name:gsub("_%d+", "")
 	minetest.env:add_node(pos, {name = name.."_"..sum})
 end
 
