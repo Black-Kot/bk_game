@@ -16,6 +16,25 @@ local dye = {}
 dye.basecolors = {"white", "grey", "black", "red", "yellow", "green", "cyan", "blue", "magenta"}
 dye.excolors = {"white", "lightgrey", "grey", "darkgrey", "black", "red", "orange", "yellow", "lime", "green", "aqua", "cyan", "sky_blue", "blue", "violet", "magenta", "red_violet"}
 
+-- colors used in bk_game
+bk_game.colors = {
+	{"white", "White", "basecolor_white"},
+	{"grey", "Grey", "basecolor_grey"},
+	{"black", "Black", "basecolor_black"},
+	{"red", "Red", "basecolor_red"},
+	{"yellow", "Yellow", "basecolor_yellow"},
+	{"green", "Green", "basecolor_green"},
+	{"cyan", "Cyan", "basecolor_cyan"},
+	{"blue", "Blue", "basecolor_blue"},
+	{"magenta", "Magenta", "basecolor_magenta"},
+	{"orange", "Orange", "excolor_orange"},
+	{"violet", "Violet", "excolor_violet"},
+	{"brown", "Brown", "unicolor_dark_orange"},
+	{"pink", "Pink", "unicolor_light_red"},
+	{"dark_grey", "Dark Grey", "unicolor_darkgrey"},
+	{"dark_green", "Dark Green", "unicolor_dark_green"},
+}
+
 -- Base color groups:
 -- - basecolor_white
 -- - basecolor_grey

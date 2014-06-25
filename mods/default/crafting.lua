@@ -92,13 +92,13 @@ minetest.register_craft({
 
 minetest.register_craft({
 	type = "cooking",
-	output = "blocks:glass",
+	output = "blocks:glass_white",
 	recipe = "group:sand",
 })
 
 minetest.register_craft({
 	type = "cooking",
-	output = "blocks:obsidian_glass",
+	output = "blocks:glass_black",
 	recipe = "blocks:obsidian_shard",
 })
 

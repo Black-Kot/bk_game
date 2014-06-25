@@ -1,4 +1,2 @@
 flowers
-default
-ores
-minerals
+utils

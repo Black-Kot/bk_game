@@ -140,7 +140,7 @@ bk_game.register_nodes("brick", {
 minetest.register_node("default:cactus", {
 	description = "Cactus",
 	tiles = {"default_cactus_top.png", "default_cactus_top.png", "default_cactus_side.png"},
-	groups = {snappy=4,choppy=1,flammable=2,dropping_node=1,drop_on_dig=1},
+	groups = {snappy=4,choppy=1,flammable=2,dropping_node=1,drop_on_dig=1,flower=1,color_green=1},
 	drawtype = "nodebox",
 	paramtype = "light",
 	node_box = {
@@ -222,19 +222,6 @@ minetest.register_node("default:papyrus", {
 	},
 	groups = {snappy=6,oddly_breakable_by_hand=2,flammable=2},
 	sounds = default.node_sound_leaves_defaults(),
-})
-
-bk_game.register_nodes("glass", {
-	stair = true,
-	slab = true,
-	description = "Glass",
-	drawtype = "glasslike",
-	tiles = {"default_glass.png"},
-	inventory_image = minetest.inventorycube("default_glass.png"),
-	paramtype = "light",
-	sunlight_propagates = true,
-	groups = {cracky=6,oddly_breakable_by_hand=3},
-	sounds = default.node_sound_glass_defaults(),
 })
 
 minetest.register_node("default:dry_shrub", {
@@ -819,18 +806,6 @@ minetest.register_node("default:mossycobble", {
 	is_ground_content = true,
 	groups = {cracky=5},
 	sounds = default.node_sound_stone_defaults(),
-})
-
-bk_game.register_nodes("obsidian_glass", {
-	stair = true,
-	slab = true,
-	description = "Obsidian Glass",
-	drawtype = "glasslike",
-	tiles = {"default_obsidian_glass.png"},
-	paramtype = "light",
-	sunlight_propagates = true,
-	sounds = default.node_sound_glass_defaults(),
-	groups = {cracky=5,oddly_breakable_by_hand=3},
 })
 
 bk_game.register_nodes("obsidian", {

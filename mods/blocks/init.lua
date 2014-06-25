@@ -1,5 +1,3 @@
-bk_game = {}
-
 function bk_game.register_block(name, def)
 
 -- we use copy table from real block
