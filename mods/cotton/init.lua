@@ -37,8 +37,8 @@ for _, row in ipairs(bk_game.colors) do
 		-- Crafting from dye and white cotton
 		minetest.register_craft({
 			type = "shapeless",
-			output = 'cotton:'..name,
-			recipe = {'group:dye,'..craft_color_group, 'group:cotton'},
+			output = "cotton:"..name,
+			recipe = {"dye:"..name, "group:cotton"},
 		})
 	end
 end

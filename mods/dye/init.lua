@@ -112,7 +112,7 @@ for _, row in ipairs(dyelocal.dyes) do
 	minetest.register_craft({
 		type = "cooking",
 		output = item_name.." 4",
-		recipe = "group:flower,color_"..name,
+		recipe = "group:color_"..name,
 	})
 end
 
