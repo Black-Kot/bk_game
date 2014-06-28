@@ -1,7 +1,5 @@
 -- Some variables you can change
 
--- How often (in seconds) mines file saves
-local save_delta = 30
 -- How often (in seconds) player can teleport
 -- Set it to 0 to disable
 local cooldown = 0
@@ -144,20 +142,13 @@ minetest.register_chatcommand("mines" , {
     end,
     
 }) 
- 
-local delta = 0
 
 minetest.register_globalstep(function(dtime)
-    delta = delta + dtime
-    -- save it every <save_delta> seconds
-    if delta > save_delta then
-        delta = delta - save_delta
 	if changed then
-	    local output = io.open(mines_file, "w")
+		local output = io.open(mines_file, "w")
 		local text = minetest.serialize(minepos)
-			output:write(text)
-			io.close(output)
-		end
+		output:write(text)
+		io.close(output)
 	changed = false
     end
 end)

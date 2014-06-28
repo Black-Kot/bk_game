@@ -1,4 +1,3 @@
-local save_delta = 30
 local cities = {}
 local cities_file = minetest.get_worldpath().."/cities"
 local spawns = {}
@@ -138,7 +137,7 @@ end)
 --Deds to Spawn
 minetest.register_on_respawnplayer(function(player, pos)
 	local name = player:get_player_name()
-	if spawns[name] then
+	if spawns[name] and cities[spawns[name]] then
 		player:setpos(cities[spawns[name]])
 	else
 		player:setpos(cities["spawn"])
@@ -149,21 +148,16 @@ end)
 local delta = 0
 
 minetest.register_globalstep(function(dtime)
-    delta = delta + dtime
-    -- save it every <save_delta> seconds
-    if delta > save_delta then
-        delta = delta - save_delta
 	if changed then
-	    local output = io.open(cities_file, "w")
+		local output = io.open(cities_file, "w")
 		local text = minetest.serialize(cities)
 		output:write(text)
 		io.close(output)
 
-	    local output = io.open(spawns_file, "w")
+		local output = io.open(spawns_file, "w")
 		local text = minetest.serialize(spawns)
 		output:write(text)
 		io.close(output)
-	end
-	changed = false
+		changed = false
     end
 end)
