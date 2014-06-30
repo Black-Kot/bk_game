@@ -28,6 +28,17 @@ bk_game.register_nodes("desert_stone", {
 	sounds = default.node_sound_stone_defaults(),
 })
 
+
+bk_game.register_nodes("chameleon", {
+	stair = true,
+	slab = true,
+	description = "Chameleon",
+	tiles = {"chameleon_none.png"},
+	is_ground_content = true,
+	groups = {cracky=5, stone=1},
+	sounds = default.node_sound_stone_defaults(),
+})
+
 minetest.register_node("default:dirt_with_grass", {
 	description = "Dirt with Grass",
 	tiles = {"default_grass.png", "default_dirt.png", "default_dirt.png^default_grass_side.png"},
