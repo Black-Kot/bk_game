@@ -63,6 +63,7 @@ function bk_game.register_flower(name, def)
 		wield_image = "flowers_"..name..".png",
 		sunlight_propagates = true,
 		paramtype = "light",
+		light_source = def.light_source or nil,
 		walkable = false,
 		buildable_to = true,
 		groups = def.groups,
@@ -71,7 +72,7 @@ function bk_game.register_flower(name, def)
 			type = "fixed",
 			fixed = { -0.15, -0.5, -0.15, 0.15, 0.2, 0.15 },
 		},
-		drop = "flowers:"..name,
+		drop = def.drop or "flowers:"..name,
 	})
 
 	if def.seed ~= false then
@@ -147,7 +148,7 @@ function bk_game.register_flower(name, def)
 
 		minetest.register_abm({
 			nodenames = {"flowers:"..name.."_grass"},
-			interval = 1,
+			interval = 5,
 			chance = 20,
 			action = function(pos, node, active_object_count, active_object_count_wider)
 				local p_top = {
@@ -189,12 +190,14 @@ function bk_game.register_flower(name, def)
 		})
 	end
 
-	flower = {
-		name = "flowers:"..name,
-		nodenames = def.nodenames,
-		chance = def.chance,
-	}
-	table.insert(bk_game.registered_flowers_list, flower)
+	if def.generate ~= false then
+		flower = {
+			name = "flowers:"..name,
+			nodenames = def.nodenames,
+			chance = def.chance,
+		}
+		table.insert(bk_game.registered_flowers_list, flower)
+	end
 end
 			
 flowers_list = {
@@ -274,3 +277,5 @@ minetest.register_on_generated(function(minp, maxp, seed)
 		end
 	end
 end)
+
+dofile(minetest.get_modpath("flowers").."/moon.lua") -- Moon Flower
