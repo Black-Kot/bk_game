@@ -57,7 +57,7 @@ function bk_game.register_flower(name, def)
 
 	minetest.register_node(":flowers:"..name, {
 		description = def.description,
-		drawtype = "plantlike",
+		drawtype = def.drawtype or "plantlike",
 		tiles = { "flowers_"..name..".png" },
 		inventory_image = "flowers_"..name..".png",
 		wield_image = "flowers_"..name..".png",
@@ -211,7 +211,7 @@ flowers_list = {
 
 ["geranium"] = {description = "Geranium", interval=GROWING_DELAY/2,chance = 4, spacing = 15, nodenames={"default:dirt_with_grass"}, groups={color_blue=1}},
 
-["waterlily"] = {description="Waterlily", interval=GROWING_DELAY*2, chance=10, spacing=15, nodenames={"default:water_source"}, seed=false, pot=false},
+["waterlily"] = {description="Waterlily", drawtype="raillike", interval=GROWING_DELAY*2, chance=10, spacing=15, nodenames={"default:water_source"}, seed=false, pot=false},
 
 }
 
