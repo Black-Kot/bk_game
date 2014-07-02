@@ -7,7 +7,7 @@ bk_game.register_flower("moon_open", { description = "Moon flower", light_source
 
 minetest.register_abm({
 	nodenames = { "flowers:moon_closed", "flowers:moon_open" },
-	interval = 5,
+	interval = 20,
 	chance = 1,
 	action = function(pos, node, active_object_count, active_object_count_wider)
 		local now = minetest.env:get_timeofday() * 24000
