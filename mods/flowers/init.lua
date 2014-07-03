@@ -223,8 +223,11 @@ for metal, descr in pairs(flowers_list) do
 end
 
 local function generate(flower, minp, maxp, seed)
-	local perlin1 = minetest.env:get_perlin(329, 3, 0.6, 100)
 	local pr = PseudoRandom(seed)
+	if (pr:next(1, flower.chance) ~= flower.chance ) then
+		return
+	end
+	local perlin1 = minetest.env:get_perlin(329, 3, 0.6, 100)
 	-- Assume X and Z lengths are equal
 	local divlen = 16
 	local divs = (maxp.x-minp.x)/divlen+1;
@@ -265,11 +268,20 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	if pr:next(1,2) == 1 then
 		n = n + 1
 	end
-	if pr:next(1, 10) == 1 then
-		n = n + 1
+	if pr:next(1, 10) == flower.chance then
+		n = n + 3
 	end
-	if pr:next(1, 20) == 1 then
-		n = n + 1
+	if pr:next(1, 20) == flower.chance then
+		n = n + 5
+	end
+	if pr:next(1, 30) == flower.chance then
+		n = n + 10
+	end
+	if pr:next(1, 40) == flower.chance then
+		n = n + 10
+	end
+	if pr:next(1, 50) == flower.chance then
+		n = n + 10
 	end
 	for i = 1, n do
 		for _, flower in ipairs(bk_game.registered_flowers_list) do

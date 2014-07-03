@@ -469,6 +469,7 @@ minetest.register_node("default:oil_source", {
 	pointable = false,
 	diggable = false,
 	buildable_to = true,
+	groups = {regeneration_liquid=1},
 	liquidtype = "source",
 	liquid_alternative_flowing = "default:oil_flowing",
 	liquid_alternative_source = "default:oil_source",

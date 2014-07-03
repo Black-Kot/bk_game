@@ -215,32 +215,6 @@ minetest.register_abm({
 	end,
 })
 
---
--- Leafdecay
---
-
--- To enable leaf decay for a node, add it to the "leafdecay" group.
---
--- The rating of the group determines how far from a node in the group "tree"
--- the node can be without decaying.
---
--- If param2 of the node is ~= 0, the node will always be preserved. Thus, if
--- the player places a node of that kind, you will want to set param2=1 or so.
---
--- If the node is in the leafdecay_drop group then the it will always be dropped
--- as an item
-
-default.leafdecay_trunk_cache = {}
-default.leafdecay_enable_cache = true
--- Spread the load of finding trunks
-default.leafdecay_trunk_find_allow_accumulator = 0
-
-minetest.register_globalstep(function(dtime)
-	local finds_per_second = 5000
-	default.leafdecay_trunk_find_allow_accumulator =
-			math.floor(dtime * finds_per_second)
-end)
-
 minetest.register_abm({
 	nodenames = {"group:leafdecay"},
 	neighbors = {"air", "group:liquid"},
@@ -254,6 +228,11 @@ minetest.register_abm({
 		local d = minetest.registered_nodes[node.name].groups.leafdecay
 		if not d or d == 0 then
 			--print("not groups.leafdecay")
+			return
+		end
+		local d = minetest.registered_nodes[node.name].groups.regeneration_liquid
+		if not d or d == 0 then
+			--print("not groups.regeneration_liquid")
 			return
 		end
 		local n0 = minetest.get_node(p0)
