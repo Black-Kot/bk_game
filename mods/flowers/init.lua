@@ -218,10 +218,6 @@ flowers_list = {
 
 }
 
-for metal, descr in pairs(flowers_list) do
-    bk_game.register_flower(metal, descr)
-end
-
 local function generate(flower, minp, maxp, seed)
 	local pr = PseudoRandom(seed)
 	if (pr:next(1, flower.chance) ~= flower.chance ) then
@@ -291,3 +287,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 end)
 
 dofile(minetest.get_modpath("flowers").."/moon.lua") -- Moon Flower
+
+for flower, descr in pairs(flowers_list) do
+    bk_game.register_flower(flower, descr)
+end
