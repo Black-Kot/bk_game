@@ -17,10 +17,19 @@ function trees.make_tree(pos, tree)
 		minetest.env:add_node({x=pos.x, y=pos.y+i, z=pos.z}, {name=tree.name.."_trunk"})
 	end
 	minetest.env:add_node({x=pos.x, y=pos.y+height, z=pos.z}, {name=tree.name.."_trunk_top"})
+	local pr = PseudoRandom(os.time())
 	for i = 1,#tree.leaves do
 		local p = {x=pos.x+tree.leaves[i][1], y=pos.y+height+tree.leaves[i][2], z=pos.z+tree.leaves[i][3]}
 		if minetest.env:get_node(p).name == "air" or minetest.env:get_node(p).name == "ignore" then
-			minetest.env:add_node(p, {name=tree.name.."_leaves"})
+			if tree.fruit ~= nil then
+				if pr:next(1,tree.fruit_grow_chance)==1 then
+					minetest.add_node(p, {name="trees:"..tree.fruit})
+				else
+					minetest.env:add_node(p, {name=tree.name.."_leaves"})
+				end
+			else
+				minetest.env:add_node(p, {name=tree.name.."_leaves"})
+			end
 		end
 	end
 end

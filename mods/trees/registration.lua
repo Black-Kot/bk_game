@@ -22,6 +22,9 @@ function bk_game.register_tree(name, TreeDef)
 		grow_light = TreeDef.grow_light or 8,
 		gen_autumn_leaves = false,
 		gen_winter_leaves = false,
+		fruit = TreeDef.fruit,
+		fruit_name = TreeDef.fruit_name,
+		fruit_grow_chance = TreeDef.fruit_grow_chance or 20
 	}
 	if TreeDef.gen_autumn_leaves then
 		tree.gen_autumn_leaves = true
@@ -46,6 +49,24 @@ function bk_game.register_tree(name, TreeDef)
 	bk_game.registered_trees[name] = tree
 	table.insert(bk_game.registered_trees_list, tree.name)
 	
+	if tree.fruit ~= nil then
+		local f_name
+		if tree.fruit_name ~= nil then
+			f_name = tree.fruit_name
+		else
+			f_name = tree.fruit:gsub("^%l", string.upper)
+		end
+		minetest.register_node("trees:"..tree.fruit, {
+			description = f_name,
+			drawtype = "plantlike",
+			tiles = {"trees_"..tree.fruit..".png"},
+			inventory_image = "trees_"..tree.fruit..".png",
+			paramtype = "light",
+			walkable = false,
+			on_use = minetest.item_eat(1),
+			groups = {snappy=6, dig_immediate=3}
+		})
+	end
 	minetest.register_craftitem(tree.name.."_stick", {
 		description = tree.description.." Stick",
 		inventory_image = tree.textures.stick,
