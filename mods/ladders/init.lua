@@ -3,7 +3,7 @@ function bk_game.register_ladder(name, def)
 	minetest.register_node(":ladders:"..name, {
 		description = def.description.." Ladder",
 		drawtype = "nodebox",
-		tiles = {"ladders_"..name..".png"},
+		tiles = def.tiles,
 		inventory_image = "ladders_"..name..".png",
 		paramtype = "light",
 		paramtype2 = "facedir",
