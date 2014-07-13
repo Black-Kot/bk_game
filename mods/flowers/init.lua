@@ -68,7 +68,7 @@ function bk_game.register_flower(name, def)
 		buildable_to = true,
 		groups = def.groups,
 		sounds = default.node_sound_leaves_defaults(),
-		selection_box = {
+		selection_box = def.selection_box or {
 			type = "fixed",
 			fixed = { -0.15, -0.5, -0.15, 0.15, 0.2, 0.15 },
 		},
@@ -214,7 +214,7 @@ flowers_list = {
 
 ["geranium"] = {description = "Geranium", interval=GROWING_DELAY/2,chance = 4, spacing = 15, nodenames={"default:dirt_with_grass"}, groups={color_blue=1}},
 
-["waterlily"] = {description="Waterlily", drawtype="raillike", interval=GROWING_DELAY*2, chance=10, spacing=15, nodenames={"default:water_source"}, seed=false, pot=false},
+["waterlily"] = {description="Waterlily", drawtype="raillike", selection_box={type="fixed",fixed={-0.5, -0.5, -0.5, 0.5, -0.4, 0.5}}, interval=GROWING_DELAY*2, chance=10, spacing=15, nodenames={"default:water_source"}, seed=false, pot=false},
 
 }
 
