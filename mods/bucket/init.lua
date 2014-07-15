@@ -134,7 +134,7 @@ function bk_game.register_bucket(name, def)
 end
 
 bk_game.register_bucket("wood", {
-description = "Wood",
+description = "Wooden",
 source = "group:wood",
 not_lava = true,
 })
