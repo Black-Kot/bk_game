@@ -10,12 +10,12 @@ minetest.register_abm({
 	interval = 20,
 	chance = 1,
 	action = function(pos, node, active_object_count, active_object_count_wider)
-		local now = minetest.env:get_timeofday() * 24000
+		local now = minetest.get_timeofday() * 24000
 		print()
 		if now < 5000 or now > 20000 then
-			minetest.env:add_node(pos, { name = "flowers:moon_open" })
+			minetest.add_node(pos, { name = "flowers:moon_open" })
 		else
-			minetest.env:add_node(pos, { name = "flowers:moon_closed" })
+			minetest.add_node(pos, { name = "flowers:moon_closed" })
 		end
 	end
 })

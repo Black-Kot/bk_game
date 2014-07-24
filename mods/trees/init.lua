@@ -4,38 +4,38 @@ dofile(minetest.get_modpath("trees").."/leavesgen.lua")
 
 function trees.make_tree(pos, tree)
 	local tree = bk_game.registered_trees[tree]
-	if not table.contains(tree.grounds, minetest.env:get_node({x=pos.x,y=pos.y-1,z=pos.z}).name) then
+	if not table.contains(tree.grounds, minetest.get_node({x=pos.x,y=pos.y-1,z=pos.z}).name) then
 		return
 	end
 	local height = tree.height()
 	for i = 1,height do
-		if minetest.env:get_node({x=pos.x, y=pos.y+i, z=pos.z}).name ~= "air" then
+		if minetest.get_node({x=pos.x, y=pos.y+i, z=pos.z}).name ~= "air" then
 			return
 		end
 	end
 	for i = 0,height-1 do
-		minetest.env:add_node({x=pos.x, y=pos.y+i, z=pos.z}, {name=tree.name.."_trunk"})
+		minetest.add_node({x=pos.x, y=pos.y+i, z=pos.z}, {name=tree.name.."_trunk"})
 	end
-	minetest.env:add_node({x=pos.x, y=pos.y+height, z=pos.z}, {name=tree.name.."_trunk_top"})
+	minetest.add_node({x=pos.x, y=pos.y+height, z=pos.z}, {name=tree.name.."_trunk_top"})
 	local pr = PseudoRandom(os.time())
 	for i = 1,#tree.leaves do
 		local p = {x=pos.x+tree.leaves[i][1], y=pos.y+height+tree.leaves[i][2], z=pos.z+tree.leaves[i][3]}
-		if minetest.env:get_node(p).name == "air" or minetest.env:get_node(p).name == "ignore" then
+		if minetest.get_node(p).name == "air" or minetest.get_node(p).name == "ignore" then
 			if tree.fruit ~= nil then
 				if pr:next(1,tree.fruit_grow_chance)==1 then
 					minetest.add_node(p, {name="trees:"..tree.fruit})
 				else
-					minetest.env:add_node(p, {name=tree.name.."_leaves"})
+					minetest.add_node(p, {name=tree.name.."_leaves"})
 				end
 			else
-				minetest.env:add_node(p, {name=tree.name.."_leaves"})
+				minetest.add_node(p, {name=tree.name.."_leaves"})
 			end
 		end
 	end
 end
 
 local function generate(tree, minp, maxp, seed)
-	local perlin1 = minetest.env:get_perlin(329, 3, 0.6, 100)
+	local perlin1 = minetest.get_perlin(329, 3, 0.6, 100)
 	-- Assume X and Z lengths are equal
 	local divlen = 16
 	local divs = (maxp.x-minp.x)/divlen+1;
@@ -55,7 +55,7 @@ local function generate(tree, minp, maxp, seed)
 				-- Find ground level (0...30)
 				local ground_y = nil
 				for y=30,0,-1 do
-					if minetest.env:get_node({x=x,y=y,z=z}).name ~= "air" then
+					if minetest.get_node({x=x,y=y,z=z}).name ~= "air" then
 						ground_y = y
 						break
 					end

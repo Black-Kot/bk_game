@@ -47,7 +47,7 @@ minetest.register_chatcommand("setmine" , {
 	description = "Set pos of mine",
 	privs = {},
 	func = function(name, param)
-        local player = minetest.env:get_player_by_name(name)
+        local player = minetest.get_player_by_name(name)
         if player == nil then return end
 		if param == "" then
             minetest.chat_send_player(name, "Name of mine can`t be null")
@@ -68,7 +68,7 @@ minetest.register_chatcommand("delmine" , {
 	description = "Del pos of mine",
 	privs = {},
 	func = function(name, param)
-        local player = minetest.env:get_player_by_name(name)
+        local player = minetest.get_player_by_name(name)
         if player == nil then return end
 		if param == "" then			
             minetest.chat_send_player(name, "Name of mine can`t be null")
@@ -93,7 +93,7 @@ minetest.register_chatcommand("mine", {
 	description = "Teleport to mine",
 	privs = {},
 	func = function(name, param)
-        local player = minetest.env:get_player_by_name(name)
+        local player = minetest.get_player_by_name(name)
         if player == nil then
 			-- just a check to prevent server death
 		end

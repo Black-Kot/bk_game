@@ -31,7 +31,7 @@ function bk_game.register_ladder(name, def)
 		},
 		on_place = function(itemstack, placer, pointed_thing)
 			if pointed_thing.type == "node" and
-				minetest.registered_nodes[minetest.env:get_node(pointed_thing.above).name].buildable_to == true then
+				minetest.registered_nodes[minetest.get_node(pointed_thing.above).name].buildable_to == true then
 				local param2 = nil
 				if pointed_thing.above.x < pointed_thing.under.x then
 					param2 = 1
@@ -43,7 +43,7 @@ function bk_game.register_ladder(name, def)
 					param2 = 2
 				end
 				if param2 then
-					minetest.env:set_node(pointed_thing.above,{name = "ladders:"..name, param2 = param2})
+					minetest.set_node(pointed_thing.above,{name = "ladders:"..name, param2 = param2})
 					if not minetest.setting_getbool("creative_mode") then
 						itemstack:take_item()
 					end

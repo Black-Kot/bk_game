@@ -7,7 +7,7 @@ function is_node_in_cube(nodenames, node_pos, radius)
 	for x = node_pos.x - radius, node_pos.x + radius do
 		for y = node_pos.y - radius, node_pos.y + radius do
 			for z = node_pos.z - radius, node_pos.z + radius do
-				n = minetest.env:get_node_or_nil({x = x, y = y, z = z})
+				n = minetest.get_node_or_nil({x = x, y = y, z = z})
 				if (n == nil)
 					or (n.name == "ignore")
 					or (nodenames == n.name) then
@@ -156,11 +156,11 @@ function bk_game.register_flower(name, def)
 					y = pos.y - 1,
 					z = pos.z
 				}
-				if minetest.env:get_node(p_top).name ~= "flowers:soil" then
+				if minetest.get_node(p_top).name ~= "flowers:soil" then
 					return
 				end
-				minetest.env:add_node(pos, {name="flowers:"..name})
-				minetest.env:add_node(p_top, {name="default:dirt_with_grass"})
+				minetest.add_node(pos, {name="flowers:"..name})
+				minetest.add_node(p_top, {name="default:dirt_with_grass"})
 			end
 		})
 		
@@ -223,7 +223,7 @@ local function generate(flower, minp, maxp, seed)
 	if (pr:next(1, flower.chance) ~= flower.chance ) then
 		return
 	end
-	local perlin1 = minetest.env:get_perlin(329, 3, 0.6, 100)
+	local perlin1 = minetest.get_perlin(329, 3, 0.6, 100)
 	-- Assume X and Z lengths are equal
 	local divlen = 16
 	local divs = (maxp.x-minp.x)/divlen+1;
@@ -243,14 +243,14 @@ local function generate(flower, minp, maxp, seed)
 				-- Find ground level (0...30)
 				local ground_y = nil
 				for y=30,0,-1 do
-					if table.contains(flower.nodenames, minetest.env:get_node({x=x,y=y,z=z}).name) then
+					if table.contains(flower.nodenames, minetest.get_node({x=x,y=y,z=z}).name) then
 						ground_y = y
 						break
 					end
 				end
 				if ground_y then
 					if pr:next(1, flower.chance) == flower.chance then
-						minetest.env:add_node({x=x,y=ground_y+1,z=z}, {name = flower.name})
+						minetest.add_node({x=x,y=ground_y+1,z=z}, {name = flower.name})
 					end
 				end
 			end

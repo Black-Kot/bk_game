@@ -36,21 +36,21 @@ minetest.register_alias("mapgen_stair_sandstonebrick", "blocks:sandstonebrick_st
 function default.make_papyrus(pos, size)
 	for y=0,size-1 do
 		local p = {x=pos.x, y=pos.y+y, z=pos.z}
-		minetest.env:set_node(p, {name="default:papyrus"})
+		minetest.set_node(p, {name="default:papyrus"})
 	end
 end
 
 function default.make_cactus(pos, size)
 	for y=0,size-1 do
 		local p = {x=pos.x, y=pos.y+y, z=pos.z}
-		minetest.env:set_node(p, {name="default:cactus"})
+		minetest.set_node(p, {name="default:cactus"})
 	end
 end
 
 minetest.register_on_generated(function(minp, maxp, seed)
 	if maxp.y >= 2 and minp.y <= 0 then
 		-- Generate papyrus
-		local perlin1 = minetest.env:get_perlin(354, 3, 0.7, 100)
+		local perlin1 = minetest.get_perlin(354, 3, 0.7, 100)
 		-- Assume X and Z lengths are equal
 		local divlen = 8
 		local divs = (maxp.x-minp.x)/divlen+1;
@@ -67,15 +67,15 @@ minetest.register_on_generated(function(minp, maxp, seed)
 			for i=0,papyrus_amount do
 				local x = pr:next(x0, x1)
 				local z = pr:next(z0, z1)
-				if minetest.env:get_node({x=x,y=1,z=z}).name == "default:dirt_with_grass" and
-						minetest.env:find_node_near({x=x,y=1,z=z}, 1, "default:water_source") then
+				if minetest.get_node({x=x,y=1,z=z}).name == "default:dirt_with_grass" and
+						minetest.find_node_near({x=x,y=1,z=z}, 1, "default:water_source") then
 					default.make_papyrus({x=x,y=2,z=z}, pr:next(2, 4))
 				end
 			end
 		end
 		end
 		-- Generate cactuses
-		local perlin1 = minetest.env:get_perlin(230, 3, 0.6, 100)
+		local perlin1 = minetest.get_perlin(230, 3, 0.6, 100)
 		-- Assume X and Z lengths are equal
 		local divlen = 16
 		local divs = (maxp.x-minp.x)/divlen+1;
@@ -95,20 +95,20 @@ minetest.register_on_generated(function(minp, maxp, seed)
 				-- Find ground level (0...15)
 				local ground_y = nil
 				for y=30,0,-1 do
-					if minetest.env:get_node({x=x,y=y,z=z}).name ~= "air" then
+					if minetest.get_node({x=x,y=y,z=z}).name ~= "air" then
 						ground_y = y
 						break
 					end
 				end
 				-- If desert sand, make cactus
-				if ground_y and minetest.env:get_node({x=x,y=ground_y,z=z}).name == "default:desert_sand" then
+				if ground_y and minetest.get_node({x=x,y=ground_y,z=z}).name == "default:desert_sand" then
 					default.make_cactus({x=x,y=ground_y+1,z=z}, pr:next(3, 4))
 				end
 			end
 		end
 		end
 		-- Generate dry shrubs
-		local perlin1 = minetest.env:get_perlin(329, 3, 0.6, 100)
+		local perlin1 = minetest.get_perlin(329, 3, 0.6, 100)
 		-- Assume X and Z lengths are equal
 		local divlen = 16
 		local divs = (maxp.x-minp.x)/divlen+1;
@@ -128,14 +128,14 @@ minetest.register_on_generated(function(minp, maxp, seed)
 				-- Find ground level (0...15)
 				local ground_y = nil
 				for y=30,0,-1 do
-					if minetest.env:get_node({x=x,y=y,z=z}).name ~= "air" then
+					if minetest.get_node({x=x,y=y,z=z}).name ~= "air" then
 						ground_y = y
 						break
 					end
 				end
 				-- If desert sand, make cactus
-				if ground_y and minetest.env:get_node({x=x,y=ground_y,z=z}).name == "default:desert_sand" then
-					minetest.env:set_node({x=x,y=ground_y+1,z=z}, {name="default:dry_shrub"})
+				if ground_y and minetest.get_node({x=x,y=ground_y,z=z}).name == "default:desert_sand" then
+					minetest.set_node({x=x,y=ground_y+1,z=z}, {name="default:dry_shrub"})
 				end
 			end
 		end

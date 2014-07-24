@@ -10,7 +10,7 @@ function bk_game.register_bucket(name, def)
 			if pointed_thing.type ~= "node" then
 				return
 			end
-			local n = minetest.env:get_node(pointed_thing.under)
+			local n = minetest.get_node(pointed_thing.under)
 			local t = ""
 			if n.name == "default:lava_source" then
 				t = "lava"
@@ -23,7 +23,7 @@ function bk_game.register_bucket(name, def)
 			end
 			local full_name = "bucket:"..name.."_with_"..t
 			if minetest.registered_items[full_name] then
-				minetest.env:add_node(pointed_thing.under, {name="air"})
+				minetest.add_node(pointed_thing.under, {name="air"})
 				return {name=full_name}
 			end
 		end
@@ -44,13 +44,13 @@ function bk_game.register_bucket(name, def)
 			if pointed_thing.type ~= "node" then
 				return
 			end
-			n = minetest.env:get_node(pointed_thing.under)
+			n = minetest.get_node(pointed_thing.under)
 			if minetest.registered_nodes[n.name].buildable_to then
-				minetest.env:add_node(pointed_thing.under, {name="default:water_source"})
+				minetest.add_node(pointed_thing.under, {name="default:water_source"})
 			else
-				n = minetest.env:get_node(pointed_thing.above)
+				n = minetest.get_node(pointed_thing.above)
 			if minetest.registered_nodes[n.name].buildable_to then
-					minetest.env:add_node(pointed_thing.above, {name="default:water_source"})
+					minetest.add_node(pointed_thing.above, {name="default:water_source"})
 				else
 					return
 				end
@@ -75,13 +75,13 @@ function bk_game.register_bucket(name, def)
 			if pointed_thing.type ~= "node" then
 				return
 			end
-			n = minetest.env:get_node(pointed_thing.under)
+			n = minetest.get_node(pointed_thing.under)
 			if minetest.registered_nodes[n.name].buildable_to then
-				minetest.env:add_node(pointed_thing.under, {name="default:oil_source"})
+				minetest.add_node(pointed_thing.under, {name="default:oil_source"})
 			else
-				n = minetest.env:get_node(pointed_thing.above)
+				n = minetest.get_node(pointed_thing.above)
 			if minetest.registered_nodes[n.name].buildable_to then
-					minetest.env:add_node(pointed_thing.above, {name="default:oil_source"})
+					minetest.add_node(pointed_thing.above, {name="default:oil_source"})
 				else
 					return
 				end
@@ -106,13 +106,13 @@ function bk_game.register_bucket(name, def)
 						if pointed_thing.type ~= "node" then
 							return
 						end
-						n = minetest.env:get_node(pointed_thing.under)
+						n = minetest.get_node(pointed_thing.under)
 						if minetest.registered_nodes[n.name].buildable_to then
-							minetest.env:add_node(pointed_thing.under, {name="default:lava_source"})
+							minetest.add_node(pointed_thing.under, {name="default:lava_source"})
 						else
-							n = minetest.env:get_node(pointed_thing.above)
+							n = minetest.get_node(pointed_thing.above)
 							if minetest.registered_nodes[n.name].buildable_to then
-								minetest.env:add_node(pointed_thing.above, {name="default:lava_source"})
+								minetest.add_node(pointed_thing.above, {name="default:lava_source"})
 							else
 								return
 							end

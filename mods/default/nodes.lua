@@ -177,13 +177,13 @@ minetest.register_abm({
 	interval = 60,
 	chance = 30,
 	action = function(pos, node, active_object_count, active_object_count_wider)
-		if not minetest.env:get_node_light(pos) or
-			minetest.env:get_node_light(pos) < 8 then
+		if not minetest.get_node_light(pos) or
+			minetest.get_node_light(pos) < 8 then
 			return
 		end
 		local h = 1
 		repeat
-			if minetest.env:get_node({x=pos.x,y=pos.y-h,z=pos.z}).name == node.name then
+			if minetest.get_node({x=pos.x,y=pos.y-h,z=pos.z}).name == node.name then
 				h = h + 1
 			else
 				break
@@ -200,9 +200,9 @@ minetest.register_abm({
 			"default:dirt_with_grass",
 			"default:dirt_with_grass_and_clay"
 		}
-		if  minetest.registered_nodes[minetest.env:get_node({x=pos.x,y=pos.y+1,z=pos.z}).name].buildable_to
-			and table.contains(grounds, minetest.env:get_node({x=pos.x,y=pos.y-h,z=pos.z}).name) then
-			minetest.env:set_node({x=pos.x,y=pos.y+1,z=pos.z}, {name=node.name})
+		if  minetest.registered_nodes[minetest.get_node({x=pos.x,y=pos.y+1,z=pos.z}).name].buildable_to
+			and table.contains(grounds, minetest.get_node({x=pos.x,y=pos.y-h,z=pos.z}).name) then
+			minetest.set_node({x=pos.x,y=pos.y+1,z=pos.z}, {name=node.name})
 		end
 	end
 })
@@ -212,7 +212,7 @@ minetest.register_abm({
     interval = 0.5,
     chance = 1,
     action = function(pos, node, active_object_count, active_object_count_wider)
-    players = minetest.env:get_objects_inside_radius(pos, 1)
+    players = minetest.get_objects_inside_radius(pos, 1)
 	for i, player in ipairs(players) do
 		player:set_hp(player:get_hp() - 1)
 	end

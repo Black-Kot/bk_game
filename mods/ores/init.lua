@@ -95,15 +95,15 @@ local function generate_peat(name, wherein, minp, maxp, seed, chunks_per_volume,
 					local y2 = y0+y1
 					local z2 = z0+z1
 					local p2 = {x=x2, y=y2, z=z2}
-					if minetest.env:get_node(p2).name == wherein then
-						if minetest.env:get_node({x=p2.x, y=p2.y + 1, z=p2.z}).name == "default:water_source" and
-						minetest.env:get_node({x=p2.x, y=p2.y + 2, z=p2.z}).name == "air" then
-							minetest.env:add_node(p2, {name=name})
+					if minetest.get_node(p2).name == wherein then
+						if minetest.get_node({x=p2.x, y=p2.y + 1, z=p2.z}).name == "default:water_source" and
+						minetest.get_node({x=p2.x, y=p2.y + 2, z=p2.z}).name == "air" then
+							minetest.add_node(p2, {name=name})
 						end
-						if minetest.env:get_node({x=p2.x, y=p2.y + 1, z=p2.z}).name == "default:water_source" and
-						minetest.env:get_node({x=p2.x, y=p2.y + 2, z=p2.z}).name == "default:water_source" and 
-						minetest.env:get_node({x=p2.x, y=p2.y + 3, z=p2.z}).name == "air" then
-							minetest.env:add_node(p2, {name=name})
+						if minetest.get_node({x=p2.x, y=p2.y + 1, z=p2.z}).name == "default:water_source" and
+						minetest.get_node({x=p2.x, y=p2.y + 2, z=p2.z}).name == "default:water_source" and 
+						minetest.get_node({x=p2.x, y=p2.y + 3, z=p2.z}).name == "air" then
+							minetest.add_node(p2, {name=name})
 						end
 						
 					end
@@ -118,7 +118,7 @@ end
 local function is_node_beside(pos, node)
 	local sides = {{x=-1,y=0,z=0}, {x=1,y=0,z=0}, {x=0,y=0,z=-1}, {x=0,y=0,z=1}, {x=0,y=-1,z=0}, {x=0,y=1,z=0},}
 	for i, s in ipairs(sides) do
-		if minetest.env:get_node({x=pos.x+s.x,y=pos.y+s.y,z=pos.z+s.z}).name == node then
+		if minetest.get_node({x=pos.x+s.x,y=pos.y+s.y,z=pos.z+s.z}).name == node then
 			return true, minetest.dir_to_wallmounted(s)
 		end
 	end
@@ -147,16 +147,16 @@ local function generate_ore(name, wherein, minp, maxp, seed, chunks_per_volume, 
 			for z0 = 1, Z1, 1 do
 				local p2 = {x=pos1.x+x0, y=pos1.y+y0, z=pos1.y+y0}
 				
-	print("pos setnodes("..name.." , in "..wherein.."?"..minetest.env:get_node(p2).name..") is: ("..p2.x..","..p2.y..","..p2.z..")")
-					if minetest.env:get_node(p2).name == wherein then
+	print("pos setnodes("..name.." , in "..wherein.."?"..minetest.get_node(p2).name..") is: ("..p2.x..","..p2.y..","..p2.z..")")
+					if minetest.get_node(p2).name == wherein then
 							-- perlin
 							if type(noise_min) == "number" or type(noise_max) == "number" then
 								if ore_noise2 >= noise_min and ore_noise2 <= noise_max then
-									minetest.env:add_node(p2, {name=name})
+									minetest.add_node(p2, {name=name})
 									print("setnode("..p2.x..","..p2.y..","..p2.z.." : "..name..")")
 								end
 							else
-								minetest.env:add_node(p2, {name=name})
+								minetest.add_node(p2, {name=name})
 								print("setnode("..p2.x..","..p2.y..","..p2.z.." : "..name..")")
 							end
 							
@@ -194,7 +194,7 @@ local function generate_ore(name, wherein, minp, maxp, seed, chunks_per_volume, 
 		if type(noise_max) ~= "number" then
 			noise_max = 2
 		end
-		ore_noise1 = minetest.env:get_perlin(seed, 3, 0.7, 100)
+		ore_noise1 = minetest.get_perlin(seed, 3, 0.7, 100)
 	end
 	
 	for i=1,chunk_size + 1 do
@@ -217,15 +217,15 @@ local function generate_ore(name, wherein, minp, maxp, seed, chunks_per_volume, 
 					local y2 = y0+y1
 					local z2 = z0+z1
 					local p2 = {x=x2, y=y2, z=z2}
-					if minetest.env:get_node(p2).name == wherein then
+					if minetest.get_node(p2).name == wherein then
 							-- perlin
 							if type(noise_min) == "number" or type(noise_max) == "number" then
 								if ore_noise2 >= noise_min and ore_noise2 <= noise_max then
-									minetest.env:add_node(p2, {name=name})
+									minetest.add_node(p2, {name=name})
 									--print("setnode("..p2.x..","..p2.y..","..p2.z.." : "..name..")")
 								end
 							else
-								minetest.env:add_node(p2, {name=name})
+								minetest.add_node(p2, {name=name})
 								--print("setnode("..p2.x..","..p2.y..","..p2.z.." : "..name..")")
 							end
 							

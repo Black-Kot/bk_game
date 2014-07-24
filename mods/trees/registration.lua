@@ -244,9 +244,9 @@ function bk_game.register_tree(name, TreeDef)
 		after_dig_node = function(pos, oldnode, oldmetadata, digger)
 			for i = 1,#tree.leaves do
 				local p = {x=pos.x+tree.leaves[i][1], y=pos.y+tree.leaves[i][2], z=pos.z+tree.leaves[i][3]}
-				if minetest.env:get_node(p).name == tree.name.."_leaves" then
+				if minetest.get_node(p).name == tree.name.."_leaves" then
 					local drop = minetest.get_node_drops(minetest.get_node(p).name)
-					minetest.env:dig_node(p)
+					minetest.dig_node(p)
 					for _,item in ipairs(drop) do
 						minetest.add_item(p, item)
 					end
@@ -305,10 +305,10 @@ function bk_game.register_tree(name, TreeDef)
 		interval = tree.grow_interval,
 		chance = tree.grow_chance,
 		action = function(pos, node)
-			if not minetest.env:get_node_light(pos) then
+			if not minetest.get_node_light(pos) then
 				return
 			end
-			if minetest.env:get_node_light(pos) >= tree.grow_light then
+			if minetest.get_node_light(pos) >= tree.grow_light then
 				trees.make_tree(pos, tree.name)
 			end
 		end,

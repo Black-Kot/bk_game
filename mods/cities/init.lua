@@ -45,7 +45,7 @@ minetest.register_privilege("city", {
 minetest.register_on_chat_message(function(name, message, playername, player)
     local city = string.match(message, "^/([^ ]+)")
     if cities[city] then
-        local player = minetest.env:get_player_by_name(name)
+        local player = minetest.get_player_by_name(name)
         minetest.chat_send_player(player:get_player_name(), "Teleporting to "..city.."...")
         player:setpos(cities[city])
         return true
