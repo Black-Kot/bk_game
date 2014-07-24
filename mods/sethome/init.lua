@@ -42,41 +42,47 @@ end
 
 local changed = false
 
-minetest.register_on_chat_message(function(name, message)
-    if message == "/sethome" then
-        local player = minetest.env:get_player_by_name(name)
+minetest.register_chatcommand("sethome", {
+	params = "",
+	description = "",
+	func = function(name, param)
+        local player = minetest.get_player_by_name(name)
+		if not player then
+			return false, "Unknown player"
+		end
         local pos = player:getpos()
         homepos[name] = pos
-        minetest.chat_send_player(name, "Home set!")
         changed = true
-		return true
-    elseif message == "/home" then
-        local player = minetest.env:get_player_by_name(name)
-        if player == nil then
-			-- just a check to prevent server death
+		return true, "Home set!"
+	end,
+})
+minetest.register_chatcommand("home", {
+	params = "",
+	description = "",
+	func = function(name, param)
+        local player = minetest.get_player_by_name(name)
+        if not player then
 			return false
 		end
 		if homepos[name] then
 			local time = get_time()
             if cooldown ~= 0 and last_moved[name] ~= nil and time - last_moved[name] < cooldown then
-				minetest.chat_send_player(name, "You can teleport only once in "..cooldown.." seconds. Wait another "..round(cooldown - (time - last_moved[name]), 3).." secs...")
-				return true
+				return false, "You can teleport only once in "..cooldown.." seconds. Wait another "..round(cooldown - (time - last_moved[name]), 3).." secs..."
 			end
 			local pos = player:getpos()
 			local dst = distance(pos, homepos[name])
 			if max_distance ~= 0 and distance(pos, homepos[name]) > max_distance then
-				minetest.chat_send_player(name, "You are too far away from your home. You must be "..round(dst - max_distance, 3).." meters closer to teleport to your home.")
-				return true
+				return false, "You are too far away from your home. You must be "..round(dst - max_distance, 3).." meters closer to teleport to your home."
 			end
 			last_moved[name] = time
 			player:setpos(homepos[name])
-            minetest.chat_send_player(name, "Teleported to home!")
+            return true, "Teleported to home!"
         else
-            minetest.chat_send_player(name, "You don't have a home now! Set it using /sethome")
+            return false, "You don't have a home now! Set it using /sethome"
         end
         return true
-    end
-end)
+	end,
+})
 
 local delta = 0
 
