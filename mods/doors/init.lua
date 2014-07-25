@@ -139,7 +139,7 @@ function bk_game.register_door(name, def)
 			type = "fixed",
 			fixed = box
 		},
-		groups = {snappy=1,bendy=2,cracky=1,melty=2,level=2,door=1,not_in_creative_inventory = 1},
+		groups = {snappy=6,bendy=6,cracky=6,oddly_breakable_by_hand=2,melty=2,level=2,door=1,not_in_creative_inventory = 1},
 
 		after_dig_node = function(pos, oldnode, oldmetadata, digger)
 			pos.y = pos.y+1
@@ -169,7 +169,7 @@ function bk_game.register_door(name, def)
 			type = "fixed",
 			fixed = box
 		},
-		groups = {snappy=1,bendy=2,cracky=1,melty=2,level=2,door=1,not_in_creative_inventory = 1},
+		groups = {snappy=5,bendy=5,cracky=6,oddly_breakable_by_hand=2,melty=2,level=2,door=1,not_in_creative_inventory = 1},
 
 		after_dig_node = function(pos, oldnode, oldmetadata, digger)
 			pos.y = pos.y-1
@@ -199,7 +199,7 @@ function bk_game.register_door(name, def)
 			type = "fixed",
 			fixed = box
 		},
-		groups = {snappy=1,bendy=2,cracky=1,melty=2,level=2,door=1,not_in_creative_inventory = 1},
+		groups = {snappy=6,bendy=6,cracky=6,oddly_breakable_by_hand=2,melty=2,level=2,door=1,not_in_creative_inventory = 1},
 
 		after_dig_node = function(pos, oldnode, oldmetadata, digger)
 			pos.y = pos.y+1
@@ -229,7 +229,7 @@ function bk_game.register_door(name, def)
 			type = "fixed",
 			fixed = box
 		},
-		groups = {snappy=1,bendy=2,cracky=1,melty=2,level=2,door=1,not_in_creative_inventory = 1},
+		groups = {snappy=6,bendy=6,cracky=6,oddly_breakable_by_hand=2,melty=2,level=2,door=1,not_in_creative_inventory = 1},
 
 		after_dig_node = function(pos, oldnode, oldmetadata, digger)
 			pos.y = pos.y-1
