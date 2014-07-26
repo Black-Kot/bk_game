@@ -1,13 +1,6 @@
 bk_game.registered_trees = {}
 bk_game.registered_trees_list = {}
-function contains(t, v)
-	for _, i in ipairs(t) do
-		if i == v then
-			return true
-		end
-	end
-	return false
-end
+
 function bk_game.register_tree(name, TreeDef)
 	local tree = {
 		name = name,
