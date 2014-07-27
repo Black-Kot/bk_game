@@ -85,7 +85,7 @@ function bk_game.register_tree(name, TreeDef)
 		groups = {snappy=6,dig_immediate=3,flammable=2,dropping_node=1},
 		sounds = default.node_sound_defaults(),
 		on_place = function(itemstack,placer,pt)
-			local p=minetest.get_pointed_thing_position(pt false)
+			local p=minetest.get_pointed_thing_position(pt, false)
 			local n=minetest.get_node(p)
 			if string.match(n.name,"sapling")~=nil then return
 			else
