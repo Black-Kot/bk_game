@@ -1,6 +1,13 @@
 bk_game.registered_trees = {}
 bk_game.registered_trees_list = {}
-
+function contains(t, v)
+	for _, i in ipairs(t) do
+		if i == v then
+			return true
+		end
+	end
+	return false
+end
 function bk_game.register_tree(name, TreeDef)
 	local tree = {
 		name = name,
@@ -75,9 +82,18 @@ function bk_game.register_tree(name, TreeDef)
 		wield_image = tree.textures.sapling,
 		paramtype = "light",
 		walkable = false,
-		falling_node_walkable = false,
 		groups = {snappy=6,dig_immediate=3,flammable=2,dropping_node=1},
-		sounds = default.node_sound_defaults()
+		sounds = default.node_sound_defaults(),
+		on_place = function(itemstack,placer,pt)
+			local p=minetest.get_pointed_thing_position(pt, false)
+			local n=minetest.get_node(p)
+			if string.match(n.name,"sapling")~=nil then return
+			else
+				minetest.add_node(pt.above,{name=tree.name.."_sapling"})
+				itemstack:take_item()
+			end
+			return itemstack
+		end
 	})
 
 
