@@ -78,6 +78,7 @@ int main(int argc, char** argv) {
 				sqlite3_prepare_v2(db, "select data from blocks where pos=?", -1, &pst, NULL);
 				sqlite3_bind_int64(pst, 1, position);
 				sqlite3_step(pst);
+				if(data)
 					const void* blob = sqlite3_column_blob(pst, 0);
 					int size_blob = sqlite3_column_bytes(pst, 0);
 					sqlite3_stmt *pst2 = 0;
@@ -86,6 +87,7 @@ int main(int argc, char** argv) {
 					sqlite3_bind_blob(pst2, 2, blob, size_blob, NULL);
 					sqlite3_step(pst2);
 					sqlite3_finalize(pst2);
+				}
 					
 				sqlite3_finalize(pst);
 				temp.z++;
