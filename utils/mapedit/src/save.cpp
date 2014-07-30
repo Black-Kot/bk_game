@@ -17,7 +17,7 @@ pos operator+(int64_t num)
 {
 	x = x + num;
 	y = y + num;
-	x = z + num;
+	z = z + num;
     return *this;
 }
 
@@ -25,7 +25,7 @@ pos operator-(int64_t num)
 {
 	x = x - num;
 	y = y - num;
-	x = z - num;
+	z = z - num;
     return *this;
 }
 	int64_t x;
