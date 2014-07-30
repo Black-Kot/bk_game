@@ -82,7 +82,7 @@ function bk_game.register_tree(name, TreeDef)
 		wield_image = tree.textures.sapling,
 		paramtype = "light",
 		walkable = false,
-		groups = {snappy=6,dig_immediate=3,flammable=2,dropping_node=1},
+		groups = {snappy=6,dig_immediate=3,flammable=2},
 		sounds = default.node_sound_defaults(),
 		on_place = function(itemstack,placer,pt)
 			local p=minetest.get_pointed_thing_position(pt, false)
@@ -102,10 +102,9 @@ function bk_game.register_tree(name, TreeDef)
 		tiles = tree.textures.trunk,
 		inventory_image = tree.textures.log,
 		wield_image = tree.textures.log,
-		groups = {log=1,choppy=5,snappy=5,flammable=2,dropping_node=1,drop_on_dig=1},
+		groups = {log=1,choppy=5,snappy=5,flammable=2,drop_on_dig=1},
 		sounds = default.node_sound_wood_defaults(),
 		drop = tree.name.."_log",
-		--drop_on_dropping = tree.name.."_log",
 		drawtype = "nodebox",
 		paramtype = "light",
 		node_box = {
@@ -147,7 +146,6 @@ function bk_game.register_tree(name, TreeDef)
 		},
 		sounds = default.node_sound_leaves_defaults(),
 		walkable = false,
-		falling_node_walkable = false,
 		climbable = true,
 	})
 
@@ -177,7 +175,6 @@ function bk_game.register_tree(name, TreeDef)
 			},
 			sounds = default.node_sound_leaves_defaults(),
 			walkable = false,
-			falling_node_walkable = false,
 			climbable = true,
 		})
 	end
@@ -204,7 +201,6 @@ function bk_game.register_tree(name, TreeDef)
 			},
 			sounds = default.node_sound_leaves_defaults(),
 			walkable = false,
-			falling_node_walkable = false,
 			climbable = true,
 		})
 	end
@@ -212,7 +208,7 @@ function bk_game.register_tree(name, TreeDef)
 	minetest.register_node(tree.name.."_trunk", {
 		description = tree.description.." Trunk",
 		tiles = tree.textures.trunk,
-		groups = {tree=1,choppy=5,snappy=5,flammable=2,dropping_node=1,drop_on_dig=1},
+		groups = {tree=1,choppy=5,snappy=5,flammable=2,drop_on_dig=1},
 		sounds = default.node_sound_wood_defaults(),
 		drop = tree.name.."_log",
 		drawtype = "nodebox",
@@ -233,7 +229,7 @@ function bk_game.register_tree(name, TreeDef)
 
 	minetest.register_node(tree.name.."_trunk_top", {
 		tiles = tree.textures.trunk,
-		groups = {tree=1,choppy=5,snappy=5,flammable=2,dropping_node=1,drop_on_dig=1},
+		groups = {tree=1,choppy=5,snappy=5,flammable=2,drop_on_dig=1},
 		sounds = default.node_sound_wood_defaults(),
 		drop = tree.name.."_log",
 		drawtype = "nodebox",
