@@ -11,7 +11,6 @@ minetest.register_abm({
 	chance = 1,
 	action = function(pos, node, active_object_count, active_object_count_wider)
 		local now = minetest.get_timeofday() * 24000
-		print()
 		if now < 5000 or now > 20000 then
 			minetest.add_node(pos, { name = "flowers:moon_open" })
 		else
