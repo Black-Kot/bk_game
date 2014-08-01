@@ -41,8 +41,8 @@ struct pos {
 };
 
 int main(int argc, char** argv) {
-	if(argc < 9 || argc > 9) {
-		std::cout << "Usage:\n/path/to/folder/map /path/to/save/folder/map first_block(as 127 -125 147) last_block(as 127 128 148) " << std::endl;
+	if(argc < 10 || argc > 10) {
+		std::cout << "Usage:\n/path/to/folder/map /path/to/save/folder/map chunks first_block(as 127 -125 147) last_block(as 127 128 148) " << std::endl;
 		exit(1);
 	}
 	std::string file = std::string(argv[1]);
@@ -51,10 +51,10 @@ int main(int argc, char** argv) {
 	std::string file2 = std::string(argv[2]);
 	if(file2.find("/map.sqlite") == std::string::npos)
 		file2 += "/map.sqlite";
-	pos start = pos(atoi(argv[3]) / MAP_BLOCKSIZE, atoi(argv[4]) / MAP_BLOCKSIZE, atoi(argv[5]) / MAP_BLOCKSIZE);
-	pos end = pos(atoi(argv[6]) / MAP_BLOCKSIZE, atoi(argv[7]) / MAP_BLOCKSIZE, atoi(argv[8]) / MAP_BLOCKSIZE);
-	start = start - 25;
-	end = end + 25;
+	pos start = pos(atoi(argv[4]) / MAP_BLOCKSIZE, atoi(argv[5]) / MAP_BLOCKSIZE, atoi(argv[6]) / MAP_BLOCKSIZE);
+	pos end = pos(atoi(argv[7]) / MAP_BLOCKSIZE, atoi(argv[8]) / MAP_BLOCKSIZE, atoi(argv[9]) / MAP_BLOCKSIZE);
+	start = start - atoi(argv[3]);
+	end = end + atoi(argv[3]);
 	pos temp = start;
 
 	std::cout << "from(" << temp.x << " ," << temp.y << " ," << temp.z << " ) to(" << end.x << " ," << end.y << " ," << end.z << " )" << std::endl;
@@ -96,7 +96,7 @@ int main(int argc, char** argv) {
 				temp.z++;
 			}
 			temp.y++;
-			temp.x = start.x;
+			temp.z = start.z;
 		}
 		temp.z++;
 		temp.y = start.y;
