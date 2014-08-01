@@ -8,37 +8,37 @@
 #define MAP_BLOCKSIZE 16
 
 struct pos {
+	
 	pos(int _x, int _y, int _z){
 		x = _x;
 		y = _y;
 		z = _z;
 	}
-pos operator+(int64_t num)
-{
-	x = x + num;
-	y = y + num;
-	z = z + num;
-    return *this;
-}
 
-pos operator-(int64_t num)
-{
-	x = x - num;
-	y = y - num;
-	z = z - num;
-    return *this;
-}
+	pos operator-(int64_t num) {
+		x = x - num;
+		y = y - num;
+		z = z - num;
+		return *this;
+	}
+	
+	pos operator+(int64_t num) {
+		x = x + num;
+		y = y + num;
+		z = z + num;
+		return *this;
+	}
+
+	int64_t getBlockAsInteger() {
+		return (uint64_t) z * 0x1000000 +
+			(uint64_t) y * 0x1000 +
+			(uint64_t) x;
+	}
+
 	int64_t x;
 	int64_t y;
 	int64_t z;
 };
-
-int64_t getBlockAsInteger(pos p)
-{
-	return (uint64_t) p.z * 0x1000000 +
-		(uint64_t) p.y * 0x1000 +
-		(uint64_t) p.x;
-}
 
 int main(int argc, char** argv) {
 	if(argc < 9 || argc > 9) {
@@ -53,27 +53,30 @@ int main(int argc, char** argv) {
 		file2 += "/map.sqlite";
 	pos start = pos(atoi(argv[3]) / MAP_BLOCKSIZE, atoi(argv[4]) / MAP_BLOCKSIZE, atoi(argv[5]) / MAP_BLOCKSIZE);
 	pos end = pos(atoi(argv[6]) / MAP_BLOCKSIZE, atoi(argv[7]) / MAP_BLOCKSIZE, atoi(argv[8]) / MAP_BLOCKSIZE);
-	start = start - 10;
-	end = end + 10;
+	start = start - 25;
+	end = end + 25;
 	pos temp = start;
 
 	std::cout << "from(" << temp.x << " ," << temp.y << " ," << temp.z << " ) to(" << end.x << " ," << end.y << " ," << end.z << " )" << std::endl;
-	
+
 	sqlite3 *db;
 	if(sqlite3_open(file.c_str(), &db) != SQLITE_OK) {
 		std::cout << sqlite3_errmsg(db) << std::endl;
 		return 1;
 	}
-
 	sqlite3 *save_db;
 	sqlite3_open(file2.c_str(), &save_db);
 
 	sqlite3_exec(save_db, "CREATE TABLE IF NOT EXISTS `blocks` (`pos` INT NOT NULL PRIMARY KEY,`data` BLOB)", NULL, NULL, NULL);
-	
-	while (temp.x < end.x) {
+
+	while (temp.z < end.z) {
 		while (temp.y < end.y) {
 			while (temp.z < end.z) {
-				int64_t position = getBlockAsInteger(temp);
+				int64_t start_position = temp.getBlockAsInteger();
+				temp.x = end.x;
+				int64_t end_position = temp.getBlockAsInteger();
+				std::string sql = std::string("select pos, data from blocks where pos>") + std::to_string(start_position) + " and pos<" + std::to_string(end_position) + ";";
+				int64_t position = temp.getBlockAsInteger();
 				sqlite3_stmt *pst = 0;
 				sqlite3_prepare_v2(db, "select data from blocks where pos=?", -1, &pst, NULL);
 				sqlite3_bind_int64(pst, 1, position);
@@ -88,17 +91,17 @@ int main(int argc, char** argv) {
 					sqlite3_step(pst2);
 					sqlite3_finalize(pst2);
 				}
-					
+
 				sqlite3_finalize(pst);
 				temp.z++;
 			}
 			temp.y++;
-			temp.z = start.z;
+			temp.x = start.x;
 		}
-		temp.x++;
+		temp.z++;
 		temp.y = start.y;
 	}
-	
+
 	sqlite3_close(db);
 	sqlite3_close(save_db);
 	return 0;
