@@ -7,6 +7,7 @@
 
 #define MAP_BLOCKSIZE 16
 
+// block position
 struct pos {
 	
 	pos(int _x, int _y, int _z){
@@ -53,9 +54,10 @@ int main(int argc, char** argv) {
 		file2 += "/map.sqlite";
 	pos start = pos(atoi(argv[4]) / MAP_BLOCKSIZE, atoi(argv[5]) / MAP_BLOCKSIZE, atoi(argv[6]) / MAP_BLOCKSIZE);
 	pos end = pos(atoi(argv[7]) / MAP_BLOCKSIZE, atoi(argv[8]) / MAP_BLOCKSIZE, atoi(argv[9]) / MAP_BLOCKSIZE);
+	// increase start and end points
 	start = start - atoi(argv[3]);
 	end = end + atoi(argv[3]);
-	pos temp = start;
+	pos temp = start; // need to save start pos
 	std::cout << "from(" << temp.x << " ," << temp.y << " ," << temp.z << " ) to(" << end.x << " ," << end.y << " ," << end.z << " )" << std::endl;
 	sqlite3 *db;
 	if(sqlite3_open(file.c_str(), &db) != SQLITE_OK) {
@@ -75,6 +77,7 @@ int main(int argc, char** argv) {
 				sqlite3_step(pst);
 				const void* blob = sqlite3_column_blob(pst, 0);
 				size_t size_blob = sqlite3_column_bytes(pst, 0);
+				// if size > 1 we save block, also block not exists
 				if(size_blob > 1) {
 					sqlite3_stmt *pst2 = 0;
 					sqlite3_prepare_v2(save_db, "insert or replace into blocks values(?, ?);", -1, &pst2, NULL);
@@ -83,15 +86,13 @@ int main(int argc, char** argv) {
 					sqlite3_step(pst2);
 					sqlite3_finalize(pst2);
 				}
-
 				sqlite3_finalize(pst);
-				usleep(100000); // need?
 				temp.z++;
 			}
 			temp.y++;
 			temp.z = start.z;
 		}
-		temp.z++;
+		temp.x++;
 		temp.y = start.y;
 	}
 	sqlite3_close(db);
