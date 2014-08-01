@@ -56,9 +56,7 @@ int main(int argc, char** argv) {
 	start = start - atoi(argv[3]);
 	end = end + atoi(argv[3]);
 	pos temp = start;
-
 	std::cout << "from(" << temp.x << " ," << temp.y << " ," << temp.z << " ) to(" << end.x << " ," << end.y << " ," << end.z << " )" << std::endl;
-
 	sqlite3 *db;
 	if(sqlite3_open(file.c_str(), &db) != SQLITE_OK) {
 		std::cout << sqlite3_errmsg(db) << std::endl;
@@ -66,16 +64,10 @@ int main(int argc, char** argv) {
 	}
 	sqlite3 *save_db;
 	sqlite3_open(file2.c_str(), &save_db);
-
 	sqlite3_exec(save_db, "CREATE TABLE IF NOT EXISTS `blocks` (`pos` INT NOT NULL PRIMARY KEY,`data` BLOB)", NULL, NULL, NULL);
-
-	while (temp.z < end.z) {
+	while (temp.x < end.x) {
 		while (temp.y < end.y) {
 			while (temp.z < end.z) {
-				int64_t start_position = temp.getBlockAsInteger();
-				temp.x = end.x;
-				int64_t end_position = temp.getBlockAsInteger();
-				std::string sql = std::string("select pos, data from blocks where pos>") + std::to_string(start_position) + " and pos<" + std::to_string(end_position) + ";";
 				int64_t position = temp.getBlockAsInteger();
 				sqlite3_stmt *pst = 0;
 				sqlite3_prepare_v2(db, "select data from blocks where pos=?", -1, &pst, NULL);
@@ -93,6 +85,7 @@ int main(int argc, char** argv) {
 				}
 
 				sqlite3_finalize(pst);
+				usleep(100000); // need?
 				temp.z++;
 			}
 			temp.y++;
@@ -101,8 +94,7 @@ int main(int argc, char** argv) {
 		temp.z++;
 		temp.y = start.y;
 	}
-
 	sqlite3_close(db);
 	sqlite3_close(save_db);
 	return 0;
-	}
+}
