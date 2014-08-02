@@ -92,7 +92,7 @@ metalList = {
 	["steel"] =		{
 						description = "Steel", lump = "metals:iron_lump", -- Maybe better to alter descrition rather than internal name?
 						level=3, uses=20,  times={ [3]=2.70 ,[4]=1.80,[5]=1.40, [6]=1.00 },
-						isAlloy = false, height_max=-250, height_max=-17000,
+						isAlloy = false, height_max=-250, height_min=-17000,
 						blocks = true, tools=true, furniture=false
 					},
 	["gold"] =		{
