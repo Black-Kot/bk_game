@@ -3,7 +3,7 @@
 local GROWING_DELAY = 3600
 
 bk_game.register_flower("moon_closed", { description = "Moon flower", interval=GROWING_DELAY*2, chance = 20, spacing = 15, nodenames={"default:dirt_with_grass"}, pot=false})
-bk_game.register_flower("moon_open", { description = "Moon flower", light_source=10, pot=false, seed=false, generate=false})
+bk_game.register_flower("moon_open", { description = "Moon flower", light_source=10, pot=false, seed=false, generate=false, drop="flowers:moon_closed"})
 
 minetest.register_abm({
 	nodenames = { "flowers:moon_closed", "flowers:moon_open" },

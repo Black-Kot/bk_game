@@ -1,13 +1,6 @@
 bk_game.registered_trees = {}
 bk_game.registered_trees_list = {}
-function contains(t, v)
-	for _, i in ipairs(t) do
-		if i == v then
-			return true
-		end
-	end
-	return false
-end
+
 function bk_game.register_tree(name, TreeDef)
 	local tree = {
 		name = name,
@@ -24,7 +17,8 @@ function bk_game.register_tree(name, TreeDef)
 		gen_winter_leaves = false,
 		fruit = TreeDef.fruit,
 		fruit_name = TreeDef.fruit_name,
-		fruit_grow_chance = TreeDef.fruit_grow_chance or 20
+		fruit_grow_chance = TreeDef.fruit_grow_chance or 20,
+		eat_price = TreeDef.eat_price or 1
 	}
 	if TreeDef.gen_autumn_leaves then
 		tree.gen_autumn_leaves = true
@@ -41,10 +35,6 @@ function bk_game.register_tree(name, TreeDef)
 	tree.textures.stick = tree.textures.stick or name_.."_stick.png"
 	tree.textures.sapling = tree.textures.sapling or name_.."_sapling.png"
 	tree.textures.log = tree.textures.log or name_.."_log.png"
-	tree.textures.plank = tree.textures.plank or name_.."_plank.png"
-	tree.textures.ladder = tree.textures.ladder or name_.."_ladder.png"
-	tree.textures.chest = tree.textures.chest or {name_.."_chest_top.png", name_.."_chest_top.png", name_.."_chest_side.png", name_.."_chest_side.png", name_.."_chest_side.png", name_.."_chest_front.png"}
-	tree.textures.locked_chest = tree.textures.locked_chest or {name_.."_chest_top.png", name_.."_chest_top.png", name_.."_chest_side.png", name_.."_chest_side.png", name_.."_chest_side.png", name_.."_chest_lock.png"}
 
 	bk_game.registered_trees[name] = tree
 	table.insert(bk_game.registered_trees_list, tree.name)
@@ -63,7 +53,7 @@ function bk_game.register_tree(name, TreeDef)
 			inventory_image = "trees_"..tree.fruit..".png",
 			paramtype = "light",
 			walkable = false,
-			on_use = minetest.item_eat(1),
+			on_use = minetest.item_eat(tree.eat_price),
 			groups = {snappy=6, dig_immediate=3}
 		})
 	end
