@@ -81,7 +81,7 @@ minetest.register_chatcommand("delmine" , {
             minetest.chat_send_player(name, "You don't have a mine "..n.." now! Set it using /setmine <name>")
             return
 		end
-		removekey(minepos[name][param], name) 
+		removekey(minepos[name], param)
         minetest.chat_send_player(name, "Mine "..param.." delete`d!")
         changed = true
     end,
