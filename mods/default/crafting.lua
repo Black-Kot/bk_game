@@ -128,8 +128,8 @@ minetest.register_craft({
 
 minetest.register_craft({
 	type = "cooking",
-	output = "group:log",
-	recipe = "minerals:coal_lump",
+	output = "minerals:coal_lump",
+	recipe = "group:log",
 })
 
 --
