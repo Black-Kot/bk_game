@@ -107,6 +107,7 @@ minetest.register_craft({
 	output = "blocks:stone",
 	recipe = "default:cobble",
 })
+
 minetest.register_craft({
 	type = "cooking",
 	output = "blocks:desert_stone",
@@ -118,12 +119,18 @@ minetest.register_craft({
 	output = "default:clay_brick",
 	recipe = "default:clay_lump",
 })
+
 minetest.register_craft({
 	type = "cooking",
 	output = "default:torch",
 	recipe = "group:stick",
 })
 
+minetest.register_craft({
+	type = "cooking",
+	output = "group:log",
+	recipe = "minerals:coal_lump",
+})
 
 --
 -- Fuels

@@ -34,12 +34,12 @@ function bk_game.register_mineral(name, mineralDef)
 	end
 
 	--bk_game.register_door(name, mineralDef)  -- no doors from minerals
-	--bk_game.register_fence(name, mineralDef) -- no fences from minerals ?
+	--bk_game.register_fence(name, mineralDef) -- no fences from minerals
 end
 
 list = {
     ["cinnabar"] = {description = "Cinnabar", },
-    ["coal"] = {description = "Coal", chest=false, block=false},
+    ["coal"] = {description = "Coal", chest=false, block=true, slab=false, brick=false, stair=false, flat=false, column=false, pyramid=false},
     ["gypsum"] = {description = "Gypsum", },
     ["jet"] = {description = "Jet", },
     ["lazurite"] = {description = "Lazurite", },
