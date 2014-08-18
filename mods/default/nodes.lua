@@ -48,6 +48,14 @@ minetest.register_node("default:dirt_with_grass", {
 	sounds = default.node_sound_dirt_defaults({
 		footstep = {name="default_grass_footstep", gain=0.25},
 	}),
+	after_dig_node = function(pos, oldnode, oldmeta, digger)
+		if not digger then return end
+		local p={x=pos.x,y=pos.y+1,z=pos.z}
+		local n=minetest.get_node(p)
+		if string.match(n.name,"_trunk") or string.match(n.name,"_trunk_top") then			
+			minetest.node_dig(p,n,digger)
+		end
+	end
 })
 
 minetest.register_node("default:dirt", {
@@ -56,6 +64,14 @@ minetest.register_node("default:dirt", {
 	is_ground_content = true,
 	groups = {crumbly=6,soil=1},
 	sounds = default.node_sound_dirt_defaults(),
+	after_dig_node = function(pos, oldnode, oldmeta, digger)
+		if not digger then return end
+		local p={x=pos.x,y=pos.y+1,z=pos.z}
+		local n=minetest.get_node(p)
+		if string.match(n.name,"_trunk") or string.match(n.name,"_trunk_top") then			
+			minetest.node_dig(p,n,digger)
+		end
+	end
 })
 minetest.register_abm({
 	nodenames = {"default:dirt"},

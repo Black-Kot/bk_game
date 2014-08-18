@@ -215,6 +215,14 @@ function bk_game.register_tree(name, TreeDef)
 				{-0.4,-0.5,-0.4,0.4,0.5,0.4},
 			},
 		},
+		after_dig_node = function(pos, oldnode, oldmeta, digger)
+			if not digger then return end
+			local p={x=pos.x,y=pos.y+1,z=pos.z}
+			local n=minetest.get_node(p)
+			if n.name==tree.name.."_trunk" or n.name==tree.name.."_trunk_top" then			
+				minetest.node_dig(p,n,digger)
+			end
+		end
 	})
 
 	minetest.register_node(tree.name.."_trunk_top", {
@@ -240,11 +248,8 @@ function bk_game.register_tree(name, TreeDef)
 			for i = 1,#tree.leaves do
 				local p = {x=pos.x+tree.leaves[i][1], y=pos.y+tree.leaves[i][2], z=pos.z+tree.leaves[i][3]}
 				if minetest.get_node(p).name == tree.name.."_leaves" then
-					local drop = minetest.get_node_drops(minetest.get_node(p).name)
-					minetest.dig_node(p)
-					for _,item in ipairs(drop) do
-						minetest.add_item(p, item)
-					end
+					local n = minetest.get_node(p)
+					minetest.node_dig(p,n,digger)
 				end
 			end
 		end,
@@ -305,21 +310,6 @@ function bk_game.register_tree(name, TreeDef)
 			end
 			if minetest.get_node_light(pos) >= tree.grow_light then
 				trees.make_tree(pos, tree.name)
-			end
-		end,
-	})
-	
-	minetest.register_abm({
-		nodenames = {tree.name.."_trunk",tree.name.."_trunk_top"},
-		interval = 0.2,
-		chance = 1,
-		action = function(pos, node)
-			n_pos = {x=pos.x,y=pos.y-1,z=pos.z}
-			n_node = minetest.get_node(n_pos)
-			if n_node.name == "air" then
-				minetest.dig_node(pos)
-				-- drop
-				minetest.add_item(pos, tree.name.."_log")
 			end
 		end,
 	})
