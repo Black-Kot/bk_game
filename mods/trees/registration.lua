@@ -45,7 +45,7 @@ function bk_game.register_tree(name, TreeDef)
 		else
 			f_name = tree.fruit:gsub("^%l", string.upper)
 		end
-		minetest.register_node(":trees:"..tree.name.."_"..tree.fruit, {
+		minetest.register_node(":trees:"..tree.fruit, {
 			description = f_name,
 			drawtype = "plantlike",
 			tiles = {"trees_"..tree.fruit..".png"},
@@ -315,35 +315,35 @@ function bk_game.register_tree(name, TreeDef)
 	})
 end
 
-bk_game.register_tree("trees:ash", {
+bk_game.register_tree("ash", {
 	description = "Ash",
 	leaves = trees.gen_lists.ash,
 	height = function()
 		return 4 + math.random(4)
 	end,
 })
-bk_game.register_tree("trees:aspen", {
+bk_game.register_tree("aspen", {
 	description = "Aspen",
 	leaves = trees.gen_lists.aspen,
 	height = function()
 		return 10 + math.random(4)
 	end,
 })
-bk_game.register_tree("trees:birch", {
+bk_game.register_tree("birch", {
 	description = "Birch",
 	leaves = trees.gen_lists.birch,
 	height = function()
 		return 10 + math.random(4)
 	end,
 })
-bk_game.register_tree("trees:maple", {
+bk_game.register_tree("maple", {
 	description = "Maple",
 	leaves = trees.gen_lists.maple,
 	height = function()
 		return 7 + math.random(5)
 	end,
 })
-bk_game.register_tree("trees:chestnut", {
+bk_game.register_tree("chestnut", {
 	description = "Chestnut",
 	leaves = trees.gen_lists.chestnut,
 	height = function()
@@ -351,7 +351,7 @@ bk_game.register_tree("trees:chestnut", {
 	end,
 	radius = 10,
 })
-bk_game.register_tree("trees:pine", {
+bk_game.register_tree("pine", {
 	description = "Pine",
 	leaves = trees.gen_lists.pine,
 	height = function()
@@ -359,7 +359,7 @@ bk_game.register_tree("trees:pine", {
 	end,
 	radius = 8,
 })
-bk_game.register_tree("trees:spruce", {
+bk_game.register_tree("spruce", {
 	description = "Spruce",
 	leaves = trees.gen_lists.spruce,
 	height = function()

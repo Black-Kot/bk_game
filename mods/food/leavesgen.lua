@@ -37,3 +37,11 @@ trees.gen_lists.coconut = {
 { 0, 0, -5},
 
 }
+
+trees.gen_lists.apple = {
+
+}
+
+trees.gen_lists.orange = {
+
+}
