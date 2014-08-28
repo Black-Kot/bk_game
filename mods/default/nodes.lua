@@ -52,7 +52,7 @@ minetest.register_node("default:dirt_with_grass", {
 		if not digger then return end
 		local p={x=pos.x,y=pos.y+1,z=pos.z}
 		local n=minetest.get_node(p)
-		if string.match(n.name,"_trunk") or string.match(n.name,"_trunk_top") then			
+		if string.match(n.name,"_trunk") then
 			minetest.node_dig(p,n,digger)
 		end
 	end
@@ -68,7 +68,7 @@ minetest.register_node("default:dirt", {
 		if not digger then return end
 		local p={x=pos.x,y=pos.y+1,z=pos.z}
 		local n=minetest.get_node(p)
-		if string.match(n.name,"_trunk") or string.match(n.name,"_trunk_top") then			
+		if string.match(n.name,"_trunk") then
 			minetest.node_dig(p,n,digger)
 		end
 	end

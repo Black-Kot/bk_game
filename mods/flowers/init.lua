@@ -236,7 +236,6 @@ local function generate(flower, minp, maxp, seed)
 			-- Determine flower amount from perlin noise
 			local flower_amount = math.floor(perlin1:get2d({x=x0, y=z0}) * 5 + 0)
 			-- Find random positions for flower based on this random
-			local pr = PseudoRandom(seed)
 			for i=0,flower_amount do
 				local x = pr:next(x0, x1)
 				local z = pr:next(z0, z1)

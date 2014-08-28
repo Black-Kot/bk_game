@@ -14,9 +14,9 @@ function trees.make_tree(pos, tree)
 		end
 	end
 	for i = 0,height-1 do
-		minetest.add_node({x=pos.x, y=pos.y+i, z=pos.z}, {name=tree.name.."_trunk"})
+		minetest.add_node({x=pos.x, y=pos.y+i, z=pos.z}, {name="trees:"..tree.name.."_trunk"})
 	end
-	minetest.add_node({x=pos.x, y=pos.y+height, z=pos.z}, {name=tree.name.."_trunk_top"})
+	minetest.add_node({x=pos.x, y=pos.y+height, z=pos.z}, {name="trees:"..tree.name.."_trunk_top"})
 	local pr = PseudoRandom(os.time())
 	for i = 1,#tree.leaves do
 		local p = {x=pos.x+tree.leaves[i][1], y=pos.y+height+tree.leaves[i][2], z=pos.z+tree.leaves[i][3]}
@@ -25,10 +25,10 @@ function trees.make_tree(pos, tree)
 				if pr:next(1,tree.fruit_grow_chance)==1 then
 					minetest.add_node(p, {name="trees:"..tree.fruit})
 				else
-					minetest.add_node(p, {name=tree.name.."_leaves"})
+					minetest.add_node(p, {name="trees:"..tree.name.."_leaves"})
 				end
 			else
-				minetest.add_node(p, {name=tree.name.."_leaves"})
+				minetest.add_node(p, {name="trees:"..tree.name.."_leaves"})
 			end
 		end
 	end

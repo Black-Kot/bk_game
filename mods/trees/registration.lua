@@ -26,15 +26,14 @@ function bk_game.register_tree(name, TreeDef)
 	if TreeDef.gen_winter_leaves then
 		tree.gen_winter_leaves = true
 	end
-	local name_ = name:get_modname_prefix().."_"..name:remove_modname_prefix()
-	tree.textures.trunk = tree.textures.trunk or {name_.."_trunk_top.png", name_.."_trunk_top.png", name_.."_trunk.png"}
-	tree.textures.leaves = tree.textures.leaves or name_.."_leaves.png"
-	tree.textures.autumn_leaves = tree.textures.autumn_leaves or name_.."_autumn_leaves.png"
-	tree.textures.winter_leaves = tree.textures.winter_leaves or name_.."_winter_leaves.png"
-	tree.textures.planks = tree.textures.planks or name_.."_planks.png"
-	tree.textures.stick = tree.textures.stick or name_.."_stick.png"
-	tree.textures.sapling = tree.textures.sapling or name_.."_sapling.png"
-	tree.textures.log = tree.textures.log or name_.."_log.png"
+	tree.textures.trunk = tree.textures.trunk or {"trees_"..name.."_trunk_top.png", "trees_"..name.."_trunk_top.png", "trees_"..name.."_trunk.png"}
+	tree.textures.leaves = tree.textures.leaves or "trees_"..name.."_leaves.png"
+	tree.textures.autumn_leaves = tree.textures.autumn_leaves or "trees_"..name.."_autumn_leaves.png"
+	tree.textures.winter_leaves = tree.textures.winter_leaves or "trees_"..name.."_winter_leaves.png"
+	tree.textures.planks = tree.textures.planks or "trees_"..name.."_planks.png"
+	tree.textures.stick = tree.textures.stick or "trees_"..name.."_stick.png"
+	tree.textures.sapling = tree.textures.sapling or "trees_"..name.."_sapling.png"
+	tree.textures.log = tree.textures.log or "trees_"..name.."_log.png"
 
 	bk_game.registered_trees[name] = tree
 	table.insert(bk_game.registered_trees_list, tree.name)
@@ -46,7 +45,7 @@ function bk_game.register_tree(name, TreeDef)
 		else
 			f_name = tree.fruit:gsub("^%l", string.upper)
 		end
-		minetest.register_node("trees:"..tree.fruit, {
+		minetest.register_node(":trees:"..tree.name.."_"..tree.fruit, {
 			description = f_name,
 			drawtype = "plantlike",
 			tiles = {"trees_"..tree.fruit..".png"},
@@ -57,13 +56,13 @@ function bk_game.register_tree(name, TreeDef)
 			groups = {snappy=6, dig_immediate=3}
 		})
 	end
-	minetest.register_craftitem(tree.name.."_stick", {
+	minetest.register_craftitem(":trees:"..tree.name.."_stick", {
 		description = tree.description.." Stick",
 		inventory_image = tree.textures.stick,
 		groups = {stick=1},
 	})
 
-	minetest.register_node(tree.name.."_sapling", {
+	minetest.register_node(":trees:"..tree.name.."_sapling", {
 		description = tree.description.." Sapling",
 		drawtype = "plantlike",
 		visual_scale = 1.0,
@@ -79,7 +78,7 @@ function bk_game.register_tree(name, TreeDef)
 			local n=minetest.get_node(p)
 			if string.match(n.name,"sapling")~=nil then return
 			else
-				minetest.add_node(pt.above,{name=tree.name.."_sapling"})
+				minetest.add_node(pt.above,{name="trees:"..tree.name.."_sapling"})
 				itemstack:take_item()
 			end
 			return itemstack
@@ -87,14 +86,14 @@ function bk_game.register_tree(name, TreeDef)
 	})
 
 
-	minetest.register_node(tree.name.."_log", {
+	minetest.register_node(":trees:"..tree.name.."_log", {
 		description = tree.description.." Log",
 		tiles = tree.textures.trunk,
 		inventory_image = tree.textures.log,
 		wield_image = tree.textures.log,
 		groups = {log=1,choppy=5,snappy=5,flammable=2,drop_on_dig=1},
 		sounds = default.node_sound_wood_defaults(),
-		drop = tree.name.."_log",
+		drop = "trees:"..tree.name.."_log",
 		drawtype = "nodebox",
 		paramtype = "light",
 		node_box = {
@@ -111,7 +110,7 @@ function bk_game.register_tree(name, TreeDef)
 		},
 	})
 
-	minetest.register_node(tree.name.."_leaves", {
+	minetest.register_node(":trees:"..tree.name.."_leaves", {
 		description = tree.description.." Leaves",
 		drawtype = "allfaces_optional",
 		visual_scale = 1.3,
@@ -122,11 +121,11 @@ function bk_game.register_tree(name, TreeDef)
 			max_items = 1,
 			items = {
 				{
-					items = {tree.name.."_sapling"},
+					items = {"trees:"..tree.name.."_sapling"},
 					rarity = 30,
 				},
 				{
-					items = {tree.name.."_stick"},
+					items = {"trees:"..tree.name.."_stick"},
 					rarity = 10,
 				},
 				{
@@ -140,7 +139,7 @@ function bk_game.register_tree(name, TreeDef)
 	})
 
 	if tree.gen_autumn_leaves then
-		minetest.register_node(tree.name.."_leaves_autumn", {
+		minetest.register_node(":trees:"..tree.name.."_leaves_autumn", {
 			description = tree.description.." Leaves",
 			drawtype = "allfaces_optional",
 			visual_scale = 1.3,
@@ -151,11 +150,11 @@ function bk_game.register_tree(name, TreeDef)
 				max_items = 1,
 				items = {
 					{
-						items = {tree.name.."_sapling"},
+						items = {"trees:"..tree.name.."_sapling"},
 						rarity = 30,
 					},
 					{
-						items = {tree.name.."_stick"},
+						items = {"trees:"..tree.name.."_stick"},
 						rarity = 10,
 					},
 					{
@@ -170,7 +169,7 @@ function bk_game.register_tree(name, TreeDef)
 	end
 
 	if tree.gen_winter_leaves then
-		minetest.register_node(tree.name.."_leaves_winter", {
+		minetest.register_node(":trees:"..tree.name.."_leaves_winter", {
 			description = tree.description.." Leaves",
 			drawtype = "allfaces_optional",
 			visual_scale = 1.3,
@@ -181,7 +180,7 @@ function bk_game.register_tree(name, TreeDef)
 				max_items = 1,
 				items = {
 					{
-						items = {tree.name.."_stick"},
+						items = {"trees:"..tree.name.."_stick"},
 						rarity = 10,
 					},
 					{
@@ -195,12 +194,12 @@ function bk_game.register_tree(name, TreeDef)
 		})
 	end
 
-	minetest.register_node(tree.name.."_trunk", {
+	minetest.register_node(":trees:"..tree.name.."_trunk", {
 		description = tree.description.." Trunk",
 		tiles = tree.textures.trunk,
 		groups = {tree=1,choppy=5,snappy=5,flammable=2,drop_on_dig=1},
 		sounds = default.node_sound_wood_defaults(),
-		drop = tree.name.."_log",
+		drop = "trees:"..tree.name.."_log",
 		drawtype = "nodebox",
 		paramtype = "light",
 		node_box = {
@@ -219,17 +218,17 @@ function bk_game.register_tree(name, TreeDef)
 			if not digger then return end
 			local p={x=pos.x,y=pos.y+1,z=pos.z}
 			local n=minetest.get_node(p)
-			if n.name==tree.name.."_trunk" or n.name==tree.name.."_trunk_top" then			
+			if string.match(n.name,"_trunk") then
 				minetest.node_dig(p,n,digger)
 			end
 		end
 	})
 
-	minetest.register_node(tree.name.."_trunk_top", {
+	minetest.register_node(":trees:"..tree.name.."_trunk_top", {
 		tiles = tree.textures.trunk,
 		groups = {tree=1,choppy=5,snappy=5,flammable=2,drop_on_dig=1},
 		sounds = default.node_sound_wood_defaults(),
-		drop = tree.name.."_log",
+		drop = "trees:"..tree.name.."_log",
 		drawtype = "nodebox",
 		paramtype = "light",
 		node_box = {
@@ -247,20 +246,15 @@ function bk_game.register_tree(name, TreeDef)
 		after_dig_node = function(pos, oldnode, oldmetadata, digger)
 			for i = 1,#tree.leaves do
 				local p = {x=pos.x+tree.leaves[i][1], y=pos.y+tree.leaves[i][2], z=pos.z+tree.leaves[i][3]}
-				if minetest.get_node(p).name == tree.name.."_leaves" then
+				if minetest.get_node(p).name == "trees:"..tree.name.."_leaves" then
 					local n = minetest.get_node(p)
 					minetest.node_dig(p,n,digger)
 				end
 			end
 		end,
 	})
-	TreeDef.source = "blocks:"..tree.name:remove_modname_prefix().."_planks"
-	TreeDef.stair = true
-	TreeDef.slab = true
-	TreeDef.column = false
-	TreeDef.pyramid = false
 	
-	bk_game.register_nodes(tree.name:remove_modname_prefix().."_planks", {
+	bk_game.register_nodes(tree.name.."_planks", {
 		slab=true,
 		stair=true,
 		description = tree.description.." Planks",
@@ -269,38 +263,44 @@ function bk_game.register_tree(name, TreeDef)
 		sounds = default.node_sound_wood_defaults(),
 	})
 
-	bk_game.register_fence(tree.name:remove_modname_prefix(), {
+	bk_game.register_fence(tree.name, {
 		description = tree.description,
-		source = "blocks:"..tree.name:remove_modname_prefix().."_planks",
+		source = "blocks:"..tree.name.."_planks",
 		tiles = {tree.textures.planks},
 	})
 	
 	minetest.register_craft({
 		type = "shapeless",
-		output = "blocks:"..tree.name:remove_modname_prefix().."_planks",
-		recipe = {tree.name.."_log"}
+		output = "blocks:"..tree.name.."_planks",
+		recipe = {"trees:"..tree.name.."_log"}
 	})
 
 	minetest.register_craft({
 		type = "shapeless",
-		output = tree.name.."_leaves",
-		recipe = {tree.name.."_sapling"}
+		output = "trees:"..tree.name.."_leaves",
+		recipe = {"trees:"..tree.name.."_sapling"}
 	})
 
-	bk_game.register_chest(name:remove_modname_prefix(), TreeDef)
+	bk_game.register_chest(name, {
+		description = tree.description,
+		source = "blocks:"..tree.name.."_planks",
+	})
 
-	TreeDef.source = tree.name.."_stick"
-	TreeDef.tiles = {tree.textures.planks}
-	bk_game.register_ladder(name:remove_modname_prefix(),TreeDef)
+	bk_game.register_ladder(name ,{
+		description = tree.description,
+		source = "trees:"..tree.name.."_stick",
+		tiles = {tree.textures.planks},
+	})
 
-	bk_game.register_door(tree.name:remove_modname_prefix(), {
-		source = "blocks:"..tree.name:remove_modname_prefix().."_planks",
+	bk_game.register_door(tree.name, {
+		description = tree.description,
+		source = "blocks:"..tree.name.."_planks",
 		description = tree.description,
 		main_texture = tree.textures.planks,
 	})
 
 	minetest.register_abm({
-		nodenames = {tree.name.."_sapling"},
+		nodenames = {"trees:"..tree.name.."_sapling"},
 		neighbors = tree.grounds,
 		interval = tree.grow_interval,
 		chance = tree.grow_chance,
