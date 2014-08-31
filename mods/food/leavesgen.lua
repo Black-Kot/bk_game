@@ -38,10 +38,6 @@ trees.gen_lists.coconut = {
 
 }
 
-trees.gen_lists.apple = {
+trees.gen_lists.apple = trees.gen_lists.ash
 
-}
-
-trees.gen_lists.orange = {
-
-}
+trees.gen_lists.orange = trees.gen_lists.maple
