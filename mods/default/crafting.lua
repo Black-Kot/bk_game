@@ -122,7 +122,7 @@ minetest.register_craft({
 
 minetest.register_craft({
 	type = "cooking",
-	output = "default:torch",
+	output = "default:torch 2",
 	recipe = "group:stick",
 })
 
@@ -187,6 +187,12 @@ minetest.register_craft({
 minetest.register_craft({
 	type = "fuel",
 	recipe = "group:stick",
+	burntime = 10,
+})
+
+minetest.register_craft({
+	type = "fuel",
+	recipe = "group:sapling",
 	burntime = 10,
 })
 
