@@ -182,10 +182,18 @@ for _, row in ipairs(bk_game.colors) do
 	})
 
 	minetest.register_craft({
-		output = "glass:pane_"..name.." 16",
+		output = "glass:pane_"..name.." 24",
 		recipe = {
 			{"blocks:glass_"..name, "blocks:glass_"..name, "blocks:glass_"..name},
 			{"blocks:glass_"..name,"blocks:glass_"..name, "blocks:glass_"..name}
+			}
+	})
+
+	minetest.register_craft({
+		output = "blocks:glass_"..name.." 4",
+		recipe = {
+			{"glass:pane_"..name, "glass:pane_"..name},
+			{"glass:pane_"..name,"glass:pane_"..name}
 			}
 	})
 
