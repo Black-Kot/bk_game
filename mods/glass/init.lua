@@ -14,10 +14,16 @@ local directions = {
 }
 
 local function update_pane(pos)
-	local node = minetest.get_node(pos)
-	if node.name:sub(1, 11) ~= "glass:pane_" then return end
-	local underscore_pos = node.name:find("_", 12) or 0
-	local name = node.name:sub(12, underscore_pos - 1)
+	local _name = minetest.get_node(pos).name
+	if string.match(_name, "glass:pane_") == nil then return end
+	local lenght = string.len(_name)
+	local __name = _name:reverse()
+	local underscore_pos = __name:find("_", 1) or 0
+	local name = _name
+	if tonumber(__name:sub(1, underscore_pos - 1)) ~= nil then
+		underscore_pos = lenght - underscore_pos
+		name = _name:sub(1, underscore_pos)
+	end
 	local sum = 0
 	for i, dir in pairs(directions) do
 		local node = minetest.get_node({
@@ -35,7 +41,7 @@ local function update_pane(pos)
 	if sum == 0 then
 		sum = 15
 	end
-	minetest.set_node(pos, {name = "glass:pane_"..name.."_"..sum})
+	minetest.set_node(pos, {name = name.."_"..sum})
 end
 
 local function update_nearby(pos, node)
