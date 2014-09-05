@@ -6,7 +6,7 @@ minetest.register_privilege("chest", {
 
 
 default.chest_formspec =
-	"invsize[10,9.3;]"..
+	"invsize[10,9;]"..
 	"list[current_name;main;0,0;10,5;]"..
 	"list[current_player;main;1,5.3;8,4;]"
 
