@@ -6,16 +6,16 @@ minetest.register_privilege("chest", {
 
 
 default.chest_formspec =
-	"invsize[10,9;]"..
+	"invsize[10,9.3;]"..
 	"list[current_name;main;0,0;10,5;]"..
-	"list[current_player;main;0,5;8,4;]"
+	"list[current_player;main;1,5.3;8,4;]"
 
 function default.get_locked_chest_formspec(pos)
 	local spos = pos.x .. "," .. pos.y .. "," ..pos.z
 	local formspec =
 		"invsize[10,9;]"..
 		"list[nodemeta:".. spos .. ";main;0,0;10,5;]"..
-		"list[current_player;main;0,5;8,4;]"
+		"list[current_player;main;1,5.3;8,4;]"
 	return formspec
 end
 
