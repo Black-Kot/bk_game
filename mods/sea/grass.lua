@@ -4,9 +4,9 @@ function bk_game.register_sea_grass(name, def)
 	minetest.register_node(":sea:grass_"..name, {
 		description = def.description.." Seagrass",
 		drawtype = "plantlike",
-		tiles = {"sea_grass__"..name..".png"},
-		inventory_image = "sea_grass__"..name..".png",
-		wield_image = "sea_grass__"..name..".png",
+		tiles = {"sea_grass_"..name..".png"},
+		inventory_image = "sea_grass_"..name..".png",
+		wield_image = "sea_grass_"..name..".png",
 		paramtype = "light",
 		walkable = false,
 		climbable = true,
