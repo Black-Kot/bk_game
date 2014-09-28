@@ -29,8 +29,8 @@ end
 
 minetest.register_abm({
 	nodenames = {"group:kelp"},
-	interval = 1,
-	chance = 1,
+	interval = 30,
+	chance = 20,
 	action = function(pos, node)
 		local name=minetest.get_node(pos).name
 		local height=0
