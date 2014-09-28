@@ -28,7 +28,6 @@ minetest.register_on_generated(function(minp, maxp, seed)
 				for i=0,plant_amount do
 					local x = pr:next(x0, x1)
 					local z = pr:next(z0, z1)
-					-- Find ground level (0...30)
 					local ground_y = nil
 					for y=maxp.y,minp.y,-1 do
 						if table.contains({"default:dirt", "default:sand", "default:peat"}, minetest.get_node({x=x,y=y,z=z}).name) then
@@ -38,7 +37,10 @@ minetest.register_on_generated(function(minp, maxp, seed)
 					end
 					if ground_y then
 						if pr:next(1, 15) == 1 then
-							minetest.add_node({x=x,y=ground_y+1,z=z}, {name = name})
+							local pos = {x=x,y=ground_y+1, z=z}
+							if string.match(minetest.get_node(pos).name, "water") then
+								minetest.add_node(pos, {name = name})
+							end
 						end
 					end
 				end

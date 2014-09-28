@@ -29,21 +29,23 @@ end
 
 minetest.register_abm({
 	nodenames = {"group:kelp"},
-	interval = 6,
-	chance = 3,
-	action = function(pos, node, active_object_count, active_object_count_wider)
-		local name = minetest.get_node(pos).name
-		local yp = {x = pos.x, y = pos.y + 1, z = pos.z}
-		local yyp = {x = pos.x, y = pos.y + 2, z = pos.z}
-		local yyyp = {x = pos.x, y = pos.y + 3, z = pos.z}
-		if string.match(minetest.get_node(yp).name, "water") ~= nil  then
-			if string.match(minetest.get_node(yp).name, "water") ~= nil  then
-				if string.match(minetest.get_node(yp).name, "water") ~= nil then
-					minetest.add_node(pos, {name = name})
-					pos.y = pos.y + 1
-					minetest.add_node(pos, {name = name})
-				else
-					return
+	interval = 1,
+	chance = 1,
+	action = function(pos, node)
+		local name=minetest.get_node(pos).name
+		local height=0
+		pos.y=pos.y-1
+		if table.contains({"default:dirt", "default:sand", "default:peat"},
+			minetest.get_node(pos).name) then
+			pos.y=pos.y+1
+			while minetest.get_node(pos).name==name and height < 3 do
+				height=height+1
+				pos.y=pos.y+1
+			end
+			if height < 3 then
+				local nn=minetest.get_node(pos).name
+				if string.match(nn,"water") then
+					minetest.set_node(pos,{name=name})
 				end
 			end
 		end
