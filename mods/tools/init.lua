@@ -87,6 +87,14 @@ function bk_game.register_tools(name, toolDef)
 				{"", "group:stick"},
 			}
 		})
+		minetest.register_craft({
+			output = "tools:axe_"..name,
+			recipe = {
+				{"", toolDef.source, toolDef.source},
+				{"", "group:stick",  toolDef.source},
+				{"", "group:stick",  ""},
+			}
+		})
 	end
 
 	-- Sword`s
