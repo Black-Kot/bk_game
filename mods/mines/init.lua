@@ -11,7 +11,11 @@ local max_distance = 0
 local mines_file = minetest.get_worldpath().."/mines"
 local minepos = {}
 local last_moved = {}
-
+local function tlen(tab) -- table length
+	local c = 0
+	for _ in pairs(tab) do c=c+1 end
+	return c
+end
 local function loadmines()
     local input = io.open(mines_file, "r")
     if input == nil then
@@ -50,7 +54,7 @@ minetest.register_chatcommand("setmine" , {
         local player = minetest.get_player_by_name(name)
         if player == nil then return end
 		if param == "" then
-            minetest.chat_send_player(name, "Name of mine can`t be null")
+            minetest.chat_send_player(name, "Name of mine can`t be empty")
 		end
         local pos = player:getpos()
         if not minepos[name] then
@@ -125,22 +129,15 @@ minetest.register_chatcommand("mine", {
 minetest.register_chatcommand("mines" , {
 	params = "",
 	description = "List of mines",
-	privs = {},
 	func = function(name, param)
-        if player == nil then
-			-- just a check to prevent server death
+		if player == nil then end -- just a check to prevent server death
+		if tlen(minepos[name]) == 0 then
+			return false, "You don't have mines now! Set it using /setmine <name>"
 		end
-		if not minepos[name] then
-			minetest.chat_send_player(name, "You don't have a mine`s now! Set it using /setmine <name>")
-			return
-		end
-		local text = ""
 		for i, v in pairs(minepos[name]) do
-			text = text.."\n"..i..minetest.pos_to_string(vector.round(v))
+			minetest.chat_send_player(name, string.format("%s: %s",i,minetest.pos_to_string(vector.round(v))))
 		end
-        minetest.chat_send_player(name, text)
-    end,
-    
+	end
 }) 
 
 minetest.register_globalstep(function(dtime)

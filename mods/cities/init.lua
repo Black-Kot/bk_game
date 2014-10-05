@@ -117,12 +117,10 @@ minetest.register_chatcommand("cities", {
 	description = "List known cities",
 	privs = {},
 	func = function(name, param)
-		local text = ""
 		for n, p in pairs(cities) do
-			text = text .. "\n" .. n .. ": " .. minetest.pos_to_string(vector.round(p))
+			minetest.chat_send_player(name, string.format("%s: %s",n,minetest.pos_to_string(vector.round(p))))
 		end
-		minetest.chat_send_player(name, text)
-	end,
+	end
 })
 
 --Deds to Spawn
@@ -131,7 +129,7 @@ minetest.register_on_newplayer(function(player)
 		player:setpos(cities[spawns[name]])
 	else
 		player:setpos(cities["spawn"])
-    end
+	end
 end)
 
 --Deds to Spawn
