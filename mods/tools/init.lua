@@ -97,7 +97,7 @@ function bk_game.register_tools(name, toolDef)
 		})
 	end
 
-	-- Sword`s
+	-- Swords
 	if not toolDef.sword and toolDef.sword ~= false then
 		minetest.register_tool(":tools:sword_"..name, {
 			description = toolDef.description.." Sword",
@@ -108,7 +108,7 @@ function bk_game.register_tools(name, toolDef)
 				groupcaps={
 					snappy = {times=toolDef.times , uses=toolDef.uses, maxlevel=toolDef.level},
 				},
-				damage_groups = {snappy=toolDef.level},
+				damage_groups = {fleshy=7-toolDef.level},
 			},
 		})
 		minetest.register_craft({
@@ -122,7 +122,7 @@ function bk_game.register_tools(name, toolDef)
 
 	end
 
-	-- Hoe`s
+	-- Hoes
 	if not toolDef.hoe and toolDef.hoe ~= false then
 
 		minetest.register_tool(":tools:hoe_"..name, {
