@@ -201,20 +201,68 @@ function bk_game.register_flower(name, def)
 end
 			
 flowers_list = {
-
-["rose"] = {description = "Rose", interval=GROWING_DELAY*2,chance = 4, spacing = 15, nodenames={"default:dirt_with_grass"}, groups={color_red=1}},
-
-["dandelion_yellow"] = {description = "Dandelion Yellow", interval=GROWING_DELAY/2,chance = 4, spacing = 15, nodenames={"default:dirt_with_grass"}, groups={color_yellow=1}},
-
-["dandelion_white"] = {description = "Dandelion White", interval=GROWING_DELAY/2,chance = 4, spacing = 15, nodenames={"default:dirt_with_grass"}, groups={color_white=1}},
-
-["tulip"] = {description = "Tulip", interval=GROWING_DELAY/2,chance = 4, spacing = 15, nodenames={"default:dirt_with_grass"}, groups={color_orange=1}},
-
-["viola"] = {description = "Viola", interval=GROWING_DELAY/2,chance = 4, spacing = 15, nodenames={"default:dirt_with_grass"}, groups={color_violet=1}},
-
-["geranium"] = {description = "Geranium", interval=GROWING_DELAY/2,chance = 4, spacing = 15, nodenames={"default:dirt_with_grass"}, groups={color_blue=1}},
-
-["waterlily"] = {description="Waterlily", drawtype="raillike", selection_box={type="fixed",fixed={-0.5, -0.5, -0.5, 0.5, -0.4, 0.5}}, interval=GROWING_DELAY*2, chance=10, spacing=15, nodenames={"default:water_source"}, seed=false, pot=false},
+	rose = {
+		description = "Rose",
+		interval = GROWING_DELAY*2,
+		chance = 4,
+		spacing = 15,
+		nodenames = {"default:dirt_with_grass"},
+		groups = {color_red = 1}
+	},
+	dandelion_yellow = {
+		description = "Dandelion Yellow",
+		interval = GROWING_DELAY/2,
+		chance = 4,
+		spacing = 15,
+		nodenames = {"default:dirt_with_grass"},
+		groups = {color_yellow = 1}
+	},
+	dandelion_white = {
+		description = "Dandelion White",
+		interval=GROWING_DELAY/2,
+		chance = 4,
+		spacing = 15,
+		nodenames = {"default:dirt_with_grass"},
+		groups = {color_white = 1}
+	},
+	tulip = {
+		description = "Tulip",
+		interval=GROWING_DELAY/2,
+		chance = 4,
+		spacing = 15,
+		nodenames = {"default:dirt_with_grass"},
+		groups = {color_orange = 1}
+	},
+	viola = {
+		description = "Viola",
+		interval=GROWING_DELAY/2,
+		chance = 4,
+		spacing = 15,
+		nodenames = {"default:dirt_with_grass"},
+		groups = {color_violet = 1}
+	},
+	geranium = {
+		description = "Geranium",
+		interval=GROWING_DELAY/2,
+		chance = 4,
+		spacing = 15,
+		nodenames = {"default:dirt_with_grass"},
+		groups = {color_blue = 1}
+	},
+	waterlily = {
+		description="Waterlily",
+		drawtype="raillike",
+		selection_box = {
+			type="fixed",
+			fixed = {-0.5, -0.5, -0.5, 0.5, -0.4, 0.5}
+		},
+		interval = GROWING_DELAY*2,
+		chance = 10,
+		spacing = 15,
+		nodenames = {"default:water_source"},
+		seed = false,
+		pot = false
+	}
 
 }
 

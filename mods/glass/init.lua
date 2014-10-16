@@ -192,7 +192,7 @@ for _, row in ipairs(bk_game.colors) do
 		recipe = {
 			{"blocks:glass_"..name, "blocks:glass_"..name, "blocks:glass_"..name},
 			{"blocks:glass_"..name,"blocks:glass_"..name, "blocks:glass_"..name}
-			}
+		}
 	})
 
 	minetest.register_craft({
@@ -200,7 +200,7 @@ for _, row in ipairs(bk_game.colors) do
 		recipe = {
 			{"glass:pane_"..name, "glass:pane_"..name},
 			{"glass:pane_"..name,"glass:pane_"..name}
-			}
+		}
 	})
 
 end

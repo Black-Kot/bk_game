@@ -28,8 +28,8 @@ function bk_game.register_sea_grass(name, def)
 end
 
 local grass_list = {
-		["green"] = {description="Green"},
-		["red"] = {description="Red"},
+		green = {description="Green"},
+		red = {description="Red"}
 }
 
 for grass, desc in pairs(grass_list) do

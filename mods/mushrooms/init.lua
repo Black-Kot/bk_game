@@ -151,13 +151,24 @@ minetest.register_on_generated(function(minp, maxp, seed)
 end)
 
 mushrooms_list = {
-["green"] = {description="Green Mushroom", wherein={"air"}, chance=20},
-["red"] = {description="Red Mushroom", wherein={"air"}, chance=20},
-["brown"] = {description="Brown Mushroom", wherein={"air"}, chance=20},
+	green = {
+		description = "Green Mushroom",
+		wherein = {"air"},
+		chance = 20
+	},
+	red = {
+		description="Red Mushroom",
+		wherein = {"air"},
+		chance = 20
+	},
+	brown = {
+		description="Brown Mushroom",
+		wherein = {"air"},
+		chance = 20
+	}
 }
 
-
-for mushroom, descr in pairs(mushrooms_list) do
-    bk_game.register_mushroom(mushroom, descr)
+for mushroom, def in pairs(mushrooms_list) do
+    bk_game.register_mushroom(mushroom, def)
 end
 

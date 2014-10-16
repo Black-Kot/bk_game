@@ -27,12 +27,12 @@ function bk_game.register_coral(name, def)
 end
 
 local coral_list = {
-		["aqua"] = {description="Aqua"},
-		["cyan"] = {description="Cyan"},
-		["lime"] = {description="Lime"},
-		["magenta"] = {description="Magenta"},
-		["redviolet"] = {description="Redviolet"},
-		["skyblue"] = {description="Skyblue"},
+		aqua = {description="Aqua"},
+		cyan = {description="Cyan"},
+		lime = {description="Lime"},
+		magenta = {description="Magenta"},
+		redviolet = {description="Redviolet"},
+		skyblue = {description="Skyblue"}
 }
 
 for coral, desc in pairs(coral_list) do

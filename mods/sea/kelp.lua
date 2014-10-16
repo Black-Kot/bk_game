@@ -53,8 +53,8 @@ minetest.register_abm({
 })
 
 local kelp_list = {
-		["brown"] = {description="Brown"},
-		["green"] = {description="Green"},
+		brown = {description="Brown"},
+		green = {description="Green"}
 }
 
 for kelp, desc in pairs(kelp_list) do

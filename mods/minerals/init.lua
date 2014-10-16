@@ -37,21 +37,56 @@ function bk_game.register_mineral(name, mineralDef)
 	--bk_game.register_fence(name, mineralDef) -- no fences from minerals
 end
 
-list = {
-    ["cinnabar"] = {description = "Cinnabar", },
-    ["coal"] = {description = "Coal", chest=false, block=true, slab=false, brick=false, stair=false, flat=false, column=false, pyramid=false},
-    ["gypsum"] = {description = "Gypsum", },
-    ["jet"] = {description = "Jet", },
-    ["lazurite"] = {description = "Lazurite", },
-    ["malachite"] = {description = "Malachite", },
-    ["olivine"] = {description = "Olivine", },
-    ["petrified_wood"] = {description = "Petrified Wood", },
-    ["satin_spar"] = {description = "Satin Spar", },
-    ["selenite"] = {description = "Selenite", },
-    ["serpentine"] = {description = "Serpentine", },
-    ["uranium"] = {description = "Uranium", chest=false, block=false, height_max=-8000},
+minerals_list = {
+	cinnabar = {
+		description = "Cinnabar"
+	},
+	coal = {
+		description = "Coal",
+		chest = false,
+		block=true,
+		slab = false,
+		brick = false,
+		stair = false,
+		flat = false,
+		column = false,
+		pyramid = false		
+	},
+	gypsum = {
+		description = "Gypsum"
+	},
+	jet = {
+		description = "Jet"
+	},
+	lazurite = {
+		description = "Lazurite"
+	},
+	malachite = {
+		description = "Malachite"
+	},
+	olivine = {
+		description = "Olivine"
+	},
+	petrified_wood = {
+		description = "Petrified Wood"
+	},
+	satin_spar = {
+		description = "Satin Spar"
+	},
+	selenite = {
+		description = "Selenite"
+	},
+	serpentine = {
+		description = "Serpentine"
+	},
+	uranium = {
+		description = "Uranium",
+		chest=false,
+		block=false,
+		height_max=-8000
+	}
 }
 
-for mineral, desc in pairs(list) do
-    bk_game.register_mineral(mineral, desc)
+for mineral, def in pairs(minerals_list) do
+    bk_game.register_mineral(mineral, def)
 end

@@ -39,8 +39,14 @@ function register_crystal(name, crystalDef)
 end
 
 list = {
-	["diamond"] = {description = "Diamond", height_max=-10000},
-	["mese"] = {description = "Mese", height_max=-15000},
+	diamond = {
+		description = "Diamond",
+		height_max = -10000
+	},
+	mese = {
+		description = "Mese",
+		height_max = -15000
+	},
 }
 
 for crystal, desc in pairs(list) do
