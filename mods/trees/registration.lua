@@ -94,20 +94,7 @@ function bk_game.register_tree(name, TreeDef)
 		groups = {log=1,choppy=5,snappy=5,flammable=2,drop_on_dig=1},
 		sounds = default.node_sound_wood_defaults(),
 		drop = "trees:"..tree.name.."_log",
-		drawtype = "nodebox",
 		paramtype = "light",
-		node_box = {
-			type = "fixed",
-			fixed = {
-				{-0.4,-0.5,-0.4,0.4,0.5,0.4},
-			},
-		},
-		selection_box = {
-			type = "fixed",
-			fixed = {
-				{-0.4,-0.5,-0.4,0.4,0.5,0.4},
-			},
-		},
 	})
 
 	minetest.register_node(":trees:"..tree.name.."_leaves", {
@@ -200,20 +187,7 @@ function bk_game.register_tree(name, TreeDef)
 		groups = {tree=1,choppy=5,snappy=5,flammable=2,drop_on_dig=1},
 		sounds = default.node_sound_wood_defaults(),
 		drop = "trees:"..tree.name.."_log",
-		drawtype = "nodebox",
 		paramtype = "light",
-		node_box = {
-			type = "fixed",
-			fixed = {
-				{-0.4,-0.5,-0.4,0.4,0.5,0.4},
-			},
-		},
-		selection_box = {
-			type = "fixed",
-			fixed = {
-				{-0.4,-0.5,-0.4,0.4,0.5,0.4},
-			},
-		},
 		after_dig_node = function(pos, oldnode, oldmeta, digger)
 			if not digger then return end
 			local p={x=pos.x,y=pos.y+1,z=pos.z}
@@ -229,20 +203,7 @@ function bk_game.register_tree(name, TreeDef)
 		groups = {tree=1,choppy=5,snappy=5,flammable=2,drop_on_dig=1},
 		sounds = default.node_sound_wood_defaults(),
 		drop = "trees:"..tree.name.."_log",
-		drawtype = "nodebox",
 		paramtype = "light",
-		node_box = {
-			type = "fixed",
-			fixed = {
-				{-0.4,-0.5,-0.4,0.4,0.5,0.4},
-			},
-		},
-		selection_box = {
-			type = "fixed",
-			fixed = {
-				{-0.4,-0.5,-0.4,0.4,0.5,0.4},
-			},
-		},
 		after_dig_node = function(pos, oldnode, oldmetadata, digger)
 			for i = 1,#tree.leaves do
 				local p = {x=pos.x+tree.leaves[i][1], y=pos.y+tree.leaves[i][2], z=pos.z+tree.leaves[i][3]}
