@@ -58,7 +58,8 @@ int main(int argc, char** argv) {
 	start = start - atoi(argv[3]);
 	end = end + atoi(argv[3]);
 	pos temp = start; // need to save start pos
-	std::cout << "from(" << temp.x << " ," << temp.y << " ," << temp.z << " ) to(" << end.x << " ," << end.y << " ," << end.z << " )" << std::endl;
+
+	printf("from(%lld, %lld, %lld) to (%lld, %lld, %lld)\n", temp.x, temp.y, temp.z, end.x, end.y, end.z);
 	sqlite3 *db;
 	if(sqlite3_open(file.c_str(), &db) != SQLITE_OK) {
 		std::cout << sqlite3_errmsg(db) << std::endl;

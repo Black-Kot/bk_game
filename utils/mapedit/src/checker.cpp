@@ -153,7 +153,7 @@ int main(int argc, char** argv){
 						dataOffset += 2;
 						string name = string(reinterpret_cast<const char *>(data) + dataOffset, nameLen);	
 						if ( name.find(name_block) != string::npos )
-							cout << name << " : (" << pos.x << ", " << pos.y << ", " << pos.z << ")" << endl;
+							printf("%s: (%d, %d, %d)\n", name.c_str(), pos.x, pos.y, pos.z);
 						dataOffset += nameLen;
 					}
 				}
