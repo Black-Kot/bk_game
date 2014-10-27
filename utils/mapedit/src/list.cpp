@@ -94,13 +94,11 @@ int main(int argc, char** argv){
     if (sqlite3_prepare_v2(db, "Select pos,data from blocks;", -1, &pst, NULL) != 0) {
         exit(1);
     }
-    while (sqlite3_step(pst) == SQLITE_ROW) {			
-			sqlite3_int64 blocknum = sqlite3_column_int64(pst, 0);
+    while (sqlite3_step(pst) == SQLITE_ROW) {
 			const unsigned char *data = reinterpret_cast<const unsigned char *>(sqlite3_column_blob(pst, 1));
 			size_t length = sqlite3_column_bytes(pst, 1);
 			if (length < 1 || !data)
 				continue;
-			BlockPos pos = decodeBlockPos(blocknum);
 			uint8_t version = data[0];
 				//uint8_t flags = data[1];
 
@@ -148,7 +146,6 @@ int main(int argc, char** argv){
 					uint16_t numMappings = readU16(data + dataOffset);
 					dataOffset += 2;
 					for (int i = 0; i < numMappings; ++i) {
-						uint16_t nodeId = readU16(data + dataOffset);
 						dataOffset += 2;
 						uint16_t nameLen = readU16(data + dataOffset);
 						dataOffset += 2;

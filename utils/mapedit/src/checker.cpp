@@ -147,7 +147,6 @@ int main(int argc, char** argv){
 					uint16_t numMappings = readU16(data + dataOffset);
 					dataOffset += 2;
 					for (int i = 0; i < numMappings; ++i) {
-						uint16_t nodeId = readU16(data + dataOffset);
 						dataOffset += 2;
 						uint16_t nameLen = readU16(data + dataOffset);
 						dataOffset += 2;
