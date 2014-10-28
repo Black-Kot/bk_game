@@ -5,7 +5,7 @@ Mapedit includes 3 tools for editing and viewing map data:
  - list - lists all nodes in database  
  - save - copies map region into another map  
 
-## Dependicies
+## Dependencies
 make, gcc, zlib  
 
 ## Compiling and using
