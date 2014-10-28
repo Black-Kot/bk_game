@@ -1,11 +1,11 @@
 CC=g++
 CFLAGS=-Wall -Wextra -std=c++11
 LDFLAGS=-I./src/ -lz -lsqlite3 -g
-CHECKER_SOURCES=./src/checker.cpp ./src/ZlibDecompressor.cpp
+CHECKER_SOURCES=./src/checker.cpp ./src/ZlibDecompressor.cpp ./src/map.cpp
 CHECKER_OBJECTS=$(CHECKER_SOURCES:.c=.o)
 CHECKER_EXECUTABLE=./bin/checker
 
-LIST_SOURCES=./src/list.cpp ./src/ZlibDecompressor.cpp
+LIST_SOURCES=./src/list.cpp ./src/ZlibDecompressor.cpp ./src/map.cpp
 LIST_OBJECTS=$(LIST_SOURCES:.c=.o)
 LIST_EXECUTABLE=./bin/list
 

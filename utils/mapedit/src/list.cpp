@@ -6,75 +6,9 @@
 #include <iostream>
 #include <set>
 #include "ZlibDecompressor.h"
+#include "map.h"
 
 using namespace std;
-
-
-static inline sqlite3_int64 pythonmodulo(sqlite3_int64 i, sqlite3_int64 mod)
-{
-	if (i >= 0) {
-		return i % mod;
-	}
-	else {
-		return mod - ((-i) % mod);
-	}
-}
-
-static inline int unsignedToSigned(long i, long max_positive)
-{
-	if (i < max_positive) {
-		return i;
-	}
-	else {
-		return i - 2l * max_positive;
-	}
-}
-
-static inline uint16_t readU16(const unsigned char *data)
-{
-	return data[0] << 8 | data[1];
-}
-
-static inline int rgb2int(uint8_t r, uint8_t g, uint8_t b)
-{
-	return (r << 16) + (g << 8) + b;
-}
-
-static inline int readBlockContent(const unsigned char *mapData, int version, int datapos)
-{
-	if (version >= 24) {
-		size_t index = datapos << 1;
-		return (mapData[index] << 8) | mapData[index + 1];
-	}
-	else if (version >= 20) {
-		if (mapData[datapos] <= 0x80) {
-			return mapData[datapos];
-		}
-		else {
-			return (int(mapData[datapos]) << 4) | (int(mapData[datapos + 0x2000]) >> 4);
-		}
-	}
-	else { return 0;
-	}
-}
-
-struct BlockPos {
-	int x;
-	int y;
-	int z;
-};
-
-inline BlockPos decodeBlockPos(sqlite3_int64 blockId)
-{
-	BlockPos pos;
-	pos.x = unsignedToSigned(pythonmodulo(blockId, 4096), 2048) * 16;
-	blockId = (blockId - pos.x) / 4096;
-	pos.y = unsignedToSigned(pythonmodulo(blockId, 4096), 2048) * 16;
-	blockId = (blockId - pos.y) / 4096;
-	pos.z = unsignedToSigned(pythonmodulo(blockId, 4096), 2048) * 16;
-	return pos;
-}
-
 
 int main(int argc, char** argv){
 	if(argc < 2 || argc > 2) {
