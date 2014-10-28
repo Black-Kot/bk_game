@@ -10,9 +10,14 @@
 
 using namespace std;
 
+void print_help(char *exec) {
+	printf("Usage: %s [/path/to/map]\n", exec);
+	printf("e.g. %s ~/minetest/worlds/map\n", exec);
+}
+
 int main(int argc, char** argv){
 	if(argc < 2 || argc > 2) {
-		std::cout << "Usage:\n/path/to/folder/map" << std::endl;
+		print_help(argv[0]);
 		exit(1);
 	}
 	std::set<std::string> names;

@@ -9,9 +9,14 @@
 
 using namespace std;
 
+void print_help(char *exec) {
+	printf("Usage: %s [/path/to/map] [node]\n", exec);
+	printf("e.g. %s ~/minetest/worlds/map default:stone\n", exec);
+}
+
 int main(int argc, char** argv){
 	if(argc < 3 || argc > 3) {
-		std::cout << "Usage:\n/path/to/folder/map name_block(as default:stone)" << std::endl;
+		print_help(argv[0]);
 		exit(1);
 	}
 	std::string file = std::string(argv[1]);

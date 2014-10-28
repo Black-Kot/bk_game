@@ -41,9 +41,14 @@ struct pos {
 	int64_t z;
 };
 
+void print_help(char *exec) {
+	printf("Usage: %s [/path/to/input] [/path/to/output] [X Y Z] [X Y Z]\n", exec);
+	printf("e.g. %s ~/minetest/worlds/oldworld ~/minetest/worlds/newworld -300 -256 -400 500 70 355 \n", exec);
+}
+
 int main(int argc, char** argv) {
 	if(argc < 10 || argc > 10) {
-		std::cout << "Usage:\n/path/to/folder/map /path/to/save/folder/map chunks first_block(as 127 -125 147) last_block(as 127 128 148) " << std::endl;
+		print_help(argv[0]);
 		exit(1);
 	}
 	std::string file = std::string(argv[1]);
