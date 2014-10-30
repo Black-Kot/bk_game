@@ -50,6 +50,7 @@ function bk_game.register_ladder(name, def)
 				return itemstack
 			end
 		end,
+		sunlight_propagates = true,
 		node_placement_prediction = "",
 		groups = {snappy=5,choppy=5,oddly_breakable_by_hand=3,flammable=2},
 		sounds = default.node_sound_wood_defaults(),
