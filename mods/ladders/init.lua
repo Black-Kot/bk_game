@@ -15,7 +15,7 @@ function bk_game.register_ladder(name, def)
 	if def.custom_description then
 		def.description = def.custom_description
 	else
-		def.description = def.description.."Ladder"
+		def.description = def.description.." Ladder"
 	end
 	minetest.register_node(":ladders:"..name, {
 		description = def.description,
