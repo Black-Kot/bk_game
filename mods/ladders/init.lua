@@ -1,7 +1,24 @@
 function bk_game.register_ladder(name, def)
-
+	if not def.node_box then
+		-- Use ladder node_box
+		def.node_box = {
+			type = "fixed",
+			fixed = {
+				{-0.5, -0.5, 0.5-1/7, -0.5+1/7, 0.5, 0.5},
+				{0.5-1/7, -0.5, 0.5-1/7, 0.5, 0.5, 0.5},
+				{-0.5+1/7, 0.5-1/6-1/12, 0.5-1/16, 0.5-1/7, 0.5-1/12, 0.5},
+				{-0.5+1/7, 0.5-1/12-1/6*3, 0.5-1/16, 0.5-1/7, 0.5-1/12-1/6*2, 0.5},
+				{-0.5+1/7, 0.5-1/12-1/6*5, 0.5-1/16, 0.5-1/7, 0.5-1/12-1/6*4, 0.5},
+			},
+		}
+	end
+	if def.custom_description then
+		def.description = def.custom_description
+	else
+		def.description = def.description.."Ladder"
+	end
 	minetest.register_node(":ladders:"..name, {
-		description = def.description.." Ladder",
+		description = def.description,
 		drawtype = "nodebox",
 		tiles = def.tiles,
 		inventory_image = "ladders_"..name..".png",
@@ -9,26 +26,8 @@ function bk_game.register_ladder(name, def)
 		paramtype2 = "facedir",
 		is_ground_content = true,
 		climbable = true,
-		node_box = {
-			type = "fixed",
-			fixed = {
-				{-0.5, -0.5, 0.5-1/7, -0.5+1/7, 0.5, 0.5},
-				{0.5-1/7, -0.5, 0.5-1/7, 0.5, 0.5, 0.5},
-				{-0.5+1/7, 0.5-1/6-1/12, 0.5-1/16, 0.5-1/7, 0.5-1/12, 0.5},
-				{-0.5+1/7, 0.5-1/12-1/6*3, 0.5-1/16, 0.5-1/7, 0.5-1/12-1/6*2, 0.5},
-				{-0.5+1/7, 0.5-1/12-1/6*5, 0.5-1/16, 0.5-1/7, 0.5-1/12-1/6*4, 0.5},
-			},
-		},
-		selection_box = {
-			type = "fixed",
-			fixed = {
-				{-0.5, -0.5, 0.5-1/7, -0.5+1/7, 0.5, 0.5},
-				{0.5-1/7, -0.5, 0.5-1/7, 0.5, 0.5, 0.5},
-				{-0.5+1/7, 0.5-1/6-1/12, 0.5-1/16, 0.5-1/7, 0.5-1/12, 0.5},
-				{-0.5+1/7, 0.5-1/12-1/6*3, 0.5-1/16, 0.5-1/7, 0.5-1/12-1/6*2, 0.5},
-				{-0.5+1/7, 0.5-1/12-1/6*5, 0.5-1/16, 0.5-1/7, 0.5-1/12-1/6*4, 0.5},
-			},
-		},
+		node_box = def.node_box,
+		selection_box = def.node_box,
 		on_place = function(itemstack, placer, pointed_thing)
 			if pointed_thing.type == "node" and
 				minetest.registered_nodes[minetest.get_node(pointed_thing.above).name].buildable_to == true then
@@ -61,13 +60,34 @@ function bk_game.register_ladder(name, def)
 	else
 		craft_count = " "..def.ladders_from_source
 	end
-
-	minetest.register_craft({
-		output = "ladders:"..name..craft_count,
-		recipe = {
-			{def.source, "", def.source},
-			{def.source, def.source, def.source},
-			{def.source, "", def.source},
-		}
-	})
+	if def.custom_craft then
+		minetest.register_craft(def.custom_craft)
+	else
+		minetest.register_craft({
+			output = "ladders:"..name..craft_count,
+			recipe = {
+				{def.source, "", def.source},
+				{def.source, def.source, def.source},
+				{def.source, "", def.source},
+			}
+		})
+	end
 end
+-- Rope
+bk_game.register_ladder("rope", {
+	custom_description = "Rope",
+	tiles = {"ladders_rope_tile.png"},
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{0.0-1/16, -0.5, 0.5-1/8, 0.0+1/16, 0.5, 0.5}
+		}
+	},
+	custom_craft = {
+		output = "ladders:rope 6",
+		recipe = {
+			{"cotton:cotton"},
+			{"cotton:cotton"}
+		}
+	}
+})
