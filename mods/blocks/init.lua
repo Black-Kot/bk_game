@@ -124,8 +124,9 @@ function bk_game.register_stair(name, def)
 	end
 end
 function bk_game.register_slope(name, def)
+	local slope = "blocks:"..name.."_slope"
 	minetest.register_node(":blocks:"..name.."_slope", {
-		description = def.description.." Slab",
+		description = def.description.." Slope",
 		drawtype = "mesh",
 		mesh = "blocks_slope.obj",
 		tiles = def.tiles,
@@ -136,6 +137,30 @@ function bk_game.register_slope(name, def)
 		paramtype = "light",
 		paramtype2 = "facedir",
 		on_place = minetest.rotate_node
+	})
+	minetest.register_craft({
+		
+		output = "blocks:"..name.."_slope 6",
+		recipe = {
+			{"blocks:"..name, "", ""},
+			{"blocks:"..name, "blocks:"..name, ""},
+			{"","",""}
+		},
+	})
+	-- Reversed
+	minetest.register_craft({
+		output = "blocks:"..name.."_slope 6",
+		recipe = {
+			{"", "blocks:"..name,""},
+			{"blocks:"..name, "blocks:"..name,""},
+			{"","",""}
+		},
+	})
+
+	minetest.register_craft({
+		type = "shapeless",
+		output = "blocks:"..name.." 3",
+		recipe = {slope, slope, slope, slope, slope, slope}
 	})
 end
 function bk_game.register_slab(name, def)
