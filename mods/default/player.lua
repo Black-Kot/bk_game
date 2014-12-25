@@ -69,6 +69,10 @@ end
 
 -- Update appearance when the player joins
 minetest.register_on_joinplayer(player_update_visuals)
+minetest.register_on_joinplayer(function(player)
+	player:hud_set_hotbar_image("gui_hotbar.png")
+	player:hud_set_hotbar_selected_image("gui_hotbar_selected.png")
+end)
 
 -- Check each player and apply animations
 function player_step(dtime)
