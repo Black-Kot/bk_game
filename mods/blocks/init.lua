@@ -1,5 +1,15 @@
 function bk_game.register_block(name, def)
 
+bk_game.slope_box = {
+	type = "fixed",
+	fixed = {
+		{-0.5, -0.5, -0.5, 0.5, -0.25, 0.5},
+		{-0.5, -0.25, -0.25, 0.5, 0, 0.5},
+		{-0.5, 0, 0, 0.5, 0.25, 0.5},
+		{-0.5, 0.25, 0.25, 0.5, 0.5, 0.5}
+	}
+}
+
 -- we use copy table from real block
 local block = copy_table(def)
 block.description = def.description.." Block"
@@ -113,7 +123,46 @@ function bk_game.register_stair(name, def)
 	})
 	end
 end
+function bk_game.register_slope(name, def)
+	local slope = "blocks:"..name.."_slope"
+	minetest.register_node(":blocks:"..name.."_slope", {
+		description = def.description.." Slope",
+		drawtype = "mesh",
+		mesh = "blocks_slope.obj",
+		tiles = def.tiles,
+		collision_box = bk_game.slope_box,
+		selection_box = bk_game.slope_box,
+		groups = def.groups,
+		sounds = def.sounds,
+		paramtype = "light",
+		paramtype2 = "facedir",
+		on_place = minetest.rotate_node
+	})
+	minetest.register_craft({
+		
+		output = "blocks:"..name.."_slope 6",
+		recipe = {
+			{"blocks:"..name, "", ""},
+			{"blocks:"..name, "blocks:"..name, ""},
+			{"","",""}
+		},
+	})
+	-- Reversed
+	minetest.register_craft({
+		output = "blocks:"..name.."_slope 6",
+		recipe = {
+			{"", "blocks:"..name,""},
+			{"blocks:"..name, "blocks:"..name,""},
+			{"","",""}
+		},
+	})
 
+	minetest.register_craft({
+		type = "shapeless",
+		output = "blocks:"..name.." 3",
+		recipe = {slope, slope, slope, slope, slope, slope}
+	})
+end
 function bk_game.register_slab(name, def)
 
 	minetest.register_node(":blocks:"..name.."_slab",{
@@ -341,6 +390,7 @@ function bk_game.register_nodes(name, def)
 
 	if def.stair == true then
 		bk_game.register_stair(name, def)
+		bk_game.register_slope(name, def)
 	end
 
 	if def.column == true then
@@ -350,7 +400,6 @@ function bk_game.register_nodes(name, def)
 	if def.pyramid == true then
 		bk_game.register_pyramid(name, def)
 	end
-
 	if def.flat then
 		bk_game.register_nodes(name.."_flat", {
 			description = "Flat "..def.description,
