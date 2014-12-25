@@ -17,10 +17,6 @@ function load()
 		cities = {}
 	end
 
-	if not cities["spawn"] then
-		cities["spawn"] = {x=0, y=0, z=0}
-	end
-
 	local input = io.open(spawns_file, "r")
     if input ~= nil then
     local text = ""
@@ -128,7 +124,11 @@ minetest.register_on_newplayer(function(player)
 	if spawns[name] then
 		player:setpos(cities[spawns[name]])
 	else
-		player:setpos(cities["spawn"])
+		if not cities["spawn"] then
+			cities["spawn"] = player:getpos()
+		else
+			player:setpos(cities["spawn"])
+		end
 	end
 end)
 
