@@ -2,6 +2,8 @@ local cities = {}
 local cities_file = minetest.get_worldpath().."/cities"
 local spawns = {}
 local spawns_file =  minetest.get_worldpath().."/spawns"
+local changed = false
+
 
 function load()
 	local input = io.open(cities_file, "r")
