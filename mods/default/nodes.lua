@@ -552,6 +552,9 @@ minetest.register_node("default:scaffolding", {
 function default.get_furnace_active_formspec(pos, percent)
 	local formspec =
 		"size[8,9]"..
+		"background[0,0;0,0;gui_background.png;true]"..
+		bk_game.style_slots..
+		bk_game.style_bgcolor..
 		"image[2,2;1,1;default_furnace_fire_bg.png^[lowpart:"..
 		(100-percent)..":default_furnace_fire_fg.png]"..
 		"list[current_name;fuel;2,3;1,1;]"..
@@ -563,6 +566,9 @@ end
 
 default.furnace_inactive_formspec =
 	"size[8,9]"..
+	"background[0,0;0,0;gui_background.png;true]"..
+	bk_game.style_slots..
+	bk_game.style_bgcolor..
 	"image[2,2;1,1;default_furnace_fire_bg.png]"..
 	"list[current_name;fuel;2,3;1,1;]"..
 	"list[current_name;src;2,1;1,1;]"..

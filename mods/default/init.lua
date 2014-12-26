@@ -11,6 +11,10 @@ LIGHT_MAX = 14
 -- Definitions made by this mod that other mods can use too
 default = {}
 
+-- Styles
+bk_game.style_bgcolor = "bgcolor[#080808AA;true]"
+bk_game.style_slots = "listcolors[#00000069;#5A5A5A;#141318;#30434C;#FFF]"
+
 -- Load files
 dofile(minetest.get_modpath("default").."/alias.lua") -- do not use alias!
 dofile(minetest.get_modpath("default").."/functions.lua")

@@ -7,6 +7,9 @@ minetest.register_privilege("chest", {
 
 default.chest_formspec =
 	"invsize[10,9;]"..
+	"background[0,0;0,0;chest_gui_background.png;true]"..
+	bk_game.style_slots..
+	bk_game.style_bgcolor..
 	"list[current_name;main;0,0;10,5;]"..
 	"list[current_player;main;1,5.3;8,4;]"
 
@@ -14,6 +17,9 @@ function default.get_locked_chest_formspec(pos)
 	local spos = pos.x .. "," .. pos.y .. "," ..pos.z
 	local formspec =
 		"invsize[10,9;]"..
+		"background[0,0;0,0;chest_gui_background.png;true]"..
+		bk_game.style_slots..
+		bk_game.style_bgcolor..
 		"list[nodemeta:".. spos .. ";main;0,0;10,5;]"..
 		"list[current_player;main;1,5.3;8,4;]"
 	return formspec

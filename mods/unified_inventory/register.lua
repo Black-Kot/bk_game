@@ -119,9 +119,8 @@ unified_inventory.register_page("craft", {
 	get_formspec = function(player, formspec)
 		local player_name = player:get_player_name()
 		local formspec = "background[0,1;8,3;ui_crafting_form.png]"
-		formspec = formspec.."background[0,4.5;8,4;ui_main_inventory.png]"
 		formspec = formspec.."label[0,0;Crafting]"
-		formspec = formspec.."listcolors[#00000000;#00000000]"
+		formspec = formspec.. bk_game.style_slots
 		formspec = formspec.."list[current_player;craftpreview;6,1;1,1;]"
 		formspec = formspec.."list[current_player;craft;2,1;3,3;]"
 		formspec = formspec.."label[7,2.5;Trash:]"
@@ -240,9 +239,8 @@ unified_inventory.register_page("craftguide", {
 	get_formspec = function(player)
 		local player_name = player:get_player_name()
 		local formspec = ""
-		formspec = formspec.."background[0,4.5;8,4;ui_main_inventory.png]"
 		formspec = formspec.."label[0,0;Crafting Guide]"
-		formspec = formspec.."listcolors[#00000000;#00000000]"
+		formspec = formspec.. bk_game.style_slots
 		local craftinv = minetest.get_inventory({
 			type = "detached",
 			name = player_name.."craftrecipe"

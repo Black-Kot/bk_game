@@ -1,4 +1,3 @@
-
 function unified_inventory.get_formspec(player, page)
 	if not player then
 		return ""
@@ -11,6 +10,7 @@ function unified_inventory.get_formspec(player, page)
 	local fsdata = nil
 
 	-- Background
+	formspec = formspec .. bk_game.style_bgcolor
 	formspec = formspec .. "background[-0.19,-0.25;14.4,10.75;ui_form_bg.png]"
 	-- Current page
 	if unified_inventory.pages[page] then
@@ -32,7 +32,7 @@ function unified_inventory.get_formspec(player, page)
 
 	if fsdata.draw_inventory ~= false then
 		-- Player inventory
-		formspec = formspec.."listcolors[#00000000;#00000000]"
+		formspec = formspec.. bk_game.style_slots
 		formspec = formspec .. "list[current_player;main;0,4.5;8,4;]"
 	end
 

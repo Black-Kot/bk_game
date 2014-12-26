@@ -6,13 +6,11 @@
 unified_inventory.register_page("bags", {
 	get_formspec = function(player)
 		local player_name = player:get_player_name()
-		local formspec = "background[0.06,0.99;7.92,7.52;ui_bags_main_form.png]"
-		formspec = formspec.."label[0,0;Bags]"
+		local formspec = "label[0,0;Bags]"
 		formspec = formspec.."button[0,2;2,0.5;bag1;Bag 1]"
 		formspec = formspec.."button[2,2;2,0.5;bag2;Bag 2]"
 		formspec = formspec.."button[4,2;2,0.5;bag3;Bag 3]"
 		formspec = formspec.."button[6,2;2,0.5;bag4;Bag 4]"
-		formspec = formspec.."listcolors[#00000000;#00000000]"
 		formspec = formspec.."list[detached:"..minetest.formspec_escape(player_name).."_bags;bag1;0.5,1;1,1;]"
 		formspec = formspec.."list[detached:"..minetest.formspec_escape(player_name).."_bags;bag2;2.5,1;1,1;]"
 		formspec = formspec.."list[detached:"..minetest.formspec_escape(player_name).."_bags;bag3;4.5,1;1,1;]"
@@ -33,16 +31,7 @@ for i = 1, 4 do
 			local image = stack:get_definition().inventory_image
 			local formspec = "image[7,0;1,1;"..image.."]"
 			formspec = formspec.."label[0,0;Bag "..i.."]"
-			formspec = formspec.."listcolors[#00000000;#00000000]"
 			formspec = formspec.."list[current_player;bag"..i.."contents;0,1;8,3;]"
-			local slots = stack:get_definition().groups.bagslots
-			if slots == 8 then
-				formspec = formspec.."background[0.06,0.99;7.92,7.52;ui_bags_sm_form.png]"
-			elseif slots == 16 then
-				formspec = formspec.."background[0.06,0.99;7.92,7.52;ui_bags_med_form.png]"
-			elseif slots == 24 then
-				formspec = formspec.."background[0.06,0.99;7.92,7.52;ui_bags_lg_form.png]"
-			end
 			return {formspec=formspec}
 		end,
 	})
