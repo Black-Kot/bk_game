@@ -52,9 +52,9 @@ local function generate(tree, minp, maxp, seed)
 			for i=0,trees_amount do
 				local x = pr:next(x0, x1)
 				local z = pr:next(z0, z1)
-				-- Find ground level (0...30)
+				-- Find ground level (0...100)
 				local ground_y = nil
-				for y=30,0,-1 do
+				for y=100,0,-1 do
 					if minetest.get_node({x=x,y=y,z=z}).name ~= "air" then
 						ground_y = y
 						break

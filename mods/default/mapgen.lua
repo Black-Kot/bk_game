@@ -32,6 +32,7 @@ minetest.register_alias("mapgen_stair_sandstone", "blocks:sandstone_stair")
 minetest.register_alias("mapgen_sandstone", "blocks:sandstone")
 minetest.register_alias("mapgen_stair_sandstonebrick", "blocks:sandstonebrick_stair")
 
+dofile(minetest.get_modpath("default").."/mgv7.lua")
 
 function default.make_papyrus(pos, size)
 	for y=0,size-1 do
