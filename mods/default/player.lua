@@ -58,7 +58,7 @@ function player_update_visuals(pl)
 	player_model[name] = default_model
 	player_anim[name] = 0 -- Animation will be set further below immediately
 	player_sneak[name] = false
-	prop = {
+	local prop = {
 		mesh = default_model,
 		textures = default_textures,
 		visual = "mesh",
