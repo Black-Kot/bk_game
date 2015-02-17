@@ -13,14 +13,18 @@ function bk_game.register_food(name, def)
 			minetest.register_craftitem(":food:"..name, {
 				description = def.description,
 				inventory_image = "food_"..name..".png",
-
 			})
 
 
 			minetest.register_craftitem(":food:cooked_"..name, {
-				description = def.description,
+				description = "Cooked " .. def.description,
 				inventory_image = "food_cooked_"..name..".png",
-				on_use = minetest.item_eat(def.eat_price),
+				on_use = function(itemstack, user, pointed_thing)
+					if user:get_hp() < 20 then
+						itemstack = minetest.do_item_eat(def.eat_price, nil, itemstack, user, pointed_thing)
+					end
+					return itemstack
+				end
 
 			})
 
@@ -35,14 +39,16 @@ function bk_game.register_food(name, def)
 			minetest.register_craftitem(":food:"..name, {
 				description = def.description,
 				inventory_image = "food_"..name..".png",
-				on_use = minetest.item_eat(def.eat_price),
+				on_use = function(itemstack, user, pointed_thing)
+					if user:get_hp() < 20 then
+						itemstack = minetest.do_item_eat(def.eat_price, nil, itemstack, user, pointed_thing)
+					end
+					return itemstack
+				end
 
 			})
-
 		end
-
 	end
-
 end
 
 local GROWING_DELAY = 3600

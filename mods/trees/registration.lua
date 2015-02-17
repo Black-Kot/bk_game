@@ -52,7 +52,12 @@ function bk_game.register_tree(name, TreeDef)
 			inventory_image = "trees_"..tree.fruit..".png",
 			paramtype = "light",
 			walkable = false,
-			on_use = minetest.item_eat(tree.eat_price),
+			on_use = function(itemstack, user, pointed_thing)
+				if user:get_hp() < 20 then
+					itemstack = minetest.do_item_eat(tree.eat_price, nil, itemstack, user, pointed_thing)
+				end
+				return itemstack
+			end,
 			groups = {snappy=6, dig_immediate=3}
 		})
 	end
