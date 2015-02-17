@@ -128,7 +128,7 @@ local function generate(mushroom, minp, maxp, pr)
 		if table.contains(mushroom.wherein, minetest.get_node(pos).name) then
 			local pos2 = {x=pos.x, y=pos.y-1, z=pos.z}
 			local under = minetest.get_node(pos2).name
-			if under ~= "air" and under ~= "ignore" and not string.match(under, "mushroom") then
+			if minetest.registered_nodes[under].drawtype == "normal" then
 				minetest.add_node(pos, {name=mushroom.name})
 				return
 			end
