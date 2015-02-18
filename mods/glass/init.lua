@@ -113,7 +113,7 @@ for _, row in ipairs(bk_game.colors) do
 	end
 
 	-- panes
-	textures = {"glass_"..name..".png", "glass_"..name..".png", "glass_"..name..".png"}
+	textures = {"glass_"..name..".png", "glass_"..name.."_half.png", "glass_"..name.."_color.png"}
 	inventory_image = ""
 	for i = 1, 15 do
 		local need = {}
