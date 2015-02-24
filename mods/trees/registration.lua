@@ -212,9 +212,15 @@ function bk_game.register_tree(name, TreeDef)
 		after_dig_node = function(pos, oldnode, oldmetadata, digger)
 			for i = 1,#tree.leaves do
 				local p = {x=pos.x+tree.leaves[i][1], y=pos.y+tree.leaves[i][2], z=pos.z+tree.leaves[i][3]}
-				if minetest.get_node(p).name == "trees:"..tree.name.."_leaves" then
-					local n = minetest.get_node(p)
+				local n = minetest.get_node(p)
+
+				if n.name == "trees:"..tree.name.."_leaves" then
 					minetest.node_dig(p,n,digger)
+				end
+				if tree.fruit ~= nil then
+					if n.name == "trees:"..tree.fruit then
+						minetest.node_dig(p,n,digger)
+					end
 				end
 			end
 		end,
