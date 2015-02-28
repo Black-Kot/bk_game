@@ -92,35 +92,35 @@ function bk_game.register_stair(name, def)
 			},
 		},
 	})
-	if def.without_craft == true then
 
-	else
-	minetest.register_craft({
-		output = "blocks:"..name.."_stair 8",
-		recipe = {
-			{"blocks:"..name, "", ""},
-			{"blocks:"..name, "blocks:"..name, ""},
-			{"blocks:"..name, "blocks:"..name, "blocks:"..name},
-		},
-	})
 
-	-- Flipped recipe for the silly minecrafters
-	minetest.register_craft({
-		output = "blocks:"..name.."_stair 8",
-		recipe = {
-			{"", "", "blocks:"..name},
-			{"", "blocks:"..name, "blocks:"..name},
-			{"blocks:"..name, "blocks:"..name, "blocks:"..name},
-		},
-	})
+	if not def.without_craft == true then
+		minetest.register_craft({
+			output = "blocks:"..name.."_stair 8",
+			recipe = {
+				{"blocks:"..name, "", ""},
+				{"blocks:"..name, "blocks:"..name, ""},
+				{"blocks:"..name, "blocks:"..name, "blocks:"..name},
+			},
+		})
 
-	minetest.register_craft({
-		output = "blocks:"..name.." 3",
-		recipe = {
-			{"blocks:"..name.."_stair", "blocks:"..name.."_stair"},
-			{"blocks:"..name.."_stair", "blocks:"..name.."_stair"},
-		},
-	})
+		-- Flipped recipe for the silly minecrafters
+		minetest.register_craft({
+			output = "blocks:"..name.."_stair 8",
+			recipe = {
+				{"", "", "blocks:"..name},
+				{"", "blocks:"..name, "blocks:"..name},
+				{"blocks:"..name, "blocks:"..name, "blocks:"..name},
+			},
+		})
+
+		minetest.register_craft({
+			output = "blocks:"..name.." 3",
+			recipe = {
+				{"blocks:"..name.."_stair", "blocks:"..name.."_stair"},
+				{"blocks:"..name.."_stair", "blocks:"..name.."_stair"},
+			},
+		})
 	end
 end
 function bk_game.register_slope(name, def)
@@ -136,7 +136,8 @@ function bk_game.register_slope(name, def)
 		sounds = def.sounds,
 		paramtype = "light",
 		paramtype2 = "facedir",
-		on_place = minetest.rotate_node
+		on_place = minetest.rotate_node,
+		sunlight_propagates = true
 	})
 	minetest.register_craft({
 		
