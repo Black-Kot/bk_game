@@ -12,13 +12,13 @@ function bk_game.register_ladder(name, def)
 			},
 		}
 	end
-	description = nil
+	local description = nil
 	if def.custom_description then
 		description = def.custom_description
 	else
 		description = def.description.." Ladder"
 	end
-
+	local on_place = nil
 	if def.on_place then
 		on_place = def.on_place
 	else
@@ -64,7 +64,7 @@ function bk_game.register_ladder(name, def)
 		groups = {snappy=5,choppy=5,oddly_breakable_by_hand=3,flammable=2,ladder=1},
 		sounds = default.node_sound_wood_defaults(),
 	})
-
+	local craft_count = nil
 	if not def.ladders_from_source then
 		craft_count = ""
 	else

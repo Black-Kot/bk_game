@@ -191,7 +191,7 @@ function bk_game.register_flower(name, def)
 	end
 
 	if def.generate ~= false then
-		flower = {
+		local flower = {
 			name = "flowers:"..name,
 			nodenames = def.nodenames,
 			chance = def.chance,
@@ -308,26 +308,27 @@ end
 minetest.register_on_generated(function(minp, maxp, seed)
 	local pr = PseudoRandom(seed)
 	local n = pr:next(1,7)
-	if pr:next(1,2) == 1 then
-		n = n + 1
-	end
-	if pr:next(1, 10) == flower.chance then
-		n = n + 3
-	end
-	if pr:next(1, 20) == flower.chance then
-		n = n + 5
-	end
-	if pr:next(1, 30) == flower.chance then
-		n = n + 10
-	end
-	if pr:next(1, 40) == flower.chance then
-		n = n + 10
-	end
-	if pr:next(1, 50) == flower.chance then
-		n = n + 10
-	end
+
 	for i = 1, n do
 		for _, flower in ipairs(bk_game.registered_flowers_list) do
+			if pr:next(1,2) == 1 then
+				n = n + 1
+			end
+			if pr:next(1, 10) == flower.chance then
+				n = n + 3
+			end
+			if pr:next(1, 20) == flower.chance then
+				n = n + 5
+			end
+			if pr:next(1, 30) == flower.chance then
+				n = n + 10
+			end
+			if pr:next(1, 40) == flower.chance then
+				n = n + 10
+			end
+			if pr:next(1, 50) == flower.chance then
+				n = n + 10
+			end
 			generate(flower, minp, maxp, seed + _ + n)
 		end
 	end
