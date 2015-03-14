@@ -8,6 +8,10 @@ bk_game.slope_box = {
 	}
 }
 
+function stair(node)
+	return string.find(node.name, "_stair") ~= nil
+end
+
 function bk_game.register_stair(name, def)
 	local name = name:remove_modname_prefix()
 	minetest.register_node(":blocks:"..name.."_stair", {
@@ -34,6 +38,51 @@ function bk_game.register_stair(name, def)
 
 			local p0 = pointed_thing.under
 			local p1 = pointed_thing.above
+
+			local north = minetest.get_node({x = p1.x, y = p1.y, z = p1.z + 1})
+			local south = minetest.get_node({x = p1.x, y = p1.y, z = p1.z - 1})
+			local west =  minetest.get_node({x = p1.x - 1, y = p1.y, z = p1.z})
+			local east =  minetest.get_node({x = p1.x + 1, y = p1.y, z = p1.z})
+
+			local ne = minetest.get_node({x = p1.x + 1, y = p1.y, z = p1.z + 1})
+			local nw = minetest.get_node({x = p1.x - 1, y = p1.y, z = p1.z + 1})
+			local se = minetest.get_node({x = p1.x + 1, y = p1.y, z = p1.z - 1})
+			local sw = minetest.get_node({x = p1.x - 1, y = p1.y, z = p1.z - 1})
+
+			local pp = placer:getpos()
+
+			local facedir = minetest.dir_to_facedir({x=p1.x-pp.x, y = 0, z=p1.z-pp.z})
+
+			if facedir == 0 then -- NORTH
+				if stair(east) and stair(ne) and ne.param2 == 3 then
+					minetest.set_node({x = p1.x + 1, y = p1.y, z = p1.z}, {name = east.name .. "_corner", param2 = 0})
+				end
+				if stair(west) and stair(nw) and nw.param2 == 1 then
+					minetest.set_node({x = p1.x - 1, y = p1.y, z = p1.z}, {name = west.name .. "_corner", param2 = 1})
+				end
+			elseif facedir == 1 then -- EAST
+				if stair(north) and stair(ne) then
+					minetest.set_node({x = p1.x, y = p1.y, z = p1.z + 1}, {name = north.name .. "_corner", param2 = 2})
+				end
+				if stair(south) and stair(se) then
+					minetest.set_node({x = p1.x, y = p1.y, z = p1.z - 1}, {name = south.name .. "_corner", param2 = 1})
+				end
+			elseif facedir == 2 then -- SOUTH
+				if stair(east) and stair(se) then
+					minetest.set_node({x = p1.x + 1, y = p1.y, z = p1.z}, {name = east.name .. "_corner", param2 = 3})
+				end
+				if stair(west) and stair(sw) then
+					minetest.set_node({x = p1.x - 1, y = p1.y, z = p1.z}, {name = west.name .. "_corner", param2 = 2})
+				end
+			elseif facedir == 3 then -- WEST
+				if stair(north) and stair(nw) then
+					minetest.set_node({x = p1.x, y = p1.y, z = p1.z + 1}, {name = north.name .. "_corner", param2 = 3})
+				end
+				if stair(south) and stair(sw) then
+					minetest.set_node({x = p1.x, y = p1.y, z = p1.z - 1}, {name = south.name .. "_corner", param2 = 0})
+				end
+			end
+
 			if p0.y-1 == p1.y then
 				local fakestack = ItemStack("blocks:"..name.."_stair_upside_down")
 				local ret = minetest.item_place(fakestack, placer, pointed_thing)
@@ -46,6 +95,26 @@ function bk_game.register_stair(name, def)
 			-- Otherwise place regularly
 			return minetest.item_place(itemstack, placer, pointed_thing)
 		end,
+	})
+
+	minetest.register_node(":blocks:"..name.."_stair_corner", {
+		drop = "blocks:"..name.."_stair",
+		description = def.description.." Stair",
+		drawtype = "nodebox",
+		tiles = def.tiles,
+		paramtype = "light",
+		paramtype2 = "facedir",
+		is_ground_content = true,
+		groups = def.groups,
+		sounds = def.sounds,
+		node_box = {
+			type = "fixed",
+			fixed = {
+				{-0.5, -0.5, -0.5, 0.5, 0, 0.5},
+				{-0.5, 0, 0, 0.0, 0.5, 0.5},
+			},
+		},
+
 	})
 
 	minetest.register_node(":blocks:"..name.."_stair_upside_down", {
