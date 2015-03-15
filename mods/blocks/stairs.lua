@@ -52,34 +52,66 @@ function bk_game.register_stair(name, def)
 			local pp = placer:getpos()
 
 			local facedir = minetest.dir_to_facedir({x=p1.x-pp.x, y = 0, z=p1.z-pp.z})
-
+			-- FIXME: too slow
 			if facedir == 0 then -- NORTH
-				if stair(east) and stair(ne) and ne.param2 == 3 then
-					minetest.set_node({x = p1.x + 1, y = p1.y, z = p1.z}, {name = east.name .. "_corner", param2 = 0})
+				if stair(east) then
+					if stair(ne) and ne.param2 % 32 == 3 then
+						minetest.set_node({x = p1.x + 1, y = p1.y, z = p1.z}, {name = east.name .. "_corner", param2 = 0})
+					elseif stair(se) and se.param2 % 32 == 1 then
+						minetest.set_node({x = p1.x + 1, y = p1.y, z = p1.z}, {name = east.name .. "_inner", param2 = 1})
+					end
 				end
-				if stair(west) and stair(nw) and nw.param2 == 1 then
-					minetest.set_node({x = p1.x - 1, y = p1.y, z = p1.z}, {name = west.name .. "_corner", param2 = 1})
+				if stair(west) then
+					if stair(nw) and nw.param2 % 32 == 1 then
+						minetest.set_node({x = p1.x - 1, y = p1.y, z = p1.z}, {name = west.name .. "_corner", param2 = 1})
+					elseif stair(sw) and sw.param2 % 32 == 3 then
+						minetest.set_node({x = p1.x - 1, y = p1.y, z = p1.z}, {name = west.name .. "_inner", param2 = 0})
+					end
 				end
 			elseif facedir == 1 then -- EAST
-				if stair(north) and stair(ne) then
-					minetest.set_node({x = p1.x, y = p1.y, z = p1.z + 1}, {name = north.name .. "_corner", param2 = 2})
+				if stair(north) then
+					if stair(ne) and ne.param2 % 32 == 2 then
+						minetest.set_node({x = p1.x, y = p1.y, z = p1.z + 1}, {name = north.name .. "_corner", param2 = 2})
+					elseif stair(nw) and nw.param2 % 32 == 0 then
+						minetest.set_node({x = p1.x, y = p1.y, z = p1.z + 1}, {name = north.name .. "_inner", param2 = 1})
+					end
 				end
-				if stair(south) and stair(se) then
-					minetest.set_node({x = p1.x, y = p1.y, z = p1.z - 1}, {name = south.name .. "_corner", param2 = 1})
+				if stair(south) then
+					if stair(se) and se.param2 % 32 == 0 then
+						minetest.set_node({x = p1.x, y = p1.y, z = p1.z - 1}, {name = south.name .. "_corner", param2 = 1})
+					elseif stair(sw) and sw.param2 % 32 == 2 then
+						minetest.set_node({x = p1.x, y = p1.y, z = p1.z - 1}, {name = south.name .. "_inner", param2 = 2})
+					end
 				end
 			elseif facedir == 2 then -- SOUTH
-				if stair(east) and stair(se) then
-					minetest.set_node({x = p1.x + 1, y = p1.y, z = p1.z}, {name = east.name .. "_corner", param2 = 3})
+				if stair(east) then
+					if stair(se) and se.param2 % 32 == 3 then
+						minetest.set_node({x = p1.x + 1, y = p1.y, z = p1.z}, {name = east.name .. "_corner", param2 = 3})
+					elseif stair(ne) and ne.param2 % 32 == 1 then
+						minetest.set_node({x = p1.x + 1, y = p1.y, z = p1.z}, {name = east.name .. "_inner", param2 = 2})
+					end
 				end
-				if stair(west) and stair(sw) then
-					minetest.set_node({x = p1.x - 1, y = p1.y, z = p1.z}, {name = west.name .. "_corner", param2 = 2})
+				if stair(west) then
+					if stair(sw) and sw.param2 % 32 == 1 then
+						minetest.set_node({x = p1.x - 1, y = p1.y, z = p1.z}, {name = west.name .. "_corner", param2 = 2})
+					elseif stair(nw) and nw.param2 % 32 == 3 then
+						minetest.set_node({x = p1.x - 1, y = p1.y, z = p1.z}, {name = west.name .. "_inner", param2 = 3})
+					end
 				end
 			elseif facedir == 3 then -- WEST
-				if stair(north) and stair(nw) then
-					minetest.set_node({x = p1.x, y = p1.y, z = p1.z + 1}, {name = north.name .. "_corner", param2 = 3})
+				if stair(north) then
+					if stair(nw) and nw.param2 % 32 == 2 then
+						minetest.set_node({x = p1.x, y = p1.y, z = p1.z + 1}, {name = north.name .. "_corner", param2 = 3})
+					elseif stair(ne) and ne.param2 % 32 == 0 then
+						minetest.set_node({x = p1.x, y = p1.y, z = p1.z + 1}, {name = north.name .. "_inner", param2 = 0})
+					end
 				end
-				if stair(south) and stair(sw) then
-					minetest.set_node({x = p1.x, y = p1.y, z = p1.z - 1}, {name = south.name .. "_corner", param2 = 0})
+				if stair(south) then
+					if stair(sw) and sw.param2 % 32 == 0 then
+						minetest.set_node({x = p1.x, y = p1.y, z = p1.z - 1}, {name = south.name .. "_corner", param2 = 0})
+					elseif stair(se) and se.param2 % 32 == 2 then
+						minetest.set_node({x = p1.x, y = p1.y, z = p1.z - 1}, {name = south.name .. "_inner", param2 = 3})
+					end
 				end
 			end
 
@@ -99,7 +131,6 @@ function bk_game.register_stair(name, def)
 
 	minetest.register_node(":blocks:"..name.."_stair_corner", {
 		drop = "blocks:"..name.."_stair",
-		description = def.description.." Stair",
 		drawtype = "nodebox",
 		tiles = def.tiles,
 		paramtype = "light",
@@ -112,6 +143,26 @@ function bk_game.register_stair(name, def)
 			fixed = {
 				{-0.5, -0.5, -0.5, 0.5, 0, 0.5},
 				{-0.5, 0, 0, 0.0, 0.5, 0.5},
+			},
+		},
+
+	})
+
+	minetest.register_node(":blocks:"..name.."_stair_inner", {
+		drop = "blocks:"..name.."_stair",
+		drawtype = "nodebox",
+		tiles = def.tiles,
+		paramtype = "light",
+		paramtype2 = "facedir",
+		is_ground_content = true,
+		groups = def.groups,
+		sounds = def.sounds,
+		node_box = {
+			type = "fixed",
+			fixed = {
+				{-0.5, -0.5, -0.5, 0.5, 0, 0.5},
+				{-0.5, 0, 0, 0.5, 0.5, 0.5},
+				{-0.5, 0, -0.5, 0, 0.5, 0.5}
 			},
 		},
 
