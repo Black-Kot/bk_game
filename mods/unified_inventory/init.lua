@@ -31,13 +31,6 @@ unified_inventory.home_filename =
 -- Default inventory page
 unified_inventory.default = "craft"
 
--- Disable default creative inventory
-if creative_inventory then
-	function creative_inventory.set_creative_formspec(player, start_i, pagenum)
-		return
-	end
-end
-
 dofile(modpath.."/api.lua")
 dofile(modpath.."/internal.lua")
 dofile(modpath.."/callbacks.lua")

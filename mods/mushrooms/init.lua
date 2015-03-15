@@ -112,7 +112,7 @@ function bk_game.register_mushroom(name, def)
 		end
 	})
 
-	mushroom = {
+	local mushroom = {
 		name = "mushrooms:"..name,
 		chance = def.chance,
 		wherein = def.wherein,
