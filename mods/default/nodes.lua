@@ -1,12 +1,21 @@
 -- mods/default/nodes.lua
 
+local ffa = 0
+
+function ffx(a)
+	a = a + 4
+end
+
+ffx(ffa)
+print(ffa)
+
 bk_game.register_nodes("stone", {
 	stair = true,
 	slab = true,
 	description = "Stone",
 	tiles = {"default_stone.png"},
 	is_ground_content = true,
-	groups = {cracky=5, stone=1},
+	groups = bk_game.groups.stone,
 	drop = "default:cobble",
 	brick = true,
 	flat = true,
@@ -20,7 +29,7 @@ bk_game.register_nodes("desert_stone", {
 	description = "Desert Stone",
 	tiles = {"default_desert_stone.png"},
 	is_ground_content = true,
-	groups = {cracky=5, stone=1},
+	groups = bk_game.groups.stone,
 	drop = "default:desert_cobble",
 	brick = true,
 	flat = true,
@@ -28,14 +37,13 @@ bk_game.register_nodes("desert_stone", {
 	sounds = default.node_sound_stone_defaults(),
 })
 
-
-bk_game.register_nodes("chameleon", {
+bk_game.register_nodes("chameleon", { --wtf?
 	stair = true,
 	slab = true,
 	description = "Chameleon",
 	tiles = {"chameleon_none.png"},
 	is_ground_content = true,
-	groups = {cracky=5, stone=1},
+	groups = bk_game.groups.stone,
 	sounds = default.node_sound_stone_defaults(),
 })
 
@@ -43,7 +51,7 @@ minetest.register_node("default:dirt_with_grass", {
 	description = "Dirt with Grass",
 	tiles = {"default_grass.png", "default_dirt.png", "default_dirt.png^default_grass_side.png"},
 	is_ground_content = true,
-	groups = {crumbly=6,soil=1},
+	groups = bk_game.groups.dirt,
 	drop = "default:dirt",
 	sounds = default.node_sound_dirt_defaults({
 		footstep = {name="default_grass_footstep", gain=0.25},
@@ -62,7 +70,7 @@ minetest.register_node("default:dirt", {
 	description = "Dirt",
 	tiles = {"default_dirt.png"},
 	is_ground_content = true,
-	groups = {crumbly=6,soil=1},
+	groups = bk_game.groups.dirt,
 	sounds = default.node_sound_dirt_defaults(),
 	after_dig_node = function(pos, oldnode, oldmeta, digger)
 		if not digger then return end
@@ -109,7 +117,7 @@ minetest.register_node("default:sand", {
 	description = "Sand",
 	tiles = {"default_sand.png"},
 	is_ground_content = true,
-	groups = {crumbly=6, falling_node=1, sand=1},
+	groups = bk_game.groups.sand,
 	sounds = default.node_sound_sand_defaults(),
 })
 
@@ -117,7 +125,7 @@ minetest.register_node("default:desert_sand", {
 	description = "Desert Sand",
 	tiles = {"default_desert_sand.png"},
 	is_ground_content = true,
-	groups = {crumbly=6, falling_node=1, sand=1},
+	groups = bk_game.groups.sand,
 	sounds = default.node_sound_sand_defaults(),
 })
 
@@ -125,7 +133,7 @@ minetest.register_node("default:gravel", {
 	description = "Gravel",
 	tiles = {"default_gravel.png"},
 	is_ground_content = true,
-	groups = {crumbly=5, falling_node=1},
+	groups = bk_game.groups.gravel,
 	sounds = default.node_sound_dirt_defaults({
 		footstep = {name="default_gravel_footstep", gain=0.5},
 		dug = {name="default_gravel_footstep", gain=1.0},
@@ -139,7 +147,7 @@ bk_game.register_nodes("sandstone", {
 	description = "Sandstone",
 	tiles = {"default_sandstone.png"},
 	is_ground_content = true,
-	groups = {crumbly=4,cracky=4},
+	groups = bk_game.groups.sandstone,
 	brick = true,
 	sounds = default.node_sound_stone_defaults(),
 })
@@ -150,7 +158,7 @@ bk_game.register_nodes("clay", {
 	description = "Clay",
 	tiles = {"default_clay.png"},
 	is_ground_content = true,
-	groups = {crumbly=6},
+	groups = bk_game.groups.clay,
 	drop = "default:clay_lump 4",
 	sounds = default.node_sound_dirt_defaults(),
 })
@@ -160,14 +168,14 @@ bk_game.register_nodes("brick", {
 	slab = true,
 	source = "default:clay_brick",
 	description = "Brick",
-	groups = {cracky=4},
+	groups = bk_game.groups.brick,
 	sounds = default.node_sound_stone_defaults(),
 })
 
 minetest.register_node("default:cactus", {
 	description = "Cactus",
 	tiles = {"default_cactus_top.png", "default_cactus_top.png", "default_cactus_side.png"},
-	groups = {snappy=4,choppy=1,flammable=2,dropping_node=1,drop_on_dig=1,flower=1,color_green=1},
+	groups = bk_game.groups.cactus,
 	drawtype = "nodebox",
 	paramtype = "light",
 	node_box = {
@@ -247,7 +255,7 @@ minetest.register_node("default:papyrus", {
 		type = "fixed",
 		fixed = {-0.3, -0.5, -0.3, 0.3, 0.5, 0.3}
 	},
-	groups = {snappy=6,oddly_breakable_by_hand=2,flammable=2},
+	groups = bk_game.groups.papyrus,
 	sounds = default.node_sound_leaves_defaults(),
 })
 
@@ -263,7 +271,7 @@ minetest.register_node("default:dry_shrub", {
 	walkable = false,
 	is_ground_content = true,
 	buildable_to = true,
-	groups = {snappy=3,flammable=3,attached_node=1},
+	groups = bk_game.groups.dry_shrub,
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
@@ -289,7 +297,7 @@ minetest.register_node("default:sign_wall", {
 		--wall_bottom = <default>
 		--wall_side = <default>
 	},
-	groups = {choppy=2,dig_immediate=2,attached_node=1},
+	groups = bk_game.groups.sign,
 	legacy_wallmounted = true,
 	sounds = default.node_sound_defaults(),
 	on_construct = function(pos)
@@ -314,7 +322,7 @@ minetest.register_node("default:sign_wall", {
 })
 
 
-minetest.register_node("default:cloud", {
+minetest.register_node("default:cloud", { --wtf?
 	description = "Cloud",
 	tiles = {"default_cloud.png"},
 
@@ -353,7 +361,7 @@ minetest.register_node("default:water_flowing", {
 	liquid_viscosity = WATER_VISC,
 	freezemelt = "default:snow",
 	post_effect_color = {a=64, r=100, g=100, b=200},
-	groups = {water=3, liquid=3, puts_out_fire=1, not_in_creative_inventory=1, freezes=1, melt_around=1},
+	groups = bk_game.groups.water,
 })
 
 minetest.register_node("default:water_source", {
@@ -384,7 +392,7 @@ minetest.register_node("default:water_source", {
 	liquid_viscosity = WATER_VISC,
 	freezemelt = "default:ice",
 	post_effect_color = {a=64, r=100, g=100, b=200},
-	groups = {water=3, liquid=3, puts_out_fire=1, freezes=1},
+	groups = bk_game.groups.water_source,
 })
 
 minetest.register_node("default:lava_flowing", {
@@ -418,7 +426,7 @@ minetest.register_node("default:lava_flowing", {
 	liquid_viscosity = LAVA_VISC,
 	damage_per_second = 4*2,
 	post_effect_color = {a=192, r=255, g=64, b=0},
-	groups = {lava=3, liquid=2, hot=3, igniter=1, not_in_creative_inventory=1},
+	groups = bk_game.groups.lava,
 })
 
 minetest.register_node("default:lava_source", {
@@ -449,7 +457,7 @@ minetest.register_node("default:lava_source", {
 	liquid_viscosity = LAVA_VISC,
 	damage_per_second = 4*2,
 	post_effect_color = {a=192, r=255, g=64, b=0},
-	groups = {lava=3, liquid=2, hot=3, igniter=1},
+	groups = bk_game.groups.lava_source,
 })
 
 minetest.register_node("default:oil_flowing", {
@@ -519,7 +527,7 @@ minetest.register_node("default:torch", {
 		wall_bottom = {-0.1, -0.5, -0.1, 0.1, -0.5+0.6, 0.1},
 		wall_side = {-0.5, -0.3, -0.1, -0.5+0.3, 0.3, 0.1},
 	},
-	groups = {choppy=7,dig_immediate=3,flammable=1,attached_node=1,hot=2,wield_light=LIGHT_MAX},
+	groups = bk_game.groups.torch,
 	legacy_wallmounted = true,
 	sounds = default.node_sound_defaults(),
 })
@@ -545,7 +553,7 @@ minetest.register_node("default:scaffolding", {
 	climbable = true,
 	walkable = false,
 	is_ground_content = true,
-	groups = {scaffolding=1,dig_immediate=3,flammable=3},
+	groups = bk_game.groups.scaffolding,
 	sounds = default.node_sound_wood_defaults()
 })
 
@@ -580,7 +588,7 @@ minetest.register_node("default:furnace", {
 	tiles = {"default_furnace_top.png", "default_furnace_bottom.png", "default_furnace_side.png",
 		"default_furnace_side.png", "default_furnace_side.png", "default_furnace_front.png"},
 	paramtype2 = "facedir",
-	groups = {cracky=6},
+	groups = bk_game.groups.furnace,
 	legacy_facedir_simple = true,
 	sounds = default.node_sound_stone_defaults(),
 	on_construct = function(pos)
@@ -650,7 +658,7 @@ minetest.register_node("default:furnace_active", {
 	paramtype2 = "facedir",
 	light_source = 8,
 	drop = "default:furnace",
-	groups = {cracky=2, not_in_creative_inventory=1,hot=1},
+	groups = bk_game.groups.furnace_active,
 	legacy_facedir_simple = true,
 	sounds = default.node_sound_stone_defaults(),
 	on_construct = function(pos)
@@ -823,7 +831,7 @@ minetest.register_node("default:cobble", {
 	description = "Cobblestone",
 	tiles = {"default_cobble.png"},
 	is_ground_content = true,
-	groups = {cracky=5, stone=2},
+	groups = bk_game.groups.cobble,
 	sounds = default.node_sound_stone_defaults(),
 })
 
@@ -831,7 +839,7 @@ minetest.register_node("default:desert_cobble", {
 	description = "Desert Cobblestone",
 	tiles = {"default_desert_cobble.png"},
 	is_ground_content = true,
-	groups = {cracky=5, stone=2},
+	groups = bk_game.groups.cobble,
 	sounds = default.node_sound_stone_defaults(),
 })
 
@@ -839,7 +847,7 @@ minetest.register_node("default:mossycobble", {
 	description = "Mossy Cobblestone",
 	tiles = {"default_mossycobble.png"},
 	is_ground_content = true,
-	groups = {cracky=5},
+	groups = bk_game.groups.cobble,
 	sounds = default.node_sound_stone_defaults(),
 })
 
@@ -851,7 +859,7 @@ bk_game.register_nodes("obsidian", {
 	tiles = {"default_obsidian.png"},
 	is_ground_content = true,
 	sounds = default.node_sound_stone_defaults(),
-	groups = {cracky=4,level=2},
+	groups = bk_game.groups.obsidian,
 })
 
 minetest.register_node("default:nyancat", {
@@ -859,7 +867,7 @@ minetest.register_node("default:nyancat", {
 	tiles = {"default_nc_side.png", "default_nc_side.png", "default_nc_side.png",
 		"default_nc_side.png", "default_nc_back.png", "default_nc_front.png"},
 	paramtype2 = "facedir",
-	groups = {cracky=6},
+	groups = bk_game.groups.nc,
 	legacy_facedir_simple = true,
 	sounds = default.node_sound_defaults(),
 })
@@ -867,7 +875,7 @@ minetest.register_node("default:nyancat", {
 minetest.register_node("default:nyancat_rainbow", {
 	description = "Nyan Cat Rainbow",
 	tiles = {"default_nc_rb.png"},
-	groups = {cracky=6},
+	groups = bk_game.groups.nc,
 	sounds = default.node_sound_defaults(),
 })
 
