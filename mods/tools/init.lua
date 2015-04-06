@@ -1,5 +1,5 @@
 function bk_game.register_pick(name, def)
-	if not def.groupcaps then
+	if name ~= "adamant" then
 		def.groupcaps = {
 			cracky = {times=def.times , uses=def.uses, maxlevel=def.level},
 		}
@@ -24,7 +24,7 @@ function bk_game.register_pick(name, def)
 	})
 end
 function bk_game.register_shovel(name, def)
-	if not def.groupcaps then
+	if  name ~= "adamant"  then
 		def.groupcaps = {
 			crumbly = {times=def.times , uses=def.uses, maxlevel=def.level},
 		}
@@ -49,7 +49,7 @@ function bk_game.register_shovel(name, def)
 	})
 end
 function bk_game.register_axe(name, def)
-	if not def.groupcaps then
+	if  name ~= "adamant"  then
 		def.groupcaps = {
 			choppy = {times=def.times , uses=def.uses, maxlevel=def.level},
 		}
@@ -83,7 +83,7 @@ function bk_game.register_axe(name, def)
 	})
 end
 function bk_game.register_sword(name, def)
-	if not def.groupcaps then
+	if  name ~= "adamant"  then
 		def.groupcaps = {
 			snappy = {times=def.times , uses=def.uses, maxlevel=def.level},
 		}
