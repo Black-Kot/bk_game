@@ -39,7 +39,8 @@ end
 
 minerals_list = {
 	cinnabar = {
-		description = "Cinnabar"
+		description = "Cinnabar",
+		brick = false
 	},
 	coal = {
 		description = "Coal",
@@ -50,38 +51,48 @@ minerals_list = {
 		stair = false,
 		flat = false,
 		column = false,
-		pyramid = false		
+		pyramid = false,
 	},
 	gypsum = {
-		description = "Gypsum"
+		description = "Gypsum",
+		brick = false
 	},
 	jet = {
-		description = "Jet"
+		description = "Jet",
+		brick = false
 	},
 	lazurite = {
-		description = "Lazurite"
+		description = "Lazurite",
+		brick = false
 	},
 	malachite = {
-		description = "Malachite"
+		description = "Malachite",
+		brick = false
 	},
 	olivine = {
-		description = "Olivine"
+		description = "Olivine",
+		brick = false
 	},
 	petrified_wood = {
-		description = "Petrified Wood"
+		description = "Petrified Wood",
+		brick = false
 	},
 	satin_spar = {
-		description = "Satin Spar"
+		description = "Satin Spar",
+		brick = false
 	},
 	selenite = {
-		description = "Selenite"
+		description = "Selenite",
+		brick = false
 	},
 	serpentine = {
-		description = "Serpentine"
+		description = "Serpentine",
+		brick = false,
 	},
 	uranium = {
 		description = "Uranium",
 		chest=false,
+		brick = false,
 		block=false,
 		height_max=-8000
 	}

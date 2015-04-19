@@ -21,7 +21,18 @@ function bk_game.register_block(name, def)
 		})
 
 	end
-
+	if def.brick then
+		bk_game.register_nodes(name.."_brick", {
+		description = def.description.." Brick",
+			source = "blocks:"..name,
+			brick = false,
+			flat = false,
+			stair = def.stair,
+			slab = def.slab,
+			column = def.column,
+			pyramid = def.pyramid,
+		})
+	end
 end
 
 dofile(minetest.get_modpath(minetest.get_current_modname()).."/slabs.lua")
