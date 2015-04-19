@@ -1,8 +1,7 @@
 function bk_game.register_block(name, def)
-
--- we use copy table from real block
-local block = copy_table(def)
-block.description = def.description.." Block"
+	-- we use copy table from real block
+	local block = copy_table(def)
+	block.description = def.description
 	minetest.register_node(":blocks:"..name, block)
 
 	if def.source then
@@ -70,30 +69,5 @@ function bk_game.register_nodes(name, def)
 
 	if def.pyramid then
 		bk_game.register_pyramid(name, def)
-	end
-	if def.flat then
-		bk_game.register_nodes(name.."_flat", {
-			description = "Flat "..def.description,
-			source = nil,
-			brick = true,
-			flat = false,
-			stair = def.stair,
-			slab = def.slab,
-			column = def.column,
-			pyramid = def.pyramid,
-		})
-	end 
-
-	if def.brick then
-		bk_game.register_nodes(name.."_brick", {
-			description = def.description.." Brick",
-			source = "blocks:"..name,
-			brick = false,
-			flat = false,
-			stair = def.stair,
-			slab = def.slab,
-			column = def.column,
-			pyramid = def.pyramid,
-		})
 	end
 end

@@ -189,7 +189,7 @@ function bk_game.register_tree(name, TreeDef)
 	minetest.register_node(":trees:"..tree.name.."_trunk", {
 		description = tree.description.." Trunk",
 		tiles = tree.textures.trunk,
-		groups = {tree=1,choppy=5,snappy=5,flammable=2,drop_on_dig=1},
+		groups = bk_game.groups.trunk,
 		sounds = default.node_sound_wood_defaults(),
 		drop = "trees:"..tree.name.."_log",
 		paramtype = "light",
@@ -205,7 +205,7 @@ function bk_game.register_tree(name, TreeDef)
 
 	minetest.register_node(":trees:"..tree.name.."_trunk_top", {
 		tiles = tree.textures.trunk,
-		groups = {tree=1,choppy=5,snappy=5,flammable=2,drop_on_dig=1},
+		groups = bk_game.groups.trunk,
 		sounds = default.node_sound_wood_defaults(),
 		drop = "trees:"..tree.name.."_log",
 		paramtype = "light",
@@ -231,7 +231,7 @@ function bk_game.register_tree(name, TreeDef)
 		stair=true,
 		description = tree.description.." Planks",
 		tiles = {tree.textures.planks},
-		groups = {planks=1,snappy=5,choppy=5,oddly_breakable_by_hand=2,flammable=3,drop_on_dig=1},
+		groups = bk_game.groups.planks,
 		sounds = default.node_sound_wood_defaults(),
 	})
 

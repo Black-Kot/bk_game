@@ -45,6 +45,7 @@ function bk_game.register_metal(name, metal_def)
 
 -- it`s broken by alloys
 	if metal_def.blocks and metal_def.blocks ~= false then
+		metal_def.groups = bk_game.groups[name]
 		metal_def.stair = true
 		metal_def.slab = true
 		metal_def.column = true
@@ -73,10 +74,6 @@ end
 metals_list = {
 	adamant = {
 		description = "Adamant",
-		level = 1,
-		uses = 0,
-		times = {[1]=1.00, [2]=0.80, [3]=0.80, [4]=0.80, [5]=0.80, [6]=0.80},
-		full_punch_interval = 0.20,
 		isAlloy = false,
 		chunk_size = 3,
 		height_min = -37000,
@@ -89,9 +86,8 @@ metals_list = {
 		description = "Mithril",
 		level = 2,
 		uses = 30,
-		times = {[2]=2.80, [3]=2.20, [4]=1.50, [5]=1.20, [6]=0.80},
 		isAlloy = false,
-		height_max = -10000,
+		height_max = -1000,
 		blocks = true,
 		tools = true,
 		furniture = false
@@ -100,9 +96,8 @@ metals_list = {
 		description = "Titan",
 		level = 3,
 		uses = 15,
-		times = {[3]=2.50, [4]=1.70, [5]=1.30, [6]=0.90},
 		isAlloy = false,
-		height_max = -5000,
+		height_max = -700,
 		blocks = true,
 		tools = true,
 		furniture = false
@@ -112,9 +107,8 @@ metals_list = {
 		lump = "metals:iron_lump", -- Maybe better to alter descrition rather than internal name?
 		level = 3,
 		uses = 20,
-		times = {[3]=2.70 ,[4]=1.80,[5]=1.40, [6]=1.00},
 		isAlloy = false,
-		height_max = -250,
+		height_max = -600,
 		height_min = -17000,
 		blocks = true,
 		tools = true,
@@ -124,7 +118,7 @@ metals_list = {
 		description = "Gold",
 		level = 5,
 		isAlloy = false,
-		height_max = -1000,
+		height_max = -600,
 		blocks = true,
 		tools = false,
 		furniture = false
@@ -143,16 +137,16 @@ metals_list = {
 		description = "Zinc",
 		level = 5,
 		isAlloy = false,
-		height_min = -9000,
+		height_min = -500,
 		blocks = true,
 		tools = false,
 		furniture = false
 	},
-	aluminium =	{
+	aluminium = {
 		description = "Aluminium",
 		level = 5,
 		isAlloy = false,
-		height_min = -9000,
+		height_min = -50,
 		blocks = true,
 		tools = false,
 		furniture = false
@@ -161,9 +155,8 @@ metals_list = {
 		description = "Copper",
 		level = 4,
 		uses = 10,
-		times = {[4]=2.40,[5]=2.00, [6]=1.70},
 		isAlloy = false,
-		height_min = -17000,
+		height_min = -50,
 		blocks = true,
 		tools = true,
 		furniture = false
@@ -172,7 +165,6 @@ metals_list = {
 		description = "Bronze",
 		level = 4,
 		uses = 25,
-		times = {[4]=1.90,[5]=1.70, [6]=1.40},
 		isAlloy = true,
 		recipe = {"metals:copper_ingot", "metals:aluminium_ingot"},
 		blocks = true,
@@ -183,7 +175,6 @@ metals_list = {
 		description = "Brass",
 		level=4,
 		uses=25,
-		times={[4]=2.10,[5]=1.80, [6]=1.50},
 		isAlloy = true,
 		recipe={"metals:copper_ingot", "metals:copper_ingot", "metals:copper_ingot", "metals:zinc_ingot"},
 		blocks = true,

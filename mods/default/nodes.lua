@@ -1,14 +1,5 @@
 -- mods/default/nodes.lua
 
-local ffa = 0
-
-function ffx(a)
-	a = a + 4
-end
-
-ffx(ffa)
-print(ffa)
-
 bk_game.register_nodes("stone", {
 	stair = true,
 	slab = true,
@@ -34,16 +25,6 @@ bk_game.register_nodes("desert_stone", {
 	brick = true,
 	flat = true,
 	legacy_mineral = true,
-	sounds = default.node_sound_stone_defaults(),
-})
-
-bk_game.register_nodes("chameleon", { --wtf?
-	stair = true,
-	slab = true,
-	description = "Chameleon",
-	tiles = {"chameleon_none.png"},
-	is_ground_content = true,
-	groups = bk_game.groups.stone,
 	sounds = default.node_sound_stone_defaults(),
 })
 

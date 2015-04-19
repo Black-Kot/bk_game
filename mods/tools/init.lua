@@ -1,17 +1,11 @@
+dofile(minetest.get_modpath(minetest.get_current_modname()).."/groupcaps.lua")
 function bk_game.register_pick(name, def)
-	if name ~= "adamant" then
-		def.groupcaps = {
-			cracky = {times=def.times , uses=def.uses, maxlevel=def.level},
-		}
-	end
 	minetest.register_tool(":tools:pick_"..name, {
 		description = def.description.." Pickaxe",
 		inventory_image = "tools_pick_"..name..".png",
 		tool_capabilities = {
 			full_punch_interval = def.full_punch_interval,
-			max_drop_level=def.level,
-			groupcaps = def.groupcaps,
-			damage_groups = {cracky=def.level},
+			groupcaps = bk_game.groupcaps[name].pick,
 		}
 	})
 	minetest.register_craft({
@@ -24,19 +18,12 @@ function bk_game.register_pick(name, def)
 	})
 end
 function bk_game.register_shovel(name, def)
-	if  name ~= "adamant"  then
-		def.groupcaps = {
-			crumbly = {times=def.times , uses=def.uses, maxlevel=def.level},
-		}
-	end
 	minetest.register_tool(":tools:shovel_"..name, {
 		description = def.description.." Shovel",
 		inventory_image = "tools_shovel_"..name..".png",
 		tool_capabilities = {
 			full_punch_interval = 0.9,
-			max_drop_level=def.level,
-			groupcaps = def.groupcaps,
-			damage_groups = {crumbly=def.level},
+			groupcaps = bk_game.groupcaps[name].shovel,
 		},
 	})
 	minetest.register_craft({
@@ -49,19 +36,12 @@ function bk_game.register_shovel(name, def)
 	})
 end
 function bk_game.register_axe(name, def)
-	if  name ~= "adamant"  then
-		def.groupcaps = {
-			choppy = {times=def.times , uses=def.uses, maxlevel=def.level},
-		}
-	end
 	minetest.register_tool(":tools:axe_"..name, {
 		description = def.description.." Axe",
 		inventory_image = "tools_axe_"..name..".png",
 		tool_capabilities = {
 			full_punch_interval = 0.9,
-			max_drop_level=def.level,
-			groupcaps=def.groupcaps,
-			damage_groups = {choppy=def.level},
+			groupcaps = bk_game.groupcaps[name].axe,
 		},
 	})
 
@@ -83,19 +63,12 @@ function bk_game.register_axe(name, def)
 	})
 end
 function bk_game.register_sword(name, def)
-	if  name ~= "adamant"  then
-		def.groupcaps = {
-			snappy = {times=def.times , uses=def.uses, maxlevel=def.level},
-		}
-	end
 	minetest.register_tool(":tools:sword_"..name, {
 		description = def.description.." Sword",
 		inventory_image = "tools_sword_"..name..".png",
 		tool_capabilities = {
 			full_punch_interval = 0.9,
-			max_drop_level=def.level,
-			groupcaps = def.groupcaps,
-			damage_groups = {fleshy=7-def.level},
+			groupcaps = bk_game.groupcaps[name].sword,
 		},
 	})
 	minetest.register_craft({
@@ -158,15 +131,6 @@ function bk_game.register_tools(name, def)
 	if not def.source or not def or not name then
 		return
 	end
-	if not def.times then
-		def.times={ [1]=10.00, [2]=9.00, [3]=8.00, [4]=7.00, [5]=6.00, [6]=5.00, [7]=4.00, [8]=3.00, [9]=2.00, [10]=1.00,}
-	end
-	if not def.uses then
-		def.uses = 10
-	end
-	if not def.level then
-		def.level = 5
-	end
 
 	if not def.full_punch_interval then
 		def.full_punch_interval = 0.9
@@ -212,11 +176,10 @@ minetest.register_item(":", {
 	wield_scale = {x=1,y=1,z=2.5},
 	tool_capabilities = {
 		full_punch_interval = 0.9,
-		max_drop_level = 0,
 		groupcaps = {
-			crumbly = {times={ [6]=2.50,}, uses=0, maxlevel=1},
-			snappy = {times={[6]=2.50}, uses=0, maxlevel=1},
-			oddly_breakable_by_hand = {times={[1]=6.00,[2]=3.00,[3]=1.50}, uses=0, maxlevel=2}
+			crumbly = {times={[1]=5.00, [2]=2.00, [3]=1.00}, uses=0, maxlevel=1},
+			snappy = {times={[3]=2.00}, uses=0, maxlevel=1},
+			oddly_breakable_by_hand = {times={[1]=3.00,[2]=1.50,[3]=0.7}, uses=0, maxlevel=2}
 		},
 		damage_groups = {fleshy=1},
 	}
@@ -234,14 +197,6 @@ bk_game.register_tools("wood", {
 local adamant_def = {
 	description = "Adamant",
 	source = "metals:adamant_ingot",
-	groupcaps={
-		cracky = {times={ [1]=0.60, [2]=0.60, [3]=0.60, [4]=0.60, [5]=0.60, [6]=0.60, } , uses=0, maxlevel=6},
-		crumbly = {times={ [1]=0.60, [2]=0.60, [3]=0.60, [4]=0.60, [5]=0.60, [6]=0.60, } , uses=0, maxlevel=6},
-		choppy = {times={ [1]=0.60, [2]=0.60, [3]=0.60, [4]=0.60, [5]=0.60, [6]=0.60, } , uses=0, maxlevel=6},
-		snappy = {times={ [1]=0.60, [2]=0.60, [3]=0.60, [4]=0.60, [5]=0.60, [6]=0.60, } , uses=0, maxlevel=6},
-	},
-	level=1,
-	uses=0
 }
 bk_game.register_pick("adamant", adamant_def)
 bk_game.register_hoe("adamant", adamant_def)
