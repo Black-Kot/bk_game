@@ -816,6 +816,15 @@ minetest.register_node("default:cobble", {
 	sounds = default.node_sound_stone_defaults(),
 })
 
+minetest.register_node("default:lightstone", {
+	description = "Lightstone",
+	tiles = {"default_lightstone.png"},
+	groups = bk_game.groups.cobble,
+	paramtype = "light",
+	light_source = LIGHT_MAX,
+	sounds = default.node_sound_stone_defaults(),
+})
+
 minetest.register_node("default:desert_cobble", {
 	description = "Desert Cobblestone",
 	tiles = {"default_desert_cobble.png"},

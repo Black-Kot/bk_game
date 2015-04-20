@@ -77,6 +77,14 @@ minetest.register_craft({
 		{"group:stick", "", "group:stick"},
 	}
 })
+minetest.register_craft({
+	output =  "default:lightstone 1",
+	recipe = {
+		{"", "minerals:coal_lump", ""},
+		{"minerals:coal_lump", "default:cobble", "minerals:coal_lump"},
+		{"", "minerals:coal_lump", ""}
+	}
+})
 
 --
 -- Crafting (tool repair)
