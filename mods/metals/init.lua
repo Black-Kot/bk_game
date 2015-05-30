@@ -169,7 +169,7 @@ metals_list = {
 		recipe = {"metals:copper_ingot", "metals:aluminium_ingot"},
 		blocks = true,
 		tools = true,
-		furniture = true
+		furniture = false
 	},
 	brass = {
 		description = "Brass",
