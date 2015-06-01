@@ -132,7 +132,7 @@ minetest.register_chatcommand("mines" , {
 	func = function(name, param)
 		if player == nil then end -- just a check to prevent server death
 		if tlen(minepos[name]) == 0 then
-			return false, "You don't have mines now! Set it using /setmine <name>"
+			return false, "You don't have mines now! Add them using /setmine <name>"
 		end
 		for i, v in pairs(minepos[name]) do
 			minetest.chat_send_player(name, string.format("%s: %s",i,minetest.pos_to_string(vector.round(v))))
