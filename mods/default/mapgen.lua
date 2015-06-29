@@ -144,6 +144,3 @@ minetest.register_on_generated(function(minp, maxp, seed)
 		end
 	end
 end)
-
-dofile(minetest.get_modpath(minetest.get_current_modname()).."/mgv7.lua")
-
