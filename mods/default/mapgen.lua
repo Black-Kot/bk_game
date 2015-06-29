@@ -5,6 +5,7 @@
 --
 
 -- we don`t use trees in mapgenv6
+
 minetest.register_alias("mapgen_air", "air")
 minetest.register_alias("mapgen_apple", "air")
 minetest.register_alias("mapgen_tree", "air")
@@ -32,6 +33,7 @@ minetest.register_alias("mapgen_stair_sandstone", "blocks:sandstone_stair")
 minetest.register_alias("mapgen_sandstone", "blocks:sandstone")
 minetest.register_alias("mapgen_stair_sandstonebrick", "blocks:sandstonebrick_stair")
 
+minetest.register_alias("mapgen_river_water_source", "default:water_source")
 
 function default.make_papyrus(pos, size)
 	for y=0,size-1 do
@@ -142,4 +144,6 @@ minetest.register_on_generated(function(minp, maxp, seed)
 		end
 	end
 end)
+
+dofile(minetest.get_modpath(minetest.get_current_modname()).."/mgv7.lua")
 
