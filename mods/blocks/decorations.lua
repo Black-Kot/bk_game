@@ -43,11 +43,9 @@ function bk_game.register_column(name, def)
 			{"blocks:"..name.."_column", "blocks:"..name.."_column"},
 		},
 	})
-
 end
 
 function bk_game.register_pyramid(name, def)
-
 	minetest.register_node(":blocks:"..name.."_pyramid", {
 		description = def.description.." Pyramid",
 		drawtype = "nodebox",
@@ -83,5 +81,4 @@ function bk_game.register_pyramid(name, def)
 			{"blocks:"..name.."_pyramid", "blocks:"..name.."_pyramid"},
 		},
 	})
-
 end

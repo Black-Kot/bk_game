@@ -1,5 +1,4 @@
 function bk_game.register_block(name, def)
-	-- we use copy table from real block
 	local block = copy_table(def)
 	block.description = def.description
 	minetest.register_node(":blocks:"..name, block)
@@ -21,6 +20,7 @@ function bk_game.register_block(name, def)
 		})
 
 	end
+	
 	if def.brick then
 		bk_game.register_nodes(name.."_brick", {
 		description = def.description.." Brick",
@@ -62,7 +62,7 @@ function bk_game.register_nodes(name, def)
 	end
 
 	bk_game.register_block(name, def)
-	
+
 	def.source = "blocks:"..name
 
 	if def.slab then

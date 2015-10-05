@@ -1,5 +1,4 @@
 function bk_game.register_slab(name, def)
-
 	minetest.register_node(":blocks:"..name.."_slab",{
 		description = def.description.." Slab",
 		drawtype = "nodebox",
@@ -30,21 +29,8 @@ function bk_game.register_slab(name, def)
 				slabpos = p0
 				slabnode = n0
 			end
-			--[[if slabpos then
-					minetest.remove_node(p0)
-					itemstack:take_item(1)
-					minetest.set_node(p0,{name=name})
-				return itemstack
-			end]]--
-			-- Upside down slabs
-			if p0.y-1 == p1.y then
-				-- Turn into full block if pointing at a existing slab
-				--[[if n0.name == "blocks:"..name.."_slab_upside_down" or "blocks:"..name.."_slab_upside_down" then
-					minetest.remove_node(p0)
-					itemstack:take_item(1)
-					minetest.set_node(p0,{name=name})
-				end]]--
 
+			if p0.y-1 == p1.y then
 				-- Place upside down slab
 				local fakestack = ItemStack("blocks:"..name.."_slab_upside_down")
 				local ret = minetest.item_place(fakestack, placer, pointed_thing)
@@ -84,6 +70,7 @@ function bk_game.register_slab(name, def)
 			fixed = {-0.5, 0, -0.5, 0.5, 0.5, 0.5},
 		},
 	})
+
 	if not def.without_craft then
 		minetest.register_craft({
 			output = "blocks:"..name.."_slab 6",

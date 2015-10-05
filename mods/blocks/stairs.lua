@@ -23,7 +23,6 @@ function bk_game.register_stair(name, def)
 		is_ground_content = true,
 		groups = def.groups,
 		sounds = def.sounds,
-
 		node_box = {
 			type = "fixed",
 			fixed = {
@@ -52,6 +51,19 @@ function bk_game.register_stair(name, def)
 			local pp = placer:getpos()
 
 			local facedir = minetest.dir_to_facedir({x=p1.x-pp.x, y = 0, z=p1.z-pp.z})
+
+			--[[
+			          +Z
+			   +----+----+----+
+			   | NW | N  | NE |
+			   +----+----+----+
+			-X | W  | p1 | E  | +X
+			   +----+----+----+
+			   | SW | S  | SE |
+			   +----+----+----+
+			          -Z
+			--]]
+
 			-- FIXME: too slow
 			if facedir == 0 then -- NORTH
 				if stair(east) then
@@ -234,7 +246,7 @@ function bk_game.register_slope(name, def)
 		sunlight_propagates = true
 	})
 	minetest.register_craft({
-		
+
 		output = "blocks:"..name.."_slope 6",
 		recipe = {
 			{"blocks:"..name, "", ""},
